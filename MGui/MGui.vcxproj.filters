@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="MGUI_Component.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_FontManager.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_Font.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_FontTTF.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_FontImage.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32\MGUI_Cursor.cpp">
+      <Filter>Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_Clipboard.cpp" />
+    <ClCompile Include="MGUI_Engine.cpp" />
+    <ClCompile Include="MGUI_Helper.cpp" />
+    <ClCompile Include="MGUI_InputManager.cpp" />
+    <ClCompile Include="MGUI_Layout.cpp" />
+    <ClCompile Include="MGUI_LookFeel.cpp" />
+    <ClCompile Include="MGUI_RenderItem.cpp" />
+    <ClCompile Include="MGUI_Types.cpp" />
+    <ClCompile Include="MGUI_Widget.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MGUI_RenderLayer.cpp" />
+    <ClCompile Include="MGUI_Window.cpp" />
+    <ClCompile Include="MGUI_Factory.cpp" />
+    <ClCompile Include="MGUI_Loader.cpp" />
+    <ClCompile Include="MGUI_Locale.cpp" />
+    <ClCompile Include="MGUI_WidgetInput.cpp" />
+    <ClCompile Include="MGUI_Timer.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_Node.cpp" />
+    <ClCompile Include="MGUI_Button.cpp">
+      <Filter>Widget\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_CheckBox.cpp">
+      <Filter>Widget\CheckBox</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_ComboBox.cpp">
+      <Filter>Widget\ComboBox</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_EditBox.cpp">
+      <Filter>Widget\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_EditView.cpp">
+      <Filter>Widget\EditView</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_ImageBox.cpp">
+      <Filter>Widget\ImageBox</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_Label.cpp">
+      <Filter>Widget\Label</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_ListBox.cpp">
+      <Filter>Widget\ListBox</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_ListBoxItem.cpp">
+      <Filter>Widget\ListBox</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_Panel.cpp">
+      <Filter>Widget\Panel</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_ProgressBar.cpp">
+      <Filter>Widget\ProgressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_ScrollBar.cpp">
+      <Filter>Widget\ScrollBar</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_ScrollView.cpp">
+      <Filter>Widget\ScrollView</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_SliderBar.cpp">
+      <Filter>Widget\SliderBar</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_TabControl.cpp">
+      <Filter>Widget\TabControl</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_TabItem.cpp">
+      <Filter>Widget\TabControl</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_TabPage.cpp">
+      <Filter>Widget\TabControl</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_TextBox.cpp">
+      <Filter>Widget\TextBox</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_TextView.cpp">
+      <Filter>Widget\TextView</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_TreeView.cpp">
+      <Filter>Widget\TreeView</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_TreeViewItem.cpp">
+      <Filter>Widget\TreeView</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_GridBox.cpp">
+      <Filter>Widget\GridBox</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_KFAnimColor.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_KFAnimImage.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_KFAnimMove.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_KFAnimRect.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_KFAnimScale.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_KFAnimSize.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MGUI_Fade.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MGUI_Component.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_FontManager.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_Font.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_FontTTF.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_FontImage.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32\MGUI_Cursor.h">
+      <Filter>Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32\MGUI_Input.h">
+      <Filter>Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_Widget.h" />
+    <ClInclude Include="MGUI.h" />
+    <ClInclude Include="MGUI_Clipboard.h" />
+    <ClInclude Include="MGUI_Engine.h" />
+    <ClInclude Include="MGUI_Entry.h" />
+    <ClInclude Include="MGUI_Event.h" />
+    <ClInclude Include="MGUI_Helper.h" />
+    <ClInclude Include="MGUI_InputManager.h" />
+    <ClInclude Include="MGUI_Layout.h" />
+    <ClInclude Include="MGUI_LookFeel.h" />
+    <ClInclude Include="MGUI_RenderItem.h" />
+    <ClInclude Include="MGUI_Types.h" />
+    <ClInclude Include="MGUI_RenderLayer.h" />
+    <ClInclude Include="Internal\MGUI_FontTTFBorderGenerateor.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="Internal\MGUI_FontTTFStandardGenerator.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_Window.h" />
+    <ClInclude Include="MGUI_Factory.h" />
+    <ClInclude Include="MGUI_Loader.h" />
+    <ClInclude Include="MGUI_Locale.h" />
+    <ClInclude Include="MGUI_WidgetInput.h" />
+    <ClInclude Include="MGUI_Timer.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_Node.h" />
+    <ClInclude Include="MGUI_Button.h">
+      <Filter>Widget\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_CheckBox.h">
+      <Filter>Widget\CheckBox</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_ComboBox.h">
+      <Filter>Widget\ComboBox</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_EditBox.h">
+      <Filter>Widget\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_EditView.h">
+      <Filter>Widget\EditView</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_ImageBox.h">
+      <Filter>Widget\ImageBox</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_Label.h">
+      <Filter>Widget\Label</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_ListBox.h">
+      <Filter>Widget\ListBox</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_ListBoxItem.h">
+      <Filter>Widget\ListBox</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_Panel.h">
+      <Filter>Widget\Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_ProgressBar.h">
+      <Filter>Widget\ProgressBar</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_ScrollBar.h">
+      <Filter>Widget\ScrollBar</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_ScrollView.h">
+      <Filter>Widget\ScrollView</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_SliderBar.h">
+      <Filter>Widget\SliderBar</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_TabControl.h">
+      <Filter>Widget\TabControl</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_TabItem.h">
+      <Filter>Widget\TabControl</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_TabPage.h">
+      <Filter>Widget\TabControl</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_TextBox.h">
+      <Filter>Widget\TextBox</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_TextView.h">
+      <Filter>Widget\TextView</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_TreeView.h">
+      <Filter>Widget\TreeView</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_TreeViewItem.h">
+      <Filter>Widget\TreeView</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_GridBox.h">
+      <Filter>Widget\GridBox</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_KFAnimColor.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_KFAnimImage.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_KFAnimMove.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_KFAnimRect.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_KFAnimScale.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_KFAnimSize.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MGUI_Fade.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Component">
+      <UniqueIdentifier>{b9427376-950e-4be0-925b-51d68fa6e29c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font">
+      <UniqueIdentifier>{086c4e48-cf86-441e-8f3e-d25244cc19b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget">
+      <UniqueIdentifier>{5a86351c-a96c-411a-8030-e06d2879f573}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Win32">
+      <UniqueIdentifier>{8dae95fe-3889-4d89-b988-dff3a17fc7be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\Button">
+      <UniqueIdentifier>{fa75d675-75e4-48ed-9fa4-aacd0ffa8768}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\CheckBox">
+      <UniqueIdentifier>{b130a827-34b8-426c-b089-7dfd0500e491}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\ComboBox">
+      <UniqueIdentifier>{9013e44a-d2f2-47c2-ba7e-3c772eb82520}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\EditBox">
+      <UniqueIdentifier>{993ca773-fe9d-46f9-8c4f-354c33f8f43b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\EditView">
+      <UniqueIdentifier>{dfd27f11-ebe2-47c9-b0aa-f6873e33870a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\ImageBox">
+      <UniqueIdentifier>{9fa876e6-ca52-4118-8ab1-7df56684b855}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\Label">
+      <UniqueIdentifier>{9ea55316-5d77-4198-aeec-922b52349029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\ListBox">
+      <UniqueIdentifier>{28706c70-63d5-4b80-ba06-d688e06a8762}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\Panel">
+      <UniqueIdentifier>{b1eeb22b-991c-4b43-851d-17000a50bf8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\ProgressBar">
+      <UniqueIdentifier>{7ed237e4-22ef-47f0-941e-b04cf65a911f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\ScrollBar">
+      <UniqueIdentifier>{e0e37d82-e13a-453d-9107-1024985b77c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\ScrollView">
+      <UniqueIdentifier>{59cf2ab1-b8ea-42cc-abc9-1d3433395cfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\SliderBar">
+      <UniqueIdentifier>{60a1ca5e-8de6-4f93-90db-376e3b29f70f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\TabControl">
+      <UniqueIdentifier>{d6eb5e75-0ff4-46c1-b996-da5e7ac69f78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\TextBox">
+      <UniqueIdentifier>{ea474389-8f45-4e98-a62f-5770b7dd8432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\TextView">
+      <UniqueIdentifier>{33aad468-9676-4140-9553-9b0d0720223c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\TreeView">
+      <UniqueIdentifier>{5e3d63e2-c960-497a-bd30-5adbf5c84ed2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widget\GridBox">
+      <UniqueIdentifier>{3c7362dc-9f67-4340-9604-cdf2e0449185}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

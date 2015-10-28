@@ -1,0 +1,49 @@
+<Layout lookfeel="MainPanel">
+	<Name value="Root"/>
+	<Rect value="0 0 256 814"/>
+	<Align value="128"/>
+	<Child type="ListBox" lookfeel="MainListBox">
+		<Name value="List"/>
+		<Rect value="0 32 244 361"/>
+		<Align value="16"/>
+		<ItemHeight value="24"/>
+	</Child>
+	<Child type="Label" lookfeel="EditorBlack">
+		<Name value="Widget"/>
+		<Rect value="0 2 244 27"/>
+		<Align value="16"/>
+		<Caption value="Animation"/>
+		<TextAlign value="1"/>
+	</Child>
+	<Child type="Button" lookfeel="MainButton">
+		<Name value="Remove"/>
+		<Rect value="0 398 244 28"/>
+		<Align value="16"/>
+		<Caption value="Remove"/>
+	</Child>
+	<Child type="Button" lookfeel="MainButton">
+		<Name value="Save"/>
+		<Rect value="0 428 244 28"/>
+		<Align value="16"/>
+		<Caption value="Save"/>
+	</Child>
+	<Child type="Button" lookfeel="MainButton">
+		<Name value="DumpSkeleton"/>
+		<Rect value="0 490 244 28"/>
+		<Align value="16"/>
+		<Caption value="Dump Skeleton"/>
+	</Child>
+	<Child type="Button" lookfeel="MainButton">
+		<Name value="Stop"/>
+		<Rect value="0 458 244 28"/>
+		<Align value="16"/>
+		<Caption value="Stop"/>
+	</Child>
+	<Child type="Button" lookfeel="MainButton">
+		<Name value="ShowSkeleton"/>
+		<Rect value="0 521 244 28"/>
+		<Align value="16"/>
+		<Caption value="Show Skeleton"/>
+	</Child>
+</Layout>
+

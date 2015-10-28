@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{54493490-7646-47c6-b7e7-bd9b97453d67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{f5df2265-f5d9-4001-a00d-ee7bcedf53d3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\vorbis\codec.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vorbis\vorbisenc.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vorbis\vorbisfile.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\vorbis\analysis.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\vorbisfile.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\barkmel.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\bitrate.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\block.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\codebook.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\envelope.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\floor0.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\floor1.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\info.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\lookup.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\lpc.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\lsp.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\mapping0.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\mdct.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\psy.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\registry.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\res0.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\sharedbook.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\smallft.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\synthesis.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\vorbisenc.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vorbis\window.c">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

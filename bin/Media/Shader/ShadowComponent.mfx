@@ -1,0 +1,56 @@
+<ShaderFX>
+
+	<Pass>
+
+		<State CullMode = "NONE" DepthCheck = "CHECK_ONLY" BlendMode = "ALPHA_BLEND"/>
+
+		<Uniform Name = "u_WVP" Type = "WORLD_VIEW_PROJ_MATRIX" />
+
+		<Attribute Name = "i_Position" Semantic = "POSITION"/>
+		<Attribute Name = "i_Normal" Semantic = "NORMAL"/>
+		<Attribute Name = "i_UV" Semantic = "TEXCOORD0"/>
+
+		<Sampler Index = "0" BindType = "SAMPLER" Filter = "DEFAULT" Address = "CLAMP" Filename = "Shadow.png"/>
+
+		<VertexShader Code = "
+
+			uniform mat4 u_WVP;
+
+			attribute vec4 i_Position;
+			attribute vec3 i_Normal;
+			attribute vec2 i_UV;
+
+			varying vec2 o_uv;
+			varying float o_alpha;
+
+			void main()
+			{
+				gl_Position = u_WVP * i_Position;
+				
+				o_uv = i_UV;
+				o_alpha = i_Normal.y;
+			}
+
+		" />
+
+		<PixelShader Code = "
+
+			precision highp float;
+			precision mediump int;
+
+			varying vec2 o_uv;
+			varying float o_alpha;
+
+			uniform sampler2D s_shadow;
+
+			void main()
+			{
+				gl_FragColor = texture2D(s_shadow, o_uv);
+				gl_FragColor.a *= o_alpha * 0.8;
+			}
+
+		" />
+
+	</Pass>
+
+</ShaderFX>

@@ -1,0 +1,30 @@
+<Layout lookfeel="EditorBlack">
+	<Name value="Root"/>
+	<Rect value="822 0 204 814"/>
+	<Align value="136"/>
+	<Child type="CheckBox" lookfeel="MainCheckBox">
+		<Name value="Direction"/>
+		<Rect value="0 20 24 23"/>
+	</Child>
+	<Child type="CheckBox" lookfeel="MainCheckBox">
+		<Name value="Point"/>
+		<Rect value="1 47 24 23"/>
+	</Child>
+	<Child type="CheckBox" lookfeel="MainCheckBox">
+		<Name value="Spot"/>
+		<Rect value="1 74 24 23"/>
+	</Child>
+	<Child type="Widget" lookfeel="EditorBlack">
+		<Name value="T_Direction"/>
+		<Rect value="25 18 178 27"/>
+	</Child>
+	<Child type="Widget" lookfeel="EditorBlack">
+		<Name value="T_Point"/>
+		<Rect value="25 45 178 27"/>
+	</Child>
+	<Child type="Widget" lookfeel="EditorBlack">
+		<Name value="T_Spot"/>
+		<Rect value="25 72 178 27"/>
+	</Child>
+</Layout>
+

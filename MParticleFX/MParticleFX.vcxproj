@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|Win32">
+      <Configuration>Profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7C8885E6-D8CF-4703-AD16-46E7694AD9BF}</ProjectGuid>
+    <RootNamespace>MParticleFX</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>..\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>..\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <IntDir>..\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./;./Internal;../MCore;../MCore/Platform/Win32;../ThirdParty/xml</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FX_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).dll</OutputFile>
+      <AdditionalDependencies>MCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../SDK.Win32/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+      <ProgramDatabaseFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).pdb</ProgramDatabaseFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>./;./Internal;../MCore;../MCore/Platform/Win32;../ThirdParty/xml</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FX_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDatabaseFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).pdb</ProgramDatabaseFile>
+      <OutputFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>../SDK.Win32/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>MCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>./;./Internal;../MCore;../MCore/Platform/Win32;../ThirdParty/xml</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FX_EXPORT;M_PROFILE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDatabaseFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).pdb</ProgramDatabaseFile>
+      <OutputFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>../SDK.Win32/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>MCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ParticleFX.cpp" />
+    <ClCompile Include="PSBillboard.cpp" />
+    <ClCompile Include="PSDecal.cpp" />
+    <ClCompile Include="PSEmitterBox.cpp" />
+    <ClCompile Include="PSEmitterCylinder.cpp" />
+    <ClCompile Include="PSEmitterEllipsoid.cpp" />
+    <ClCompile Include="PSEmitterMesh.cpp" />
+    <ClCompile Include="PSEmitterPoint.cpp" />
+    <ClCompile Include="PSGroup.cpp" />
+    <ClCompile Include="PSLight.cpp" />
+    <ClCompile Include="PSLine.cpp" />
+    <ClCompile Include="PSMesh.cpp" />
+    <ClCompile Include="PSModifierKeyController.cpp" />
+    <ClCompile Include="PSModifierMagneticField.cpp" />
+    <ClCompile Include="PSModifierColor.cpp" />
+    <ClCompile Include="PSModifierDeflectorPlane.cpp" />
+    <ClCompile Include="PSModifierDirectionRandom.cpp" />
+    <ClCompile Include="PSModifierForce.cpp" />
+    <ClCompile Include="PSModifierRotation.cpp" />
+    <ClCompile Include="PSModifierRotation2.cpp" />
+    <ClCompile Include="PSModifierScale.cpp" />
+    <ClCompile Include="PSModifierUVAnim.cpp" />
+    <ClCompile Include="PSModifierUVScroll.cpp" />
+    <ClCompile Include="PSParticleSystem.cpp" />
+    <ClCompile Include="PSParticleSystemSet.cpp" />
+    <ClCompile Include="PSBillboardSet.cpp" />
+    <ClCompile Include="PSDecalSet.cpp" />
+    <ClCompile Include="PSEmitterSet.cpp" />
+    <ClCompile Include="PSGroupSet.cpp" />
+    <ClCompile Include="PSLightSet.cpp" />
+    <ClCompile Include="PSLineSet.cpp" />
+    <ClCompile Include="PSMeshSet.cpp" />
+    <ClCompile Include="PSRibbonSet.cpp" />
+    <ClCompile Include="PSSliceSet.cpp" />
+    <ClCompile Include="PSRibbon.cpp" />
+    <ClCompile Include="PSShaderMask.cpp" />
+    <ClCompile Include="PSShaderStandard.cpp" />
+    <ClCompile Include="PSSlice.cpp" />
+    <ClCompile Include="PSTypes.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ParticleFX.h" />
+    <ClInclude Include="PSBillboard.h" />
+    <ClInclude Include="PSDecal.h" />
+    <ClInclude Include="PSEmitterBox.h" />
+    <ClInclude Include="PSEmitterCylinder.h" />
+    <ClInclude Include="PSEmitterEllipsoid.h" />
+    <ClInclude Include="PSEmitterMesh.h" />
+    <ClInclude Include="PSEmitterPoint.h" />
+    <ClInclude Include="PSGroup.h" />
+    <ClInclude Include="PSLight.h" />
+    <ClInclude Include="PSLine.h" />
+    <ClInclude Include="PSMesh.h" />
+    <ClInclude Include="PSModifierKeyController.h" />
+    <ClInclude Include="PSModifierMagneticField.h" />
+    <ClInclude Include="PSModifierRotation.h" />
+    <ClInclude Include="PSModifierUVAnim.h" />
+    <ClInclude Include="PSModifierUVScroll.h" />
+    <ClInclude Include="PSParticleSystem.h" />
+    <ClInclude Include="PSDecalSet.h" />
+    <ClInclude Include="PSEmitterSet.h" />
+    <ClInclude Include="PSGroupSet.h" />
+    <ClInclude Include="PSLightSet.h" />
+    <ClInclude Include="PSLineSet.h" />
+    <ClInclude Include="PSModifierForce.h" />
+    <ClInclude Include="PSModifierDeflectorPlane.h" />
+    <ClInclude Include="PSModifierDirectionRandom.h" />
+    <ClInclude Include="PSModifierRotation2.h" />
+    <ClInclude Include="PSModifierScale.h" />
+    <ClInclude Include="PSBillboardSet.h" />
+    <ClInclude Include="PSModifierColor.h" />
+    <ClInclude Include="PSMeshSet.h" />
+    <ClInclude Include="PSParticleSystemSet.h" />
+    <ClInclude Include="PSRibbonSet.h" />
+    <ClInclude Include="PSSliceSet.h" />
+    <ClInclude Include="PSRibbon.h" />
+    <ClInclude Include="PSShaderMask.h" />
+    <ClInclude Include="PSShaderStandard.h" />
+    <ClInclude Include="PSSlice.h" />
+    <ClInclude Include="PSTypes.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

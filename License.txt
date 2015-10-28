@@ -1,0 +1,4 @@
+LGPL
+
+Author: Myway(SiZhong.Wang)
+E-MAIL: MSoft1115@hotmal.com

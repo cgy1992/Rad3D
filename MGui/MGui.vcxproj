@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|Win32">
+      <Configuration>Profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{62C15516-56BC-4420-A222-85E656CE5A3C}</ProjectGuid>
+    <RootNamespace>MGui</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>..\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>..\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <IntDir>..\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./;../MCore;../MCore/Platform/Win32;../ThirdParty/xml;../ThirdParty/freetype/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MGUI_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>../SDK.Win32/lib/$(Configuration);../ThirdParty.Win32/freetype/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>MCore.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+      <ProgramDatabaseFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).pdb</ProgramDatabaseFile>
+    </Link>
+    <Lib>
+      <OutputFile>../SDK/lib/$(Configuration)/$(ProjectName).lib</OutputFile>
+    </Lib>
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>./;../MCore;../MCore/Platform/Win32;../ThirdParty/xml;../ThirdParty/freetype/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MGUI_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <OutputFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>../SDK.Win32/lib/$(Configuration);../ThirdParty.Win32/freetype/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+      <AdditionalDependencies>MCore.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ProgramDatabaseFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).pdb</ProgramDatabaseFile>
+    </Link>
+    <Lib>
+      <OutputFile>../SDK/lib/$(Configuration)/$(ProjectName).lib</OutputFile>
+    </Lib>
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>./;../MCore;../MCore/Platform/Win32;../ThirdParty/xml;../ThirdParty/freetype/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MGUI_EXPORT;M_PROFILE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <OutputFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>../SDK.Win32/lib/$(Configuration);../ThirdParty.Win32/freetype/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+      <AdditionalDependencies>MCore.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ProgramDatabaseFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).pdb</ProgramDatabaseFile>
+    </Link>
+    <Lib>
+      <OutputFile>../SDK/lib/$(Configuration)/$(ProjectName).lib</OutputFile>
+    </Lib>
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MGUI_Button.cpp" />
+    <ClCompile Include="MGUI_CheckBox.cpp" />
+    <ClCompile Include="MGUI_Clipboard.cpp" />
+    <ClCompile Include="MGUI_ComboBox.cpp" />
+    <ClCompile Include="MGUI_Component.cpp" />
+    <ClCompile Include="MGUI_KFAnimColor.cpp" />
+    <ClCompile Include="MGUI_Fade.cpp" />
+    <ClCompile Include="MGUI_KFAnimImage.cpp" />
+    <ClCompile Include="MGUI_KFAnimRect.cpp" />
+    <ClCompile Include="MGUI_KFAnimScale.cpp" />
+    <ClCompile Include="MGUI_KFAnimSize.cpp" />
+    <ClCompile Include="MGUI_Timer.cpp" />
+    <ClCompile Include="MGUI_KFAnimMove.cpp" />
+    <ClCompile Include="MGUI_EditBox.cpp" />
+    <ClCompile Include="MGUI_EditView.cpp" />
+    <ClCompile Include="MGUI_Engine.cpp" />
+    <ClCompile Include="MGUI_Factory.cpp" />
+    <ClCompile Include="MGUI_Font.cpp" />
+    <ClCompile Include="MGUI_FontImage.cpp" />
+    <ClCompile Include="MGUI_FontManager.cpp" />
+    <ClCompile Include="MGUI_FontTTF.cpp" />
+    <ClCompile Include="MGUI_GridBox.cpp" />
+    <ClCompile Include="MGUI_Helper.cpp" />
+    <ClCompile Include="MGUI_Loader.cpp" />
+    <ClCompile Include="MGUI_Locale.cpp" />
+    <ClCompile Include="MGUI_ScrollBar.cpp" />
+    <ClCompile Include="MGUI_InputManager.cpp" />
+    <ClCompile Include="MGUI_RenderLayer.cpp" />
+    <ClCompile Include="MGUI_ListBoxItem.cpp" />
+    <ClCompile Include="MGUI_Node.cpp" />
+    <ClCompile Include="MGUI_Panel.cpp" />
+    <ClCompile Include="MGUI_ProgressBar.cpp" />
+    <ClCompile Include="MGUI_ImageBox.cpp" />
+    <ClCompile Include="MGUI_Label.cpp" />
+    <ClCompile Include="MGUI_ListBox.cpp" />
+    <ClCompile Include="MGUI_RenderItem.cpp" />
+    <ClCompile Include="MGUI_ScrollView.cpp" />
+    <ClCompile Include="MGUI_LookFeel.cpp" />
+    <ClCompile Include="MGUI_TabControl.cpp" />
+    <ClCompile Include="MGUI_TabItem.cpp" />
+    <ClCompile Include="MGUI_TabPage.cpp" />
+    <ClCompile Include="MGUI_TextBox.cpp" />
+    <ClCompile Include="MGUI_TextView.cpp" />
+    <ClCompile Include="MGUI_TreeViewItem.cpp" />
+    <ClCompile Include="MGUI_TreeView.cpp" />
+    <ClCompile Include="MGUI_Types.cpp" />
+    <ClCompile Include="MGUI_Layout.cpp" />
+    <ClCompile Include="MGUI_SliderBar.cpp" />
+    <ClCompile Include="MGUI_Widget.cpp" />
+    <ClCompile Include="MGUI_WidgetInput.cpp" />
+    <ClCompile Include="MGUI_Window.cpp" />
+    <ClCompile Include="Win32\MGUI_Cursor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Internal\MGUI_FontTTFBorderGenerateor.h" />
+    <ClInclude Include="Internal\MGUI_FontTTFStandardGenerator.h" />
+    <ClInclude Include="MGUI.h" />
+    <ClInclude Include="MGUI_Button.h" />
+    <ClInclude Include="MGUI_CheckBox.h" />
+    <ClInclude Include="MGUI_Clipboard.h" />
+    <ClInclude Include="MGUI_ComboBox.h" />
+    <ClInclude Include="MGUI_Component.h" />
+    <ClInclude Include="MGUI_KFAnimColor.h" />
+    <ClInclude Include="MGUI_Fade.h" />
+    <ClInclude Include="MGUI_KFAnimImage.h" />
+    <ClInclude Include="MGUI_KFAnimRect.h" />
+    <ClInclude Include="MGUI_KFAnimScale.h" />
+    <ClInclude Include="MGUI_KFAnimSize.h" />
+    <ClInclude Include="MGUI_Timer.h" />
+    <ClInclude Include="MGUI_KFAnimMove.h" />
+    <ClInclude Include="MGUI_EditBox.h" />
+    <ClInclude Include="MGUI_EditView.h" />
+    <ClInclude Include="MGUI_Engine.h" />
+    <ClInclude Include="MGUI_Entry.h" />
+    <ClInclude Include="MGUI_Event.h" />
+    <ClInclude Include="MGUI_Factory.h" />
+    <ClInclude Include="MGUI_Font.h" />
+    <ClInclude Include="MGUI_FontImage.h" />
+    <ClInclude Include="MGUI_FontManager.h" />
+    <ClInclude Include="MGUI_FontTTF.h" />
+    <ClInclude Include="MGUI_GridBox.h" />
+    <ClInclude Include="MGUI_Helper.h" />
+    <ClInclude Include="MGUI_Loader.h" />
+    <ClInclude Include="MGUI_Locale.h" />
+    <ClInclude Include="MGUI_ScrollBar.h" />
+    <ClInclude Include="MGUI_InputManager.h" />
+    <ClInclude Include="MGUI_RenderLayer.h" />
+    <ClInclude Include="MGUI_ListBoxItem.h" />
+    <ClInclude Include="MGUI_Node.h" />
+    <ClInclude Include="MGUI_Panel.h" />
+    <ClInclude Include="MGUI_ProgressBar.h" />
+    <ClInclude Include="MGUI_ImageBox.h" />
+    <ClInclude Include="MGUI_Label.h" />
+    <ClInclude Include="MGUI_ListBox.h" />
+    <ClInclude Include="MGUI_RenderItem.h" />
+    <ClInclude Include="MGUI_ScrollView.h" />
+    <ClInclude Include="MGUI_LookFeel.h" />
+    <ClInclude Include="MGUI_TabControl.h" />
+    <ClInclude Include="MGUI_TabItem.h" />
+    <ClInclude Include="MGUI_TabPage.h" />
+    <ClInclude Include="MGUI_TextBox.h" />
+    <ClInclude Include="MGUI_TextView.h" />
+    <ClInclude Include="MGUI_TreeViewItem.h" />
+    <ClInclude Include="MGUI_TreeView.h" />
+    <ClInclude Include="MGUI_Types.h" />
+    <ClInclude Include="MGUI_Layout.h" />
+    <ClInclude Include="MGUI_SliderBar.h" />
+    <ClInclude Include="MGUI_Widget.h" />
+    <ClInclude Include="MGUI_WidgetInput.h" />
+    <ClInclude Include="MGUI_Window.h" />
+    <ClInclude Include="Win32\MGUI_Cursor.h" />
+    <ClInclude Include="Win32\MGUI_Input.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

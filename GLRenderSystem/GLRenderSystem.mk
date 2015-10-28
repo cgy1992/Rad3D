@@ -1,0 +1,12 @@
+../../GLRenderSystem/GLRenderSystem.cpp \
+../../GLRenderSystem/Internal/GLDepthBuffer.cpp \
+../../GLRenderSystem/Internal/GLRenderTarget.cpp \
+../../GLRenderSystem/Internal/GLUtil.cpp \
+../../GLRenderSystem/Internal/GLIndexBuffer.cpp \
+../../GLRenderSystem/Internal/GLShaderPass.cpp \
+../../GLRenderSystem/Internal/GLShaderFXManager.cpp \
+../../GLRenderSystem/Internal/GLShaderProgram.cpp \
+../../GLRenderSystem/Internal/GLTexture.cpp \
+../../GLRenderSystem/Internal/GLVertexBuffer.cpp \
+../../GLRenderSystem/Internal/GLHWBufferManager.cpp \
+../../GLRenderSystem/main.cpp \

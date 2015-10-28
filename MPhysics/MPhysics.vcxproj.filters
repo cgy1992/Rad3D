@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="PhyMeshData.cpp" />
+    <ClCompile Include="PhyContact.cpp" />
+    <ClCompile Include="Internal\PhyCallback.cpp">
+      <Filter>Internal</Filter>
+    </ClCompile>
+    <ClCompile Include="PhyBox.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="PhyCapsule.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="PhyCylinder.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="PhyEntity.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="PhyMesh.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="PhyPlane.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="PhyRay.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="PhySphere.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="PhyWorld.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PhyMeshData.h" />
+    <ClInclude Include="PhyEntry.h" />
+    <ClInclude Include="PhyContact.h" />
+    <ClInclude Include="Internal\PhyCallback.h">
+      <Filter>Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="PhyBox.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="PhyCapsule.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="PhyCylinder.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="PhyEntity.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="PhyMesh.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="PhyPlane.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="PhyRay.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="PhySphere.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Internal\PhyInternal.h">
+      <Filter>Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="PhyWorld.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Internal">
+      <UniqueIdentifier>{d4acb6f0-adf4-448a-b105-8d52ab343fe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{b400af26-01ba-4f14-a5cd-fc720b01437a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

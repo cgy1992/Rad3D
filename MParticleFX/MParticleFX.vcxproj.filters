@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="PSEmitterBox.h">
+      <Filter>3. Emitter</Filter>
+    </ClInclude>
+    <ClInclude Include="PSEmitterCylinder.h">
+      <Filter>3. Emitter</Filter>
+    </ClInclude>
+    <ClInclude Include="PSEmitterEllipsoid.h">
+      <Filter>3. Emitter</Filter>
+    </ClInclude>
+    <ClInclude Include="PSEmitterMesh.h">
+      <Filter>3. Emitter</Filter>
+    </ClInclude>
+    <ClInclude Include="PSEmitterPoint.h">
+      <Filter>3. Emitter</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleFX.h" />
+    <ClInclude Include="PSModifierColor.h">
+      <Filter>4. Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="PSModifierDeflectorPlane.h">
+      <Filter>4. Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="PSModifierDirectionRandom.h">
+      <Filter>4. Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="PSModifierForce.h">
+      <Filter>4. Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="PSModifierScale.h">
+      <Filter>4. Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="PSBillboard.h">
+      <Filter>1. Set\Billboard</Filter>
+    </ClInclude>
+    <ClInclude Include="PSRibbon.h">
+      <Filter>1. Set\Ribbon</Filter>
+    </ClInclude>
+    <ClInclude Include="PSTypes.h" />
+    <ClInclude Include="PSLine.h">
+      <Filter>1. Set\Line</Filter>
+    </ClInclude>
+    <ClInclude Include="PSModifierUVScroll.h">
+      <Filter>4. Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="PSModifierRotation.h">
+      <Filter>4. Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="PSSlice.h">
+      <Filter>1. Set\Slice</Filter>
+    </ClInclude>
+    <ClInclude Include="PSDecal.h">
+      <Filter>1. Set\Decal</Filter>
+    </ClInclude>
+    <ClInclude Include="PSMesh.h">
+      <Filter>1. Set\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="PSParticleSystem.h">
+      <Filter>1. Set\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PSLight.h">
+      <Filter>1. Set\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="PSGroup.h">
+      <Filter>1. Set\Group</Filter>
+    </ClInclude>
+    <ClInclude Include="PSModifierMagneticField.h">
+      <Filter>4. Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="PSModifierRotation2.h">
+      <Filter>4. Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="PSModifierUVAnim.h">
+      <Filter>4. Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="PSShaderStandard.h">
+      <Filter>2. Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="PSShaderMask.h">
+      <Filter>2. Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="PSSliceSet.h">
+      <Filter>1. Set\Slice</Filter>
+    </ClInclude>
+    <ClInclude Include="PSRibbonSet.h">
+      <Filter>1. Set\Ribbon</Filter>
+    </ClInclude>
+    <ClInclude Include="PSParticleSystemSet.h">
+      <Filter>1. Set\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PSMeshSet.h">
+      <Filter>1. Set\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="PSLineSet.h">
+      <Filter>1. Set\Line</Filter>
+    </ClInclude>
+    <ClInclude Include="PSLightSet.h">
+      <Filter>1. Set\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="PSGroupSet.h">
+      <Filter>1. Set\Group</Filter>
+    </ClInclude>
+    <ClInclude Include="PSEmitterSet.h">
+      <Filter>1. Set\Emitter</Filter>
+    </ClInclude>
+    <ClInclude Include="PSDecalSet.h">
+      <Filter>1. Set\Decal</Filter>
+    </ClInclude>
+    <ClInclude Include="PSBillboardSet.h">
+      <Filter>1. Set\Billboard</Filter>
+    </ClInclude>
+    <ClInclude Include="PSModifierKeyController.h">
+      <Filter>4. Modifier</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="PSEmitterBox.cpp">
+      <Filter>3. Emitter</Filter>
+    </ClCompile>
+    <ClCompile Include="PSEmitterCylinder.cpp">
+      <Filter>3. Emitter</Filter>
+    </ClCompile>
+    <ClCompile Include="PSEmitterEllipsoid.cpp">
+      <Filter>3. Emitter</Filter>
+    </ClCompile>
+    <ClCompile Include="PSEmitterMesh.cpp">
+      <Filter>3. Emitter</Filter>
+    </ClCompile>
+    <ClCompile Include="PSEmitterPoint.cpp">
+      <Filter>3. Emitter</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleFX.cpp" />
+    <ClCompile Include="PSModifierColor.cpp">
+      <Filter>4. Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="PSModifierDeflectorPlane.cpp">
+      <Filter>4. Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="PSModifierDirectionRandom.cpp">
+      <Filter>4. Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="PSModifierForce.cpp">
+      <Filter>4. Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="PSModifierScale.cpp">
+      <Filter>4. Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="PSBillboard.cpp">
+      <Filter>1. Set\Billboard</Filter>
+    </ClCompile>
+    <ClCompile Include="PSRibbon.cpp">
+      <Filter>1. Set\Ribbon</Filter>
+    </ClCompile>
+    <ClCompile Include="PSTypes.cpp" />
+    <ClCompile Include="PSLine.cpp">
+      <Filter>1. Set\Line</Filter>
+    </ClCompile>
+    <ClCompile Include="PSModifierUVScroll.cpp">
+      <Filter>4. Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="PSModifierRotation.cpp">
+      <Filter>4. Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="PSSlice.cpp">
+      <Filter>1. Set\Slice</Filter>
+    </ClCompile>
+    <ClCompile Include="PSDecal.cpp">
+      <Filter>1. Set\Decal</Filter>
+    </ClCompile>
+    <ClCompile Include="PSMesh.cpp">
+      <Filter>1. Set\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="PSLight.cpp">
+      <Filter>1. Set\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="PSGroup.cpp">
+      <Filter>1. Set\Group</Filter>
+    </ClCompile>
+    <ClCompile Include="PSModifierMagneticField.cpp">
+      <Filter>4. Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="PSModifierRotation2.cpp">
+      <Filter>4. Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="PSModifierUVAnim.cpp">
+      <Filter>4. Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="PSShaderStandard.cpp">
+      <Filter>2. Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="PSShaderMask.cpp">
+      <Filter>2. Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="PSSliceSet.cpp">
+      <Filter>1. Set\Slice</Filter>
+    </ClCompile>
+    <ClCompile Include="PSRibbonSet.cpp">
+      <Filter>1. Set\Ribbon</Filter>
+    </ClCompile>
+    <ClCompile Include="PSParticleSystem.cpp">
+      <Filter>1. Set\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PSParticleSystemSet.cpp">
+      <Filter>1. Set\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PSMeshSet.cpp">
+      <Filter>1. Set\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="PSLineSet.cpp">
+      <Filter>1. Set\Line</Filter>
+    </ClCompile>
+    <ClCompile Include="PSLightSet.cpp">
+      <Filter>1. Set\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="PSGroupSet.cpp">
+      <Filter>1. Set\Group</Filter>
+    </ClCompile>
+    <ClCompile Include="PSEmitterSet.cpp">
+      <Filter>1. Set\Emitter</Filter>
+    </ClCompile>
+    <ClCompile Include="PSDecalSet.cpp">
+      <Filter>1. Set\Decal</Filter>
+    </ClCompile>
+    <ClCompile Include="PSBillboardSet.cpp">
+      <Filter>1. Set\Billboard</Filter>
+    </ClCompile>
+    <ClCompile Include="PSParticleSystem.cpp">
+      <Filter>1. Set\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PSModifierKeyController.cpp">
+      <Filter>4. Modifier</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="1. Set">
+      <UniqueIdentifier>{7d798762-cf9a-4614-8b4b-c1bdb4451119}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. Set\Billboard">
+      <UniqueIdentifier>{51c7c722-c384-4a9a-b8a2-d04c84f8d619}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. Set\Ribbon">
+      <UniqueIdentifier>{0f06f623-9be0-41fe-a104-dc6d6f26eef8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. Set\Line">
+      <UniqueIdentifier>{e8f068fa-bbb6-4874-b73a-9f23dd23c9fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. Set\Slice">
+      <UniqueIdentifier>{8be297a2-e387-45e6-853f-c619fbbbc234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. Set\Decal">
+      <UniqueIdentifier>{d3bf1f78-0126-4445-8c05-98afb105f3fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. Set\Group">
+      <UniqueIdentifier>{3b5eed98-b450-40a4-bca0-96a8a3ef635d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. Set\Mesh">
+      <UniqueIdentifier>{fb8e8778-2039-4f8d-92c8-db8937313ead}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. Set\ParticleSystem">
+      <UniqueIdentifier>{f581766b-a351-4089-9cbe-257f98f6c53a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. Set\Light">
+      <UniqueIdentifier>{d89bc795-962d-4b6f-91e5-ccc3235a844b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. Set\Emitter">
+      <UniqueIdentifier>{b339a4c4-0a7e-4419-a497-57c3ae533223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Emitter">
+      <UniqueIdentifier>{974296a1-9516-44f0-9de4-66c92e9c5a60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Modifier">
+      <UniqueIdentifier>{ed89b52e-8d9e-4594-ba60-364520341e11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2. Shader">
+      <UniqueIdentifier>{a14e5595-4ded-490a-a2e4-afe84c4fa03c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

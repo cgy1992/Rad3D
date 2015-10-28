@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{74A74CAF-7048-4EF5-B138-4733E1866DDB}</ProjectGuid>
+    <RootNamespace>libtheora</RootNamespace>
+    <ProjectName>libtheora</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>$(SolutionDir)$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(SolutionDir)$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OC_X86_ASM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <OutputFile>../libs/$(ProjectName)/$(Configuration)/$(ProjectName).lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OC_X86_ASM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <OutputFile>../libs/$(ProjectName)/$(Configuration)/$(ProjectName).lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\theora\codec.h" />
+    <ClInclude Include="include\theora\theora.h" />
+    <ClInclude Include="include\theora\theoradec.h" />
+    <ClInclude Include="include\theora\theoraenc.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\theora\analyze.c" />
+    <ClCompile Include="source\theora\apiwrapper.c" />
+    <ClCompile Include="source\theora\bitpack.c" />
+    <ClCompile Include="source\theora\decapiwrapper.c" />
+    <ClCompile Include="source\theora\decinfo.c" />
+    <ClCompile Include="source\theora\decode.c" />
+    <ClCompile Include="source\theora\dequant.c" />
+    <ClCompile Include="source\theora\encapiwrapper.c" />
+    <ClCompile Include="source\theora\encfrag.c" />
+    <ClCompile Include="source\theora\encinfo.c" />
+    <ClCompile Include="source\theora\encode.c" />
+    <ClCompile Include="source\theora\encoder_disabled.c" />
+    <ClCompile Include="source\theora\enquant.c" />
+    <ClCompile Include="source\theora\fdct.c" />
+    <ClCompile Include="source\theora\fragment.c" />
+    <ClCompile Include="source\theora\huffdec.c" />
+    <ClCompile Include="source\theora\huffenc.c" />
+    <ClCompile Include="source\theora\idct.c" />
+    <ClCompile Include="source\theora\info.c" />
+    <ClCompile Include="source\theora\internal.c" />
+    <ClCompile Include="source\theora\mathops.c" />
+    <ClCompile Include="source\theora\mcenc.c" />
+    <ClCompile Include="source\theora\quant.c" />
+    <ClCompile Include="source\theora\rate.c" />
+    <ClCompile Include="source\theora\state.c" />
+    <ClCompile Include="source\theora\tokenize.c" />
+    <ClCompile Include="source\theora\x86_vc\mmxencfrag.c" />
+    <ClCompile Include="source\theora\x86_vc\mmxfdct.c" />
+    <ClCompile Include="source\theora\x86_vc\mmxfrag.c" />
+    <ClCompile Include="source\theora\x86_vc\mmxidct.c" />
+    <ClCompile Include="source\theora\x86_vc\mmxstate.c" />
+    <ClCompile Include="source\theora\x86_vc\x86cpu.c" />
+    <ClCompile Include="source\theora\x86_vc\x86enc.c" />
+    <ClCompile Include="source\theora\x86_vc\x86state.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

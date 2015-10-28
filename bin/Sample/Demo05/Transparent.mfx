@@ -1,0 +1,223 @@
+# Only Write Depth
+Pass
+{
+	State
+	{
+		CullMode INHERIT
+		DepthCheck LESS_EQUAL
+		BlendMode OPACITY
+		ColorMode NONE
+	}
+	
+	Uniform
+	{
+		u_ViewProj VIEW_PROJ_MATRIX
+		u_BoneTM BONE_MATRIX
+	}
+	
+	Attribute
+	{
+		i_Position POSITION
+		i_Texcoord TEXCOORD0
+		i_BoneIndex BONE_INDEX
+		i_BoneWeight BONE_WEIGHT
+	}
+	
+	Sampler
+	{
+		BindType DIFFUSE
+	}
+	
+	VertexShader {
+		uniform mat4 u_ViewProj;
+		uniform vec4 u_BoneTM[35 * 3];
+
+		attribute vec4 i_Position;
+		attribute vec4 i_Texcoord;
+		attribute vec4 i_BoneIndex;
+		attribute vec4 i_BoneWeight;
+
+		varying vec2 o_uv;
+
+		void doHwSkin(out vec4 position)
+		{
+			int i0 = int(i_BoneIndex.x) * 3;
+			int i1 = int(i_BoneIndex.y) * 3;
+			int i2 = int(i_BoneIndex.z) * 3;
+			int i3 = int(i_BoneIndex.w) * 3;
+
+			vec4 w = i_BoneWeight;
+	
+			vec4 m[3];
+			m[0] = u_BoneTM[i0 + 0] * w.x + u_BoneTM[i1 + 0] * w.y + u_BoneTM[i2 + 0] * w.z + u_BoneTM[i3 + 0] * w.w;
+			m[1] = u_BoneTM[i0 + 1] * w.x + u_BoneTM[i1 + 1] * w.y + u_BoneTM[i2 + 1] * w.z + u_BoneTM[i3 + 1] * w.w;
+			m[2] = u_BoneTM[i0 + 2] * w.x + u_BoneTM[i1 + 2] * w.y + u_BoneTM[i2 + 2] * w.z + u_BoneTM[i3 + 2] * w.w;
+
+			vec4 p;
+			p.x = dot(i_Position, m[0]);
+			p.y = dot(i_Position, m[1]);
+			p.z = dot(i_Position, m[2]);
+			p.w = 1.0;
+
+			position = p;
+		}
+
+		void main()
+		{
+			//
+			vec4 postion;
+
+			doHwSkin(postion);
+
+			gl_Position = u_ViewProj * postion;
+
+			// 
+			o_uv = i_Texcoord.xy;
+		}
+	}
+	
+	PixelShader {
+		precision highp float;
+		precision mediump int;
+
+		varying vec2 o_uv;
+		
+		uniform sampler2D u_baseMap;
+
+		void main()
+		{
+			vec4 baseColor = texture2D(u_baseMap, o_uv);
+
+			// Alpha Test
+			if (baseColor.a < 0.5)
+				discard;
+
+			gl_FragColor = vec4(baseColor.rgb, 1.0);
+		}
+	}
+}
+
+# Write Color
+Pass
+{
+	State
+	{
+		CullMode INHERIT
+		DepthCheck N_LESS_EQUAL
+		BlendMode ALPHA_BLEND
+	}
+	
+	Uniform
+	{
+		u_ViewProj VIEW_PROJ_MATRIX
+		u_BoneTM BONE_MATRIX
+		
+		u_LightDir LIGHT_DIRECTION
+		u_Ambient AMBIENT
+		u_Diffuse DIFFUSE
+	}
+	
+	Attribute
+	{
+		i_Position POSITION
+		i_Texcoord TEXCOORD0
+		i_BoneIndex BONE_INDEX
+		i_BoneWeight BONE_WEIGHT
+	}
+	
+	Sampler
+	{
+		BindType DIFFUSE
+	}
+	
+	VertexShader {
+		uniform mat4 u_ViewProj;
+			uniform vec4 u_BoneTM[35 * 3];
+
+			uniform vec4 u_LightDir;
+
+			uniform vec4 u_Ambient;
+			uniform vec4 u_Diffuse;
+
+			attribute vec4 i_Position;
+			attribute vec4 i_Normal;
+			attribute vec4 i_Texcoord;
+			attribute vec4 i_BoneIndex;
+			attribute vec4 i_BoneWeight;
+
+			varying vec2 o_uv;
+			varying vec4 o_diffuse;
+
+			void doHwSkin(out vec4 position, out vec3 normal)
+			{
+				int i0 = int(i_BoneIndex.x) * 3;
+				int i1 = int(i_BoneIndex.y) * 3;
+				int i2 = int(i_BoneIndex.z) * 3;
+				int i3 = int(i_BoneIndex.w) * 3;
+
+				vec4 w = i_BoneWeight;
+	
+				vec4 m[3];
+				m[0] = u_BoneTM[i0 + 0] * w.x + u_BoneTM[i1 + 0] * w.y + u_BoneTM[i2 + 0] * w.z + u_BoneTM[i3 + 0] * w.w;
+				m[1] = u_BoneTM[i0 + 1] * w.x + u_BoneTM[i1 + 1] * w.y + u_BoneTM[i2 + 1] * w.z + u_BoneTM[i3 + 1] * w.w;
+				m[2] = u_BoneTM[i0 + 2] * w.x + u_BoneTM[i1 + 2] * w.y + u_BoneTM[i2 + 2] * w.z + u_BoneTM[i3 + 2] * w.w;
+
+				vec4 p;
+				p.x = dot(i_Position, m[0]);
+				p.y = dot(i_Position, m[1]);
+				p.z = dot(i_Position, m[2]);
+				p.w = 1.0;
+
+				vec3 n;
+				n.x = dot(i_Normal.xyz, m[0].xyz);
+				n.y = dot(i_Normal.xyz, m[1].xyz);
+				n.z = dot(i_Normal.xyz, m[2].xyz);
+				n = normalize(n);
+
+				position = p;
+				normal = n;
+			}
+
+			void main()
+			{
+				//
+				vec4 postion;
+				vec3 normal;
+
+				doHwSkin(postion, normal);
+
+				gl_Position = u_ViewProj * postion;
+
+				// 
+				o_uv = i_Texcoord.xy;
+
+				// 
+				float NdL = max(0.0, dot(normal, u_LightDir.xyz));
+
+				o_diffuse = u_Ambient + NdL * u_Diffuse;
+			}
+	}
+	
+	PixelShader {
+		precision highp float;
+			precision mediump int;
+
+			varying vec2 o_uv;
+			varying vec4 o_diffuse;
+		
+			uniform sampler2D u_baseMap;
+
+			void main()
+			{
+				vec4 baseColor = texture2D(u_baseMap, o_uv);
+
+				// Alpha Test
+				if (baseColor.a < 0.5)
+					discard;
+
+				baseColor *= o_diffuse;
+
+				gl_FragColor = vec4(baseColor.rgb, 0.5);
+			}
+	}
+}

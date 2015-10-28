@@ -1,0 +1,64 @@
+Pass
+{
+	CullMode NONE
+	DepthMode N_LESS_EQUAL
+	BlendMode ALPHA_BLEND
+	
+	Uniform 
+	{
+		u_Transform FLOAT4
+		
+		u_View VIEW_MATRIX
+		u_Proj PROJ_MATRIX
+	}
+	
+	Attribute
+	{
+		i_Position POSITION
+		i_Texcoord TEXCOORD0
+	}
+	
+	Sampler
+	{
+		Index 				0 
+		BindType 			NONE
+		Filter 				DEFAULT
+		Address 			CLAMP
+		BorderColor 		0 0 0 0
+	}
+	
+	VertexShader {
+		uniform mat4 u_View;
+		uniform mat4 u_Proj;
+		uniform float4 u_Transform;
+
+		attribute float4 i_Position;
+		attribute float2 i_Texcoord;
+
+		varying float2 o_uv;
+
+		void main()
+		{
+			float4 pos = float4(i_Position.xyz + u_Transform.xyz, 1.0);
+			pos = u_View * pos;
+			pos.xy += (i_Texcoord - 0.5) * float2(1.0, -1.0) * u_Transform.w;
+			
+			gl_Position = u_Proj * pos;
+			o_uv = i_Texcoord;
+		}
+	}
+	
+	PixelShader {
+		precision highp float;
+		precision mediump int;
+
+		varying float2 o_uv;
+		
+		uniform sampler2D u_baseMap;
+
+		void main()
+		{
+			gl_FragColor = tex2D(u_baseMap, o_uv);
+		}
+	}
+}

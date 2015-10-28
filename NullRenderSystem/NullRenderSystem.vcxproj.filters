@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="NullRenderSystem.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="internal\NullHWBufferManager.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="internal\NullIndexBuffer.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="internal\NullTexture.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="internal\NullVertexBuffer.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="internal\NullShaderFXManager.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="NullRenderSystem.h" />
+    <ClInclude Include="internal\NullDepthBuffer.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="internal\NullHWBufferManager.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="internal\NullIndexBuffer.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="internal\NullRenderTarget.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="internal\NullTexture.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="internal\NullVertexBuffer.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="internal\NullShaderFXManager.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="internal\NullShaderPass.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{eedd7c9b-4ef5-4ad3-a18d-fd033bfe8e2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buffer">
+      <UniqueIdentifier>{4de341be-53d9-4f5b-8252-9cd1d0b09054}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

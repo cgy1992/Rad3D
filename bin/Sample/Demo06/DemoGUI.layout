@@ -1,0 +1,18 @@
+<Layout lookfeel="DialogClient">
+	<Name value="Root"/>
+	<Rect value="211 185 472 302"/>
+	<Child type="Widget" lookfeel="DialogCaption">
+		<Name value="CaptionBar"/>
+		<Rect value="0 0 465 32"/>
+		<Align value="16"/>
+	</Child>
+	<Child type="Button" lookfeel="Close">
+		<Name value="Close"/>
+		<Rect value="439 4 20 20"/>
+	</Child>
+	<Child type="Widget" lookfeel="EditorBlack">
+		<Name value="Caption"/>
+		<Rect value="7 0 428 27"/>
+	</Child>
+</Layout>
+

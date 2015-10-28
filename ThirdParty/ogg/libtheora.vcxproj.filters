@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{54493490-7646-47c6-b7e7-bd9b97453d67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{f5df2265-f5d9-4001-a00d-ee7bcedf53d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\dec">
+      <UniqueIdentifier>{0b00cac2-7c02-41cc-961d-2d90703367d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\dec\x86_vc">
+      <UniqueIdentifier>{371aa318-5b4d-4191-84d1-a64dda751add}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\enc">
+      <UniqueIdentifier>{748bc71e-3d38-49a1-9792-437870df8a69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\enc\x86_vc">
+      <UniqueIdentifier>{58e01c2a-fbbe-4470-b61f-7c10da415a47}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\theora\codec.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\theora\theoraenc.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\theora\theoradec.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\theora\theora.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\theora\analyze.c">
+      <Filter>source\enc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\encapiwrapper.c">
+      <Filter>source\enc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\encfrag.c">
+      <Filter>source\enc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\encinfo.c">
+      <Filter>source\enc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\encode.c">
+      <Filter>source\enc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\encoder_disabled.c">
+      <Filter>source\enc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\apiwrapper.c">
+      <Filter>source\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\bitpack.c">
+      <Filter>source\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\decapiwrapper.c">
+      <Filter>source\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\decinfo.c">
+      <Filter>source\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\decode.c">
+      <Filter>source\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\dequant.c">
+      <Filter>source\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\fragment.c">
+      <Filter>source\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\huffdec.c">
+      <Filter>source\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\idct.c">
+      <Filter>source\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\info.c">
+      <Filter>source\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\internal.c">
+      <Filter>source\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\quant.c">
+      <Filter>source\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\state.c">
+      <Filter>source\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\rate.c">
+      <Filter>source\enc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\enquant.c">
+      <Filter>source\enc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\fdct.c">
+      <Filter>source\enc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\huffenc.c">
+      <Filter>source\enc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\mathops.c">
+      <Filter>source\enc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\mcenc.c">
+      <Filter>source\enc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\tokenize.c">
+      <Filter>source\enc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\x86_vc\mmxencfrag.c">
+      <Filter>source\enc\x86_vc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\x86_vc\mmxfdct.c">
+      <Filter>source\enc\x86_vc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\x86_vc\mmxidct.c">
+      <Filter>source\dec\x86_vc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\x86_vc\mmxstate.c">
+      <Filter>source\dec\x86_vc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\x86_vc\x86state.c">
+      <Filter>source\dec\x86_vc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\x86_vc\x86enc.c">
+      <Filter>source\enc\x86_vc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\x86_vc\mmxfrag.c">
+      <Filter>source\dec\x86_vc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\theora\x86_vc\x86cpu.c">
+      <Filter>source\enc\x86_vc</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

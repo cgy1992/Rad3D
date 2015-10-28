@@ -1,0 +1,14 @@
+<Project>
+	
+	<MediaPath value = "..\Media\Material" />
+	<MediaPath value = "..\Media\Brush" />
+	<MediaPath value = "..\Media\Actor" />
+	<MediaPath value = "..\Media\Mesh" />
+	<MediaPath value = "..\Media\Scene" />
+	<MediaPath value = "..\Media\Particle" />
+	<MediaPath value = "..\Media\Sound" />
+	
+	<Brush value = "b_rect.png" />
+	<Brush value = "b_circular.png" />
+
+</Project>

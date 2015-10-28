@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="GLRenderSystem.h" />
+    <ClInclude Include="Internal\GLInclude.h" />
+    <ClInclude Include="Internal\GLUtil.h" />
+    <ClInclude Include="Internal\GLShaderFXManager.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Internal\GLIndexBuffer.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Internal\GLVertexBuffer.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Internal\GLShaderProgram.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Internal\GLShaderPass.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Internal\GLHWBufferManager.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Internal\GLRenderTarget.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Internal\GLTexture.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Internal\GLDepthBuffer.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GLRenderSystem.cpp" />
+    <ClCompile Include="Internal\GLShaderFXManager.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Internal\GLIndexBuffer.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Internal\GLVertexBuffer.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Internal\GLShaderProgram.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Internal\GLShaderPass.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Internal\GLUtil.cpp" />
+    <ClCompile Include="Internal\GLHWBufferManager.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Internal\GLRenderTarget.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Internal\GLTexture.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Internal\GLDepthBuffer.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{f39d53fe-7269-4c01-9950-410686ffe47e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buffer">
+      <UniqueIdentifier>{401788fe-809f-41c6-b2d5-fb992d8a10a3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

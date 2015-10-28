@@ -1,0 +1,33 @@
+<Layout lookfeel="MainMenu">
+	<Name value="Root"/>
+	<Rect value="0 0 1026 32"/>
+	<Align value="16"/>
+	<Child type="Button" lookfeel="MainButton">
+		<Name value="Open"/>
+		<Rect value="0 -3 109 28"/>
+		<Align value="6"/>
+		<Caption value="Open"/>
+	</Child>
+	<Child type="Widget" lookfeel="EditorBlack">
+		<Name value="Buttons"/>
+		<Rect value="979 0 37 22"/>
+		<Align value="136"/>
+		<Child type="Button" lookfeel="Back">
+			<Name value="Back"/>
+			<Rect value="0 3 16 16"/>
+			<Align value="6"/>
+		</Child>
+		<Child type="Button" lookfeel="Forward">
+			<Name value="Forward"/>
+			<Rect value="21 3 16 16"/>
+			<Align value="10"/>
+		</Child>
+	</Child>
+	<Child type="Button" lookfeel="MainButton">
+		<Name value="Search"/>
+		<Rect value="108 -3 121 28"/>
+		<Align value="2"/>
+		<Caption value="Search"/>
+	</Child>
+</Layout>
+

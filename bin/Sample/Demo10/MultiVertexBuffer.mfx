@@ -1,0 +1,106 @@
+Pass
+{
+	State
+	{
+		CullMode INHERIT
+		DepthMode INHERIT
+		BlendMode INHERIT
+	}
+	
+	Uniform
+	{
+		u_World WORLD_MATRIX
+		u_WVP WORLD_VIEW_PROJ_MATRIX
+		
+		u_LightDir LIGHT_DIRECTION
+		u_Ambient AMBIENT
+		u_Diffuse DIFFUSE
+		
+		u_ShaderState SHADER_STATE
+	}
+	
+	Attribute
+	{
+		i_Position POSITION
+		i_Normal NORMAL
+		i_Color COLOR
+		i_Texcoord TEXCOORD0
+	}
+	
+	Sampler
+	{
+		BindType DIFFUSE
+	}
+	
+	VertexShader {
+		precision highp float;
+		precision mediump int;
+
+		uniform mat4 u_World;
+		uniform mat4 u_WVP;
+
+		uniform vec4 u_LightDir;
+
+		uniform vec4 u_Ambient;
+		uniform vec4 u_Diffuse;
+
+		attribute vec4 i_Position;
+		attribute vec4 i_Normal;
+		attribute vec4 i_Color;
+		attribute vec4 i_Texcoord;
+
+		varying vec2 o_uv;
+		varying vec4 o_diffuse;
+
+		mat3 mat4_to_mat3(mat4 m)
+		{
+			return mat3(
+				m[0].x, m[0].y, m[0].z,
+				m[1].x, m[1].y, m[1].z,
+				m[2].x, m[2].y, m[2].z
+			);
+		}
+
+		void main()
+		{
+			//
+			gl_Position = u_WVP * i_Position;
+
+			// 
+			o_uv = i_Texcoord.xy;
+
+			// 
+			vec3 normal = mat4_to_mat3(u_World) * i_Normal.xyz;
+			normal = normalize(normal);
+			float NdL = max(0.0, dot(normal, u_LightDir.xyz));
+
+			o_diffuse = i_Color * (u_Ambient + NdL * u_Diffuse);
+		}
+	}
+	
+	PixelShader {
+		precision highp float;
+		precision mediump int;
+
+		varying vec2 o_uv;
+		varying vec4 o_diffuse;
+		
+		uniform sampler2D u_baseMap;
+
+		uniform vec4 u_ShaderState;
+
+		void main()
+		{
+			vec4 baseColor = texture2D(u_baseMap, o_uv);
+
+			// Alpha Test
+			if (u_ShaderState.x > 0.5)
+			{
+				if (baseColor.a < 0.5)
+					discard;
+			}
+
+			gl_FragColor = baseColor * o_diffuse;
+		}
+	}
+}

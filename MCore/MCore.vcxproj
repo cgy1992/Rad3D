@@ -1,0 +1,536 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|Win32">
+      <Configuration>Profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1470171E-7B11-4D7D-B470-8D9EDD9BAFA6}</ProjectGuid>
+    <RootNamespace>MCore</RootNamespace>
+    <ProjectName>MCore</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">..\$(Configuration)\$(ProjectName)\</IntDir>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>Core;Engine;Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>M_EXPORT;M_DEBUG_MEMORY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4355;4996;4251;4661;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libIconv.lib;libogg.lib;libvorbis.lib;libtheora.lib;winmm.lib;user32.lib;kernel32.lib;gdi32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>../ThirdParty.Win32/iconv/$(Configuration);../ThirdParty.Win32/ogg/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ProgramDatabaseFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).pdb</ProgramDatabaseFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;M_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4355;4996;4251;4661;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>Core;Engine;Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libIconv.lib;libogg.lib;libvorbis.lib;libtheora.lib;winmm.lib;user32.lib;kernel32.lib;gdi32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ProgramDatabaseFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).pdb</ProgramDatabaseFile>
+      <AdditionalLibraryDirectories>../ThirdParty.Win32/iconv/$(Configuration);../ThirdParty.Win32/ogg/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;M_EXPORT;M_PROFILE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4355;4996;4251;4661;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>Core;Engine;Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libIconv.lib;libogg.lib;libvorbis.lib;libtheora.lib;winmm.lib;user32.lib;kernel32.lib;gdi32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ProgramDatabaseFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).pdb</ProgramDatabaseFile>
+      <AdditionalLibraryDirectories>../ThirdParty.Win32/iconv/$(Configuration);../ThirdParty.Win32/ogg/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="MAnimationController.h" />
+    <ClInclude Include="MAudio.h" />
+    <ClInclude Include="MAudioOGG.h" />
+    <ClInclude Include="MAudioWAV.h" />
+    <ClInclude Include="MBitField.h" />
+    <ClInclude Include="MBloom.h" />
+    <ClInclude Include="MComponent.h" />
+    <ClInclude Include="MConfigFile.h" />
+    <ClInclude Include="MDataStreamPool.h" />
+    <ClInclude Include="MDepthBuffer.h" />
+    <ClInclude Include="MDynLinkerLib.h" />
+    <ClInclude Include="MEvent.h" />
+    <ClInclude Include="MEvent0.h" />
+    <ClInclude Include="MEvent1.h" />
+    <ClInclude Include="MEvent2.h" />
+    <ClInclude Include="MEvent3.h" />
+    <ClInclude Include="MEvent4.h" />
+    <ClInclude Include="MEvent5.h" />
+    <ClInclude Include="MEvent6.h" />
+    <ClInclude Include="MField.h" />
+    <ClInclude Include="MFunctional.h" />
+    <ClInclude Include="MGrassRenderer.h" />
+    <ClInclude Include="MGrassSection.h" />
+    <ClInclude Include="MHash.h" />
+    <ClInclude Include="MImage.h" />
+    <ClInclude Include="MImageBMP.h" />
+    <ClInclude Include="MImageDDS.h" />
+    <ClInclude Include="MImageETC.h" />
+    <ClInclude Include="MImageJPG.h" />
+    <ClInclude Include="MImagePNG.h" />
+    <ClInclude Include="MImagePVR.h" />
+    <ClInclude Include="MImageTGA.h" />
+    <ClInclude Include="MInt2.h" />
+    <ClInclude Include="MInt3.h" />
+    <ClInclude Include="MISerializer.h" />
+    <ClInclude Include="MLog.h" />
+    <ClInclude Include="MLog2.h" />
+    <ClInclude Include="MMathNEON.h" />
+    <ClInclude Include="MMathASM.h" />
+    <ClInclude Include="MMeshGroup.h" />
+    <ClInclude Include="MMeshOptimizer.h" />
+    <ClInclude Include="MMeshShader.h" />
+    <ClInclude Include="MNodeDisplayer.h" />
+    <ClInclude Include="MOSerializer.h" />
+    <ClInclude Include="MRingBuffer.h" />
+    <ClInclude Include="MSkeletonAnimation.h" />
+    <ClInclude Include="MSocket.h" />
+    <ClInclude Include="MSocketAPI.h" />
+    <ClInclude Include="MMathSSE.h" />
+    <ClInclude Include="MTerrainSection.h" />
+    <ClInclude Include="MToken.h" />
+    <ClInclude Include="MTypes.h" />
+    <ClInclude Include="MKeyController.h" />
+    <ClInclude Include="MLinker.h" />
+    <ClInclude Include="MMat3.h" />
+    <ClInclude Include="MMath.h" />
+    <ClInclude Include="MRenderProcess.h" />
+    <ClInclude Include="MShadow.h" />
+    <ClInclude Include="MRml.h" />
+    <ClInclude Include="MSet.h" />
+    <ClInclude Include="MThread.h" />
+    <ClInclude Include="MUserData.h" />
+    <ClInclude Include="MUString.h" />
+    <ClInclude Include="MEnvironment.h" />
+    <ClInclude Include="MEvParam.h" />
+    <ClInclude Include="MGrass.h" />
+    <ClInclude Include="MGrassManager.h" />
+    <ClInclude Include="MLoadRule.h" />
+    <ClInclude Include="MPKArchive.h" />
+    <ClInclude Include="MPKCommon.h" />
+    <ClInclude Include="MAabb.h" />
+    <ClInclude Include="MAnimation.h" />
+    <ClInclude Include="MAnimationSerializer.h" />
+    <ClInclude Include="MArchive.h" />
+    <ClInclude Include="MAudioSystem.h" />
+    <ClInclude Include="MBillboard.h" />
+    <ClInclude Include="MCamera.h" />
+    <ClInclude Include="MColMesh.h" />
+    <ClInclude Include="MColor.h" />
+    <ClInclude Include="MCurve.h" />
+    <ClInclude Include="MRenderObject.h" />
+    <ClInclude Include="MFloat2.h" />
+    <ClInclude Include="MFloat3.h" />
+    <ClInclude Include="MFloat4.h" />
+    <ClInclude Include="MIndexBuffer.h" />
+    <ClInclude Include="MInt4.h" />
+    <ClInclude Include="MJoystick.h" />
+    <ClInclude Include="MKDTree.h" />
+    <ClInclude Include="MKeyboard.h" />
+    <ClInclude Include="MInput.h" />
+    <ClInclude Include="MLight.h" />
+    <ClInclude Include="MMat4.h" />
+    <ClInclude Include="MMath2.h" />
+    <ClInclude Include="MMesh.h" />
+    <ClInclude Include="MMeshSerializer.h" />
+    <ClInclude Include="MMeshManager.h" />
+    <ClInclude Include="MMeshSource.h" />
+    <ClInclude Include="MMouse.h" />
+    <ClInclude Include="MNode.h" />
+    <ClInclude Include="MNodeTracker.h" />
+    <ClInclude Include="MObb.h" />
+    <ClInclude Include="MShape.h" />
+    <ClInclude Include="MSound.h" />
+    <ClInclude Include="MVecX.h" />
+    <ClInclude Include="MVertexAnimation.h" />
+    <ClInclude Include="MVideo.h" />
+    <ClInclude Include="MVideoOGG.h" />
+    <ClInclude Include="MVideoPlayer.h" />
+    <ClInclude Include="MWaterShader.h" />
+    <ClInclude Include="MPrefab.h" />
+    <ClInclude Include="MPrefabManager.h" />
+    <ClInclude Include="MCodeTimer.h" />
+    <ClInclude Include="MWorldSection.h" />
+    <ClInclude Include="PSParticle.h" />
+    <ClInclude Include="MParticleSystem.h" />
+    <ClInclude Include="MPerlin.h" />
+    <ClInclude Include="MPlane.h" />
+    <ClInclude Include="MObject.h" />
+    <ClInclude Include="MProperty.h" />
+    <ClInclude Include="PSEmitter.h" />
+    <ClInclude Include="PSManager.h" />
+    <ClInclude Include="PSModifier.h" />
+    <ClInclude Include="PSSet.h" />
+    <ClInclude Include="PSShader.h" />
+    <ClInclude Include="PSSource.h" />
+    <ClInclude Include="MQuat.h" />
+    <ClInclude Include="MRain.h" />
+    <ClInclude Include="MRay.h" />
+    <ClInclude Include="MRect.h" />
+    <ClInclude Include="MRenderContext.h" />
+    <ClInclude Include="MRenderHelper.h" />
+    <ClInclude Include="MRenderPipeline.h" />
+    <ClInclude Include="MRenderQueue.h" />
+    <ClInclude Include="MRenderRegister.h" />
+    <ClInclude Include="MRenderSystem.h" />
+    <ClInclude Include="MRenderTarget.h" />
+    <ClInclude Include="MResource.h" />
+    <ClInclude Include="MResourceLoader.h" />
+    <ClInclude Include="MResourceLoaderMT.h" />
+    <ClInclude Include="MResourceManager.h" />
+    <ClInclude Include="MRoot.h" />
+    <ClInclude Include="MCharSet.h" />
+    <ClInclude Include="MCore.h" />
+    <ClInclude Include="MDataStream.h" />
+    <ClInclude Include="MDebug.h" />
+    <ClInclude Include="MDefine.h" />
+    <ClInclude Include="MFile.h" />
+    <ClInclude Include="MMemory.h" />
+    <ClInclude Include="MMemoryPool.h" />
+    <ClInclude Include="MString.h" />
+    <ClInclude Include="MTimer.h" />
+    <ClInclude Include="MAllocator.h" />
+    <ClInclude Include="MArray.h" />
+    <ClInclude Include="MHashMap.h" />
+    <ClInclude Include="MList.h" />
+    <ClInclude Include="MMap.h" />
+    <ClInclude Include="MMultiMap.h" />
+    <ClInclude Include="MQueue.h" />
+    <ClInclude Include="MRef.h" />
+    <ClInclude Include="MRTTI.h" />
+    <ClInclude Include="MSingleton.h" />
+    <ClInclude Include="MSmartPtr.h" />
+    <ClInclude Include="MStack.h" />
+    <ClInclude Include="MFixedString.h" />
+    <ClInclude Include="MXml.h" />
+    <ClInclude Include="MZone.h" />
+    <ClInclude Include="MSerializer.h" />
+    <ClInclude Include="MShaderFX.h" />
+    <ClInclude Include="MShaderFXManager.h" />
+    <ClInclude Include="MShaderProvider.h" />
+    <ClInclude Include="MSimpleCollision.h" />
+    <ClInclude Include="MSkeleton.h" />
+    <ClInclude Include="MSky.h" />
+    <ClInclude Include="MSnow.h" />
+    <ClInclude Include="MSphere.h" />
+    <ClInclude Include="MSun.h" />
+    <ClInclude Include="MTerrain.h" />
+    <ClInclude Include="MTerrainMesh.h" />
+    <ClInclude Include="MTexture.h" />
+    <ClInclude Include="MHWBufferManager.h" />
+    <ClInclude Include="MUtil.h" />
+    <ClInclude Include="MVertexBuffer.h" />
+    <ClInclude Include="MVertexDeclaration.h" />
+    <ClInclude Include="MVisibleCuller.h" />
+    <ClInclude Include="MWater.h" />
+    <ClInclude Include="MWorld.h" />
+    <ClInclude Include="NavData.h" />
+    <ClInclude Include="NavPathFinder.h" />
+    <ClInclude Include="NavThread.h" />
+    <ClInclude Include="Platform\win32\MPlatform.h" />
+    <ClInclude Include="RadC.h" />
+    <ClInclude Include="RadCCompiler.h" />
+    <ClInclude Include="RadCExpression.h" />
+    <ClInclude Include="RadCFoundation.h" />
+    <ClInclude Include="RadCStatement.h" />
+    <ClInclude Include="RadCType.h" />
+    <ClInclude Include="RadDB.h" />
+    <ClInclude Include="RadDBC.h" />
+    <ClInclude Include="RadDBClient.h" />
+    <ClInclude Include="RadDBManager.h" />
+    <ClInclude Include="RadDBScript.h" />
+    <ClInclude Include="RadDBServer.h" />
+    <ClInclude Include="RadDBSql.h" />
+    <ClInclude Include="RadDBTable.h" />
+    <ClInclude Include="RadDBType.h" />
+    <ClInclude Include="TcpClient.h" />
+    <ClInclude Include="TcpServer.h" />
+    <ClInclude Include="TcpSocket.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MAnimationController.cpp" />
+    <ClCompile Include="MAudio.cpp" />
+    <ClCompile Include="MAudioOGG.cpp" />
+    <ClCompile Include="MAudioWAV.cpp" />
+    <ClCompile Include="MBloom.cpp" />
+    <ClCompile Include="MComponent.cpp" />
+    <ClCompile Include="MConfigFile.cpp" />
+    <ClCompile Include="MDataStreamPool.cpp" />
+    <ClCompile Include="MDepthBuffer.cpp" />
+    <ClCompile Include="MDynLinkerLib.cpp" />
+    <ClCompile Include="MCharSet.cpp" />
+    <ClCompile Include="MCore.cpp" />
+    <ClCompile Include="MDataStream.cpp" />
+    <ClCompile Include="MDebug.cpp" />
+    <ClCompile Include="MFile.cpp" />
+    <ClCompile Include="MGrassRenderer.cpp" />
+    <ClCompile Include="MGrassSection.cpp" />
+    <ClCompile Include="MImage.cpp" />
+    <ClCompile Include="MImageBMP.cpp" />
+    <ClCompile Include="MImageDDS.cpp" />
+    <ClCompile Include="MImageETC.cpp" />
+    <ClCompile Include="MImageJPG.cpp" />
+    <ClCompile Include="MImagePNG.cpp" />
+    <ClCompile Include="MImagePVR.cpp" />
+    <ClCompile Include="MImageTGA.cpp" />
+    <ClCompile Include="MISerializer.cpp" />
+    <ClCompile Include="MLog.cpp" />
+    <ClCompile Include="MLZ77.cpp" />
+    <ClCompile Include="MMd5.cpp" />
+    <ClCompile Include="MMeshGroup.cpp" />
+    <ClCompile Include="MMeshOptimizer.cpp" />
+    <ClCompile Include="MMeshShader.cpp" />
+    <ClCompile Include="MNodeDisplayer.cpp" />
+    <ClCompile Include="MOSerializer.cpp" />
+    <ClCompile Include="MSkeletonAnimation.cpp" />
+    <ClCompile Include="MSocket.cpp" />
+    <ClCompile Include="MTerrainSection.cpp" />
+    <ClCompile Include="MToken.cpp" />
+    <ClCompile Include="MTypes.cpp" />
+    <ClCompile Include="MInput.cpp" />
+    <ClCompile Include="MKeyController.cpp" />
+    <ClCompile Include="MMat3.cpp" />
+    <ClCompile Include="MMath.cpp" />
+    <ClCompile Include="MMemory.cpp" />
+    <ClCompile Include="MMemoryPool.cpp" />
+    <ClCompile Include="MRenderProcess.cpp" />
+    <ClCompile Include="MShadow.cpp" />
+    <ClCompile Include="MRml.cpp" />
+    <ClCompile Include="MRef.cpp" />
+    <ClCompile Include="MString.cpp" />
+    <ClCompile Include="MThread.cpp" />
+    <ClCompile Include="MTimer.cpp" />
+    <ClCompile Include="MUString.cpp" />
+    <ClCompile Include="MEnvironment.cpp" />
+    <ClCompile Include="MEvParam.cpp" />
+    <ClCompile Include="MGrass.cpp" />
+    <ClCompile Include="MGrassManager.cpp" />
+    <ClCompile Include="MLoadRule.cpp" />
+    <ClCompile Include="MPKArchive.cpp" />
+    <ClCompile Include="MPKCommon.cpp" />
+    <ClCompile Include="MAabb.cpp" />
+    <ClCompile Include="MAnimation.cpp" />
+    <ClCompile Include="MAnimationSerializer.cpp" />
+    <ClCompile Include="MArchive.cpp" />
+    <ClCompile Include="MAudioSystem.cpp" />
+    <ClCompile Include="MBillboard.cpp" />
+    <ClCompile Include="MCamera.cpp" />
+    <ClCompile Include="MColMesh.cpp" />
+    <ClCompile Include="MColor.cpp" />
+    <ClCompile Include="MRenderObject.cpp" />
+    <ClCompile Include="MFloat2.cpp" />
+    <ClCompile Include="MFloat3.cpp" />
+    <ClCompile Include="MFloat4.cpp" />
+    <ClCompile Include="MLight.cpp" />
+    <ClCompile Include="MMat4.cpp" />
+    <ClCompile Include="MMesh.cpp" />
+    <ClCompile Include="MMeshSerializer.cpp" />
+    <ClCompile Include="MMeshManager.cpp" />
+    <ClCompile Include="MMeshSource.cpp" />
+    <ClCompile Include="MNode.cpp" />
+    <ClCompile Include="MNodeTracker.cpp" />
+    <ClCompile Include="MObb.cpp" />
+    <ClCompile Include="MParticleSystem.cpp" />
+    <ClCompile Include="MPerlin.cpp" />
+    <ClCompile Include="MPlane.cpp" />
+    <ClCompile Include="MObject.cpp" />
+    <ClCompile Include="MShape.cpp" />
+    <ClCompile Include="MSound.cpp" />
+    <ClCompile Include="MVertexAnimation.cpp" />
+    <ClCompile Include="MVideo.cpp" />
+    <ClCompile Include="MVideoOGG.cpp" />
+    <ClCompile Include="MVideoPlayer.cpp" />
+    <ClCompile Include="MWaterShader.cpp" />
+    <ClCompile Include="MPrefab.cpp" />
+    <ClCompile Include="MPrefabManager.cpp" />
+    <ClCompile Include="MCodeTimer.cpp" />
+    <ClCompile Include="MWorldSection.cpp" />
+    <ClCompile Include="PSEmitter.cpp" />
+    <ClCompile Include="PSManager.cpp" />
+    <ClCompile Include="PSModifier.cpp" />
+    <ClCompile Include="PSSet.cpp" />
+    <ClCompile Include="PSShader.cpp" />
+    <ClCompile Include="PSSource.cpp" />
+    <ClCompile Include="MQuat.cpp" />
+    <ClCompile Include="MRain.cpp" />
+    <ClCompile Include="MRay.cpp" />
+    <ClCompile Include="MRenderContext.cpp" />
+    <ClCompile Include="MRenderHelper.cpp" />
+    <ClCompile Include="MRenderPipeline.cpp" />
+    <ClCompile Include="MRenderQueue.cpp" />
+    <ClCompile Include="MRenderRegister.cpp" />
+    <ClCompile Include="MRenderSystem.cpp" />
+    <ClCompile Include="MRenderTarget.cpp" />
+    <ClCompile Include="MResource.cpp" />
+    <ClCompile Include="MResourceLoader.cpp" />
+    <ClCompile Include="MResourceLoaderMT.cpp" />
+    <ClCompile Include="MResourceManager.cpp" />
+    <ClCompile Include="MRoot.cpp" />
+    <ClCompile Include="MXml.cpp" />
+    <ClCompile Include="MZone.cpp" />
+    <ClCompile Include="MShaderFX.cpp" />
+    <ClCompile Include="MShaderFXManager.cpp" />
+    <ClCompile Include="MShaderProvider.cpp" />
+    <ClCompile Include="MSimpleCollision.cpp" />
+    <ClCompile Include="MSkeleton.cpp" />
+    <ClCompile Include="MSky.cpp" />
+    <ClCompile Include="MSnow.cpp" />
+    <ClCompile Include="MSphere.cpp" />
+    <ClCompile Include="MSun.cpp" />
+    <ClCompile Include="MTerrain.cpp" />
+    <ClCompile Include="MTerrainMesh.cpp" />
+    <ClCompile Include="MTexture.cpp" />
+    <ClCompile Include="MHWBufferManager.cpp" />
+    <ClCompile Include="MVertexDeclaration.cpp" />
+    <ClCompile Include="MVisibleCuller.cpp" />
+    <ClCompile Include="MWater.cpp" />
+    <ClCompile Include="MWorld.cpp" />
+    <ClCompile Include="NavData.cpp" />
+    <ClCompile Include="NavPathFinder.cpp" />
+    <ClCompile Include="NavThread.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Platform\win32\MPlatform.cpp" />
+    <ClCompile Include="RadC.cpp" />
+    <ClCompile Include="RadCCompiler.cpp" />
+    <ClCompile Include="RadCExpression.cpp" />
+    <ClCompile Include="RadCFoundation.cpp" />
+    <ClCompile Include="RadCStatement.cpp" />
+    <ClCompile Include="RadCType.cpp" />
+    <ClCompile Include="RadDB.cpp" />
+    <ClCompile Include="RadDBC.cpp" />
+    <ClCompile Include="RadDBClient.cpp" />
+    <ClCompile Include="MLog2.cpp" />
+    <ClCompile Include="RadDBManager.cpp" />
+    <ClCompile Include="RadDBScript.cpp" />
+    <ClCompile Include="RadDBServer.cpp" />
+    <ClCompile Include="RadDBSql.cpp" />
+    <ClCompile Include="RadDBTable.cpp" />
+    <ClCompile Include="RadDBType.cpp" />
+    <ClCompile Include="TcpClient.cpp" />
+    <ClCompile Include="TcpServer.cpp" />
+    <ClCompile Include="TcpSocket.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MMath.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

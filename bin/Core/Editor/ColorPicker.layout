@@ -1,0 +1,87 @@
+<Layout lookfeel="EditorBlack">
+	<Name value="Root"/>
+	<Rect value="81 127 457 268"/>
+	<Child type="Widget" lookfeel="DialogClient">
+		<Name value="Client"/>
+		<Rect value="0 0 457 268"/>
+		<Align value="144"/>
+	</Child>
+	<Child type="Widget" lookfeel="AllWhite">
+		<Name value="Viewer"/>
+		<Rect value="341 144 108 114"/>
+	</Child>
+	<Child type="Button" lookfeel="MainButton">
+		<Name value="OK"/>
+		<Rect value="337 43 112 28"/>
+		<Caption value="OK"/>
+	</Child>
+	<Child type="Button" lookfeel="MainButton">
+		<Name value="Cancel"/>
+		<Rect value="337 76 112 28"/>
+		<Caption value="Cancel"/>
+	</Child>
+	<Child type="Widget" lookfeel="MainPanel">
+		<Name value="ColorSlider"/>
+		<Rect value="214 38 28 220"/>
+	</Child>
+	<Child type="EditBox" lookfeel="MainEditBox">
+		<Name value="R"/>
+		<Rect value="267 142 64 27"/>
+	</Child>
+	<Child type="EditBox" lookfeel="MainEditBox">
+		<Name value="G"/>
+		<Rect value="267 173 64 27"/>
+	</Child>
+	<Child type="EditBox" lookfeel="MainEditBox">
+		<Name value="B"/>
+		<Rect value="267 203 64 27"/>
+	</Child>
+	<Child type="EditBox" lookfeel="MainEditBox">
+		<Name value="A"/>
+		<Rect value="267 231 64 27"/>
+	</Child>
+	<Child type="Widget" lookfeel="DialogCaption">
+		<Name value="Caption"/>
+		<Rect value="0 0 457 32"/>
+		<Align value="16"/>
+	</Child>
+	<Child type="Button" lookfeel="Close">
+		<Name value="Close"/>
+		<Rect value="433 4 20 20"/>
+	</Child>
+	<Child type="Label" lookfeel="EditorBlack">
+		<Name value="Widget"/>
+		<Rect value="245 139 20 28"/>
+		<Caption value="R:"/>
+	</Child>
+	<Child type="Label" lookfeel="EditorBlack">
+		<Name value="Widget"/>
+		<Rect value="245 171 20 28"/>
+		<Caption value="G:"/>
+	</Child>
+	<Child type="Label" lookfeel="EditorBlack">
+		<Name value="Widget"/>
+		<Rect value="245 200 20 28"/>
+		<Caption value="B:"/>
+	</Child>
+	<Child type="Label" lookfeel="EditorBlack">
+		<Name value="Widget"/>
+		<Rect value="245 229 20 28"/>
+		<Caption value="A:"/>
+	</Child>
+	<Child type="Label" lookfeel="EditorBlack">
+		<Name value="Widget"/>
+		<Rect value="245 110 20 28"/>
+		<Caption value="S:"/>
+	</Child>
+	<Child type="EditBox" lookfeel="MainEditBox">
+		<Name value="S"/>
+		<Rect value="267 110 64 27"/>
+	</Child>
+	<Child type="Widget" lookfeel="EditorBlack">
+		<Name value="Color"/>
+		<Rect value="13 39 197 216"/>
+		<Order value="1"/>
+	</Child>
+</Layout>
+

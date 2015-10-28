@@ -1,0 +1,41 @@
+Pass
+{
+	State
+	{
+		CullMode NONE
+		DepthMode NONE
+		BlendMode OPACITY
+	}
+	
+	Attribute
+	{
+		i_Position POSITION
+		i_Color COLOR
+	}
+	
+	VertexShader {
+		attribute vec4 i_Position;
+		attribute vec4 i_Color;
+			
+		varying vec4 o_color;
+
+		void main()
+		{
+			gl_Position = vec4(i_Position.xy, 0, 1);
+
+			o_color = i_Color;
+		}
+	}
+	
+	PixelShader {
+		precision highp float;
+		precision mediump int;
+
+		varying vec4 o_color;
+
+		void main()
+		{
+			gl_FragColor = o_color;
+		}
+	}
+}

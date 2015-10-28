@@ -1,0 +1,46 @@
+<Layout lookfeel="EditorBlack">
+	<Name value="Root"/>
+	<Rect value="898 0 128 814"/>
+	<Align value="136"/>
+	<Child type="CheckBox" lookfeel="MainCheckBox">
+		<Name value="Idle1"/>
+		<Rect value="0 20 24 23"/>
+	</Child>
+	<Child type="CheckBox" lookfeel="MainCheckBox">
+		<Name value="Idle2"/>
+		<Rect value="1 47 24 23"/>
+	</Child>
+	<Child type="CheckBox" lookfeel="MainCheckBox">
+		<Name value="Idle3"/>
+		<Rect value="1 74 24 23"/>
+	</Child>
+	<Child type="CheckBox" lookfeel="MainCheckBox">
+		<Name value="Run"/>
+		<Rect value="1 102 24 23"/>
+	</Child>
+	<Child type="CheckBox" lookfeel="MainCheckBox">
+		<Name value="Walk"/>
+		<Rect value="1 130 24 23"/>
+	</Child>
+	<Child type="Widget" lookfeel="EditorBlack">
+		<Name value="T_Idle1"/>
+		<Rect value="25 18 100 27"/>
+	</Child>
+	<Child type="Widget" lookfeel="EditorBlack">
+		<Name value="T_Idle2"/>
+		<Rect value="25 45 100 27"/>
+	</Child>
+	<Child type="Widget" lookfeel="EditorBlack">
+		<Name value="T_Idle3"/>
+		<Rect value="25 72 100 27"/>
+	</Child>
+	<Child type="Widget" lookfeel="EditorBlack">
+		<Name value="T_Run"/>
+		<Rect value="25 99 100 27"/>
+	</Child>
+	<Child type="Widget" lookfeel="EditorBlack">
+		<Name value="T_Walk"/>
+		<Rect value="25 126 100 27"/>
+	</Child>
+</Layout>
+

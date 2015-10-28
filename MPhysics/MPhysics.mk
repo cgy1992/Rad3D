@@ -1,0 +1,13 @@
+../../MPhysics/Internal/PhyCallback.cpp \
+../../MPhysics/main.cpp \
+../../MPhysics/PhyBox.cpp \
+../../MPhysics/PhyCapsule.cpp \
+../../MPhysics/PhyContact.cpp \
+../../MPhysics/PhyCylinder.cpp \
+../../MPhysics/PhyEntity.cpp \
+../../MPhysics/PhyMesh.cpp \
+../../MPhysics/PhyMeshData.cpp \
+../../MPhysics/PhyPlane.cpp \
+../../MPhysics/PhyRay.cpp \
+../../MPhysics/PhySphere.cpp \
+../../MPhysics/PhyWorld.cpp \
