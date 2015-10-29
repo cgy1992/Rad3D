@@ -30,14 +30,13 @@ public:
 	virtual void OnSetupResource()
 	{
 #ifdef M_PLATFORM_WIN32
-		ResourceManager::Instance()->AddArchive(new MPKArchive("../Data.MPK", NULL));
-		//ResourceManager::Instance()->AddArchive(new FilePathArchive("../Core"));
+		ResourceManager::Instance()->AddArchive(new FilePathArchive("../Core"));
 		ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample"));
-		//ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample/Game/Audio"));
-		//ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample/Game/Brush"));
-		//ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample/Game/Mesh"));
-		//ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample/Game/Scene"));
-		//ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample/Game/Shader"));
+		ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample/Game/Audio"));
+		ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample/Game/Brush"));
+		ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample/Game/Mesh"));
+		ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample/Game/Scene"));
+		ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample/Game/Shader"));
 #endif
 
 #ifdef M_PLATFORM_ANDROID
