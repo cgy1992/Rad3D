@@ -1,0 +1,39 @@
+<Layout lookfeel="EditorBlack">
+	<Name value="Root"/>
+	<Rect value="0 0 1026 814"/>
+	<Align value="144"/>
+	<Child type="EditView" lookfeel="MainEditView">
+		<Name value="Script"/>
+		<Rect value="47.5 218 439.5 378"/>
+		<Align value="2"/>
+	</Child>
+	<Child type="Widget" lookfeel="EditorBlack">
+		<Name value="Editor"/>
+		<Rect value="514 239.5 512 335"/>
+		<Align value="10"/>
+		<Child type="Button" lookfeel="MainButton">
+			<Name value="Run"/>
+			<Rect value="0 0 120 28"/>
+			<Caption value="Run"/>
+		</Child>
+		<Child type="EditView" lookfeel="MainEditView">
+			<Name value="Output"/>
+			<Rect value="2 37 508 286.5"/>
+			<Align value="1"/>
+		</Child>
+		<Child type="EditBox" lookfeel="MainEditBox">
+			<Name value="arg1"/>
+			<Rect value="247 3 128 27"/>
+		</Child>
+		<Child type="EditBox" lookfeel="MainEditBox">
+			<Name value="arg2"/>
+			<Rect value="377 3 131 27"/>
+		</Child>
+		<Child type="Label" lookfeel="EditorBlack">
+			<Name value="Args:"/>
+			<Rect value="189 1 51 28"/>
+			<Caption value="Args:"/>
+		</Child>
+	</Child>
+</Layout>
+

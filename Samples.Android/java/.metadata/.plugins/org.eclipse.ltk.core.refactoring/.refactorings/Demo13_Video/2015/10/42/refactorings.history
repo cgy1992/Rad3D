@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 7 elements from project &apos;Demo13_Video&apos;&#x0D;&#x0A;- Original project: &apos;Demo13_Video&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     libALAudioSystem.so&#x0D;&#x0A;     libDemo13_Video.so&#x0D;&#x0A;     libGLRenderSystem.so&#x0D;&#x0A;     libMCore.so&#x0D;&#x0A;     libMGui.so&#x0D;&#x0A;     libMParticleFX.so&#x0D;&#x0A;     libMPhysics.so" description="Delete elements" element1="libs/armeabi/libGLRenderSystem.so" element2="libs/armeabi/libMParticleFX.so" element3="libs/armeabi/libALAudioSystem.so" element4="libs/armeabi/libMPhysics.so" element5="libs/armeabi/libDemo13_Video.so" element6="libs/armeabi/libMCore.so" element7="libs/armeabi/libMGui.so" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="7" stamp="1444922114970" subPackages="false" version="1.0"/>
+</session>

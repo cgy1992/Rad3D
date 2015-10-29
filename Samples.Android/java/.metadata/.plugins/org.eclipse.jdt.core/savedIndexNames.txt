@@ -1,0 +1,3 @@
+INDEX VERSION 1.126+E:\Rad3D\Samples.Android\java\.metadata\.plugins\org.eclipse.jdt.core
+4082746289.index
+809770284.index

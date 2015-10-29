@@ -1,0 +1,87 @@
+package com.example.demo01_empty;
+
+import com.myway.MGLView;
+
+import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
+import android.text.Selection;
+import android.text.Spannable;
+import android.view.KeyEvent;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+
+class MHandler extends Handler
+{
+	MEditText m_editbox;
+	
+	@Override
+	public void handleMessage(final Message msg)
+	{	
+		if (msg.what == MEditText.HANDLER_OPEN_KEYBOARD)
+		{
+			if (m_editbox.requestFocus())
+			{
+				m_editbox.removeTextChangedListener(m_editbox.mTextWatcher);
+				{
+					MGLView.msInstance.mGLEditText.InitForEdit();
+				}
+				m_editbox.removeTextChangedListener(m_editbox.mTextWatcher);
+				MGLView.msInstance.mGLEditText.addTextChangedListener(MGLView.msInstance.mGLTextWatcher);
+				 
+				InputMethodManager imm = (InputMethodManager)MGLView.msInstance.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.showSoftInput(MGLView.msInstance.mGLEditText, 0);
+			}
+		}
+		else if (msg.what == MGLView.HANDLER_CLOSE_KEYBOARD)
+		{
+			if (MGLView.msInstance != null)
+			{
+				MGLView.msInstance.mGLEditText.removeTextChangedListener(MGLView.msInstance.mGLTextWatcher);
+				
+				InputMethodManager imm = (InputMethodManager)MGLView.msInstance.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(MGLView.msInstance.mGLEditText.getWindowToken(), 0);
+			}
+		}
+	}
+}
+
+public class MEditText  extends EditText
+{
+	 MTextWatcher mTextWatcher;
+	
+	 static Handler msHandler = null;
+	
+	 public final static int HANDLER_OPEN_KEYBOARD = 2;
+	 public final static int HANDLER_CLOSE_KEYBOARD = 3;
+	
+	MEditText(final Context context)
+	{
+		super(context);
+	}
+	
+	public void InitForEdit()
+	{
+		setText(" ");
+		
+		CharSequence text = getText();
+	
+		if (text instanceof Spannable) {
+			Spannable spanText = (Spannable)text;
+			Selection.setSelection(spanText, 1);
+		}
+	}
+	
+	@Override
+	public boolean onKeyDown(final int pKeyCode, final KeyEvent pKeyEvent)
+	{
+		super.onKeyDown(pKeyCode, pKeyEvent);
+
+		if (pKeyCode == KeyEvent.KEYCODE_BACK)
+		{
+			//mView.requestFocus();
+		}
+
+		return true;
+	}
+}

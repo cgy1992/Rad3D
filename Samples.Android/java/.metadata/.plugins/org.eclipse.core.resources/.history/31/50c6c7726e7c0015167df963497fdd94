@@ -1,0 +1,21 @@
+package com.example.demo01_empty;
+
+import android.os.Bundle;
+
+public class MainActivity extends android.app.NativeActivity  {
+	
+	static {
+		System.loadLibrary("MCore");
+		System.loadLibrary("MGui");
+		System.loadLibrary("MParticleFX");
+		System.loadLibrary("MPhysics");
+		System.loadLibrary("GLRenderSystem");
+		System.loadLibrary("SLAudioSystem");
+	}
+	
+	protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        
+    }
+}

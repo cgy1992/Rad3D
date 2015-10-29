@@ -1,0 +1,69 @@
+package com.example.demo01_empty;
+
+import com.myway.MGLView;
+
+import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
+import android.view.inputmethod.InputMethodManager;
+
+class MGLHandler extends Handler
+{
+	@Override
+	public void handleMessage(final Message msg)
+	{	
+		if (msg.what == MGLView.HANDLER_OPEN_KEYBOARD)
+		{
+			if (MGLView.msInstance != null && MGLView.msInstance.mGLEditText.requestFocus())
+			{
+				MGLView.msInstance.mGLEditText.removeTextChangedListener(MGLView.msInstance.mGLTextWatcher);
+				{
+					MGLView.msInstance.mGLEditText.InitForEdit();
+				}
+				MGLView.msInstance.mGLEditText.addTextChangedListener(MGLView.msInstance.mGLTextWatcher);
+				 
+				InputMethodManager imm = (InputMethodManager)MGLView.msInstance.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.showSoftInput(MGLView.msInstance.mGLEditText, 0);
+			}
+		}
+		else if (msg.what == MGLView.HANDLER_CLOSE_KEYBOARD)
+		{
+			if (MGLView.msInstance != null)
+			{
+				MGLView.msInstance.mGLEditText.removeTextChangedListener(MGLView.msInstance.mGLTextWatcher);
+				
+				InputMethodManager imm = (InputMethodManager)MGLView.msInstance.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(MGLView.msInstance.mGLEditText.getWindowToken(), 0);
+			}
+		}
+	}
+}
+
+
+public class MainActivity extends android.app.NativeActivity {
+	
+	static {
+		System.loadLibrary("MCore");
+		System.loadLibrary("MGui");
+		System.loadLibrary("MParticleFX");
+		System.loadLibrary("MPhysics");
+		System.loadLibrary("GLRenderSystem");
+		System.loadLibrary("SLAudioSystem");
+	}
+	
+	private static Handler msHandler = new MGLHandle;
+
+	public static void OpenKeyboard()
+	{
+		final Message msg = new Message();
+		msg.what = HANDLER_OPEN_KEYBOARD;
+		msHandler.sendMessage(msg);
+	}
+	
+	public static void CloseKeyboard()
+	{
+		final Message msg = new Message();
+		msg.what = HANDLER_CLOSE_KEYBOARD;
+		msHandler.sendMessage(msg);
+	}
+}

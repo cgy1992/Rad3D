@@ -1,0 +1,144 @@
+
+package com.myway;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+import android.opengl.GLSurfaceView;
+import android.app.Activity;
+
+
+public class MGLRenderer implements GLSurfaceView.Renderer
+{
+		// ===========================================================
+		// Constants
+		// ===========================================================
+		private final static long TIME_INTERVAL = (long) (1.0 / 60 * 1000);
+
+		// ===========================================================
+		// Fields
+		// ===========================================================
+
+		private static long mLastTick = 0;
+		
+		private Activity mActivity;
+	
+		private int mScreenWidth;
+		private int mScreenHeight;
+		private int mGLViewOffsetX;
+		private int mGLViewOffsetY;
+		
+		private boolean mInited;
+		
+		//
+		//
+		//
+		public MGLRenderer(Activity activity, int screenWidth, int screenHeight)
+		{
+			mActivity = activity;
+			mScreenWidth = screenWidth;
+			mScreenHeight = screenHeight;
+			
+			mGLViewOffsetX = 0;
+			mGLViewOffsetY = 0;
+			mInited = false;
+		}
+		
+
+		@Override
+		public void onSurfaceCreated(GL10 gl, EGLConfig config)
+		{		
+			if (mInited)
+			{
+				Framework.OnResume();
+			}
+		}
+
+		@Override
+		public void onSurfaceChanged(GL10 gl, int w, int h)
+		{
+			if (!mInited)
+			{
+				Framework.OnInit(mActivity.getAssets(), mActivity.getApplicationInfo().packageName, w, h);
+				
+				mInited = true;
+			}
+			else
+			{
+				Framework.OnResize(w, h);
+			}
+			
+			mGLViewOffsetX = mScreenWidth - w;
+			mGLViewOffsetY = mScreenHeight - h;
+		}
+
+		@Override
+		public void onDrawFrame(final GL10 gl)
+		{
+			final long nowMillseconds = System.currentTimeMillis();
+			final long interval = nowMillseconds - this.mLastTickInNanoSeconds;
+
+			Framework.OnRun();
+			
+			if (interval < TIME_INTERVAL)
+			{
+				long usleep = 
+				Thread.sleep((MGLRenderer.msTimeInterval - interval) * 2 / MGLRenderer.NANOSECONDSPERMICROSECOND);
+			}
+
+			this.mLastTickInNanoSeconds = nowInNanoSeconds;
+		}
+		
+		
+		public void onResume()
+		{
+		}
+		
+		public void onPause()
+		{
+			Framework.OnPause();
+		}
+		
+		public void onDestroy()
+		{
+			Framework.OnShutdown();
+		}
+	
+		public void onActionDown(int id, float x, float y)
+		{
+			x -= mGLViewOffsetX;
+			y -= mGLViewOffsetY;
+			Framework.OnActionDown(id, x, y);
+		}
+		
+		public void onActionUp(int id, float x, float y)
+		{
+			x -= mGLViewOffsetX;
+			y -= mGLViewOffsetY;
+			Framework.OnActionUp(id, x, y);
+		}
+		
+		public void onActionMove(int id, float x, float y)
+		{
+			x -= mGLViewOffsetX;
+			y -= mGLViewOffsetY;
+			Framework.OnActionMove(id, x, y);
+		}
+		
+		public void onActionCancel(int id, float x, float y)
+		{
+			x -= mGLViewOffsetX;
+			y -= mGLViewOffsetY;
+			Framework.OnActionCancel(id, x, y);
+		}
+		
+		public void onInsertString(String text)
+		{
+			Framework.OnInsertText(text);
+		}
+		
+		public void onDeleteBackword()
+		{
+			Framework.OnDeleteBackword();
+		}
+		
+}

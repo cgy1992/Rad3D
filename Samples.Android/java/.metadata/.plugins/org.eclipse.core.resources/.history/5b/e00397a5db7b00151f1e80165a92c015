@@ -1,0 +1,16 @@
+package com.rad3d;
+
+public class Depends {
+	
+	static {
+		
+		System.loadLibrary("MCore");
+		System.loadLibrary("MGui");
+		System.loadLibrary("MParticleFX");
+		System.loadLibrary("MPhysics");
+		System.loadLibrary("GLRenderSystem");
+		System.loadLibrary("SLAudioSystem");
+		
+		System.loadLibrary("Demo01_Empty");
+	}
+}

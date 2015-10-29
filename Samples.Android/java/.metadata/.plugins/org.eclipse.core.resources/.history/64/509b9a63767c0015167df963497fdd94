@@ -1,0 +1,35 @@
+package com.example.demo01_empty;
+
+import com.rad3d.MEditText;;
+import android.os.Bundle;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+
+
+public class MainActivity extends android.app.NativeActivity 
+{	
+	protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        
+     // Frame Layout
+    	//
+		@SuppressWarnings("deprecation")
+		ViewGroup.LayoutParams framelayout_params =
+            new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
+                                       ViewGroup.LayoutParams.FILL_PARENT);
+        FrameLayout framelayout = new FrameLayout(this);
+        framelayout.setLayoutParams(framelayout_params);
+        
+        // Edit Text (Helper of Open Keyboard)
+        //
+        @SuppressWarnings("deprecation")
+        ViewGroup.LayoutParams edittext_layout_params =
+                new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
+                                           ViewGroup.LayoutParams.WRAP_CONTENT);
+        
+        MEditText editText = new MEditText(this);
+        editText.setLayoutParams(edittext_layout_params);
+        framelayout.addView(editText);
+    }
+}

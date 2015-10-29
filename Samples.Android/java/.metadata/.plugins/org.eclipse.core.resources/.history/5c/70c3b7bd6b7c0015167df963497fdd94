@@ -1,0 +1,36 @@
+package com.example.demo01_empty;
+
+public class MainActivity extends android.app.NativeActivity {
+	
+	static {
+		System.loadLibrary("MCore");
+		System.loadLibrary("MGui");
+		System.loadLibrary("MParticleFX");
+		System.loadLibrary("MPhysics");
+		System.loadLibrary("GLRenderSystem");
+		System.loadLibrary("SLAudioSystem");
+
+	}
+	
+	private EditText mEditText;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.layout);
+
+		mEditText = (EditText) findViewById(R.id.editText1);
+		mEditText.setOnKeyListener(new OnKeyListener() {
+
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				if (keyCode == KeyEvent.KEYCODE_DEL && event.getAction() == KeyEvent.ACTION_DOWN) {
+					Log.i("test", "keycode delete");
+				}
+				return false;
+			}
+		});
+
+	}
+	
+}

@@ -1,0 +1,74 @@
+package com.rad3d;
+
+import android.content.Context;
+import android.text.Selection;
+import android.text.Spannable;
+import android.view.KeyEvent;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+
+public class MEditText110 extends EditText
+{
+	 MTextWatcher mTextWatcher;
+	
+	 static MEditText sthiz = null;
+	
+	 public final static int HANDLER_OPEN_KEYBOARD = 2;
+	 public final static int HANDLER_CLOSE_KEYBOARD = 3;
+	
+	 public MEditText(final Context context)
+	{
+		super(context);
+		
+		mTextWatcher = new MTextWatcher(this);
+		sthiz = this;
+	}
+	
+	public void Clear()
+	{
+		setText(" ");
+		
+		CharSequence text = getText();
+	
+		if (text instanceof Spannable) {
+			Spannable spanText = (Spannable)text;
+			Selection.setSelection(spanText, 1);
+		}
+	}
+	
+	public static void OpenKeyboard()
+	{
+		if (sthiz.requestFocus())
+		{
+			sthiz.removeTextChangedListener(sthiz.mTextWatcher);
+			{
+				sthiz.Clear();
+			}
+			sthiz.addTextChangedListener(sthiz.mTextWatcher);
+			 
+			InputMethodManager imm = (InputMethodManager)sthiz.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.showSoftInput(sthiz, 0);
+		}
+	}
+	
+	public static void CloseKeyboard()
+	{
+		sthiz.removeTextChangedListener(sthiz.mTextWatcher);
+		
+		InputMethodManager imm = (InputMethodManager)sthiz.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(sthiz.getWindowToken(), 0);
+	}
+	
+	@Override
+	public boolean onKeyDown(final int pKeyCode, final KeyEvent pKeyEvent)
+	{
+		super.onKeyDown(pKeyCode, pKeyEvent);
+
+		if (pKeyCode == KeyEvent.KEYCODE_BACK)
+		{
+			sthiz.requestFocus();
+		}
+
+		return true;
+	}
+}

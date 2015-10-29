@@ -1,0 +1,32 @@
+package com.example.demo01_empty;
+
+import android.os.Handler;
+import android.os.Message;
+
+public class MainActivity extends android.app.NativeActivity {
+	
+	static {
+		System.loadLibrary("MCore");
+		System.loadLibrary("MGui");
+		System.loadLibrary("MParticleFX");
+		System.loadLibrary("MPhysics");
+		System.loadLibrary("GLRenderSystem");
+		System.loadLibrary("SLAudioSystem");
+	}
+	
+	private static Handler msHandler = null;
+
+	public static void OpenKeyboard()
+	{
+		final Message msg = new Message();
+		msg.what = HANDLER_OPEN_KEYBOARD;
+		msHandler.sendMessage(msg);
+	}
+	
+	public static void CloseKeyboard()
+	{
+		final Message msg = new Message();
+		msg.what = HANDLER_CLOSE_KEYBOARD;
+		msHandler.sendMessage(msg);
+	}
+}

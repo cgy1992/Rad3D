@@ -1,0 +1,16 @@
+package com.example.rad3d;
+
+public class Framework {
+	
+	static {
+		System.loadLibrary("MCore");
+		System.loadLibrary("MGui");
+		System.loadLibrary("MParticleFX");
+		System.loadLibrary("MPhysics");
+		System.loadLibrary("GLRenderSystem");
+		System.loadLibrary("SLAudioSystem");
+	}
+	
+	public static native void OnInsertText(String text);
+	public static native void OnDeleteBackword();
+}

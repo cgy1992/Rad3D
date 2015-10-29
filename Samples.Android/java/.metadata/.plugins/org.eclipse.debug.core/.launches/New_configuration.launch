@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.android.ide.eclipse.ndk.debug.LaunchConfigType">
+<intAttribute key="com.android.ide.eclipse.adt.action" value="0"/>
+<stringAttribute key="com.android.ide.eclipse.ndk.ndklaunch.gdb" value="${NdkGdb}"/>
+<listAttribute key="com.android.ide.eclipse.ndk.ndklaunch.solib">
+<listEntry value="${NdkProject}/obj/local/${NdkCompatAbi}/"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.cdt.dsf.gdb.GDB_INIT" value=""/>
+<stringAttribute key="org.eclipse.cdt.dsf.gdb.HOST" value="localhost"/>
+<stringAttribute key="org.eclipse.cdt.dsf.gdb.PORT" value="5039"/>
+<booleanAttribute key="org.eclipse.cdt.dsf.gdb.REMOTE_TCP" value="true"/>
+<stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_ID" value="gdbserver"/>
+<stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_START_MODE" value="remote"/>
+<booleanAttribute key="org.eclipse.cdt.launch.DEBUGGER_STOP_AT_MAIN" value="false"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="${NdkProject}/obj/local/${NdkCompatAbi}/app_process"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value=""/>
+<booleanAttribute key="org.eclipse.jdt.launching.ALLOW_TERMINATE" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value=""/>
+</launchConfiguration>

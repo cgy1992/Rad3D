@@ -1,0 +1,8 @@
+package com.rad3d;
+
+public class Framework {
+	
+	public static 
+	public static native void OnInsertText(String text);
+	public static native void OnDeleteBackword();
+}
