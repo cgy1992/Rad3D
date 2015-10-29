@@ -67,13 +67,19 @@ namespace Rad {
 		if (node != NULL)
 		{
 			rml_node * texture = node->first_node("Texture");
-			rml_node * uvtiles = node->first_node("UVTiles");
-			rml_node * castAO = node->first_node("CastAO");
-
-			if (texture != NULL && uvtiles != NULL)
+			if (texture != NULL)
 			{
 				mTexture = HWBufferManager::Instance()->LoadTexture(texture->value());
+			}
+			else
+			{
+				d_log("?: Grass template defined error.");
+				return false;
+			}
 
+			rml_node * uvtiles = node->first_node("UVTiles");
+			if (uvtiles)
+			{
 				int uTile = 1, vTile = 1;
 				const char * str = uvtiles->value();
 
@@ -92,7 +98,7 @@ namespace Rad {
 							GrassTemplate gt;
 							gt.Id = mTempArray.Size();
 							gt.UVRect = RectF(u * u_step, v * v_step, (u + 1) * u_step, (v + 1) * v_step);
-							gt.CastAO = false;
+							gt.CastAO = true;
 
 							mTempArray.PushBack(gt);
 						}
@@ -104,42 +110,39 @@ namespace Rad {
 					return false;
 				}
 			}
-			else
+			
+			rml_node * uvitem = node->first_node("UVRect");
+			while (uvitem != NULL)
 			{
-				d_log("?: Grass template defined error.");
-				return false;
+				const char * str = uvitem->value();
+
+				GrassTemplate gt;
+				gt.Id = mTempArray.Size();
+				str_getfloat(gt.UVRect.x1, str);
+				str_getfloat(gt.UVRect.y1, str);
+				str_getfloat(gt.UVRect.x2, str);
+				str_getfloat(gt.UVRect.y2, str);
+				gt.CastAO = true;
+
+				mTempArray.PushBack(gt);
+
+				uvitem = uvitem->next_sibling("UVRect");
 			}
 
-			if (castAO != NULL)
+			rml_node * castAO = node->first_node("CastAO");
+			while (castAO != NULL)
 			{
 				const char * str = castAO->value();
-				if (str[0] == 'a' && str[1] == 'l' && str[2] == 'l')
-				{
-					for (int i = 0; i < mTempArray.Size(); ++i)
-					{
-						mTempArray[i].CastAO = true;
-					}
-				}
-				else
-				{
-					str = str_skipwhite(str);
-					while (*str)
-					{
-						int i = -1;
-						str = str_getint(i, str);
 
-						if (i >= 0 && i < mTempArray.Size())
-						{
-							mTempArray[i].CastAO = true;
-						}
-						else
-						{
-							d_log ("?: Grass CastAO defined error, '%d'.", i);
-						}
+				char id_str[32], val_str[32];
+				str = str_substring(id_str, 32, str);
+				str = str_substring(val_str, 32, str);
 
-						str = str_skipwhite(str);
-					}
-				}
+				int id = atoi(id_str);
+				if (id < mTempArray.Size())
+					mTempArray[id].CastAO = strcmp(val_str, "true") == 0;
+				
+				castAO = castAO->next_sibling("CastAO");
 			}
 		}
 
