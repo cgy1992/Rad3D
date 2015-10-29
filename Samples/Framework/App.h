@@ -8,8 +8,6 @@
 #include "stdafx.h"
 #include "DebugInfo.h"
 
-#define APP_DATA_PATH "../Data"
-
 class App : public Singleton<App>
 {
 public:
