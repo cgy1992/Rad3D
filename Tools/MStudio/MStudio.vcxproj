@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|Win32">
+      <Configuration>Profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CBF40A0F-9E28-4B02-93C4-C87752A201B4}</ProjectGuid>
+    <RootNamespace>MStudio</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Tool.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Tool.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Tool.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MSTUDIO_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <StackReserveSize>12328960</StackReserveSize>
+      <ImportLibrary>../../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)/lib/x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PreBuildEvent />
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>MSTUDIO_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ImportLibrary>../../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)/lib/x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>MSTUDIO_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ImportLibrary>../../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)/lib/x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Framework\App.cpp" />
+    <ClCompile Include="..\Framework\DebugInfo.cpp" />
+    <ClCompile Include="..\Framework\DragDrop.cpp" />
+    <ClCompile Include="..\Framework\stdafx.cpp" />
+    <ClCompile Include="..\Framework\WinMain.cpp" />
+    <ClCompile Include="..\Util\AllLookFeel.cpp" />
+    <ClCompile Include="..\Util\ColorPickerDialog.cpp" />
+    <ClCompile Include="..\Util\MessageBoxDialog.cpp" />
+    <ClCompile Include="..\Util\PropertyFieldBool.cpp" />
+    <ClCompile Include="..\Util\PropertyField.cpp" />
+    <ClCompile Include="..\Util\PropertyFieldButton.cpp" />
+    <ClCompile Include="..\Util\PropertyFieldClass.cpp" />
+    <ClCompile Include="..\Util\PropertyFieldColor.cpp" />
+    <ClCompile Include="..\Util\PropertyFieldComboBox.cpp" />
+    <ClCompile Include="..\Util\PropertyFieldEditBox.cpp" />
+    <ClCompile Include="..\Util\PropertyFieldEnum.cpp" />
+    <ClCompile Include="..\Util\PropertyFieldFilename.cpp" />
+    <ClCompile Include="..\Util\PropertyFieldFloat.cpp" />
+    <ClCompile Include="..\Util\PropertyFieldInt.cpp" />
+    <ClCompile Include="..\Util\PropertyFieldLongText.cpp" />
+    <ClCompile Include="..\Util\PropertyFieldQuaternion.cpp" />
+    <ClCompile Include="..\Util\PropertyFieldString.cpp" />
+    <ClCompile Include="..\Util\PropertyField_KeyFrame.cpp" />
+    <ClCompile Include="..\Util\PropertyGrid.cpp" />
+    <ClCompile Include="..\Util\PropertyGroup.cpp" />
+    <ClCompile Include="..\Util\ToolUtil.cpp" />
+    <ClCompile Include="..\Util\TrackerControl.cpp" />
+    <ClCompile Include="CameraController.cpp" />
+    <ClCompile Include="ComponentCreator.cpp" />
+    <ClCompile Include="ComponentModule.cpp" />
+    <ClCompile Include="ComponentPanel.cpp" />
+    <ClCompile Include="ComponentPropertyPanel.cpp" />
+    <ClCompile Include="ComponentUserPanel.cpp" />
+    <ClCompile Include="Console.cpp" />
+    <ClCompile Include="Editor.cpp" />
+    <ClCompile Include="EditorFactory.cpp" />
+    <ClCompile Include="GizmoBar.cpp" />
+    <ClCompile Include="LightFXModule.cpp" />
+    <ClCompile Include="MaterialModule.cpp" />
+    <ClCompile Include="MaterialPanel.cpp" />
+    <ClCompile Include="MStudio.cpp" />
+    <ClCompile Include="EntityModule.cpp" />
+    <ClCompile Include="EditorModule.cpp" />
+    <ClCompile Include="EntityPanel.cpp" />
+    <ClCompile Include="Gizmo.cpp" />
+    <ClCompile Include="LightFX_AOGenerator.cpp" />
+    <ClCompile Include="LightFX_Define.cpp" />
+    <ClCompile Include="LightFX_Entity.cpp" />
+    <ClCompile Include="LightFX_Grass.cpp" />
+    <ClCompile Include="LightFX_Light.cpp" />
+    <ClCompile Include="LightFX_Mesh.cpp" />
+    <ClCompile Include="LightFX_Rasterizer.cpp" />
+    <ClCompile Include="LightFX_Terrain.cpp" />
+    <ClCompile Include="LightFX_UVUnwrap.cpp" />
+    <ClCompile Include="LightFX_World.cpp" />
+    <ClCompile Include="EnvironmentModule.cpp" />
+    <ClCompile Include="MainFrame.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="EntityPropertyPanel.cpp" />
+    <ClCompile Include="MainRenderView.cpp" />
+    <ClCompile Include="MainStatusBar.cpp" />
+    <ClCompile Include="NavGenerator.cpp" />
+    <ClCompile Include="NavGizmo.cpp" />
+    <ClCompile Include="NavPathModule.cpp" />
+    <ClCompile Include="ParticleFXModule.cpp" />
+    <ClCompile Include="ParticleFXNewDialog.cpp" />
+    <ClCompile Include="ParticleFXPanel.cpp" />
+    <ClCompile Include="ParticleFXPropertyPanel.cpp" />
+    <ClCompile Include="ParticleFXUserPanel.cpp" />
+    <ClCompile Include="Plugin.cpp" />
+    <ClCompile Include="ProgressDialog.cpp" />
+    <ClCompile Include="TerrainModule.cpp" />
+    <ClCompile Include="EntityBound.cpp" />
+    <ClCompile Include="GrassModule.cpp" />
+    <ClCompile Include="TerrainHeightPanel.cpp" />
+    <ClCompile Include="TerrainLayerPanel.cpp" />
+    <ClCompile Include="TerrainPickerPanel.cpp" />
+    <ClCompile Include="UndoRedo.cpp" />
+    <ClCompile Include="BaseOperator.cpp" />
+    <ClCompile Include="WaterDialog.cpp" />
+    <ClCompile Include="WaterModule.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Framework\App.h" />
+    <ClInclude Include="..\Framework\DebugInfo.h" />
+    <ClInclude Include="..\Framework\DragDrop.h" />
+    <ClInclude Include="..\Framework\stdafx.h" />
+    <ClInclude Include="..\Util\AllLookFeel.h" />
+    <ClInclude Include="..\Util\ColorPickerDialog.h" />
+    <ClInclude Include="..\Util\MessageBoxDialog.h" />
+    <ClInclude Include="..\Util\MInclude.h" />
+    <ClInclude Include="..\Util\PropertyFieldBool.h" />
+    <ClInclude Include="..\Util\PropertyField.h" />
+    <ClInclude Include="..\Util\PropertyFieldButton.h" />
+    <ClInclude Include="..\Util\PropertyFieldClass.h" />
+    <ClInclude Include="..\Util\PropertyFieldColor.h" />
+    <ClInclude Include="..\Util\PropertyFieldComboBox.h" />
+    <ClInclude Include="..\Util\PropertyFieldEditBox.h" />
+    <ClInclude Include="..\Util\PropertyFieldEnum.h" />
+    <ClInclude Include="..\Util\PropertyFieldFilename.h" />
+    <ClInclude Include="..\Util\PropertyFieldFloat.h" />
+    <ClInclude Include="..\Util\PropertyFieldInt.h" />
+    <ClInclude Include="..\Util\PropertyFieldLongText.h" />
+    <ClInclude Include="..\Util\PropertyFieldQuaternion.h" />
+    <ClInclude Include="..\Util\PropertyFieldString.h" />
+    <ClInclude Include="..\Util\PropertyField_KeyFrame.h" />
+    <ClInclude Include="..\Util\PropertyGrid.h" />
+    <ClInclude Include="..\Util\PropertyGroup.h" />
+    <ClInclude Include="..\Util\ToolUtil.h" />
+    <ClInclude Include="..\Util\TrackerControl.h" />
+    <ClInclude Include="CameraController.h" />
+    <ClInclude Include="ComponentCreator.h" />
+    <ClInclude Include="ComponentModule.h" />
+    <ClInclude Include="ComponentPanel.h" />
+    <ClInclude Include="ComponentPropertyPanel.h" />
+    <ClInclude Include="ComponentUserPanel.h" />
+    <ClInclude Include="Console.h" />
+    <ClInclude Include="Editor.h" />
+    <ClInclude Include="EditorFactory.h" />
+    <ClInclude Include="EntityModule.h" />
+    <ClInclude Include="EditorModule.h" />
+    <ClInclude Include="EntityPanel.h" />
+    <ClInclude Include="Gizmo.h" />
+    <ClInclude Include="EnvironmentModule.h" />
+    <ClInclude Include="GizmoBar.h" />
+    <ClInclude Include="LightFXModule.h" />
+    <ClInclude Include="LightFX_AOGenerator.h" />
+    <ClInclude Include="LightFX_Define.h" />
+    <ClInclude Include="LightFX_Entity.h" />
+    <ClInclude Include="LightFX_Grass.h" />
+    <ClInclude Include="LightFX_Light.h" />
+    <ClInclude Include="LightFX_Mesh.h" />
+    <ClInclude Include="LightFX_Rasterizer.h" />
+    <ClInclude Include="LightFX_Terrain.h" />
+    <ClInclude Include="LightFX_UVUnwrap.h" />
+    <ClInclude Include="LightFX_World.h" />
+    <ClInclude Include="MainFrame.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="EntityPropertyPanel.h" />
+    <ClInclude Include="MainRenderView.h" />
+    <ClInclude Include="MainStatusBar.h" />
+    <ClInclude Include="MaterialModule.h" />
+    <ClInclude Include="MaterialPanel.h" />
+    <ClInclude Include="MStudio.h" />
+    <ClInclude Include="MStudioEntry.h" />
+    <ClInclude Include="NavGenerator.h" />
+    <ClInclude Include="NavGizmo.h" />
+    <ClInclude Include="NavPathModule.h" />
+    <ClInclude Include="ParticleFXModule.h" />
+    <ClInclude Include="ParticleFXNewDialog.h" />
+    <ClInclude Include="ParticleFXPanel.h" />
+    <ClInclude Include="ParticleFXPropertyPanel.h" />
+    <ClInclude Include="ParticleFXUserPanel.h" />
+    <ClInclude Include="Plugin.h" />
+    <ClInclude Include="ProgressDialog.h" />
+    <ClInclude Include="TerrainModule.h" />
+    <ClInclude Include="EntityBound.h" />
+    <ClInclude Include="GrassModule.h" />
+    <ClInclude Include="TerrainHeightPanel.h" />
+    <ClInclude Include="TerrainLayerPanel.h" />
+    <ClInclude Include="TerrainPickerPanel.h" />
+    <ClInclude Include="UndoRedo.h" />
+    <ClInclude Include="BaseOperator.h" />
+    <ClInclude Include="WaterDialog.h" />
+    <ClInclude Include="WaterModule.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

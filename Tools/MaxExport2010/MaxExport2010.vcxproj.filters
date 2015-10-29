@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="ExportConfig.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureExporter.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="Exporter.cpp" />
+    <ClCompile Include="MeshExporter.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="ExportSettingDlg.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimExporter.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="EX_Vertex.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="EX_Mesh.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Importer.cpp" />
+    <ClCompile Include="MeshImporter.cpp">
+      <Filter>Importer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="ExportConfig.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureExporter.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="Exporter.h" />
+    <ClInclude Include="MeshExporter.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="ExportSettingDlg.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimExporter.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="EX_Vertex.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="EX_Mesh.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Importer.h" />
+    <ClInclude Include="MeshImporter.h">
+      <Filter>Importer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MaxExporter.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Export">
+      <UniqueIdentifier>{5e823055-2fc9-4ae9-847d-3a1748a39204}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{0ab6218c-750a-413e-a757-569406b7c0a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{d7e1b8dd-d35f-41b6-9e55-93b52f84756f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Importer">
+      <UniqueIdentifier>{324aa0ec-a428-4db4-a32e-5358be5681c0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MaxExporter2010.rc" />
+  </ItemGroup>
+</Project>

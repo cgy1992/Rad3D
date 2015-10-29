@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|Win32">
+      <Configuration>Profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{41C3B2E3-12C4-4AD3-BEFB-567237C5448A}</ProjectGuid>
+    <RootNamespace>UIEditor</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Tool.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Tool.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Tool.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0804</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>../../SDK.Win32/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0804</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>../../SDK.Win32/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0804</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Framework\App.h" />
+    <ClInclude Include="..\Framework\DebugInfo.h" />
+    <ClInclude Include="..\Framework\DragDrop.h" />
+    <ClInclude Include="..\Framework\stdafx.h" />
+    <ClInclude Include="..\Util\AllLookFeel.h" />
+    <ClInclude Include="WidgetProperty.h" />
+    <ClInclude Include="XMLConverter.h" />
+    <ClInclude Include="LayoutEditor.h" />
+    <ClInclude Include="LayoutPanel.h" />
+    <ClInclude Include="LayoutProperty.h" />
+    <ClInclude Include="LayoutViewEd.h" />
+    <ClInclude Include="LookFeelSelectDlg.h" />
+    <ClInclude Include="LookFeelEditor.h" />
+    <ClInclude Include="LookFeelProperty.h" />
+    <ClInclude Include="LookFeelSkinEd.h" />
+    <ClInclude Include="MainFrame.h" />
+    <ClInclude Include="LookFeelPanel.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="MainStatusBar.h" />
+    <ClInclude Include="RectEd.h" />
+    <ClInclude Include="TypeEd.h" />
+    <ClInclude Include="TypeEd_Button.h" />
+    <ClInclude Include="TypeEd_CheckBox.h" />
+    <ClInclude Include="TypeEd_ComboBox.h" />
+    <ClInclude Include="TypeEd_EditBox.h" />
+    <ClInclude Include="TypeEd_EditView.h" />
+    <ClInclude Include="TypeEd_ImageBox.h" />
+    <ClInclude Include="TypeEd_Label.h" />
+    <ClInclude Include="TypeEd_ListBox.h" />
+    <ClInclude Include="WidgetCreateDlg.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Framework\App.cpp" />
+    <ClCompile Include="..\Framework\DebugInfo.cpp" />
+    <ClCompile Include="..\Framework\DragDrop.cpp" />
+    <ClCompile Include="..\Framework\stdafx.cpp" />
+    <ClCompile Include="..\Framework\WinMain.cpp" />
+    <ClCompile Include="..\Util\AllLookFeel.cpp" />
+    <ClCompile Include="UIEditor.cpp" />
+    <ClCompile Include="WidgetProperty.cpp" />
+    <ClCompile Include="XMLConverter.cpp" />
+    <ClCompile Include="LayoutEditor.cpp" />
+    <ClCompile Include="LayoutPanel.cpp" />
+    <ClCompile Include="LayoutProperty.cpp" />
+    <ClCompile Include="LayoutViewEd.cpp" />
+    <ClCompile Include="LookFeelSelectDlg.cpp" />
+    <ClCompile Include="LookFeelSkinEd.cpp" />
+    <ClCompile Include="LookFeelEditor.cpp" />
+    <ClCompile Include="LookFeelProperty.cpp" />
+    <ClCompile Include="MainFrame.cpp" />
+    <ClCompile Include="LookFeelPanel.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="MainStatusBar.cpp" />
+    <ClCompile Include="RectEd.cpp" />
+    <ClCompile Include="TypeEd.cpp" />
+    <ClCompile Include="TypeEd_Button.cpp" />
+    <ClCompile Include="TypeEd_CheckBox.cpp" />
+    <ClCompile Include="TypeEd_ComboBox.cpp" />
+    <ClCompile Include="TypeEd_EditBox.cpp" />
+    <ClCompile Include="TypeEd_EditView.cpp" />
+    <ClCompile Include="TypeEd_ImageBox.cpp" />
+    <ClCompile Include="TypeEd_Label.cpp" />
+    <ClCompile Include="TypeEd_ListBox.cpp" />
+    <ClCompile Include="WidgetCreateDlg.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

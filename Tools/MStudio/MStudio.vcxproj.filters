@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrame.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="MainStatusBar.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="MainRenderView.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\ColorPickerDialog.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\MessageBoxDialog.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyFieldColor.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyFieldEditBox.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyFieldFilename.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyFieldFloat.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyFieldInt.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyGrid.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyField.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyGroup.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\AllLookFeel.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityPanel.cpp">
+      <Filter>Module\1. Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityPropertyPanel.cpp">
+      <Filter>Module\1. Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyFieldBool.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyFieldEnum.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyFieldComboBox.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyFieldButton.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\ToolUtil.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="LightFX_Light.cpp">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="LightFX_Mesh.cpp">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="LightFX_World.cpp">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="LightFX_Entity.cpp">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="LightFX_Define.cpp">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyFieldString.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="LightFX_Terrain.cpp">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="LightFX_AOGenerator.cpp">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="LightFX_Grass.cpp">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="LightFX_UVUnwrap.cpp">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgressDialog.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="LightFX_Rasterizer.cpp">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyFieldLongText.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor.cpp" />
+    <ClCompile Include="..\Framework\App.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\DebugInfo.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\stdafx.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\WinMain.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="MStudio.cpp" />
+    <ClCompile Include="EntityModule.cpp">
+      <Filter>Module\1. Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorModule.cpp" />
+    <ClCompile Include="EntityBound.cpp">
+      <Filter>Module\1. Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="GizmoBar.cpp">
+      <Filter>Module\1. Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Plugin.cpp" />
+    <ClCompile Include="UndoRedo.cpp" />
+    <ClCompile Include="CameraController.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseOperator.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="Gizmo.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainModule.cpp">
+      <Filter>Module\2. Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="EnvironmentModule.cpp">
+      <Filter>Module\3. Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="WaterDialog.cpp">
+      <Filter>Module\5. Water</Filter>
+    </ClCompile>
+    <ClCompile Include="WaterModule.cpp">
+      <Filter>Module\5. Water</Filter>
+    </ClCompile>
+    <ClCompile Include="GrassModule.cpp">
+      <Filter>Module\6. Grass</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleFXNewDialog.cpp">
+      <Filter>Module\7. ParticleFX</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleFXPanel.cpp">
+      <Filter>Module\7. ParticleFX</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleFXPropertyPanel.cpp">
+      <Filter>Module\7. ParticleFX</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleFXUserPanel.cpp">
+      <Filter>Module\7. ParticleFX</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleFXModule.cpp">
+      <Filter>Module\7. ParticleFX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\DragDrop.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="LightFXModule.cpp">
+      <Filter>Module\8. LightFX</Filter>
+    </ClCompile>
+    <ClCompile Include="NavGenerator.cpp">
+      <Filter>Module\9. NavPath</Filter>
+    </ClCompile>
+    <ClCompile Include="NavGizmo.cpp">
+      <Filter>Module\9. NavPath</Filter>
+    </ClCompile>
+    <ClCompile Include="NavPathModule.cpp">
+      <Filter>Module\9. NavPath</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentCreator.cpp">
+      <Filter>Module\A. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentPanel.cpp">
+      <Filter>Module\A. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentPropertyPanel.cpp">
+      <Filter>Module\A. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentModule.cpp">
+      <Filter>Module\A. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorFactory.cpp" />
+    <ClCompile Include="..\Util\PropertyFieldClass.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentUserPanel.cpp">
+      <Filter>Module\A. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyField_KeyFrame.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\TrackerControl.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialModule.cpp">
+      <Filter>Module\B. Material</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialPanel.cpp">
+      <Filter>Module\B. Material</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainLayerPanel.cpp">
+      <Filter>Module\2. Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainHeightPanel.cpp">
+      <Filter>Module\2. Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainPickerPanel.cpp">
+      <Filter>Module\2. Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\PropertyFieldQuaternion.cpp">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrame.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="MainStatusBar.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="MainRenderView.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\ColorPickerDialog.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\MessageBoxDialog.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyFieldColor.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyFieldEditBox.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyFieldFilename.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyFieldFloat.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyFieldInt.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyGrid.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyField.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyGroup.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\AllLookFeel.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityPanel.h">
+      <Filter>Module\1. Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityPropertyPanel.h">
+      <Filter>Module\1. Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyFieldBool.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyFieldEnum.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyFieldComboBox.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyFieldButton.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\ToolUtil.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="LightFX_Define.h">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="LightFX_World.h">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="LightFX_Light.h">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="LightFX_Mesh.h">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="LightFX_Entity.h">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="MStudio.h" />
+    <ClInclude Include="MStudioEntry.h" />
+    <ClInclude Include="..\Util\MInclude.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyFieldString.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="LightFX_Terrain.h">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="LightFX_AOGenerator.h">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="LightFX_Grass.h">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="LightFX_UVUnwrap.h">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressDialog.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="LightFX_Rasterizer.h">
+      <Filter>Module\8. LightFX\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyFieldLongText.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor.h" />
+    <ClInclude Include="..\Framework\App.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\DebugInfo.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\stdafx.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityModule.h">
+      <Filter>Module\1. Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorModule.h" />
+    <ClInclude Include="EntityBound.h">
+      <Filter>Module\1. Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="GizmoBar.h">
+      <Filter>Module\1. Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="UndoRedo.h" />
+    <ClInclude Include="Plugin.h" />
+    <ClInclude Include="CameraController.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseOperator.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="Gizmo.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainModule.h">
+      <Filter>Module\2. Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="EnvironmentModule.h">
+      <Filter>Module\3. Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterDialog.h">
+      <Filter>Module\5. Water</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterModule.h">
+      <Filter>Module\5. Water</Filter>
+    </ClInclude>
+    <ClInclude Include="GrassModule.h">
+      <Filter>Module\6. Grass</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleFXNewDialog.h">
+      <Filter>Module\7. ParticleFX</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleFXPanel.h">
+      <Filter>Module\7. ParticleFX</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleFXPropertyPanel.h">
+      <Filter>Module\7. ParticleFX</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleFXUserPanel.h">
+      <Filter>Module\7. ParticleFX</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleFXModule.h">
+      <Filter>Module\7. ParticleFX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\DragDrop.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="LightFXModule.h">
+      <Filter>Module\8. LightFX</Filter>
+    </ClInclude>
+    <ClInclude Include="NavGenerator.h">
+      <Filter>Module\9. NavPath</Filter>
+    </ClInclude>
+    <ClInclude Include="NavGizmo.h">
+      <Filter>Module\9. NavPath</Filter>
+    </ClInclude>
+    <ClInclude Include="NavPathModule.h">
+      <Filter>Module\9. NavPath</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentCreator.h">
+      <Filter>Module\A. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentPanel.h">
+      <Filter>Module\A. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentPropertyPanel.h">
+      <Filter>Module\A. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentModule.h">
+      <Filter>Module\A. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorFactory.h" />
+    <ClInclude Include="..\Util\PropertyFieldClass.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentUserPanel.h">
+      <Filter>Module\A. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyField_KeyFrame.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\TrackerControl.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialModule.h">
+      <Filter>Module\B. Material</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialPanel.h">
+      <Filter>Module\B. Material</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainLayerPanel.h">
+      <Filter>Module\2. Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainHeightPanel.h">
+      <Filter>Module\2. Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainPickerPanel.h">
+      <Filter>Module\2. Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\PropertyFieldQuaternion.h">
+      <Filter>Util\PropertyGrid</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Util">
+      <UniqueIdentifier>{18a9b152-293a-4bcd-9ca1-9918cde2152b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util\PropertyGrid">
+      <UniqueIdentifier>{f42eb59c-6c27-4432-b865-6b2f97b376fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{e274b059-790f-4d24-8cc5-b639a972508f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module">
+      <UniqueIdentifier>{6e611205-892a-4b37-aac2-07431ada8c0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module\1. Entity">
+      <UniqueIdentifier>{4826beb9-0b37-45ce-8ffd-cde98b7371fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module\2. Terrain">
+      <UniqueIdentifier>{bf142545-f0b7-4470-9bf1-9150085cb6b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module\3. Environment">
+      <UniqueIdentifier>{b13252c5-99f6-4786-8a30-513dd9cff8ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module\5. Water">
+      <UniqueIdentifier>{99344c80-82a4-45a0-a177-db2d0a2fcd99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module\6. Grass">
+      <UniqueIdentifier>{e8235da0-26d7-4052-9744-7601e755e4cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module\7. ParticleFX">
+      <UniqueIdentifier>{bab4fbc6-faaf-47a1-9058-503a085e9428}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module\8. LightFX">
+      <UniqueIdentifier>{3f92949a-cc90-4f1f-aa13-88dd56070688}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module\8. LightFX\Engine">
+      <UniqueIdentifier>{76a27cfc-5f48-4071-866d-523c915f6f61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module\9. NavPath">
+      <UniqueIdentifier>{3421d94d-4767-4771-a6d4-43d47e65d9a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module\A. Component">
+      <UniqueIdentifier>{fef9ccc9-21fc-432e-9df6-74f0fa1f1bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module\B. Material">
+      <UniqueIdentifier>{8397bfcb-8bf8-43b3-86cf-69d1a5e7a97f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Util">
+      <UniqueIdentifier>{789a4afe-66eb-48a3-a575-028e12db635d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainFrame">
+      <UniqueIdentifier>{220fd7bf-7cb4-4e40-832f-a3cf17ce496f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainFrame\LookFeelEditor">
+      <UniqueIdentifier>{793e8d00-ea25-4993-ad86-8ced01c9e071}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainFrame\LayoutEditor">
+      <UniqueIdentifier>{d9fd9dd7-45e7-4109-86aa-faab0e91af4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainFrame\LayoutEditor\TypeProperty">
+      <UniqueIdentifier>{99290079-dca0-4f67-a475-e6c5ea0e81b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{eb596d20-a464-43ce-a666-a7072c251b1a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MainFrame.h">
+      <Filter>MainFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>MainFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="MainStatusBar.h">
+      <Filter>MainFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="LookFeelProperty.h">
+      <Filter>MainFrame\LookFeelEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="LookFeelPanel.h">
+      <Filter>MainFrame\LookFeelEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="LookFeelEditor.h">
+      <Filter>MainFrame\LookFeelEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="LookFeelSkinEd.h">
+      <Filter>MainFrame\LookFeelEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="LayoutEditor.h">
+      <Filter>MainFrame\LayoutEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="LayoutPanel.h">
+      <Filter>MainFrame\LayoutEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="LayoutProperty.h">
+      <Filter>MainFrame\LayoutEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="LayoutViewEd.h">
+      <Filter>MainFrame\LayoutEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="WidgetCreateDlg.h">
+      <Filter>MainFrame\LayoutEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="LookFeelSelectDlg.h">
+      <Filter>MainFrame\LookFeelEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeEd_Label.h">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeEd.h">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeEd_Button.h">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeEd_EditBox.h">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeEd_CheckBox.h">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeEd_ImageBox.h">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeEd_EditView.h">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeEd_ListBox.h">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeEd_ComboBox.h">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Util\AllLookFeel.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="RectEd.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\App.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\DebugInfo.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\stdafx.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\DragDrop.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLConverter.h" />
+    <ClInclude Include="WidgetProperty.h">
+      <Filter>MainFrame\LayoutEditor</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MainFrame.cpp">
+      <Filter>MainFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>MainFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="MainStatusBar.cpp">
+      <Filter>MainFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="LookFeelProperty.cpp">
+      <Filter>MainFrame\LookFeelEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="LookFeelPanel.cpp">
+      <Filter>MainFrame\LookFeelEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="LookFeelEditor.cpp">
+      <Filter>MainFrame\LookFeelEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="LookFeelSkinEd.cpp">
+      <Filter>MainFrame\LookFeelEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="LayoutEditor.cpp">
+      <Filter>MainFrame\LayoutEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="LayoutPanel.cpp">
+      <Filter>MainFrame\LayoutEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="LayoutProperty.cpp">
+      <Filter>MainFrame\LayoutEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="LayoutViewEd.cpp">
+      <Filter>MainFrame\LayoutEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="WidgetCreateDlg.cpp">
+      <Filter>MainFrame\LayoutEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="LookFeelSelectDlg.cpp">
+      <Filter>MainFrame\LookFeelEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeEd_Label.cpp">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeEd.cpp">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeEd_Button.cpp">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeEd_EditBox.cpp">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeEd_CheckBox.cpp">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeEd_ImageBox.cpp">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeEd_EditView.cpp">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeEd_ListBox.cpp">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeEd_ComboBox.cpp">
+      <Filter>MainFrame\LayoutEditor\TypeProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Util\AllLookFeel.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="RectEd.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\App.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\DebugInfo.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\stdafx.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\WinMain.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\DragDrop.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLConverter.cpp" />
+    <ClCompile Include="WidgetProperty.cpp">
+      <Filter>MainFrame\LayoutEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="UIEditor.cpp" />
+  </ItemGroup>
+</Project>
