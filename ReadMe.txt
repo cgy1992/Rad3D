@@ -55,7 +55,22 @@ E-MAIL: MSoft1115@hotmal.com
 	ogg eheora
 	lua
 
-4. How to new scecen in MStudio
+4. How to Complie Rad3D
+
+	4.1 Windows (SDK auto copy to SDK.win32)
+		a. Open Rad3D.sln with vs2010/vs2010+
+		b. Build engine floder
+		c. Build other floder
+	
+	4.2 Android
+		a. Build ThirdParty.Android
+		b. Build SDK.android
+		c. Build Samples.android
+		d. Open eclipse with Samples.android/java
+	
+	
+
+5. How to new scecen in MStudio
 	copy scene/empty and rename
 	edit empty.setting, if you need
 	open new scene in MStudio
