@@ -1,0 +1,186 @@
+#
+# MCore
+#
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libMCore
+LOCAL_LDLIBS := -llog
+LOCAL_STATIC_LIBRARIES := libIconv libTheora libVorbis libOgg
+#LOCAL_ARM_NEON := true 
+
+LOCAL_C_INCLUDES := \
+	$(LOCAL_PATH)/../../MCore \
+	$(LOCAL_PATH)/../../MCore/Platform/android \
+	$(LOCAL_PATH)/../../ThirdParty/xml \
+	$(LOCAL_PATH)/../../ThirdParty/fastlz \
+	$(LOCAL_PATH)/../../ThirdParty/image/png \
+	$(LOCAL_PATH)/../../ThirdParty/image/etc \
+	$(LOCAL_PATH)/../../ThirdParty/image/jpeg \
+	$(LOCAL_PATH)/../../ThirdParty/ogg/include \
+	$(LOCAL_PATH)/../../ThirdParty/ogg/etheora \
+	$(LOCAL_PATH)/../../ThirdParty.Android/libIconv/include
+
+LOCAL_SRC_FILES := \
+../../MCore/MAnimationController.cpp \
+../../MCore/MBloom.cpp \
+../../MCore/MComponent.cpp \
+../../MCore/MConfigFile.cpp \
+../../MCore/MCodeTimer.cpp \
+../../MCore/MDataStreamPool.cpp \
+../../MCore/MDepthBuffer.cpp \
+../../MCore/MDynLinkerLib.cpp \
+../../MCore/MCharSet.cpp \
+../../MCore/MCore.cpp \
+../../MCore/MDataStream.cpp \
+../../MCore/MDebug.cpp \
+../../MCore/MFile.cpp \
+../../MCore/MGrassRenderer.cpp \
+../../MCore/MGrassSection.cpp \
+../../MCore/MImage.cpp \
+../../MCore/MImageBMP.cpp \
+../../MCore/MImageDDS.cpp \
+../../MCore/MImageETC.cpp \
+../../MCore/MImagePNG.cpp \
+../../MCore/MImagePVR.cpp \
+../../MCore/MImageTGA.cpp \
+../../MCore/MImageJPG.cpp \
+../../MCore/MISerializer.cpp \
+../../MCore/MLog.cpp \
+../../MCore/MLZ77.cpp \
+../../MCore/MMd5.cpp \
+../../MCore/MMeshGroup.cpp \
+../../MCore/MMeshShader.cpp \
+../../MCore/MNodeDisplayer.cpp \
+../../MCore/MOSerializer.cpp \
+../../MCore/MSkeletonAnimation.cpp \
+../../MCore/MSocket.cpp \
+../../MCore/MTerrainSection.cpp \
+../../MCore/MToken.cpp \
+../../MCore/MTypes.cpp \
+../../MCore/MInput.cpp \
+../../MCore/MKeyController.cpp \
+../../MCore/MMat3.cpp \
+../../MCore/MMath.cpp \
+../../MCore/MMemory.cpp \
+../../MCore/MMemoryPool.cpp \
+../../MCore/MRenderProcess.cpp \
+../../MCore/MShadow.cpp \
+../../MCore/MRml.cpp \
+../../MCore/MRef.cpp \
+../../MCore/MString.cpp \
+../../MCore/MThread.cpp \
+../../MCore/MTimer.cpp \
+../../MCore/MUString.cpp \
+../../MCore/MEnvironment.cpp \
+../../MCore/MEvParam.cpp \
+../../MCore/MGrass.cpp \
+../../MCore/MGrassManager.cpp \
+../../MCore/MLoadRule.cpp \
+../../MCore/MPKArchive.cpp \
+../../MCore/MPKCommon.cpp \
+../../MCore/MAabb.cpp \
+../../MCore/MAnimation.cpp \
+../../MCore/MAnimationSerializer.cpp \
+../../MCore/MArchive.cpp \
+../../MCore/MAudio.cpp \
+../../MCore/MAudioWAV.cpp \
+../../MCore/MAudioOGG.cpp \
+../../MCore/MVideo.cpp \
+../../MCore/MVideoOGG.cpp \
+../../MCore/MVideoPlayer.cpp \
+../../MCore/MAudioSystem.cpp \
+../../MCore/MBillboard.cpp \
+../../MCore/MCamera.cpp \
+../../MCore/MColMesh.cpp \
+../../MCore/MColor.cpp \
+../../MCore/MRenderObject.cpp \
+../../MCore/MFloat2.cpp \
+../../MCore/MFloat3.cpp \
+../../MCore/MFloat4.cpp \
+../../MCore/MLight.cpp \
+../../MCore/MMat4.cpp \
+../../MCore/MMesh.cpp \
+../../MCore/MMeshSerializer.cpp \
+../../MCore/MMeshManager.cpp \
+../../MCore/MMeshSource.cpp \
+../../MCore/MMeshOptimizer.cpp \
+../../MCore/MNode.cpp \
+../../MCore/MNodeTracker.cpp \
+../../MCore/MObb.cpp \
+../../MCore/MParticleSystem.cpp \
+../../MCore/MPerlin.cpp \
+../../MCore/MPlane.cpp \
+../../MCore/MObject.cpp \
+../../MCore/MShape.cpp \
+../../MCore/MSound.cpp \
+../../MCore/MVertexAnimation.cpp \
+../../MCore/MWaterShader.cpp \
+../../MCore/MPrefab.cpp \
+../../MCore/MPrefabManager.cpp \
+../../MCore/MWorldSection.cpp \
+../../MCore/PSEmitter.cpp \
+../../MCore/PSManager.cpp \
+../../MCore/PSModifier.cpp \
+../../MCore/PSSet.cpp \
+../../MCore/PSShader.cpp \
+../../MCore/PSSource.cpp \
+../../MCore/MQuat.cpp \
+../../MCore/MRain.cpp \
+../../MCore/MRay.cpp \
+../../MCore/MRenderContext.cpp \
+../../MCore/MRenderHelper.cpp \
+../../MCore/MRenderPipeline.cpp \
+../../MCore/MRenderQueue.cpp \
+../../MCore/MRenderRegister.cpp \
+../../MCore/MRenderSystem.cpp \
+../../MCore/MRenderTarget.cpp \
+../../MCore/MResource.cpp \
+../../MCore/MResourceLoader.cpp \
+../../MCore/MResourceLoaderMT.cpp \
+../../MCore/MResourceManager.cpp \
+../../MCore/MRoot.cpp \
+../../MCore/MXml.cpp \
+../../MCore/MZone.cpp \
+../../MCore/MShaderFX.cpp \
+../../MCore/MShaderFXManager.cpp \
+../../MCore/MShaderProvider.cpp \
+../../MCore/MSimpleCollision.cpp \
+../../MCore/MSkeleton.cpp \
+../../MCore/MSky.cpp \
+../../MCore/MSnow.cpp \
+../../MCore/MSphere.cpp \
+../../MCore/MSun.cpp \
+../../MCore/MTerrain.cpp \
+../../MCore/MTerrainMesh.cpp \
+../../MCore/MTexture.cpp \
+../../MCore/MHWBufferManager.cpp \
+../../MCore/MVertexDeclaration.cpp \
+../../MCore/MVisibleCuller.cpp \
+../../MCore/MWater.cpp \
+../../MCore/MWorld.cpp \
+../../MCore/NavData.cpp \
+../../MCore/NavPathFinder.cpp \
+../../MCore/NavThread.cpp \
+../../MCore/Platform/android/MPlatform.cpp \
+../../MCore/RadC.cpp \
+../../MCore/RadCCompiler.cpp \
+../../MCore/RadCExpression.cpp \
+../../MCore/RadCFoundation.cpp \
+../../MCore/RadCStatement.cpp \
+../../MCore/RadCType.cpp \
+../../MCore/RadDB.cpp \
+../../MCore/RadDBC.cpp \
+../../MCore/RadDBClient.cpp \
+../../MCore/MLog2.cpp \
+../../MCore/RadDBManager.cpp \
+../../MCore/RadDBScript.cpp \
+../../MCore/RadDBServer.cpp \
+../../MCore/RadDBSql.cpp \
+../../MCore/RadDBTable.cpp \
+../../MCore/RadDBType.cpp \
+../../MCore/TcpClient.cpp \
+../../MCore/TcpServer.cpp \
+../../MCore/TcpSocket.cpp
+
+	
+include $(BUILD_SHARED_LIBRARY)
