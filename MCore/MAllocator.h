@@ -139,6 +139,11 @@ namespace Rad {
 			delete[] m;
 		}
 
+		void clear()
+		{
+			i_capacity = 0;
+		}
+
 		int capacity() const
 		{
 			return i_capacity;
@@ -161,6 +166,10 @@ namespace Rad {
 		}
 
 		void free(T * m)
+		{
+		}
+
+		void clear()
 		{
 		}
 
@@ -198,6 +207,11 @@ namespace Rad {
 		void free(T * p)
 		{
 			pool_free(p);
+		}
+
+		void clear()
+		{
+			i_capacity = 0;
 		}
 
 		int capacity() const

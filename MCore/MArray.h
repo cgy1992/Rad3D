@@ -77,6 +77,17 @@ namespace Rad {
 			mSize = 0;
 		}
 
+		void Destroy()
+		{
+			Clear();
+
+			if (mMember != NULL)
+			{
+				i_alloc.free(mMember);
+				i_alloc.clear();
+			}
+		}
+
 		void Insert(int index, const T & val)
 		{
 			d_assert(index >= 0 && index <= mSize);

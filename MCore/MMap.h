@@ -85,6 +85,17 @@ namespace Rad {
 			mSize = 0;
 		}
 
+		void Destroy()
+		{
+			Clear();
+
+			if (mMember != NULL)
+			{
+				i_alloc.free(mMember);
+				i_alloc.clear();
+			}
+		}
+
 		int Insert(const KEY & key, const T & val)
 		{
 			T_CMP cmp;

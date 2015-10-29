@@ -78,6 +78,19 @@ namespace Rad {
 			i_first = i_last = 0;
 		}
 
+		void Destroy()
+		{
+			Clear()
+
+			if (mMember != NULL)
+			{
+				i_alloc.free(mMember);
+				i_alloc.clear();
+			}
+
+			i_capacity = 0;
+		}
+
 		T & At(int i)
 		{
 			d_assert (i < Size());
