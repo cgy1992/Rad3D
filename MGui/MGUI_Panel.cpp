@@ -18,8 +18,8 @@ namespace Rad { namespace MGUI {
 		
 		if (_lookfeel != NULL)
 		{
-			hScrollBar = _lookfeel->GetChild("ScrollBarH");
-			vScrollBar = _lookfeel->GetChild("ScrollBarV");
+			hScrollBar = _lookfeel->GetChild("HScrollBar");
+			vScrollBar = _lookfeel->GetChild("VScrollBar");
 		}
 
 		if (hScrollBar != NULL)
