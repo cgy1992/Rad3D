@@ -118,10 +118,10 @@ namespace Rad {
 
 				GrassTemplate gt;
 				gt.Id = mTempArray.Size();
-				str_getfloat(gt.UVRect.x1, str);
-				str_getfloat(gt.UVRect.y1, str);
-				str_getfloat(gt.UVRect.x2, str);
-				str_getfloat(gt.UVRect.y2, str);
+				str = str_getfloat(gt.UVRect.x1, str);
+				str = str_getfloat(gt.UVRect.y1, str);
+				str = str_getfloat(gt.UVRect.x2, str);
+				str = str_getfloat(gt.UVRect.y2, str);
 				gt.CastAO = true;
 
 				mTempArray.PushBack(gt);
