@@ -95,9 +95,7 @@ float PropertyGroup::_updateHeight(float y)
 {
 	float cy = 0;
 	for (int i = 0; i < mFields.Size(); ++i)
-	{
 		cy += mFields[i]->_updateHeight(cy);
-	}
 
 	MGUI::Rect rect = mLayout->GetRect();
 
@@ -106,7 +104,8 @@ float PropertyGroup::_updateHeight(float y)
 	mLayout->SetRect(rect);
 	mLayout->_updateTM();
 
-	mWidget_Caption->_updateTM();
+	if (mWidget_Caption != NULL)
+		mWidget_Caption->_updateTM();
 
 	return rect.h;
 }
