@@ -80,7 +80,7 @@ namespace Rad {
 
 		void Destroy()
 		{
-			Clear()
+			Clear();
 
 			if (mMember != NULL)
 			{

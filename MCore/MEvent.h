@@ -11,29 +11,31 @@
 
 namespace Rad {
 
-	class _iEvent;
+	class _tEvent;
 
 	class M_ENTRY _tListener
 	{
 		DECLARE_POOL_ALLOC();
 
 	public:
-		_iEvent * _Event;
+		_tEvent * _Event;
 		_tListener * _Prev;
 		_tListener * _Next;
 
-		void * _This;
-
 	public:
-		_tListener(void * thiz);
+		_tListener() : _Event(NULL), _Prev(NULL), _Next(NULL) {}
 		virtual ~_tListener();
 	};
 
-	class M_ENTRY _iEvent
+	class _tEvent
 	{
+	protected:
+		_tListener * mHead;
+		_tListener * mTail;
+
 	public:
-		_iEvent() : mHead(NULL), mTail(NULL) {}
-		~_iEvent() { DetachAll(); }
+		_tEvent() : mHead(NULL), mTail(NULL) {}
+		~_tEvent() { DetachAll(); }
 
 		void Attach(_tListener * _listener)
 		{
@@ -77,21 +79,6 @@ namespace Rad {
 			_listener->_Event = NULL;
 		}
 
-		void Detach(void * _this)
-		{
-			_tListener * node = mHead;
-			while (node != NULL)
-			{
-				if (node->_This == _this)
-				{
-					delete node;
-					break;
-				}
-
-				node = node->_Next;
-			}
-		}
-
 		void DetachAll()
 		{
 			while (mHead)
@@ -99,27 +86,7 @@ namespace Rad {
 
 			mTail = NULL;
 		}
-
-	protected:
-		_tListener * mHead;
-		_tListener * mTail;
 	};
-
-	template <class T>
-	class _tEvent : public _iEvent
-	{
-	public:
-		void operator +=(T * _listener)
-		{
-			Attach(_listener);
-		}
-
-		void operator -=(T * _listener)
-		{
-			Detach(_listener);
-		}
-	};
-
 }
 
 #include "MEvent0.h"

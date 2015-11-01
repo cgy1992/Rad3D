@@ -8,7 +8,7 @@
 */
 #pragma once
 
-#include "MMemory.h"
+#include "MEvent.h"
 
 namespace Rad {
 
@@ -16,16 +16,28 @@ namespace Rad {
 	class _tListener1 : public _tListener
 	{
 	public:
-		_tListener1(void * thiz) : _tListener(thiz) {}
 		virtual ~_tListener1() {}
 
 		virtual void OnCall(P1 p1) = 0;
 	};
 
 	template<class P1>
-	class tEvent1 : public _tEvent<_tListener1<P1> >
+	class tEvent1 : public _tEvent
 	{
 	public:
+		typedef _tListener1<P1> listener_t;
+
+	public:
+		void operator +=(listener_t * _listener)
+		{
+			Attach(_listener);
+		}
+
+		void operator -=(listener_t * _listener)
+		{
+			Detach(_listener);
+		}
+
 		void operator ()(P1 p1)
 		{
 			_tListener * node = mHead;
@@ -35,7 +47,7 @@ namespace Rad {
 			{
 				next = node->_Next;
 
-				static_cast<_tListener1<P1> *>(node)->OnCall(p1);
+				static_cast<listener_t *>(node)->OnCall(p1);
 
 				node = next;
 			}
@@ -47,20 +59,19 @@ namespace Rad {
 	{
 		typedef void (T::*Function)(P1 p1);
 
+		T * _This;
 		Function _Fn;
 
 	public:
-		cListener1() : _tListener1(NULL), _Fn(NULL) {}
-		cListener1(T * _listener, Function _func)  : _tListener1(_listener), _Fn(_func) {}
+		cListener1() : _This(NULL), _Fn(NULL) {}
+		cListener1(T * _listener, Function _func) : _This(_listener), _Fn(_func) {}
 		virtual ~cListener1() {}
 
 		virtual void OnCall(P1 p1)
 		{
 			d_assert (_This != NULL && _Fn != NULL);
 
-			T * thiz = (T *)_This;
-
-			(thiz->*_Fn)(p1);
+			(_This->*_Fn)(p1);
 		}
 
 		cListener1 * operator()(T * _listener, Function _func)
@@ -80,7 +91,7 @@ namespace Rad {
 		Function _Fn;
 
 	public:
-		ncListener1(Function _func) : _tListener1(NULL), _Fn(_func) {}
+		ncListener1(Function _func) : _Fn(_func) {}
 		virtual ~ncListener1() {}
 
 		virtual void OnCall(P1 p1)

@@ -14,15 +14,24 @@ namespace Rad {
 	class _tListener0 : public _tListener
 	{
 	public:
-		_tListener0(void * thiz) : _tListener(thiz) {}
 		virtual ~_tListener0() {}
 
 		virtual void OnCall() = 0;
 	};
 
-	class tEvent0 : public _tEvent<_tListener0>
+	class tEvent0 : public _tEvent
 	{
 	public:
+		void operator +=(_tListener0 * _listener)
+		{
+			Attach(_listener);
+		}
+
+		void operator -=(_tListener0 * _listener)
+		{
+			Detach(_listener);
+		}
+
 		void operator ()()
 		{
 			_tListener * node = mHead;
@@ -44,20 +53,19 @@ namespace Rad {
 	{
 		typedef void (T::*Function)();
 
+		T * _This;
 		Function _Fn;
 
 	public:
-		cListener0() : _tListener0(NULL), _Fn(NULL) {}
-		cListener0(T * _listener, Function _func)  : _tListener0(_listener), _Fn(_func){}
+		cListener0() : _This(NULL), _Fn(NULL) {}
+		cListener0(T * _listener, Function _func)  : _This(_listener), _Fn(_func){}
 		virtual ~cListener0() {}
 
 		virtual void OnCall()
 		{
 			d_assert (_This != NULL && _Fn != NULL);
 
-			T * thiz = (T *)_This;
-
-			(thiz->*_Fn)();
+			(_This->*_Fn)();
 		}
 
 		cListener0 * operator()(T * _listener, Function _func)
@@ -76,7 +84,7 @@ namespace Rad {
 		Function _Fn;
 
 	public:
-		ncListener0(Function _func) : _tListener0(NULL), _Fn(_func) {}
+		ncListener0(Function _func) : _Fn(_func) {}
 		virtual ~ncListener0() {}
 
 		virtual void OnCall()
