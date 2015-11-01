@@ -132,9 +132,6 @@
     </ClCompile>
     <ClCompile Include="Plugin.cpp" />
     <ClCompile Include="UndoRedo.cpp" />
-    <ClCompile Include="CameraController.cpp">
-      <Filter>Module</Filter>
-    </ClCompile>
     <ClCompile Include="BaseOperator.cpp">
       <Filter>Module</Filter>
     </ClCompile>
@@ -366,9 +363,6 @@
     </ClInclude>
     <ClInclude Include="UndoRedo.h" />
     <ClInclude Include="Plugin.h" />
-    <ClInclude Include="CameraController.h">
-      <Filter>Module</Filter>
-    </ClInclude>
     <ClInclude Include="BaseOperator.h">
       <Filter>Module</Filter>
     </ClInclude>

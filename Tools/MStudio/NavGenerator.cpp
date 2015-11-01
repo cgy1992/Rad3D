@@ -1,5 +1,4 @@
 #include "NavGenerator.h"
-#include "CameraController.h"
 #include "MessageBoxDialog.h"
 #include "Editor.h"
 
@@ -123,9 +122,35 @@ void NavGenerator::LookAtError()
 		{
 			Float3 center = (mData->Points[e.pointId[0]] + mData->Points[e.pointId[1]]) / 2;
 
-			CameraController cc;
-			cc.SetLookAt(center);
-			cc.ForceUpdate();
+			float mMinDist = 0 * UNIT_METRES;
+			float mMaxDist = 20 * UNIT_METRES;
+
+			float mMinPitchAngle = 0;
+			float mMaxPitchAngle = 60;
+
+			float mDist = 12 * UNIT_METRES;
+			float mYawDegree = 0;
+			float mPitchDegree = 45;
+
+			Float3 mLookAt = center;
+
+			Float3 targetPos = mLookAt;
+			Quat targetOrt = Quat::Identity;
+
+			float dist = mDist;
+			float pitch = Math::DegreeToRadian(mPitchDegree);
+			float yaw = Math::DegreeToRadian(mYawDegree);
+
+			Quat q0, q1;
+
+			q0.FromAxis(Float3(1, 0, 0), pitch);
+			q1.FromAxis(Float3(0, 1, 0), yaw);
+
+			targetOrt = q1 * (q0 * targetOrt);
+			targetPos = targetPos - mDist * targetOrt.GetDirVector();
+
+			World::Instance()->MainCamera()->SetRotation(targetOrt);
+			World::Instance()->MainCamera()->SetPosition(targetPos);
 
 			break;
 		}

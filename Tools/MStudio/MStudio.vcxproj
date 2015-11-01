@@ -148,7 +148,6 @@
     <ClCompile Include="..\Util\PropertyGroup.cpp" />
     <ClCompile Include="..\Util\ToolUtil.cpp" />
     <ClCompile Include="..\Util\TrackerControl.cpp" />
-    <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="ComponentCreator.cpp" />
     <ClCompile Include="ComponentModule.cpp" />
     <ClCompile Include="ComponentPanel.cpp" />
@@ -231,7 +230,6 @@
     <ClInclude Include="..\Util\PropertyGroup.h" />
     <ClInclude Include="..\Util\ToolUtil.h" />
     <ClInclude Include="..\Util\TrackerControl.h" />
-    <ClInclude Include="CameraController.h" />
     <ClInclude Include="ComponentCreator.h" />
     <ClInclude Include="ComponentModule.h" />
     <ClInclude Include="ComponentPanel.h" />
