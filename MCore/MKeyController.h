@@ -115,7 +115,7 @@ namespace Rad {
 		bool GetValue(T & _value, float _time, bool _lerp) const
 		{
 			int start = 0, end = mKeyFrames.Size() - 1;
-			while (start <= end)
+			while (start < end)
 			{
 				int mid = (start + end) / 2;
 

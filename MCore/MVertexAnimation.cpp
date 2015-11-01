@@ -26,13 +26,11 @@ namespace Rad {
 
 		d_assert (buffer->GetCount() == mVertexCount);
 
-		
-
 		float time = controller->GetPosition();
 		float weight = controller->GetWeight();
 
 		int start = 0, end = mFrames.Size() - 1;
-		while (start <= end)
+		while (start < end)
 		{
 			int mid = (start + end) / 2;
 

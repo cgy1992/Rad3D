@@ -14,7 +14,7 @@ namespace Rad {
 
 #define K_VERTEX_COUNT_PER_GRASS 8
 #define K_PRIM_COUNT_PER_GRASS 4
-#define K_GRASS_RENDER_POOL 512
+#define K_GRASS_RENDER_POOL 1024
 #define K_GRASS_ROTATION_SEED 8
 
 	//

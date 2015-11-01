@@ -379,6 +379,7 @@
     <ClCompile Include="MCore.cpp" />
     <ClCompile Include="MDataStream.cpp" />
     <ClCompile Include="MDebug.cpp" />
+    <ClCompile Include="MEvent.cpp" />
     <ClCompile Include="MFile.cpp" />
     <ClCompile Include="MGrassRenderer.cpp" />
     <ClCompile Include="MGrassSection.cpp" />

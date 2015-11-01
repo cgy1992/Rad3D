@@ -7,146 +7,83 @@
 */
 #pragma once
 
-#include "MMemory.h"
+#include "MEvent.h"
 
 namespace Rad {
 
-	template <class T>
-	class _tListener0
+	class _tListener0 : public _tListener
 	{
-		DECLARE_POOL_ALLOC();
-
 	public:
-		T * _Event;
-		_tListener0 * _Prev;
-		_tListener0 * _Next;
-
-	public:
-		_tListener0() : _Event(NULL), _Prev(NULL), _Next(NULL) {}
-		virtual ~_tListener0() { if (_Event) (*_Event) -= this; }
+		_tListener0(void * thiz) : _tListener(thiz) {}
+		virtual ~_tListener0() {}
 
 		virtual void OnCall() = 0;
 	};
 
-	class tEvent0
+	class tEvent0 : public _tEvent<_tListener0>
 	{
 	public:
-		typedef _tListener0<tEvent0> tMyListener;
-
-	public:
-		tEvent0() : mHead(NULL) {}
-		~tEvent0() { DetachAll(); }
-
-		void DetachAll()
-		{
-			while (mHead)
-			{
-				delete mHead;
-			}
-		}
-
-		void operator +=(tMyListener * _listener)
-		{
-			d_assert (_listener != NULL && _listener->_Event == NULL);
-			d_assert (_listener->_Prev == NULL && _listener->_Next == NULL);
-
-			if (mHead)
-				mHead->_Prev = _listener;
-
-			_listener->_Next = mHead;
-			mHead = _listener;
-			mHead->_Prev = NULL;
-
-			_listener->_Event = this;
-		}
-
-		void operator -=(tMyListener * _listener)
-		{
-			d_assert (_listener != NULL && _listener->_Event == this);
-			d_assert (mHead != NULL);
-
-			if (_listener == mHead)
-				mHead = _listener->_Next;
-
-			if (_listener->_Prev)
-				_listener->_Prev->_Next = _listener->_Next;
-
-			if (_listener->_Next)
-				_listener->_Next->_Prev = _listener->_Prev;
-
-			_listener->_Prev = _listener->_Next = NULL;
-			_listener->_Event = NULL;
-		}
-
 		void operator ()()
 		{
-			tMyListener * node = mHead;
-			tMyListener * next = NULL;
+			_tListener * node = mHead;
+			_tListener * next = NULL;
 
 			while (node != NULL)
 			{
 				next = node->_Next;
 
-				node->OnCall();
+				static_cast<_tListener0 *>(node)->OnCall();
 
 				node = next;
 			}
 		}
-
-	protected:
-		tMyListener * mHead;
 	};
 
 	template <class T>
-	class cListener0 : public _tListener0<tEvent0>
+	class cListener0 : public _tListener0
 	{
 		typedef void (T::*Function)();
 
+		Function _Fn;
+
 	public:
-		cListener0() : mListener(NULL), mFunction(NULL) {}
-		cListener0(T * _listener, Function _func) : mListener(_listener), mFunction(_func) {}
+		cListener0() : _tListener0(NULL), _Fn(NULL) {}
+		cListener0(T * _listener, Function _func)  : _tListener0(_listener), _Fn(_func){}
 		virtual ~cListener0() {}
 
 		virtual void OnCall()
 		{
-			d_assert (mListener != NULL && mFunction != NULL);
+			d_assert (_This != NULL && _Fn != NULL);
 
-			(mListener->*mFunction)();
+			T * thiz = (T *)_This;
+
+			(thiz->*_Fn)();
 		}
 
-		cListener0 * operator ()(T * _listener, Function _func)
+		cListener0 * operator()(T * _listener, Function _func)
 		{
-			mListener = _listener;
-			mFunction = _func;
+			_This = _listener;
+			_Fn = _func;
 
 			return this;
 		}
-
-	protected:
-		T * mListener;
-		Function mFunction;
 	};
 
-	class ncListener0 : public _tListener0<tEvent0>
+	class ncListener0 : public _tListener0
 	{
 		typedef void (*Function)();
 
-	public:
-		ncListener0(Function _func)
-			: mFunction(_func)
-		{
-		}
+		Function _Fn;
 
+	public:
+		ncListener0(Function _func) : _tListener0(NULL), _Fn(_func) {}
 		virtual ~ncListener0() {}
 
 		virtual void OnCall()
 		{
-			d_assert (mFunction != NULL);
+			d_assert (_Fn != NULL);
 
-			mFunction();
+			_Fn();
 		}
-
-	protected:
-		Function mFunction;
 	};
 }

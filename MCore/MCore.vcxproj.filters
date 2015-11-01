@@ -1221,6 +1221,9 @@
     <ClCompile Include="MVideoPlayer.cpp">
       <Filter>Engine\3. Audio &amp; Video</Filter>
     </ClCompile>
+    <ClCompile Include="MEvent.cpp">
+      <Filter>Core\Event</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="MMath.inl">
