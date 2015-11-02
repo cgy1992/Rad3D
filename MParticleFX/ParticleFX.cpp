@@ -382,6 +382,7 @@ namespace Rad {
 		Root::REG_OBJECT_T<PS_ModifierForce>();
 		Root::REG_OBJECT_T<PS_ModifierScale>();
 		Root::REG_OBJECT_T<PS_ModifierUVAnim>();
+		Root::REG_OBJECT_T<PS_ModifierUVAnimKF>();
 		Root::REG_OBJECT_T<PS_ModifierRotation>();
 		Root::REG_OBJECT_T<PS_ModifierRotation2>();
 		Root::REG_OBJECT_T<PS_ModifierUVScroll>();

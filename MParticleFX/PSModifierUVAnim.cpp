@@ -62,4 +62,35 @@ namespace Rad {
 		}
 	}
 
+
+	//
+	DF_PROPERTY_BEGIN(PS_ModifierUVAnimKF)
+		DF_PROPERTY(PS_ModifierUVAnimKF, mInterpolation, "", "Interpolation", PT_Bool)
+		DF_PROPERTY_EX(PS_ModifierUVAnimKF, mKeyController, "", "KeyController", "PT_KeyController", PT_UserData)
+	DF_PROPERTY_END()
+
+	ImplementRTTI(PS_ModifierUVAnimKF, PS_ModifierKeyController);
+
+	PS_ModifierUVAnimKF::PS_ModifierUVAnimKF()
+		: mInterpolation(true)
+	{
+	}
+
+	PS_ModifierUVAnimKF::~PS_ModifierUVAnimKF()
+	{
+	}
+
+	void PS_ModifierUVAnimKF::Modify(Particle * p, float elapsedTime)
+	{
+		float time = 1 - p->Life / p->MaxLife;
+
+		KF_Float4 v;
+		if (mKeyController.GetValue(v, time, mInterpolation))
+		{
+			p->UVRect.x1 = v.data.x;
+			p->UVRect.y1 = v.data.y;
+			p->UVRect.x2 = v.data.z;
+			p->UVRect.y2 = v.data.w;
+		}
+	}
 }

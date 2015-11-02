@@ -7,8 +7,8 @@
 */
 #pragma once
 
-#include "ParticleFX.h"
 #include "PSTypes.h"
+#include "PSModifierKeyController.h"
 
 namespace Rad {
 
@@ -58,4 +58,29 @@ namespace Rad {
 		int mRandomParamIndex;
 	};
 
+
+	class FX_ENTRY PS_ModifierUVAnimKF : public PS_ModifierKeyController
+	{
+		DECLARE_RTTI();
+		DECLARE_PROPERTY(PS_ModifierKeyController);
+
+	public:
+		PS_ModifierUVAnimKF();
+		virtual ~PS_ModifierUVAnimKF();
+
+		IKeyController *
+			GetKeyController() { return &mKeyController; }
+
+		void
+			SetInterpolation(bool b) { mInterpolation = b; }
+		bool
+			GetInterpolation() const { return mInterpolation; }
+
+		virtual void 
+			Modify(Particle * p, float elapsedTime);
+
+	protected:
+		bool mInterpolation;
+		KeyControllerFloat4 mKeyController;
+	};
 }
