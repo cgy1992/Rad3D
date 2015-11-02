@@ -21,13 +21,15 @@ namespace Rad {
 
 	class tEvent0 : public _tEvent
 	{
+		typedef _tListener0 listener_t;
+
 	public:
-		void operator +=(_tListener0 * _listener)
+		void operator +=(listener_t * _listener)
 		{
 			Attach(_listener);
 		}
 
-		void operator -=(_tListener0 * _listener)
+		void operator -=(listener_t * _listener)
 		{
 			Detach(_listener);
 		}
@@ -41,7 +43,7 @@ namespace Rad {
 			{
 				next = node->_Next;
 
-				static_cast<_tListener0 *>(node)->OnCall();
+				static_cast<listener_t *>(node)->OnCall();
 
 				node = next;
 			}

@@ -92,22 +92,10 @@ namespace Rad {
 		LINKER_APPEND(mDependenceLinker, new ResourceDependence(this, pSubResource));
 	}
 
-	void Resource::_removeDependence(Resource * pSubResource)
+	void Resource::_removeDependence(ResourceDependence * pDependence)
 	{
-		ResourceDependence * p = mDependenceLinker;
-
-		while (p != NULL)
-		{
-			if (p->getSubResource() == pSubResource)
-				break;
-
-			p = LINKER_NEXT(p);
-		}
-
-		d_assert (p != NULL);
-
-		LINKER_REMOVE(mDependenceLinker, p);
-		delete p;
+		LINKER_REMOVE(mDependenceLinker, pDependence);
+		delete pDependence;
 
 		if (mLoadState == LOADING && _getDependences() == NULL)
 			OnLoad();

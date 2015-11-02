@@ -74,7 +74,7 @@ namespace Rad
 		void 
 			_addDependence(Resource * pSubResource);
 		void 
-			_removeDependence(Resource * pSubResource);
+			_removeDependence(ResourceDependence * pDependence);
 		void 
 			_removeAllDependence();
 		ResourceDependence * 
@@ -112,22 +112,12 @@ namespace Rad
 		}
 
 		Resource * 
-			getResource()
-		{ 
-			return mResource;
-		}
-
+			getResource() {  return mResource; }
 		Resource * 
-			getSubResource()
-		{
-			return mSubResource;
-		}
+			getSubResource() { return mSubResource; }
 
 		void 
-			OnLoaded()
-		{
-			mResource->_removeDependence(mSubResource);
-		}
+			OnLoaded() { mResource->_removeDependence(this); }
 
 	protected:
 		Resource * mResource;
