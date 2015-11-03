@@ -42,6 +42,11 @@ namespace Rad { namespace MGUI {
 		const Float4 & 
 			GetTextColor() const;
 
+		void
+			SetTranslation(bool b) { mTranslation = b; }
+		bool
+			GetTranslation() const { return mTranslation; }
+
 		void 
 			SetSelectCursorColor(const Float4 & _color) { mSelectCursorColor = _color; }
 		const Float4 & 
@@ -90,15 +95,15 @@ namespace Rad { namespace MGUI {
 	protected:
 		TextView * mTextView;
 
+		bool mTranslation;
+		bool mStatic;
+		Float4 mSelectCursorColor;
+		Float4 mSelectBackColor;
+
 		int mSelectIndex;
 		int mSelectStartIndex;
 		int mSelectEndIndex;
 		int mDragIndex;
-
-		bool mStatic;
-
-		Float4 mSelectCursorColor;
-		Float4 mSelectBackColor;
 
 		bool mSelectVisible;
 		Timer * mTimer;

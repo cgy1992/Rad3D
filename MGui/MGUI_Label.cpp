@@ -13,6 +13,8 @@ namespace Rad { namespace MGUI {
 		mTextBox->SetInheritState(true);
 
 		SetTextAlign(eAlign::LEFT);
+
+		mTranslation = false;
 	}
 
 	Label::~Label()
@@ -124,6 +126,11 @@ namespace Rad { namespace MGUI {
 
 		if (is_out)
 		{
+			if (mTranslation)
+			{
+				root.append_node("Translation").append_attribute("value", "true");
+			}
+
 			if (GetCaption().Length() > 0)
 			{
 				String caption;
@@ -159,16 +166,20 @@ namespace Rad { namespace MGUI {
 		}
 		else
 		{
-			// Caption
-			xml_node node = root.first_node("Caption");
+			xml_node node = root.first_node("Translation");
+			if (node != NULL)
+			{
+				mTranslation = strcmp(node.first_attribute("value"), "true") == 0;
+			}
+
+			node = root.first_node("Caption");
 			if (node != NULL)
 			{
 				String caption = node.first_attribute("value");
 
-				SetCaption(caption.c_wstr());
+				SetCaption(L_TR(caption, mTranslation).c_wstr());
 			}
 
-			// Font
 			node = root.first_node("Font");
 			if (node != NULL)
 			{
@@ -177,7 +188,6 @@ namespace Rad { namespace MGUI {
 				SetFontName(fontName);
 			}
 
-			// TextColor
 			node = root.first_node("TextColor");
 			if (node != NULL)
 			{
@@ -191,7 +201,6 @@ namespace Rad { namespace MGUI {
 				SetTextColor(color);
 			}
 
-			// TextAlign
 			node = root.first_node("TextAlign");
 			if (node != NULL)
 			{

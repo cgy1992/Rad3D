@@ -20,6 +20,8 @@ namespace Rad { namespace MGUI {
 		void 
 			Load(const String & filename);
 		void
+			Save(const String & filename);
+		void
 			Unload();
 
 		const char *
@@ -31,7 +33,33 @@ namespace Rad { namespace MGUI {
 			Remove(const String & key);
 
 	protected:
+		bool mEnable;
+		bool mNeedSave;
 		Map<String, String> mStringMap;
 	};
+
+	inline String & _L_TR(String & str, bool translation)
+	{
+		if (translation)
+		{
+			const char * tr = Locale::Instance()->GetString(str);
+			if (tr != NULL)
+			{
+				str = tr;
+			}
+			else
+			{
+				Locale::Instance()->Insert(str, "");
+			}
+		}
+
+		return str;
+	}
+
+#ifndef NO_LOCALE
+	#define L_TR(s, b) _L_TR(s, b)
+#else
+	#define L_TR(s, b)
+#endif
 
 }}

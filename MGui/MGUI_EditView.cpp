@@ -15,6 +15,8 @@ namespace Rad { namespace MGUI {
 		mTextView->SetPickFlag(ePickFlag::NONE);
 		mTextView->SetInheritState(true);
 
+		mTranslation = false;
+
 		mSelectBackColor = Float4(0.4f, 0.4f, 0.75f);
 		mSelectCursorColor = Float4(1, 1, 1);
 
@@ -149,6 +151,11 @@ namespace Rad { namespace MGUI {
 
 		if (is_out)
 		{
+			if (mTranslation)
+			{
+				root.append_node("Translation").append_attribute("value", "true");
+			}
+
 			if (GetCaption().Length() > 0)
 			{
 				String caption;
@@ -157,21 +164,25 @@ namespace Rad { namespace MGUI {
 
 				root.append_node("Caption").append_attribute("value", caption.c_str());
 			}
-	
+
 			root.append_node("Caption").append_attribute("value", GetFontName().c_str());
 		}
 		else
 		{
-			// Caption
-			xml_node node = root.first_node("Caption");
+			xml_node node = root.first_node("Translation");
+			if (node != NULL)
+			{
+				mTranslation = strcmp(node.first_attribute("value"), "true") == 0;
+			}
+
+			node = root.first_node("Caption");
 			if (node != NULL) 
 			{
 				String caption = node.first_attribute("value");
 
-				SetCaption(caption.c_wstr());
+				SetCaption(L_TR(caption, mTranslation).c_wstr());
 			}
 
-			// Font
 			node = root.first_node("Font");
 			if (node != NULL) 
 			{

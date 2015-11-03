@@ -8,6 +8,7 @@ namespace Rad {
 
 	Locale::Locale()
 	{
+		mNeedSave = false;
 	}
 
 	Locale::~Locale()
@@ -18,22 +19,35 @@ namespace Rad {
 	void Locale::Load(const String & filename)
 	{
 		DataStreamPtr stream = ResourceManager::Instance()->OpenResource(filename);
-		if (stream == NULL)
+		if (stream != NULL)
 		{
-			d_log("Error: file '%s' open failed.", filename.c_str());
-			return ;
+			rml_doc doc;
+			doc.open(stream);
+
+			rml_node * node = doc.first_node();
+			while (node != NULL)
+			{
+				mStringMap.Insert(node->name(), node->value());
+
+				node = node->next_sibling();
+			}
 		}
+	}
+
+	void Locale::Save(const String & filename)
+	{
+		if (!mNeedSave)
+			return ;
 
 		rml_doc doc;
-		doc.open(stream);
-
-		rml_node * node = doc.first_node();
-		while (node != NULL)
+		for (int i = 0; i < mStringMap.Size(); ++i)
 		{
-			mStringMap.Insert(node->name(), node->value());
-
-			node = node->next_sibling();
+			doc.append(mStringMap[i].key.c_str(), mStringMap[i].value.c_str());
 		}
+
+		doc.save_file(filename);
+
+		mNeedSave = false;
 	}
 
 	void Locale::Unload()
@@ -51,6 +65,9 @@ namespace Rad {
 	void Locale::Insert(const String & key, const String & str)
 	{
 		mStringMap.Insert(key, str);
+
+		if (str == "")
+			mNeedSave = true;
 	}
 
 	void Locale::Remove(const String & key)

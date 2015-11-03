@@ -15,6 +15,7 @@ namespace Rad { namespace MGUI {
 		mSelectIndex = mSelectStartIndex = mSelectEndIndex = 0;
 
 		mStatic = false;
+		mTranslation = false;
 
 		mSelectVisible = false;
 		mTimer = new Timer;
@@ -409,7 +410,11 @@ namespace Rad { namespace MGUI {
 
 		if (is_out)
 		{
-			// Caption
+			if (mTranslation)
+			{
+				root.append_node("Translation").append_attribute("value", "true");
+			}
+
 			if (GetCaption().Length() > 0)
 			{
 				String caption;
@@ -419,14 +424,12 @@ namespace Rad { namespace MGUI {
 				root.append_node("Caption").append_attribute("value", caption.c_str());
 			}
 
-			// Font
 			Font * font = _getFont();
 			if (font != NULL && font != FontManager::Instance()->GetDefaultFont())
 			{
 				root.append_node("Font").append_attribute("value", GetFontName().c_str());
 			}
 
-			// TextColor
 			if (GetTextColor() != Float4(1, 1, 1, 1))
 			{
 				const Float4 & color = GetTextColor();
@@ -440,7 +443,6 @@ namespace Rad { namespace MGUI {
 				root.append_node("TextColor").append_attribute("value", str.c_str());
 			}
 
-			// TextAlign
 			if (GetTextAlign() != eAlign::LEFT)
 			{
 				eAlign align = GetTextAlign();
@@ -450,16 +452,20 @@ namespace Rad { namespace MGUI {
 		}
 		else
 		{
-			// Caption
-			xml_node node = root.first_node("Caption");
+			xml_node node = root.first_node("Translation");
+			if (node != NULL)
+			{
+				mTranslation = strcmp(node.first_attribute("value"), "true") == 0;
+			}
+
+			node = root.first_node("Caption");
 			if (node != NULL) 
 			{
 				String caption = node.first_attribute("value");
 
-				SetCaption(caption.c_wstr());
+				SetCaption(L_TR(caption, mTranslation).c_wstr());
 			}
 
-			// Font
 			node = root.first_node("Font");
 			if (node != NULL)
 			{
@@ -468,7 +474,6 @@ namespace Rad { namespace MGUI {
 				SetFontName(fontName);
 			}
 
-			// TextColor
 			node = root.first_node("TextColor");
 			if (node != NULL)
 			{
@@ -482,7 +487,6 @@ namespace Rad { namespace MGUI {
 				SetTextColor(color);
 			}
 
-			// TextAlign
 			node = root.first_node("TextAlign");
 			if (node != NULL)
 			{

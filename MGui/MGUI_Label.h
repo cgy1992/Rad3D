@@ -42,6 +42,11 @@ namespace Rad { namespace MGUI {
 		eAlign 
 			GetTextAlign() const;
 
+		void
+			SetTranslation(bool b) { mTranslation = b; }
+		bool
+			GetTranslation() const { return mTranslation; }
+
 		void 
 			AdjustBestSize();
 
@@ -50,6 +55,8 @@ namespace Rad { namespace MGUI {
 
 	protected:
 		TextBox * mTextBox;
+
+		bool mTranslation;
 	};
 
 }}

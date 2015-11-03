@@ -12,6 +12,8 @@ namespace Rad { namespace MGUI {
 		mTextBox->SetAlign(eAlign::CENTER);
 		mTextBox->SetPickFlag(ePickFlag::NONE);
 		mTextBox->SetInheritState(true);
+
+		mTranslation = false;
 	}
 
 	Button::~Button()
@@ -64,11 +66,16 @@ namespace Rad { namespace MGUI {
 
 		if (is_out)
 		{
-			String caption;
-
-			caption.FromUnicode(GetCaption().c_str());
-			if (caption.Length() > 0)
+			if (mTranslation)
 			{
+				root.append_node("Translation").append_attribute("value", "true");
+			}
+
+			if (GetCaption().Length() > 0)
+			{
+				String caption;
+				caption.FromUnicode(GetCaption().c_str());
+
 				root.append_node("Caption").append_attribute("value", caption.c_str());
 			}
 
@@ -80,20 +87,26 @@ namespace Rad { namespace MGUI {
 		}
 		else
 		{
-			xml_node node = root.first_node("Caption");
+			xml_node node = root.first_node("Translation");
 			if (node != NULL)
 			{
-				String str = node.first_attribute("value");
+				mTranslation = strcmp(node.first_attribute("value"), "true") == 0;
+			}
 
-				SetCaption(str.c_wstr());
+			node = root.first_node("Caption");
+			if (node != NULL)
+			{
+				String caption = node.first_attribute("value");
+
+				SetCaption(L_TR(caption, mTranslation).c_wstr());
 			}
 
 			node = root.first_node("Font");
 			if (node != NULL)
 			{
-				FixedString32 str = node.first_attribute("value");
+				FixedString32 fontName = node.first_attribute("value");
 
-				SetFontName(str);
+				SetFontName(fontName);
 			}
 		}
 	}

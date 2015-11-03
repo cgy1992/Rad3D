@@ -37,12 +37,18 @@ namespace Rad { namespace MGUI {
 		const Float4 & 
 			GetTextColor() const;
 
+		void
+			SetTranslation(bool b) { mTranslation = b; }
+		bool
+			GetTranslation() const { return mTranslation; }
+
 		virtual void 
 			SerializeXML(xml_node root, bool is_out);
 
 	protected:
-		bool mMouseDown;
 		TextBox * mTextBox;
+
+		bool mTranslation;
 	};
 
 }}

@@ -33,7 +33,6 @@
     <ClCompile Include="MGUI_Window.cpp" />
     <ClCompile Include="MGUI_Factory.cpp" />
     <ClCompile Include="MGUI_Loader.cpp" />
-    <ClCompile Include="MGUI_Locale.cpp" />
     <ClCompile Include="MGUI_WidgetInput.cpp" />
     <ClCompile Include="MGUI_Timer.cpp">
       <Filter>Component</Filter>
@@ -126,6 +125,7 @@
     <ClCompile Include="MGUI_Fade.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="MGUI_Locale.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MGUI_Component.h">
@@ -171,7 +171,6 @@
     <ClInclude Include="MGUI_Window.h" />
     <ClInclude Include="MGUI_Factory.h" />
     <ClInclude Include="MGUI_Loader.h" />
-    <ClInclude Include="MGUI_Locale.h" />
     <ClInclude Include="MGUI_WidgetInput.h" />
     <ClInclude Include="MGUI_Timer.h">
       <Filter>Component</Filter>
@@ -264,6 +263,7 @@
     <ClInclude Include="MGUI_Fade.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="MGUI_Locale.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Component">
