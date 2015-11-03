@@ -207,13 +207,13 @@ namespace Rad {
 		return pMesh;
 	}
 
-	Mesh * MeshManager::NewSphere(short iRings, short iSegments, float fRadius, const Float3 & offset)
+	Mesh * MeshManager::NewSphere(short rings, short segments, float radius, const Float3 & offset)
 	{
 		Mesh * pMesh = new Mesh;
 		SubMesh * sm = pMesh->NewSubMesh();
 
-		int iVertexCount = (iRings + 1) * (iSegments + 1);
-		int iIndexCount = iRings * iSegments * 6;
+		int iVertexCount = (rings + 1) * (segments + 1);
+		int iIndexCount = rings * segments * 6;
 		int iPrimCount = iIndexCount / 3;
 
 		d_assert(iIndexCount < 65536);
@@ -221,34 +221,33 @@ namespace Rad {
 		sm->GetRenderOp()->vertexDeclarations[0].AddElement(eVertexSemantic::POSITION, eVertexType::FLOAT3);
 		sm->GetRenderOp()->vertexDeclarations[0].AddElement(eVertexSemantic::NORMAL, eVertexType::FLOAT3);
 
-		VertexBufferPtr buffer = HWBufferManager::Instance()->NewVertexBuffer(sizeof(float) * 6, iVertexCount);
+		VertexBufferPtr buffer = HWBufferManager::Instance()->NewVertexBuffer(24, iVertexCount);
 
-		float * verteces;
-		verteces = (float *)buffer->Lock(eLockFlag::WRITE);
+		float * vert = (float *)buffer->Lock(eLockFlag::WRITE);
 		{
-			float fTileRingAngle = (PI / iRings);
-			float fTileSegAngle = (PI * 2 / iSegments);
+			float fTileRingAngle = (PI / rings);
+			float fTileSegAngle = (PI * 2 / segments);
 			float r;
 			short i, j;
 			Float3 pos, normal;
 
-			for (i = 0; i <= iRings; ++i)
+			for (i = 0; i <= rings; ++i)
 			{
-				r = fRadius * Math::Sin(i * fTileRingAngle);
-				pos.y = fRadius * Math::Cos(i * fTileRingAngle);
+				r = radius * Math::Sin(i * fTileRingAngle);
+				pos.y = radius * Math::Cos(i * fTileRingAngle);
 
-				for (j = 0; j <= iSegments; ++j)
+				for (j = 0; j <= segments; ++j)
 				{
 					pos.x = r * Math::Cos(j * fTileSegAngle);
 					pos.z = r * Math::Sin(j * fTileSegAngle);
 					normal = pos; normal.Normalize();
 
-					*verteces++ = pos.x + offset.x;
-					*verteces++ = pos.y + offset.y;
-					*verteces++ = pos.z + offset.z;
-					*verteces++ = normal.x;
-					*verteces++ = normal.y;
-					*verteces++ = normal.z;
+					*vert++ = pos.x + offset.x;
+					*vert++ = pos.y + offset.y;
+					*vert++ = pos.z + offset.z;
+					*vert++ = normal.x;
+					*vert++ = normal.y;
+					*vert++ = normal.z;
 				}
 
 			}
@@ -261,11 +260,11 @@ namespace Rad {
 			short row = 0, row_n = 0;
 			short i, j;
 
-			for (i = 0; i < iRings; ++i)
+			for (i = 0; i < rings; ++i)
 			{
-				row_n = row + iSegments + 1;
+				row_n = row + segments + 1;
 
-				for (j = 0; j < iSegments; ++j)
+				for (j = 0; j < segments; ++j)
 				{
 					*indices++ = row + j;
 					*indices++ = row + j + 1;
@@ -277,7 +276,7 @@ namespace Rad {
 
 				}
 
-				row += iSegments + 1;
+				row += segments + 1;
 			}
 		}
 		ibuffer->Unlock();
@@ -289,18 +288,98 @@ namespace Rad {
 
 		sm->GetMaterial()->maps[eMapType::DIFFUSE] = RenderHelper::Instance()->GetWhiteTexture();
 
-		pMesh->SetLocalAabb(Aabb(Float3(-fRadius, -fRadius, -fRadius) + offset, Float3(fRadius, fRadius, fRadius) + offset));
+		pMesh->SetLocalAabb(Aabb(Float3(-radius, -radius, -radius) + offset, Float3(radius, radius, radius) + offset));
 
 		return pMesh;
 	}
 
-	Mesh * MeshManager::NewCylinder(float fRadius, float fHeight, int iRings, const Float3 & offset)
+	Mesh * MeshManager::NewCylinder(float radius, float height, int rings, const Float3 & offset)
 	{
 		Mesh * pMesh = new Mesh;
 		SubMesh * sm = pMesh->NewSubMesh();
 
-		int iVertexCount = (iRings + 1) * 2;
-		int iIndexCount = iRings * 6;
+		int iVertexCount = (rings + 1) * 2;
+		int iIndexCount = rings * 6;
+		int iPrimCount = iIndexCount / 3;
+		float half_h = height / 2;
+
+		d_assert(iIndexCount < 65536);
+
+		sm->GetRenderOp()->vertexDeclarations[0].AddElement(eVertexSemantic::POSITION, eVertexType::FLOAT3);
+		sm->GetRenderOp()->vertexDeclarations[0].AddElement(eVertexSemantic::NORMAL, eVertexType::FLOAT3);
+
+		VertexBufferPtr buffer = HWBufferManager::Instance()->NewVertexBuffer(24, iVertexCount);
+
+		float * vert = (float *)buffer->Lock(eLockFlag::WRITE);
+		{
+			float fTileRingAngle = (2 * PI / rings);
+			float x, z, rads;
+
+			for (int i = 0; i <= rings; ++i)
+			{
+				rads = i * fTileRingAngle;
+
+				Math::SinCos(rads, z, x);
+
+				x *= radius;
+				z *= radius;
+
+				*vert++ = x + offset.x;
+				*vert++ = -half_h + offset.y;
+				*vert++ = z + offset.z;
+				*vert++ = x;
+				*vert++ = 0;
+				*vert++ = z;
+
+				*vert++ = x + offset.x;
+				*vert++ = half_h + offset.y;
+				*vert++ = z + offset.z;
+				*vert++ = x;
+				*vert++ = 0;
+				*vert++ = z;
+			}
+		}
+		buffer->Unlock();
+
+		IndexBufferPtr ibuffer = HWBufferManager::Instance()->NewIndexBuffer(iIndexCount);
+		short * indices = (short *)ibuffer->Lock(eLockFlag::WRITE);
+		{
+			for (short i = 0; i < rings; ++i)
+			{
+				int j = i * 2;
+
+				*indices++ = j;
+				*indices++ = j + 1;
+				*indices++ = j + 2;
+
+				*indices++ = j + 2;
+				*indices++ = j + 1;
+				*indices++ = j + 3;
+			}
+		}
+		ibuffer->Unlock();
+
+		sm->GetRenderOp()->vertexBuffers[0] = buffer;
+		sm->GetRenderOp()->indexBuffer = ibuffer;
+		sm->GetRenderOp()->primType = ePrimType::TRIANGLE_LIST;
+		sm->GetRenderOp()->primCount = iPrimCount;
+
+		sm->GetMaterial()->cullMode = eCullMode::NONE;
+		sm->GetMaterial()->maps[eMapType::DIFFUSE] = RenderHelper::Instance()->GetWhiteTexture();
+
+		pMesh->SetLocalAabb(Aabb(Float3(-radius, -half_h, -radius) + offset, Float3(radius, half_h, radius) + offset));
+
+		return pMesh;
+	}
+
+	Mesh * MeshManager::NewCone(float radius, float height, int rings, const Float3 & offset)
+	{
+		Mesh * pMesh = new Mesh;
+		SubMesh * sm = pMesh->NewSubMesh();
+		float half_h = height / 2;
+
+		int iVertexCount = 1 + (rings + 1);
+		int iIndexCount = rings * 3;
 		int iPrimCount = iIndexCount / 3;
 
 		d_assert(iIndexCount < 65536);
@@ -308,49 +387,61 @@ namespace Rad {
 		sm->GetRenderOp()->vertexDeclarations[0].AddElement(eVertexSemantic::POSITION, eVertexType::FLOAT3);
 		sm->GetRenderOp()->vertexDeclarations[0].AddElement(eVertexSemantic::NORMAL, eVertexType::FLOAT3);
 
-		VertexBufferPtr buffer = HWBufferManager::Instance()->NewVertexBuffer(24, 32);
+		VertexBufferPtr buffer = HWBufferManager::Instance()->NewVertexBuffer(24, iVertexCount);
 
-		float * verteces;
-		verteces = (float *)buffer->Lock(eLockFlag::WRITE);
+		float * vert = (float *)buffer->Lock(eLockFlag::WRITE);
 		{
-			float fTileRingAngle = ( 2 * PI / iRings);
-			float x, z, u, rads;
+			float fTileRingAngle = (2 * PI / rings);
+			float x, z, rads;
 
-			for (int i = 0; i <= iRings; ++i)
+			*vert++ = 0 + offset.x;
+			*vert++ = half_h + offset.x;
+			*vert++ = 0 + offset.z;
+			*vert++ = 0;
+			*vert++ = 1;
+			*vert++ = 0;
+
+			for (int i = 0; i <= rings; ++i)
 			{
 				rads = i * fTileRingAngle;
-				u = rads / (2 * PI);
 
 				Math::SinCos(rads, z, x);
 
-				x *= fRadius;
-				z *= fRadius;
+				x *= radius;
+				z *= radius;
 
-				*verteces++ = x + offset.x;
-				*verteces++ = -fHeight / 2 + offset.y;
-				*verteces++ = z + offset.z;
-				*verteces++ = x;
-				*verteces++ = 0;
-				*verteces++ = z;
-
-				*verteces++ = x + offset.x;
-				*verteces++ = fHeight / 2 + offset.y;
-				*verteces++ = z + offset.z;
-				*verteces++ = x;
-				*verteces++ = 0;
-				*verteces++ = z;
+				*vert++ = x + offset.x;
+				*vert++ = -half_h + offset.y;
+				*vert++ = z + offset.z;
+				*vert++ = x;
+				*vert++ = 0;
+				*vert++ = z;
 			}
 		}
 		buffer->Unlock();
 
+		IndexBufferPtr ibuffer = HWBufferManager::Instance()->NewIndexBuffer(iIndexCount);
+		short * indices = (short *)ibuffer->Lock(eLockFlag::WRITE);
+		{
+			short n = rings + 1;
+			for (short i = 0; i < rings; ++i)
+			{
+				*indices++ = i + 1;
+				*indices++ = 0;
+				*indices++ = i + 2;
+			}
+		}
+		ibuffer->Unlock();
+
 		sm->GetRenderOp()->vertexBuffers[0] = buffer;
-		sm->GetRenderOp()->primType = ePrimType::TRIANGLE_STRIP;
+		sm->GetRenderOp()->indexBuffer = ibuffer;
+		sm->GetRenderOp()->primType = ePrimType::TRIANGLE_LIST;
 		sm->GetRenderOp()->primCount = iPrimCount;
 
 		sm->GetMaterial()->cullMode = eCullMode::NONE;
 		sm->GetMaterial()->maps[eMapType::DIFFUSE] = RenderHelper::Instance()->GetWhiteTexture();
 
-		pMesh->SetLocalAabb(Aabb(Float3(-fRadius, 0, -fRadius) + offset, Float3(fRadius, fHeight, fRadius) + offset));
+		pMesh->SetLocalAabb(Aabb(Float3(-radius, -half_h, -radius) + offset, Float3(radius, half_h, radius) + offset));
 
 		return pMesh;
 	}
@@ -403,8 +494,8 @@ namespace Rad {
 
 		VertexBufferPtr buffer = HWBufferManager::Instance()->NewVertexBuffer(sizeof(float) * 8, iVertexCount);
 
-		float * verteces;
-		verteces = (float *)buffer->Lock(eLockFlag::WRITE);
+		float * vert;
+		vert = (float *)buffer->Lock(eLockFlag::WRITE);
 		{
 			Float3 dw = (b - a) / (float)iTileW;
 			Float3 dh = (c - a) / (float)iTileH;
@@ -427,16 +518,16 @@ namespace Rad {
 
 				for (int j = 0; j < iTileW + 1; ++j)
 				{
-					*verteces++ = pos.x;
-					*verteces++ = pos.y;
-					*verteces++ = pos.z;
+					*vert++ = pos.x;
+					*vert++ = pos.y;
+					*vert++ = pos.z;
 
-					*verteces++ = normal.x;
-					*verteces++ = normal.y;
-					*verteces++ = normal.z;
+					*vert++ = normal.x;
+					*vert++ = normal.y;
+					*vert++ = normal.z;
 
-					*verteces++ = u;
-					*verteces++ = v;
+					*vert++ = u;
+					*vert++ = v;
 
 					pos += dw;
 					u += inc_u;

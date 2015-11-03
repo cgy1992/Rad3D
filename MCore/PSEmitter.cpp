@@ -42,7 +42,7 @@ namespace Rad {
 		, mLife(2, 4)
 		, mSpeed(0.2f * UNIT_METRES, 0.4f * UNIT_METRES)
 		, mDimension(0.2f * UNIT_METRES, 0.4f * UNIT_METRES)
-		, mMinSize(0, 0, 0), mMaxSize(0, 0, 0)
+		, mMinSize(1, 1, 1), mMaxSize(1, 1, 1)
 		, mMinRotation(0, 0, 0), mMaxRotation(0, 0, 0)
 		, mUVRect(1, 1)
 		, mUVRectStep(1, 1)

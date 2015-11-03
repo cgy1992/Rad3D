@@ -37,6 +37,8 @@ namespace Rad {
 			NewSphere(short iRings, short iSegments, float fRadius, const Float3 & offset = Float3::Zero);
 		Mesh * 
 			NewCylinder(float radius, float height, int rings, const Float3 & offset = Float3::Zero);
+		Mesh *
+			NewCone(float radius, float height, int rings, const Float3 & offset = Float3::Zero);
 		Mesh * 
 			NewPlane(const Plane & plane, float width, float height, int iTileW = 1, int iTileH = 1);
 

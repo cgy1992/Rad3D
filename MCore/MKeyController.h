@@ -117,7 +117,7 @@ namespace Rad {
 			int start = 0, end = mKeyFrames.Size() - 1;
 			while (start < end)
 			{
-				int mid = (start + end) / 2;
+				int mid = (start + end + 1) / 2;
 
 				float cmp = _time - mKeyFrames[mid].time;
 				if (cmp < 0)
@@ -126,7 +126,7 @@ namespace Rad {
 				}
 				else if (cmp > 0)
 				{
-					start = mid + 1;
+					start = mid;
 				}
 				else
 				{
