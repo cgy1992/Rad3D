@@ -158,6 +158,7 @@
     <ClCompile Include="PSLineSet.cpp" />
     <ClCompile Include="PSMeshSet.cpp" />
     <ClCompile Include="PSRibbonSet.cpp" />
+    <ClCompile Include="PSShaderMesh.cpp" />
     <ClCompile Include="PSSliceSet.cpp" />
     <ClCompile Include="PSRibbon.cpp" />
     <ClCompile Include="PSShaderMask.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="PSMeshSet.h" />
     <ClInclude Include="PSParticleSystemSet.h" />
     <ClInclude Include="PSRibbonSet.h" />
+    <ClInclude Include="PSShaderMesh.h" />
     <ClInclude Include="PSSliceSet.h" />
     <ClInclude Include="PSRibbon.h" />
     <ClInclude Include="PSShaderMask.h" />

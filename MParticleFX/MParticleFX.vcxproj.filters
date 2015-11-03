@@ -114,6 +114,9 @@
     <ClInclude Include="PSModifierKeyController.h">
       <Filter>4. Modifier</Filter>
     </ClInclude>
+    <ClInclude Include="PSShaderMesh.h">
+      <Filter>2. Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -232,6 +235,9 @@
     </ClCompile>
     <ClCompile Include="PSModifierKeyController.cpp">
       <Filter>4. Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="PSShaderMesh.cpp">
+      <Filter>2. Shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

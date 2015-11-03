@@ -133,7 +133,6 @@ namespace Rad {
 		mShaderClass = name;
 
 		mShader = NULL;
-
 		if (mShaderClass != "")
 		{
 			mShader = Root::NEW_OBJECT_T<PS_Shader>(mShaderClass.c_str());

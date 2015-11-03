@@ -14,6 +14,7 @@
 
 #include "PSShaderStandard.h"
 #include "PSShaderMask.h"
+#include "PSShaderMesh.h"
 
 #include "PSEmitterPoint.h"
 #include "PSEmitterBox.h"
@@ -369,6 +370,7 @@ namespace Rad {
 
 		Root::REG_OBJECT_T<PS_ShaderStandard>();
 		Root::REG_OBJECT_T<PS_ShaderMask>();
+		Root::REG_OBJECT_T<PS_ShaderMesh>();
 
 		Root::REG_OBJECT_T<PS_EmitterPoint>();
 		Root::REG_OBJECT_T<PS_EmitterBox>();

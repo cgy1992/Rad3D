@@ -19,7 +19,7 @@ namespace Rad {
 		DECLARE_POOL_ALLOC();
 
 	public:
-		PS_Mesh(PS_MeshSet * parent);
+		PS_Mesh(Mesh * mesh, PS_MeshSet * parent);
 		virtual ~PS_Mesh();
 
 		void 
