@@ -235,7 +235,7 @@ void PropertyFieldFloat4::OnOK(const MGUI::ClickEvent * e)
 	val.x = x_text.ToFloat();
 	val.y = y_text.ToFloat();
 	val.z = z_text.ToFloat();
-	val.w = z_text.ToFloat();
+	val.w = w_text.ToFloat();
 
 	mObject->SetPropertyData(mProperty, &val);
 
