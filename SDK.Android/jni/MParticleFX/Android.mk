@@ -52,6 +52,7 @@ LOCAL_SRC_FILES := \
 	../../MParticleFX/PSSliceSet.cpp \
 	../../MParticleFX/PSRibbon.cpp \
 	../../MParticleFX/PSShaderMask.cpp \
+	../../MParticleFX/PSShaderMesh.cpp \
 	../../MParticleFX/PSShaderStandard.cpp \
 	../../MParticleFX/PSSlice.cpp \
 	../../MParticleFX/PSTypes.cpp

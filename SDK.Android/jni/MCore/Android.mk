@@ -33,6 +33,7 @@ LOCAL_SRC_FILES := \
 ../../MCore/MCore.cpp \
 ../../MCore/MDataStream.cpp \
 ../../MCore/MDebug.cpp \
+../../MCore/MEvent.cpp \
 ../../MCore/MFile.cpp \
 ../../MCore/MGrassRenderer.cpp \
 ../../MCore/MGrassSection.cpp \
