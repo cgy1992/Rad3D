@@ -83,11 +83,11 @@ void ParticleFXPanel::Show()
 
 	Editor::Instance()->ClearFlags(FLAG_ALL);
 
-	Node * node = Editor::Instance()->GetSelectNode();
-	if (KIND_OF(ParticleSystem, node) && mParticleSystem != node)
-	{
-		Clear();
+	Clear();
 
+	Node * node = Editor::Instance()->GetSelectNode();
+	if (KIND_OF(ParticleSystem, node))
+	{
 		mParticleSystem = (ParticleSystem *)node;
 
 		for (int i = 0; i < mParticleSystem->GetSetCount(); ++i)
