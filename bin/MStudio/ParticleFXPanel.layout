@@ -73,9 +73,15 @@
 	</Child>
 	<Child type="Button" lookfeel="MainButton">
 		<Name value="Save"/>
-		<Rect value="0 30 244 28"/>
-		<Align value="16"/>
+		<Rect value="0 30 120 28"/>
+		<Align value="0"/>
 		<Caption value="Save"/>
+	</Child>
+	<Child type="Button" lookfeel="MainButton">
+		<Name value="Replay"/>
+		<Rect value="124 30 120 28"/>
+		<Align value="0"/>
+		<Caption value="Replay"/>
 	</Child>
 	<Child type="Widget" lookfeel="MainPanel">
 		<Name value="Set"/>
