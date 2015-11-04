@@ -32,7 +32,8 @@ namespace Rad {
 
 		int mFirstEmit;
 		float mRate;
-		float mDurationTime;
+		float mDuration;
+		float mTimeOffset;
 
 		Float4 mMinColor, mMaxColor;
 		Float2 mAngle;
@@ -72,9 +73,14 @@ namespace Rad {
 			GetRate() const;
 
 		void 
-			SetDurationTime(float time);
+			SetDuration(float time);
 		float 
-			GetDurationTime() const;
+			GetDuration() const;
+
+		void
+			SetTimeOffset(float time);
+		float
+			GetTimeOffset() const;
 
 		void 
 			SetPosition(const Float3 & pos);

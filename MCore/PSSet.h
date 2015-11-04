@@ -41,15 +41,16 @@ namespace Rad {
 		virtual void
 			OnPropertyChanged(const Property * p);
 
-		virtual void
-			Init(ParticleSystem * parent);
-
 		ParticleSystem * 
 			GetParent() { return mParent; }
 
 		virtual void
+			Init(ParticleSystem * parent);
+		virtual void
 			Update(float elapsedTime);
 
+		void
+			Reset();
 		void
 			_doEmit(PS_Emitter * emitter, float elapsedTime);
 		void

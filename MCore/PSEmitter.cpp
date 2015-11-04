@@ -13,7 +13,8 @@ namespace Rad {
 		DF_PROPERTY(PS_Emitter, mRotation, "", "Rotation", PT_Float3)
 		DF_PROPERTY(PS_Emitter, mFirstEmit, "", "FirstEmit", PT_Int)
 		DF_PROPERTY(PS_Emitter, mRate, "", "Rate", PT_Float)
-		DF_PROPERTY(PS_Emitter, mDurationTime, "", "DurationTime", PT_Float)
+		DF_PROPERTY(PS_Emitter, mDuration, "", "Duration", PT_Float)
+		DF_PROPERTY(PS_Emitter, mTimeOffset, "", "TimeOffset", PT_Float)
 
 		DF_PROPERTY_EX(PS_Emitter, mMinColor, "Randomness", "MinColor", "PT_Color4", PT_Float4)
 		DF_PROPERTY_EX(PS_Emitter, mMaxColor, "Randomness", "MaxColor", "PT_Color4", PT_Float4)
@@ -48,7 +49,8 @@ namespace Rad {
 		, mUVRectStep(1, 1)
 		, mFirstEmit(0)
 		, mRate(10)
-		, mDurationTime(0)
+		, mDuration(0)
+		, mTimeOffset(0)
 		, mInternalTime(0)
 		, mLastEmitTime(0)
 		, mEmitCount(0)
@@ -232,16 +234,27 @@ namespace Rad {
 		return mRate;
 	}
 
-	void PS_Emitter::SetDurationTime(float time)
+	void PS_Emitter::SetDuration(float time)
 	{
-		mDurationTime = time;
+		mDuration = time;
+
 		mInternalTime = 0;
 		mLastEmitTime = 0;
 	}
 
-	float PS_Emitter::GetDurationTime() const
+	float PS_Emitter::GetDuration() const
 	{
-		return mDurationTime;
+		return mDuration;
+	}
+
+	void PS_Emitter::SetTimeOffset(float time)
+	{
+		mTimeOffset = time;
+	}
+
+	float PS_Emitter::GetTimeOffset() const
+	{
+		return mTimeOffset;
 	}
 
 	int PS_Emitter::GetEmitCount() const
@@ -272,24 +285,23 @@ namespace Rad {
 		mEmitCount = 0;
 		mInternalTime += elapsedTime;
 
-		if (mDurationTime != 0 && mInternalTime > mDurationTime)
-		{
+		float curTime = mInternalTime - mTimeOffset;
+		if (curTime < 0 || (mDuration != 0 && curTime > mDuration))
 			return false;
-		}
 
 		if (mLastEmitTime == 0 && mFirstEmit > 0)
 		{
-			mLastEmitTime = mInternalTime;
+			mLastEmitTime = curTime;
 			mEmitCount = mFirstEmit;
 		}
 		else if (mRate > 0)
 		{
-			float time = mInternalTime - mLastEmitTime;
+			float time = curTime - mLastEmitTime;
 			float emit_time = 1.0f / mRate;
 
 			while (time > emit_time)
 			{
-				mLastEmitTime = mInternalTime;
+				mLastEmitTime = curTime;
 				mEmitCount += 1;
 				time -= emit_time;
 			}
@@ -405,9 +417,9 @@ namespace Rad {
 		{
 			SetRotation(mRotation);
 		}
-		else if (p->name == "mDurationTime")
+		else if (p->name == "mDuration")
 		{
-			SetDurationTime(mDurationTime);
+			SetDuration(mDuration);
 		}
 		else
 		{

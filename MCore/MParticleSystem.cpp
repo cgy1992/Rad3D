@@ -26,6 +26,7 @@ namespace Rad {
 	ParticleSystem::ParticleSystem()
 		: Node("ParticleSystem")
 	{
+		mEnable = true;
 	}
 
 	ParticleSystem::~ParticleSystem()
@@ -46,7 +47,7 @@ namespace Rad {
 
 		SetSource(ps);
 	}
-	
+
 	void ParticleSystem::SetSource(PS_SourcePtr ps)
 	{
 		if (mSource != ps)
@@ -65,6 +66,24 @@ namespace Rad {
 					OnParticleLoaded();
 				}
 			}
+		}
+	}
+
+	void ParticleSystem::SetEnable(bool enable)
+	{
+		for (int i = 0; i < mSetArray.Size(); ++i)
+		{
+			mSetArray[i]->SetEnable(enable);
+		}
+
+		mEnable = enable;
+	}
+
+	void ParticleSystem::Replay()
+	{
+		for (int i = 0; i < mSetArray.Size(); ++i)
+		{
+			mSetArray[i]->Reset();
 		}
 	}
 

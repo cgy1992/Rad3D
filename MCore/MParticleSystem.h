@@ -34,13 +34,18 @@ namespace Rad {
 		const String &
 			GetFilename() { return mFilename; }
 
-		void		
-			SetEnable(bool enable);
-
 		void
 			SetSource(PS_SourcePtr ps);
 		PS_SourcePtr
 			GetSource() { return mSource; }
+
+		void		
+			SetEnable(bool enable);
+		bool
+			IsEnable() { return mEnable; }
+
+		void
+			Replay();
 
 		virtual void
 			Update(float elapsedTime);
@@ -81,6 +86,7 @@ namespace Rad {
 		
 	protected:
 		PS_SourcePtr mSource;
+		bool mEnable;
 	
 		FixedArray<PS_Set *, 8> mSetArray;
 

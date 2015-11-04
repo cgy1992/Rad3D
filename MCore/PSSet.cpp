@@ -153,6 +153,22 @@ namespace Rad {
 		}
 	}
 
+	void PS_Set::Reset()
+	{
+		_clear_particle();
+
+		mParticlePool.Resize(mQuota);
+		for (int i = 0; i < mQuota; ++i)
+		{
+			mParticleFreeStack.Push(&mParticlePool[i]);
+		}
+
+		for (int i = 0; i < mEmitters.Size(); ++i)
+		{
+			mEmitters[i]->Reset();
+		}
+	}
+
 	void PS_Set::_doEmit(PS_Emitter * emitter, float elapsedTime)
 	{
 		emitter->Emit(elapsedTime);
