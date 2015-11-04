@@ -108,7 +108,9 @@ void Editor::Update()
 		}
 		else if (IKeyboard::Instance()->KeyUp(InputCode::KC_DELETE))
 		{
-			if (Editor::Instance()->GetSelectNode() && Util_QuestDlg(App::Instance()->_hWnd(), "Delete Node?"))
+			if (mFlags & FLAG_DRAG_ABLE &&
+				Editor::Instance()->GetSelectNode() &&
+				Util_QuestDlg(App::Instance()->_hWnd(), "Delete Node?"))
 			{
 				Node * pNode = Editor::Instance()->GetSelectNode();
 

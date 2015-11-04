@@ -13,6 +13,7 @@ ParticleFXPanel::ParticleFXPanel()
 	d_assert(mLayout != NULL);
 
 	mButton_Save = (MGUI::Button *)mLayout->GetChild("Save");
+	mButton_Replay = mLayout->GetChildT<MGUI::Button>("Replay");
 
 	mListBox_Set = new MGUI::ListBox(AllLookFeel::Instance()->GetListBox(), mLayout->GetChild("Set")->GetChild("List"));
 	mListBox_Set->SetAlign(MGUI::eAlign::STRETCH);
@@ -35,6 +36,7 @@ ParticleFXPanel::ParticleFXPanel()
 	mButton_DelModifier = (MGUI::Button *)mLayout->GetChild("Modifier")->GetChild("Delete");
 
 	mButton_Save->E_Click += new cListener1<ParticleFXPanel, const MGUI::ClickEvent *>(this, &ParticleFXPanel::OnSave);
+	mButton_Replay->E_Click += new cListener1<ParticleFXPanel, const MGUI::ClickEvent *>(this, &ParticleFXPanel::OnReplay);
 
 	mListBox_Set->E_SelectChanged += new cListener2<ParticleFXPanel, const MGUI::Event *, int>(this, &ParticleFXPanel::OnSetSelChanged);
 	mButton_NewSet->E_Click += new cListener1<ParticleFXPanel, const MGUI::ClickEvent *>(this, &ParticleFXPanel::OnAddSet);
@@ -152,6 +154,14 @@ void ParticleFXPanel::OnSave(const MGUI::ClickEvent * e)
 			OSerializerF OS(fp, true);
 			((ParticleSystem *)node)->SerializeTempalte(OS);
 		}
+	}
+}
+
+void ParticleFXPanel::OnReplay(const MGUI::ClickEvent * e)
+{
+	if (mParticleSystem != NULL)
+	{
+		mParticleSystem->Replay();
 	}
 }
 

@@ -27,6 +27,7 @@ protected:
 	void OnSceneUnLoad();
 
 	void OnSave(const MGUI::ClickEvent * e);
+	void OnReplay(const MGUI::ClickEvent * e);
 
 	void OnSetSelChanged(const MGUI::Event * e, int index);
 	void OnEmitterSelChanged(const MGUI::Event * e, int index);
@@ -52,6 +53,7 @@ protected:
 	MGUI::Layout * mLayout;
 
 	MGUI::Button * mButton_Save;
+	MGUI::Button * mButton_Replay;
 
 	MGUI::ListBox * mListBox_Set;
 	MGUI::Button * mButton_NewSet;
