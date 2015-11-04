@@ -225,6 +225,9 @@ namespace Rad {
 			break;
 		}
 
+		if (mesh)
+			mesh->SetRenderContextId(mParent->GetRenderContextId());
+
 		return mesh;
 	}
 
