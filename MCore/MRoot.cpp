@@ -45,7 +45,7 @@ namespace Rad {
 		}
 		mObjectFactoryMap2.Clear();
 
-		CodeTimer::OuputAll();
+		output_all_code_time();
 		Memory::OutputMemoryPoolStatus();
 
 		delete mLog;
