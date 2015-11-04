@@ -130,9 +130,9 @@ namespace Rad {
 			ToFloat() const;
 		double          
 			ToDouble() const;
-		void            
+		String &            
 			ToLower();
-		void            
+		String &            
 			ToUpper();
 
 		int 			
@@ -254,6 +254,20 @@ namespace Rad {
 	inline double String::ToDouble() const
 	{
 		return atof(c_str());
+	}
+
+	inline String & String::ToLower()
+	{
+		str_lwr(mStr);
+
+		return *this;
+	}
+
+	inline String & String::ToUpper()
+	{
+		str_upr(mStr);
+
+		return *this;
 	}
 
 	inline int64 atoi64(const char * a)

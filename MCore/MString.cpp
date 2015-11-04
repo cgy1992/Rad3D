@@ -204,16 +204,6 @@ namespace Rad {
 		return buffer;
 	}
 
-	void String::ToLower()
-	{
-		str_lwr(mStr);
-	}
-
-	void String::ToUpper()
-	{
-		str_upr(mStr);
-	}
-
 	int String::Find(char c, int offset) const
 	{
 		int len = Length();

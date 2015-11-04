@@ -281,14 +281,18 @@ namespace Rad {
 			return *this == "true" || *this == "True";
 		}
 
-		void ToLower()
+		FixedString & ToLower()
 		{
 			str_lwr(mStr);
+
+			return *this;
 		}
 
-		void ToUpper()
+		FixedString & ToUpper()
 		{
 			str_lwr(mStr);
+
+			return *this;
 		}
 
 		int Find(int pos, char c, bool bForward = true) const
