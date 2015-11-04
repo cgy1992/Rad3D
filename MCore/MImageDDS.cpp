@@ -112,58 +112,90 @@ namespace Rad {
 		if ((header.caps.caps1 & DDSCAPS_TEXTURE) == 0)
 			return false;
 
+		int is_compressed = (header.format.flags & DDPF_FOURCC) / DDPF_FOURCC;
+		int has_alpha = (header.format.flags & DDPF_ALPHAPIXELS) / DDPF_ALPHAPIXELS;
+
 		image.width = header.width;
 		image.height = header.height;
 		image.depth = header.depth;
-		//image.pitch = header.pitch;
 		image.mipmaps = header.mipmap;
 		image.bitcount = 0;
 
-		int blockSize = 0;
-		switch (header.format.fourcc)
+		if (is_compressed)
 		{
-		case FOURCC_DXT1:
-			image.format = ePixelFormat::DXT1_RGB;
-			image.chanels = 3;
-			blockSize = 8;
-			break;
+			int blockSize = 0;
+			switch (header.format.fourcc)
+			{
+			case FOURCC_DXT1:
+				image.format = ePixelFormat::DXT1_RGB;
+				image.chanels = 3;
+				blockSize = 8;
+				break;
 
-		case FOURCC_DXT2:
-		case FOURCC_DXT3:
-			image.chanels = 4;
-			image.format = ePixelFormat::DXT3_RGBA;
-			blockSize = 16;
-			break;
+			case FOURCC_DXT2:
+			case FOURCC_DXT3:
+				image.chanels = 4;
+				image.format = ePixelFormat::DXT3_RGBA;
+				blockSize = 16;
+				break;
 
-		case FOURCC_DXT4:
-		case FOURCC_DXT5:
-			image.chanels = 4;
-			image.format = ePixelFormat::DXT5_RGBA;
-			blockSize = 16;
-			break;
+			case FOURCC_DXT4:
+			case FOURCC_DXT5:
+				image.chanels = 4;
+				image.format = ePixelFormat::DXT5_RGBA;
+				blockSize = 16;
+				break;
+			}
+
+			if (blockSize == 0)
+				return false;
+
+			if ((header.caps.caps2 & DDSCAPS2_CUBEMAP) && image.width == image.height)
+				image.cubmaps = 6;
+			else
+				image.cubmaps = 1;
+
+			int mapSize = 0;
+			int w = image.width, h = image.height;
+			for (int i = 0; i <= image.mipmaps; ++i)
+			{
+				mapSize += ((w + 3) / 4) * ((h + 3) / 4);
+
+				if ((w /= 2) == 0) w = 1;
+				if ((h /= 2) == 0) w = 1;
+			}
+
+			image.pixels = new byte[mapSize * blockSize];
+
+			IS.Read(image.pixels, mapSize * blockSize);
 		}
-
-		if (blockSize == 0)
-			return false;
-
-		if ((header.caps.caps2 & DDSCAPS2_CUBEMAP) && image.width == image.height)
-			image.cubmaps = 6;
 		else
-			image.cubmaps = 1;
-
-		int mapSize = 0;
-		int w = image.width, h = image.height;
-		for (int i = 0; i <= image.mipmaps; ++i)
 		{
-			mapSize += ((w + 3) / 4) * ((h + 3) / 4);
+			image.depth = 1;
+			image.mipmaps = 1;
 
-			if ((w /= 2) == 0) w = 1;
-			if ((h /= 2) == 0) w = 1;
+			if (!has_alpha)
+			{
+				image.format = ePixelFormat::R8G8B8;
+				image.chanels = 3;
+			}
+			else
+			{
+				image.format = ePixelFormat::R8G8B8A8;
+				image.chanels = 4;
+			}
+
+			int sizeOfBytes = image.width * image.height * image.chanels;
+
+			image.pixels = new byte[sizeOfBytes];
+
+			IS.Read(image.pixels, sizeOfBytes);
+
+			for (int i = 0; i < sizeOfBytes; i += image.chanels)
+			{
+				Swap(image.pixels[i + 0], image.pixels[i + 2]);
+			}
 		}
-
-		image.pixels = new byte[mapSize * blockSize];
-
-		IS.Read(image.pixels, mapSize * blockSize);
 
 		return true;
 	}
