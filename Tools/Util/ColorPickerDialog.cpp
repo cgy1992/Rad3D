@@ -28,16 +28,9 @@ ColorPickerDialog::ColorPickerDialog()
 	bnOK->E_MouseClick += new cListener1<ColorPickerDialog, const MGUI::MouseEvent *>(this, &ColorPickerDialog::OnOK);
 	bnCancel->E_MouseClick += new cListener1<ColorPickerDialog, const MGUI::MouseEvent *>(this, &ColorPickerDialog::OnCancel);
 
-	mEditBox_R = (MGUI::EditBox *)mLayout->GetChild("R");
-	mEditBox_G = (MGUI::EditBox *)mLayout->GetChild("G");
-	mEditBox_B = (MGUI::EditBox *)mLayout->GetChild("B");
-	mEditBox_A = (MGUI::EditBox *)mLayout->GetChild("A");
 	mEditBox_S = (MGUI::EditBox *)mLayout->GetChild("S");
-
-	mEditBox_R->E_KeyLostFocus += new cListener1<ColorPickerDialog, const MGUI::FocusEvent *>(this, &ColorPickerDialog::OnColorTextChanged);
-	mEditBox_G->E_KeyLostFocus += new cListener1<ColorPickerDialog, const MGUI::FocusEvent *>(this, &ColorPickerDialog::OnColorTextChanged);
-	mEditBox_B->E_KeyLostFocus += new cListener1<ColorPickerDialog, const MGUI::FocusEvent *>(this, &ColorPickerDialog::OnColorTextChanged);
-	mEditBox_A->E_KeyLostFocus += new cListener1<ColorPickerDialog, const MGUI::FocusEvent *>(this, &ColorPickerDialog::OnColorTextChanged);
+	mEditBox_RGBA = (MGUI::EditBox *)mLayout->GetChild("RGBA");
+	mEditBox_RGBA->E_KeyLostFocus += new cListener1<ColorPickerDialog, const MGUI::FocusEvent *>(this, &ColorPickerDialog::OnColorTextChanged);
 
 	mWidget_View = mLayout->GetChild("Viewer");
 
@@ -149,26 +142,22 @@ void ColorPickerDialog::_genTexture()
 	mSliderTexture->Unlock();
 }
 
-void  ColorPickerDialog::_updateColor()
+void ColorPickerDialog::_updateColor()
 {
-	String textR, textG, textB, textA;
-
 	Float4 color;
-
 	color.r = mCurrentColor.r;
 	color.g = mCurrentColor.g;
 	color.b = mCurrentColor.b;
 	color.a = mCurrentColor.a;
 
-	textR.Format("%d", (int)(color.r * 255));
-	textG.Format("%d", (int)(color.g * 255));
-	textB.Format("%d", (int)(color.b * 255));
-	textA.Format("%d", (int)(color.a * 255));
+	String text;
+	text.Format("%d %d %d %d", 
+		(int)(color.r * 255), 
+		(int)(color.g * 255),
+		(int)(color.b * 255),
+		(int)(color.a * 255));
 
-	mEditBox_R->SetCaption(textR.c_wstr());
-	mEditBox_G->SetCaption(textG.c_wstr());
-	mEditBox_B->SetCaption(textB.c_wstr());
-	mEditBox_A->SetCaption(textA.c_wstr());
+	mEditBox_RGBA->SetCaption(text.c_wstr());
 
 	mWidget_View->SetColor(color);
 }
@@ -376,22 +365,18 @@ void ColorPickerDialog::OnPickSlider(const MGUI::MouseEvent * e)
 
 void ColorPickerDialog::OnColorTextChanged(const MGUI::FocusEvent *)
 {
-	String textR, textG, textB, textA;
-	textR.FromUnicode(mEditBox_R->GetCaption().c_str());
-	textG.FromUnicode(mEditBox_G->GetCaption().c_str());
-	textB.FromUnicode(mEditBox_B->GetCaption().c_str());
-	textA.FromUnicode(mEditBox_A->GetCaption().c_str());
+	String text;
+	text.FromUnicode(mEditBox_RGBA->GetCaption().c_str());
 
+	const char * str = text.c_str();
 	Float4 color;
-	color.r = textR.ToFloat() / 255.0f;
-	color.g = textG.ToFloat() / 255.0f;
-	color.b = textB.ToFloat() / 255.0f;
-	color.a = textA.ToFloat() / 255.0f;
-
+	str = str_getfloat(color.r, str);
+	str = str_getfloat(color.g, str);
+	str = str_getfloat(color.b, str);
+	str = str_getfloat(color.a, str);
+	color *= 1 / 255.0f;
 	color.Saturate();
 
 	if (mCurrentColor != color)
-	{
 		_updateFromColor(color);
-	}
 }

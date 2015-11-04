@@ -43,10 +43,7 @@ protected:
 protected:
 	MGUI::Layout * mDialog;
 	MGUI::Layout * mLayout;
-	MGUI::EditBox * mEditBox_R;
-	MGUI::EditBox * mEditBox_G;
-	MGUI::EditBox * mEditBox_B;
-	MGUI::EditBox * mEditBox_A;
+	MGUI::EditBox * mEditBox_RGBA;
 	MGUI::EditBox * mEditBox_S;
 	MGUI::Widget * mWidget_View;
 	MGUI::ImageBox * mImageBox_Color;
