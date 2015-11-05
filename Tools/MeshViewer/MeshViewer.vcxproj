@@ -101,6 +101,7 @@
     <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="MeshViewer.cpp" />
     <ClCompile Include="RenderViewer.cpp" />
+    <ClCompile Include="ToolScaleMesh.cpp" />
     <ClCompile Include="SkeletonDisplayer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +112,7 @@
     <ClInclude Include="..\Util\ToolUtil.h" />
     <ClInclude Include="CameraController.h" />
     <ClInclude Include="RenderViewer.h" />
+    <ClInclude Include="ToolScaleMesh.h" />
     <ClInclude Include="SkeletonDisplayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

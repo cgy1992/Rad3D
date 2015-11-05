@@ -23,6 +23,7 @@
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="SkeletonDisplayer.cpp" />
+    <ClCompile Include="ToolScaleMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Framework">
@@ -51,5 +52,6 @@
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="SkeletonDisplayer.h" />
+    <ClInclude Include="ToolScaleMesh.h" />
   </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@
 #include "MMeshSerializer.h"
 #include "MAnimationSerializer.h"
 #include "SkeletonDisplayer.h"
+#include "ToolScaleMesh.h"
 
 Mesh * gMesh = NULL;
 ParticleSystem * gParticle = NULL;
@@ -21,6 +22,7 @@ class MeshViewer : public App
 	MGUI::ListBox * mListBox;
 	SkeletonDisplayer * mSkeletonDisplayer;
 	bool mShowSkeleton;
+	ToolScaleMesh * mToolScaleMesh;
 
 public:
 	MeshViewer() {}
@@ -63,6 +65,7 @@ public:
 		mRenderViewer = new RenderViewer;
 		mCameraController = new CameraController;
 		mSkeletonDisplayer = new SkeletonDisplayer;
+		mToolScaleMesh = new ToolScaleMesh;
 
 		mLayout = MGUI::Layout::Load("MeshViewer.layout", NULL); d_assert(mLayout);
 		MGUI::Button * bnDelete = (MGUI::Button *)mLayout->GetChild("Remove");
@@ -70,14 +73,28 @@ public:
 		MGUI::Button * bnStop = (MGUI::Button *)mLayout->GetChild("Stop");
 		MGUI::Button * bnDump = (MGUI::Button *)mLayout->GetChild("DumpSkeleton");
 		MGUI::Button * bnShow = (MGUI::Button *)mLayout->GetChild("ShowSkeleton");
+		MGUI::Button * bnScale = (MGUI::Button *)mLayout->GetChild("ScaleMesh");
 		mListBox = (MGUI::ListBox *)mLayout->GetChild("List");
 
 		bnSave->E_Click += new cListener1<MeshViewer, const MGUI::ClickEvent *>(this, &MeshViewer::OnSave);
 		bnDelete->E_Click += new cListener1<MeshViewer, const MGUI::ClickEvent *>(this, &MeshViewer::OnDelete);
-		bnDump->E_Click += new cListener1<MeshViewer, const MGUI::ClickEvent *>(this, &MeshViewer::OnDump);
-		bnShow->E_Click += new cListener1<MeshViewer, const MGUI::ClickEvent *>(this, &MeshViewer::OnShow);
+		bnDump->E_Click += new cListener1<MeshViewer, const MGUI::ClickEvent *>(this, &MeshViewer::OnDumpSkeleton);
+		bnShow->E_Click += new cListener1<MeshViewer, const MGUI::ClickEvent *>(this, &MeshViewer::OnShowSkeleton);
 		bnStop->E_Click += new cListener1<MeshViewer, const MGUI::ClickEvent *>(this, &MeshViewer::OnStop);
+		bnScale->E_Click += new cListener1<MeshViewer, const MGUI::ClickEvent *>(this, &MeshViewer::OnScaleMesh);
 		mListBox->E_SelectChanged += new cListener2<MeshViewer, const MGUI::Event *, int>(this, &MeshViewer::OnAnimChanged);
+	}
+
+	virtual void OnShutdown()
+	{
+		delete mToolScaleMesh;
+		delete mSkeletonDisplayer;
+		delete mCameraController;
+		delete mRenderViewer;
+
+		safe_delete(gMesh);
+		safe_delete(gParticle);
+		safe_delete(gNode);
 	}
 
 	void OnSave(const MGUI::ClickEvent * e)
@@ -118,7 +135,7 @@ public:
 		gMesh->StopAnimation();
 	}
 
-	void OnDump(const MGUI::ClickEvent * e)
+	void OnDumpSkeleton(const MGUI::ClickEvent * e)
 	{
 		if (gMesh == NULL || gMesh->GetSkeleton() == NULL)
 			return ;
@@ -138,7 +155,7 @@ public:
 		file.close();
 	}
 
-	void OnShow(const MGUI::ClickEvent * e)
+	void OnShowSkeleton(const MGUI::ClickEvent * e)
 	{
 		if (gMesh == NULL || gMesh->GetSkeleton() == NULL)
 			return ;
@@ -154,6 +171,14 @@ public:
 			mSkeletonDisplayer->Attach(gMesh);
 
 			gMesh->SetOpacity(0.3f);
+		}
+	}
+
+	void OnScaleMesh(const MGUI::ClickEvent * e)
+	{
+		if (gMesh != NULL && gMesh->GetSource() != NULL)
+		{
+			mToolScaleMesh->Show(gMesh->GetSource());
 		}
 	}
 
@@ -212,17 +237,6 @@ public:
 		}
 
 		mCameraController->ForceUpdate();
-	}
-
-	virtual void OnShutdown()
-	{
-		delete mSkeletonDisplayer;
-		delete mCameraController;
-		delete mRenderViewer;
-
-		safe_delete(gMesh);
-		safe_delete(gParticle);
-		safe_delete(gNode);
 	}
 
 	virtual void OnPause()
