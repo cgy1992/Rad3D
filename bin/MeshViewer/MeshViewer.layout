@@ -1,4 +1,4 @@
-<Layout lookfeel="MainPanel">
+<Layout lookfeel="MainPanel" version="1">
 	<Name value="Root"/>
 	<Rect value="0 0 256 814"/>
 	<Align value="128"/>
@@ -44,6 +44,12 @@
 		<Rect value="0 521 244 28"/>
 		<Align value="16"/>
 		<Caption value="Show Skeleton"/>
+	</Child>
+	<Child type="Button" lookfeel="MainButton">
+		<Name value="ScaleMesh"/>
+		<Rect value="0 550 244 28"/>
+		<Align value="16"/>
+		<Caption value="Scale Mesh"/>
 	</Child>
 </Layout>
 
