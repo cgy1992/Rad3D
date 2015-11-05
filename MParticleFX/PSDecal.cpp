@@ -35,7 +35,9 @@ namespace Rad {
 
 		Float3 Position = p->Position;
 		if (mParent->IsLocalSpace())
+		{
 			Position.TransformA(mParent->GetParent()->GetWorldTM());
+		}
 
 		const Float2 & center = mParent->GetCenter();
 		const float y_bias = 1;

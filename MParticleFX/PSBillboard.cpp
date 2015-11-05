@@ -91,7 +91,11 @@ namespace Rad {
 		if (mParent->IsKeepAspect())
 			asecpt = mParent->_getTexture()->_getAscept();
 
-		Mat4 worldTM = mParent->GetParent()->GetWorldTM();
+		Mat4 worldTM;
+		if (mParent->IsScaleAble())
+			worldTM = mParent->GetParent()->GetWorldTM();
+		else
+			worldTM.MakeTransform(mParent->GetParent()->GetWorldPosition(), mParent->GetParent()->GetWorldRotation(), Float3(1, 1, 1));
 
 		int count = mParent->GetParticleCount();
 		d_assert (count * 4 <= mRenderOp.vertexBuffers[0]->GetCount());
@@ -103,15 +107,14 @@ namespace Rad {
 		{
 			const Particle * p = mParent->GetParticle(i);
 
-			float width = Max(0.0f, p->Size.x);
-			float height = Max(0.0f, p->Size.y);
-
-			if (mParent->IsKeepAspect() && p->UVRect.Height() > 0)
-			{
-				width = height * p->UVRect.Width() / p->UVRect.Height() * asecpt;
-			}
-
 			Float3 xAxis, yAxis;
+			float width, height;
+
+			height = Max(0.0f, p->Size.y);
+			if (!mParent->IsKeepAspect())
+				width = Max(0.0f, p->Size.x);
+			else
+				width = height * asecpt;
 
 			_getBillboardXYAxis(xAxis, yAxis, p);
 
@@ -120,7 +123,7 @@ namespace Rad {
 			Float3 position = p->Position;
 			if (mParent->IsLocalSpace())
 			{
-				position *= worldTM;
+				position.TransformA(worldTM);
 			}
 
 			v->position = position - xAxis * center.x + yAxis * center.y;

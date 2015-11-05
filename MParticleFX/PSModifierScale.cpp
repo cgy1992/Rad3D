@@ -20,7 +20,7 @@ namespace Rad {
 
 	void PS_ModifierScale::Modify(Particle * p, float elapsedTime)
 	{
-		float time = 1 - p->Life / p->MaxLife;
+		float time = 1 - p->Life * p->InitLife.y;
 
 		KF_Float3 v;
 		if (mKeyController.GetValue(v, time, true))
@@ -40,7 +40,7 @@ namespace Rad {
 				break;
 
 			case PS_Operation::MUL:
-				p->Size *= v.data;
+				p->Size = p->InitSize * v.data;
 				break;
 
 			case PS_Operation::AVG:

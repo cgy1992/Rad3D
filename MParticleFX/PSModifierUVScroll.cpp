@@ -56,7 +56,7 @@ namespace Rad {
 
 	void PS_ModifierUVScroll2::Modify(Particle * p, float elapsedTime)
 	{
-		float time = 1 - p->Life / p->MaxLife;
+		float time = 1 - p->Life * p->InitLife.y;
 
 		float u, v;
 

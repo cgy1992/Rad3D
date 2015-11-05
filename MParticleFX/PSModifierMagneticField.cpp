@@ -63,8 +63,8 @@ namespace Rad {
 			p->Position = center - dir * mRadius;
 			p->Speed = 0;
 
-			if (p->Life > mInnerLife * p->MaxLife)
-				p->Life = mInnerLife * p->MaxLife;
+			if (p->Life > mInnerLife * p->InitLife.x)
+				p->Life = mInnerLife * p->InitLife.x;
 		}
 	}
 

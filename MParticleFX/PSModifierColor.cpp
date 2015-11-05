@@ -20,7 +20,7 @@ namespace Rad {
 
 	void PS_ModifierColor::Modify(Particle * p, float elapsedTime)
 	{
-		float time = 1 - p->Life / p->MaxLife;
+		float time = 1 - p->Life * p->InitLife.y;
 
 		KF_Color4 v;
 		if (mKeyController.GetValue(v, time, true))
@@ -40,7 +40,7 @@ namespace Rad {
 				break;
 
 			case PS_Operation::MUL:
-				p->Color *= v.data;
+				p->Color = p->InitColor * v.data;
 				break;
 
 			case PS_Operation::AVG:

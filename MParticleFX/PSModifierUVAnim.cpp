@@ -29,7 +29,7 @@ namespace Rad {
 	{
 		int pi = GetParamIndex();
 		int ri = GetRandomParamIndex();
-		float k = p->MaxLife - p->Life;
+		float k = p->InitLife.x - p->Life;
 
 		if (k - p->Param[pi].v_float > mInterval)
 		{
@@ -82,7 +82,7 @@ namespace Rad {
 
 	void PS_ModifierUVAnimKF::Modify(Particle * p, float elapsedTime)
 	{
-		float time = 1 - p->Life / p->MaxLife;
+		float time = 1 - p->Life * p->InitLife.y;
 
 		KF_Float4 v;
 		if (mKeyController.GetValue(v, time, mInterpolation))

@@ -26,13 +26,7 @@ namespace Rad {
 	{
 		if (mMesh != NULL && mMesh->GetMeshBufferCount() > 0)
 		{
-			p->Color = RandomColor();
-			p->UVRect = RandomUVRect();
-			p->Size = RandomSize();
-			p->Rotation = RandomRotation();
-			p->Speed = RandomSpeed();
-			p->Life = RandomLife();
-			p->MaxLife = p->Life;
+			PS_Emitter::InitParticle(p);
 
 			_randomOnMeshVertex(p->Position, p->Direction);
 		}
@@ -54,7 +48,7 @@ namespace Rad {
 			Float3 p = *((Float3 *)vdata);
 			Float3 n = *((Float3 *)vdata + 1);
 
-			position = p;
+			position = mPosition + p;
 
 			Float3 common(1, 0, 0);
 			if (Math::Equal(common.Dot(n), 0.0f))
