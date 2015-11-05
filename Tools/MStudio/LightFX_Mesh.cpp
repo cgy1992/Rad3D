@@ -379,7 +379,7 @@ namespace Rad {
 		return kd * ka * ks * mMtlBuffer[v.MaterialId].color * pLight->Color;
 	}
 
-	void FX_Mesh::GetLightingColor(Array<Color> & colors)
+	void FX_Mesh::GetLightingColor(Array<Rgba32> & colors)
 	{
 		d_assert (mLightingMode == eStaticLightingMode::LIGHTING_COLOR);
 
@@ -391,7 +391,7 @@ namespace Rad {
 		}
 	}
 
-	void FX_Mesh::GetLightingMap(Array<Color> & colors)
+	void FX_Mesh::GetLightingMap(Array<Rgba32> & colors)
 	{
 		d_assert (mLightingMode == eStaticLightingMode::LIGHTING_MAP);
 

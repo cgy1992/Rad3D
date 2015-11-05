@@ -30,7 +30,7 @@ namespace Rad {
 		void CalcuAmbientOcclusion();
 		void Finish();
 
-		void GetLightingMap(Array<Color> & colors);
+		void GetLightingMap(Array<Rgba32> & colors);
 
 	protected:
 		bool _addTri(KDTree<int>::Node * node, int triIndex);

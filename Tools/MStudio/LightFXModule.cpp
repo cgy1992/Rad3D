@@ -773,7 +773,7 @@ void LightFXModule::ProcessResult()
 
 		if (pFXMesh->GetLightingMode() == eStaticLightingMode::LIGHTING_COLOR)
 		{
-			Array<Color> colors;
+			Array<Rgba32> colors;
 
 			pFXMesh->GetLightingColor(colors);
 
@@ -781,7 +781,7 @@ void LightFXModule::ProcessResult()
 		}
 		else if (pFXMesh->GetLightingMode() == eStaticLightingMode::LIGHTING_MAP)
 		{
-			Array<Color> colors;
+			Array<Rgba32> colors;
 			int width = pFXMesh->GetLightingMapWidth();
 			int height = pFXMesh->GetLightingMapHeight();
 
@@ -807,7 +807,7 @@ void LightFXModule::ProcessResult()
 	FX_Terrain * pTerrain = FX_World::Instance()->GetTerrain();
 	if (pTerrain != NULL)
 	{
-		Array<Color> colors;
+		Array<Rgba32> colors;
 		pTerrain->GetLightingMap(colors);
 
 		Terrain::Instance()->SetLightingMap(colors);

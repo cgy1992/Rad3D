@@ -234,7 +234,7 @@ namespace Rad {
 		}
 	}
 
-	void FX_Terrain::GetLightingMap(Array<Color> & colors)
+	void FX_Terrain::GetLightingMap(Array<Rgba32> & colors)
 	{
 		colors.Resize(mLightingMap.Size());
 
