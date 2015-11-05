@@ -149,7 +149,7 @@ namespace Rad {
 			mNormals.Resize(mInfo.VertexCount.x * mInfo.VertexCount.y);
 			for (int i = 0; i < mNormals.Size(); ++i)
 			{
-				mNormals[i] = Color(128, 255, 128, 255);
+				mNormals[i] = Rgb24(128, 255, 128);
 			}
 
 			mMeshes = new TerrainMesh[mInfo.BlockCount.x * mInfo.BlockCount.y];
@@ -358,12 +358,12 @@ namespace Rad {
 	{
 		d_assert (i < mInfo.VertexCount.x && j < mInfo.VertexCount.y);
 
-		Color normal = mNormals[j * mInfo.VertexCount.x + i];
+		Rgb24 normal = mNormals[j * mInfo.VertexCount.x + i];
 
-		return Float3(normal.r / 255.0f * 2 - 1, normal.g / 255.0f * 2 - 1, normal.b / 255.0f * 2 - 1);
+		return Float3(normal.r * INV_255 * 2 - 1, normal.g * INV_255 * 2 - 1, normal.b * INV_255 * 2 - 1);
 	}
 
-	Color Terrain::_getWeight(int i, int j)
+	Rgba32 Terrain::_getWeight(int i, int j)
 	{
 		int mapSize = mInfo.WMapSize;
 		int blockX = -1, blockZ = -1;
@@ -376,7 +376,7 @@ namespace Rad {
 		return _getBlock(blockX, blockZ)->GetWeight(localX, localZ);
 	}
 
-	Color Terrain::_getLightingColor(int i, int j)
+	Rgba32 Terrain::_getLightingColor(int i, int j)
 	{
 		int mapSize = mInfo.LMapSize;
 		int blockX = -1, blockZ = -1;
@@ -679,11 +679,10 @@ namespace Rad {
 				n.y = n.y * 0.5f + 0.5f;
 				n.z = n.z * 0.5f + 0.5f;
 
-				Color c;
-				c.r = (unsigned char)(n.x * 255);
-				c.g = (unsigned char)(n.y * 255);
-				c.b = (unsigned char)(n.z * 255);
-				c.a = 255;
+				Rgb24 c;
+				c.r = (byte)(n.x * 255);
+				c.g = (byte)(n.y * 255);
+				c.b = (byte)(n.z * 255);
 
 				mNormals[j * mInfo.VertexCount.x + i] = c;
 			}
@@ -721,7 +720,7 @@ namespace Rad {
 		d_assert (mLockedWeightData.Size() >= 0);
 
 		const RectI & rc = mLockedWeightRect;
-		Array<Color> weights;
+		Array<Rgba32> weights;
 		weights.Resize((rc.Width() + 1) * (rc.Height() + 1));
 
 		int index = 0;
@@ -741,7 +740,7 @@ namespace Rad {
 				int layer2 = block->GetLayer(2);
 				int layer3 = block->GetLayer(3);
 
-				Color c = block->GetWeight(localX, localZ);
+				Rgba32 c = block->GetWeight(localX, localZ);
 
 				Float4 c4;
 				c4.r = c.r / 255.0f;
@@ -806,7 +805,7 @@ namespace Rad {
 		mLockedWeightData.Clear();
 	}
 
-	void Terrain::SetLightingMap(Array<Color> & colors)
+	void Terrain::SetLightingMap(Array<Rgba32> & colors)
 	{
 		int mapSize = mInfo.LMapSize;
 
@@ -1324,11 +1323,10 @@ namespace Rad {
 				n.y = n.y * 0.5f + 0.5f;
 				n.z = n.z * 0.5f + 0.5f;
 
-				Color c;
+				Rgb24 c;
 				c.r = (unsigned char)(n.x * 255);
 				c.g = (unsigned char)(n.y * 255);
 				c.b = (unsigned char)(n.z * 255);
-				c.a = 255;
 
 				mNormals[index++] = c;
 			}

@@ -34,7 +34,10 @@ namespace Rad {
 		RectF  UVRect;
 		float  Speed;
 		float  Life;
-		float  MaxLife;
+
+		Float3 InitSize;
+		Float4 InitColor;
+		Float2 InitLife;
 
 		Field<IntFloatUnion, PS_PARTICLE_PARAM_SIZE> Param;
 

@@ -27,6 +27,8 @@ namespace Rad {
 	#define PI_HALF		(3.141592654f / 2)
 #endif
 
+	#define INV_255		(1.0f / 255.0f)
+
 	#define SQRT_2		1.414213562f
 	#define SQRT_3		1.732050808f
 

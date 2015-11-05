@@ -1,5 +1,5 @@
 /*
-*	Color
+*	Rgba32
 *		32 bit color
 *
 *	Author: SiZhong.Wang, M-001
@@ -12,44 +12,78 @@
 
 namespace Rad {
 
-	class M_ENTRY Color
+	struct M_ENTRY Rgba32
 	{
-		DECLARE_ALLOC();
+		union {
+			struct {
+				byte r;
+				byte g;
+				byte b;
+				byte a;
+			};
 
-	public:
-		static const Color White;
-		static const Color Red;
-		static const Color Green;
-		static const Color Blue;
-		static const Color Black;
+			int _value;
+		};
 
-	public:
-		Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a = 255);
-		Color(const Color & c);
-		Color();
-		~Color();
+		Rgba32(byte r, byte g, byte b, byte a = 255);
+		Rgba32(const Rgba32 & c);
+		Rgba32();
 
-		Color &
-			operator =(const Color & c);
+		Rgba32 &
+			operator =(const Rgba32 & c);
 
 		bool
-			operator ==(const Color & c) const;
+			operator ==(const Rgba32 & c) const;
 		bool 
-			operator !=(const Color & c) const;
+			operator !=(const Rgba32 & c) const;
 
 		void 
 			FromFloat4(const Float4 & color);
 		Float4 
 			ToFloat4() const;
+	};
 
-	public:
+	struct Rgb24
+	{
+		byte r;
+		byte g;
+		byte b;
+
+		Rgb24(byte _r, byte _g, byte _b) { r = _r, g = _g, b = _b; }
+		Rgb24() { r = 0, g = 0, b = 0; }
+	};
+
+	struct Rgb16
+	{
 		union {
 			struct {
-				unsigned char r, g, b, a;
+				word r : 5;
+				word g : 6;
+				word b : 5;
 			};
 
-			int value;
+			word _value;
 		};
+
+		Rgb16(byte _r, byte _g, byte _b) { r = _r & 0x1F, g = _g & 0x2F, b = _b & 0x1F; }
+		Rgb16() { _value = 0; }
+	};
+
+	struct Rgba16
+	{
+		union {
+			struct {
+				word r : 4;
+				word g : 4;
+				word b : 4;
+				word a : 4;
+			};
+
+			word _value;
+		};
+
+		Rgba16(byte _r, byte _g, byte _b, byte _a = 0x0F) { r = _r & 0x0F, g = _g & 0x0F, b = _b & 0x0F; a = _a & 0x0F; }
+		Rgba16() { _value = 0xF000; }
 	};
 
 }

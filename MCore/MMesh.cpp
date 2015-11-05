@@ -527,7 +527,7 @@ namespace Rad {
 		return mAnimtionPaused;
 	}
 
-	void Mesh::SetLightingColor(const Color * colorBuffer, int count)
+	void Mesh::SetLightingColor(const Rgba32 * colorBuffer, int count)
 	{
 		if (colorBuffer == NULL)
 		{
@@ -556,7 +556,7 @@ namespace Rad {
 				int count = rop->vertexBuffers[0]->GetCount();
 				rop->vertexDeclarations[LIGHTING_COLOR_STREAM].AddElement(eVertexSemantic::LIGHTING_COLOR, eVertexType::UBYTE4);
 				rop->vertexBuffers[LIGHTING_COLOR_STREAM] = HWBufferManager::Instance()->NewVertexBuffer(4, count);
-				Color * data = (Color *)rop->vertexBuffers[LIGHTING_COLOR_STREAM]->Lock(eLockFlag::WRITE);
+				Rgba32 * data = (Rgba32 *)rop->vertexBuffers[LIGHTING_COLOR_STREAM]->Lock(eLockFlag::WRITE);
 				{
 					memcpy(data, colorBuffer + startIndex, 4 * count);
 				}
@@ -567,7 +567,7 @@ namespace Rad {
 		}
 	}
 
-	void Mesh::GetLightingColor(Array<Color> & colorBuffer)
+	void Mesh::GetLightingColor(Array<Rgba32> & colorBuffer)
 	{
 		int vertexCount = GetVertexCount();
 		
@@ -589,7 +589,7 @@ namespace Rad {
 				rop->vertexDeclarations[LIGHTING_COLOR_STREAM].GetVertexSize() == 4);
 
 			int count = rop->vertexBuffers[0]->GetCount();
-			Color * data = (Color *)rop->vertexBuffers[LIGHTING_COLOR_STREAM]->Lock(eLockFlag::READ);
+			Rgba32 * data = (Rgba32 *)rop->vertexBuffers[LIGHTING_COLOR_STREAM]->Lock(eLockFlag::READ);
 			{
 				memcpy(&colorBuffer[startIndex], data, 4 * count);
 			}

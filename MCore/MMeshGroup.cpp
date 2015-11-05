@@ -158,8 +158,8 @@ namespace Rad {
 				submesh->GetRenderOp()->vertexDeclarations[LIGHTING_COLOR_STREAM].AddElement(eVertexSemantic::LIGHTING_COLOR, eVertexType::UBYTE4);
 				submesh->GetRenderOp()->vertexBuffers[LIGHTING_COLOR_STREAM] = HWBufferManager::Instance()->NewVertexBuffer(4, count);
 
-				Array<Color> lightColors;
-				Color * data = (Color *)submesh->GetRenderOp()->vertexBuffers[LIGHTING_COLOR_STREAM]->Lock(eLockFlag::WRITE);
+				Array<Rgba32> lightColors;
+				Rgba32 * data = (Rgba32 *)submesh->GetRenderOp()->vertexBuffers[LIGHTING_COLOR_STREAM]->Lock(eLockFlag::WRITE);
 				for (int j = first; j < last; ++j)
 				{
 					arr[j]->GetLightingColor(lightColors);

@@ -28,9 +28,9 @@ namespace Rad {
 		DF_PROPERTY(PS_Emitter, mMinSize, "Randomness", "MinSize", PT_Float3)
 		DF_PROPERTY(PS_Emitter, mMaxSize, "Randomness", "MaxSize", PT_Float3)
 		DF_PROPERTY(PS_Emitter, mUVRect, "Randomness", "UVRect", PT_Int2)
-	DF_PROPERTY_END()
+		DF_PROPERTY_END()
 
-	PS_Emitter::PS_Emitter()
+		PS_Emitter::PS_Emitter()
 		: mParent(NULL)
 		, mEnable(true)
 		, mSizeable(false)
@@ -92,7 +92,7 @@ namespace Rad {
 	{
 		mSizeable = able;
 	}
-	
+
 	bool PS_Emitter::IsSizeable() const
 	{
 		return mSizeable; 
@@ -192,7 +192,7 @@ namespace Rad {
 		mUVRectStep.x = 1.0f / mUVRect.x;
 		mUVRectStep.y = 1.0f / mUVRect.y;
 	}
-	
+
 	const Int2 & PS_Emitter::GetUVRect() const
 	{
 		return mUVRect;
@@ -273,7 +273,11 @@ namespace Rad {
 		p->Speed = RandomSpeed();
 		p->Rotation = RandomRotation();
 		p->Life = RandomLife();
-		p->MaxLife = p->Life;
+
+		p->InitColor = p->Color;
+		p->InitSize = p->Size;
+		p->InitLife = Float2(p->Life, 1 / p->Life);
+
 		p->Param[0].v_int = 0;
 		p->Param[1].v_int = 0;
 		p->Param[2].v_int = 0;

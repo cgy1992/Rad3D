@@ -82,9 +82,9 @@ namespace Rad {
 			GetHeight(int x, int z);
 		Float3				
 			GetNormal(int x, int z);
-		Color
+		Rgba32
 			GetWeight(int x, int z);
-		Color
+		Rgba32
 			GetLightingColor(int x, int z);
 
 		void 
@@ -92,9 +92,9 @@ namespace Rad {
 		void
 			_updateLayers();
 		void
-			_updateWeightMap(const RectI & rc, const Array<Color> & data);
+			_updateWeightMap(const RectI & rc, const Array<Rgba32> & data);
 		void 
-			_updateLightingMap(const Array<Color> & lightingColor);
+			_updateLightingMap(const Array<Rgba32> & lightingColor);
 		void
 			_resetLighting();
 		

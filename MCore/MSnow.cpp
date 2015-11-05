@@ -178,7 +178,6 @@ namespace Rad {
 		p->Speed = Math::RandRange(MinSpeed, MaxSpeed);
 		p->UVRect = RectF(0, 0, 1, 1);
 		p->Life = Math::RandRange(MinLife, MaxLife);
-		p->MaxLife = p->Life;
 
 		float d = Math::RandRange(MinSize, MaxSize);
 		p->Size = Float3(d, d, d);
@@ -188,6 +187,10 @@ namespace Rad {
 		float y = Math::RandRange(-Extend.y, Extend.y);
 		float z = Math::RandRange(-Extend.z, Extend.z);
 		p->Position = v + Float3(x, y, z);
+
+		p->InitColor = p->Color;
+		p->InitSize = p->Size;
+		p->InitLife = Float2(p->Life, 1 / p->Life);
 	}
 
 	void Snow::_affectParticle(Particle * p, float elapsedTime)

@@ -234,9 +234,9 @@ namespace Rad {
 			_getHeightClamp(int i, int j);
 		Float3
 			_getNormal(int i, int j);
-		Color
+		Rgba32
 			_getWeight(int i, int j);
-		Color
+		Rgba32
 			_getLightingColor(int i, int j);
 
 		bool
@@ -263,7 +263,7 @@ namespace Rad {
 			UnlockWeightMap(int layer);
 
 		void				
-			SetLightingMap(Array<Color> & color);
+			SetLightingMap(Array<Rgba32> & color);
 		void				
 			ResetLighting();
 
@@ -315,7 +315,7 @@ namespace Rad {
 		Field<ShaderFX *, kMaxBlendLayers> mLightingShaderFX[eLightType::MAX];
 
 		Array<float> mHeights;
-		Array<Color> mNormals;
+		Array<Rgb24> mNormals;
 
 		TerrainMesh * mMeshes;
 

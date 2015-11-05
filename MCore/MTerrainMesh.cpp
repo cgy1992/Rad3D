@@ -282,7 +282,7 @@ namespace Rad {
 					}
 					else
 					{
-						IS.Read(data, sizeof(Color) * mapSize * mapSize);
+						IS.Read(data, 4 * mapSize * mapSize);
 					}
 					temp->Unlock();
 
@@ -326,7 +326,7 @@ namespace Rad {
 					}
 					else
 					{
-						IS.Read(data, sizeof(Color) * mapSize * mapSize);
+						IS.Read(data, 4 * mapSize * mapSize);
 					}
 					temp->Unlock();
 
@@ -806,9 +806,9 @@ namespace Rad {
 		return normal;
 	}
 
-	Color TerrainMesh::GetWeight(int x, int z)
+	Rgba32 TerrainMesh::GetWeight(int x, int z)
 	{
-		Color color = Color(255, 0, 0, 0);
+		Rgba32 color = Rgba32(255, 0, 0, 0);
 
 		if (mWeightMap != RenderHelper::Instance()->GetWhiteTexture())
 		{
@@ -816,7 +816,7 @@ namespace Rad {
 
 			d_assert (x < mapSize && z < mapSize);
 
-			Color * data = (Color *)mWeightMap->Lock(eLockFlag::READ);
+			Rgba32 * data = (Rgba32 *)mWeightMap->Lock(eLockFlag::READ);
 
 			color = data[TN_MAP(x, z, mapSize)];
 
@@ -826,9 +826,9 @@ namespace Rad {
 		return color;
 	}
 
-	Color TerrainMesh::GetLightingColor(int x, int z)
+	Rgba32 TerrainMesh::GetLightingColor(int x, int z)
 	{
-		Color color = Color(255, 255, 255, 0);
+		Rgba32 color = Rgba32(255, 255, 255, 0);
 
 		if (mLightingMap != RenderHelper::Instance()->GetDefaultLightingMap())
 		{
@@ -836,7 +836,7 @@ namespace Rad {
 
 			d_assert (x < mapSize && z < mapSize);
 
-			Color * data = (Color *)mLightingMap->Lock(eLockFlag::READ);
+			Rgba32 * data = (Rgba32 *)mLightingMap->Lock(eLockFlag::READ);
 
 			color = data[TN_MAP(x, z, mapSize)];
 
@@ -890,7 +890,7 @@ namespace Rad {
 		mMaterial.maps[eMapType::EXTERN7] = Terrain::Instance()->_getNormalMap(mLayer[3]);
 	}
 
-	void TerrainMesh::_updateWeightMap(const RectI & rc, const Array<Color> & data)
+	void TerrainMesh::_updateWeightMap(const RectI & rc, const Array<Rgba32> & data)
 	{
 		if (!IsValid() || mUnused)
 			return ;
@@ -913,10 +913,10 @@ namespace Rad {
 			_getWMapName(name);
 			mWeightMap = HWBufferManager::Instance()->NewTexture(name, mapSize, mapSize);
 
-			Color * mapData = (Color *)mWeightMap->Lock(eLockFlag::WRITE);
+			Rgba32 * mapData = (Rgba32 *)mWeightMap->Lock(eLockFlag::WRITE);
 			for (int i = 0; i < mapSize * mapSize; ++i)
 			{
-				mapData[i] = Color(255, 0, 0, 0);
+				mapData[i] = Rgba32(255, 0, 0, 0);
 			}
 			mWeightMap->Unlock();
 		}
@@ -926,7 +926,7 @@ namespace Rad {
 		int sy = Max(myRect.y1, rc.y1);
 		int ey = Min(myRect.y2, rc.y2);
 
-		Color * mapData = (Color *)mWeightMap->Lock(eLockFlag::READ_WRITE);
+		Rgba32 * mapData = (Rgba32 *)mWeightMap->Lock(eLockFlag::READ_WRITE);
 		for (int j = sy; j <= ey; ++j)
 		{
 			for (int i = sx; i <= ex; ++i)
@@ -946,7 +946,7 @@ namespace Rad {
 		_updateLayers();
 	}
 
-	void TerrainMesh::_updateLightingMap(const Array<Color> & lightingColor)
+	void TerrainMesh::_updateLightingMap(const Array<Rgba32> & lightingColor)
 	{
 		if (!IsValid() || mUnused)
 			return ;
@@ -960,11 +960,11 @@ namespace Rad {
 		_getLMapName(name);
 		mLightingMap = HWBufferManager::Instance()->NewTexture(name, mapSize, mapSize);
 
-		const Color * data = &lightingColor[mapSize * mIndex.y * dataRows + mapSize * mIndex.x];
-		Color * color = (Color *)mLightingMap->Lock(eLockFlag::WRITE);
+		const Rgba32 * data = &lightingColor[mapSize * mIndex.y * dataRows + mapSize * mIndex.x];
+		Rgba32 * color = (Rgba32 *)mLightingMap->Lock(eLockFlag::WRITE);
 		for (int j = 0; j < mapSize; ++j)
 		{
-			memcpy(&color[TN_MAP(0, j, mapSize)], data, mapSize * sizeof(Color));
+			memcpy(&color[TN_MAP(0, j, mapSize)], data, mapSize * sizeof(Rgba32));
 
 			data += dataRows;
 		}

@@ -518,9 +518,9 @@ namespace Rad { namespace util {
 		return Float4(f3.x, f3.y, f3.z, 1);
 	}
 
-	inline Color TO_RGBE(const Float3 & color)
+	inline Rgba32 TO_RGBE(const Float3 & color)
 	{
-		Color c;
+		Rgba32 c;
 
 		float e;
 		e = Max(color.r, color.g);
@@ -547,12 +547,12 @@ namespace Rad { namespace util {
 		return c;
 	}
 
-	inline Color TO_RGBE_EX(const Float4 & color)
+	inline Rgba32 TO_RGBE_EX(const Float4 & color)
 	{
 		return TO_RGBE(Float4ToFloat3(color));
 	}
 
-	inline Float3 RGBE_TO(Color color)
+	inline Float3 RGBE_TO(Rgba32 color)
 	{
 		Float3 c;
 
@@ -564,7 +564,7 @@ namespace Rad { namespace util {
 		return c;
 	}
 
-	inline Float4 RGBE_TO_EX(Color color)
+	inline Float4 RGBE_TO_EX(Rgba32 color)
 	{
 		Float4 c;
 

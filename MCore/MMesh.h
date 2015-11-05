@@ -176,9 +176,9 @@ namespace Rad {
 			IsAnimationPaused();
 
 		void				
-			SetLightingColor(const Color * colorBuffer, int count);
+			SetLightingColor(const Rgba32 * colorBuffer, int count);
 		void				
-			GetLightingColor(Array<Color> & colorBuffer);
+			GetLightingColor(Array<Rgba32> & colorBuffer);
 		bool				
 			HasLightingColor();
 		void				
@@ -215,7 +215,7 @@ namespace Rad {
 		Array<AnimationController*> mAnimationControllers;
 		bool mAnimtionPaused;
 
-		Array<Color> mLightingColor;
+		Array<Rgba32> mLightingColor;
 	};
 
 }

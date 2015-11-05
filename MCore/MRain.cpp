@@ -180,8 +180,11 @@ namespace Rad {
 		p->Color = Float4(1, 1, 1, 1);
 		p->Speed = Speed;
 		p->Life = Life;
-		p->MaxLife = p->Life;
 		p->Size = Float3(0.8f, 20, 1);
+
+		p->InitColor = p->Color;
+		p->InitSize = p->Size;
+		p->InitLife = Float2(p->Life, 1 / p->Life);
 
 		float x = Math::RandRange(-Extend.x, Extend.x);
 		float y = Math::RandRange(-Extend.y, Extend.y);

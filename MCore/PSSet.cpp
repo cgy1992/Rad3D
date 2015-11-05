@@ -30,7 +30,7 @@ namespace Rad {
 		{
 			SetLocalSpace(mLocalSpace);
 		}
-		else if (p->name == "mScaleable")
+		else if (p->name == "mScaleAble")
 		{
 			SetScaleAble(mScaleAble);
 		}
