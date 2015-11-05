@@ -198,7 +198,9 @@ namespace Rad { namespace MGUI {
 			TEXT,
 			TEXT_CURSOR,
 
-			TOP = 0x0FFFFFFF,
+			OVERLAP = 0xFFFF, 
+			
+			TOP = 0x70000000,
 		};
 	};
 
