@@ -81,7 +81,7 @@ Float4 ColorPickerDialog::GetCurrentColor()
 	text.FromUnicode(mEditBox_S->GetCaption().c_str());
 	
 	float s = text.ToFloat();
-	s = Max(1.0f, s);
+	s = Max(0.65f, s);
 
 	Float4 c4 = mCurrentColor;
 	c4.r *= s;
