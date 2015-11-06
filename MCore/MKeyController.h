@@ -406,7 +406,7 @@ namespace Rad {
 		float data;
 	};
 
-	typedef TKeyController<Float2> KeyControllerFloat;
+	typedef TKeyController<KF_Float> KeyControllerFloat;
 
 	//
 	struct M_ENTRY KF_Float2 : public IObject

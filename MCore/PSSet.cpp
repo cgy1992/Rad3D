@@ -200,6 +200,7 @@ namespace Rad {
 			if (IsScaleAble())
 			{
 				p->Size *= mParent->GetWorldScale();
+				p->InitSize = p->Size;
 			}
 
 			if (OnParticleBorn != "")
