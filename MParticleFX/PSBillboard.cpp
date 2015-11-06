@@ -157,7 +157,7 @@ namespace Rad {
 		Float3 dir = p->Direction;
 		if (mParent->IsLocalSpace())
 		{
-			dir.TransformN(mParent->GetParent()->GetWorldTM());
+			dir.TransformQ(mParent->GetParent()->GetWorldRotation);
 		}
 
 		switch (mBillboardType)
@@ -170,6 +170,8 @@ namespace Rad {
 
 				yAxis = mCamYAxis;
 				xAxis = Float3::Cross(yAxis, vCamDir);
+
+				xAxis.Normalize();
 			}
 			else
 			{
@@ -186,11 +188,15 @@ namespace Rad {
 
 				yAxis = dir;
 				xAxis = Float3::Cross(yAxis, vCamDir);
+
+				xAxis.Normalize();
 			}
 			else
 			{
 				yAxis = dir;
 				xAxis = Float3::Cross(yAxis, mCamZAxis);
+				
+				xAxis.Normalize();
 			}
 			break;
 
@@ -202,11 +208,15 @@ namespace Rad {
 
 				yAxis = mCommonDir;
 				xAxis = Float3::Cross(yAxis, vCamDir);
+
+				xAxis.Normalize();
 			}
 			else
 			{
 				yAxis = mCommonDir;
 				xAxis = Float3::Cross(yAxis, mCamZAxis);
+
+				xAxis.Normalize();
 			}
 			break;
 
@@ -214,6 +224,9 @@ namespace Rad {
 			{
 				xAxis = Float3::Cross(mCommonUp, dir);
 				yAxis = Float3::Cross(dir, xAxis);
+				
+				xAxis.Normalize();
+				yAxis.Normalize();
 			}
 			break;
 
@@ -221,9 +234,12 @@ namespace Rad {
 			{
 				xAxis = Float3::Cross(mCommonUp, mCommonDir);
 				yAxis = mCommonDir;
+
+				xAxis.Normalize();
 			}
 			break;
 		}
+
 
 		if (p->Rotation.x != 0)
 		{
@@ -259,6 +275,11 @@ namespace Rad {
 		{
 			mMaterial.blendMode = eBlendMode::OPACITY;
 			mMaterial.depthMode = eDepthMode::LESS_EQUAL;
+		}
+
+		if (!mParent->IsDepthCheck())
+		{
+			mMaterial.depthMode = eDepthMode::NONE;
 		}
 
 		mMaterial.maps[eMapType::DIFFUSE] = mParent->_getTexture();

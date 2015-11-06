@@ -120,7 +120,8 @@ namespace Rad {
 
 			if (IsLocalSpace())
 			{
-				mBound.Transform(mParent->GetWorldTM());
+				mBound.minimum += mParent->GetWorldPosition();
+				mBound.maximum += mParent->GetWorldPosition();
 			}
 
 			mRenderObject._update();

@@ -10,9 +10,10 @@ namespace Rad {
 		DF_PROPERTY_EX(PS_BillboardSet, mTextureName, "Billboard", "Texture", "PT_Filename", PT_String)
 		DF_PROPERTY_ENUM(PS_BillboardSet, mBillboardType, "Billboard", "Type", PS_BillboardType)
 		DF_PROPERTY(PS_BillboardSet, mBillboardCenter, "Billboard", "Center", PT_Float2)
-		DF_PROPERTY_ENUM(PS_BillboardSet, mBlendMode, "Billboard", "BlendMode", PS_BlendMode)
 		DF_PROPERTY(PS_BillboardSet, mCommonDirection, "Billboard", "CommonDir", PT_Float3)
 		DF_PROPERTY(PS_BillboardSet, mCommonUpVector, "Billboard", "CommonUp", PT_Float3)
+		DF_PROPERTY_ENUM(PS_BillboardSet, mBlendMode, "Billboard", "BlendMode", PS_BlendMode)
+		DF_PROPERTY(PS_BillboardSet, mDepthCheck, "Billboard", "DepthCheck", PT_Bool)
 		DF_PROPERTY(PS_BillboardSet, mAccurateFacing, "Billboard", "AccFacing", PT_Bool)
 		DF_PROPERTY(PS_BillboardSet, mKeepAspect, "Billboard", "KeepAspect", PT_Bool)
 	DF_PROPERTY_END()
@@ -20,9 +21,10 @@ namespace Rad {
 	PS_BillboardSet::PS_BillboardSet()
 		: mBillboardType(PS_BillboardType::POINT)
 		, mBillboardCenter(0.5f, 0.5f)
-		, mBlendMode(PS_BlendMode::ADD)
 		, mCommonDirection(0, 0, 1)
 		, mCommonUpVector(0, 1, 0)
+		, mBlendMode(PS_BlendMode::ADD)
+		, mDepthCheck(true)
 		, mAccurateFacing(false)
 		, mKeepAspect(false)
 	{
@@ -99,7 +101,8 @@ namespace Rad {
 
 			if (IsLocalSpace())
 			{
-				mBound.Transform(mParent->GetWorldTM());
+				mBound.minimum += mParent->GetWorldPosition();
+				mBound.maximum += mParent->GetWorldPosition();
 			}
 
 			mBillboard._update();
@@ -168,5 +171,10 @@ namespace Rad {
 	void PS_BillboardSet::SetKeepAspect(bool b)
 	{
 		mKeepAspect = b;
+	}
+
+	void PS_BillboardSet::SetDepthCheck(bool b)
+	{
+		mDepthCheck = b;
 	}
 }

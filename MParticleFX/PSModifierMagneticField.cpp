@@ -7,15 +7,14 @@ namespace Rad {
 	DF_PROPERTY_BEGIN(PS_ModifierMagneticField)
 		DF_PROPERTY(PS_ModifierMagneticField, mCenter, "", "Center", PT_Float3)
 		DF_PROPERTY(PS_ModifierMagneticField, mRadius, "", "Radius", PT_Float)
-		DF_PROPERTY(PS_ModifierMagneticField, mAttraction, "", "Attraction", PT_Float)
-		DF_PROPERTY_ENUM(PS_ModifierMagneticField, mOperation, "", "Operation", PS_Operation)
 		DF_PROPERTY(PS_ModifierMagneticField, mInnerLife, "", "InnerLife", PT_Float)
+		DF_PROPERTY_ENUM(PS_ModifierMagneticField, mOperation, "", "Operation", PS_Operation)
+		DF_PROPERTY_EX(PS_ModifierMagneticField, mKeyController, "", "KeyController", "PT_KeyController", PT_UserData)
 	DF_PROPERTY_END()
 
 	PS_ModifierMagneticField::PS_ModifierMagneticField()
 		: mCenter(0, 0, 0)
 		, mRadius(0)
-		, mAttraction(UNIT_METRES)
 		, mOperation(PS_Operation::SET)
 		, mInnerLife(1)
 	{
@@ -33,30 +32,37 @@ namespace Rad {
 			center.TransformA(mParent->GetParent()->GetWorldTM());
 		}
 
-		switch (mOperation)
-		{
-		case PS_Operation::SET:
-			p->Speed = mAttraction;
-			break;
-
-		case PS_Operation::ADD:
-			p->Speed += mAttraction * elapsedTime;
-			break;
-
-		case PS_Operation::MUL:
-			p->Speed *= mAttraction;
-			break;
-
-		case PS_Operation::AVG:
-			p->Speed = (p->Speed + mAttraction) * 0.5f;
-			break;
-		}
-
 		Float3 dir = mCenter - p->Position;
 		float len = dir.Normalize();
 		if (len - mRadius > p->Speed * elapsedTime)
 		{
-			p->Direction = dir;
+			KF_Float v;
+			if (mKeyController.GetValue(v, time, true))
+			{
+				Float3 Velocity = p->Direction * p->Speed;
+
+				switch (mOperation)
+				{
+				case PS_Operation::SET:
+					Velocity = dir * v.data;
+					break;
+
+				case PS_Operation::ADD:
+					Velocity += dir * v.data * elapsedTime;
+					break;
+
+				case PS_Operation::MUL:
+					Velocity *= dir * v.data;
+					break;
+
+				case PS_Operation::AVG:
+					Velocity = (dir * v.data + Velocity) * 0.5f;
+					break;
+				}
+
+				p->Direction = Velocity;
+				p->Speed = p->Direction.Normalize();
+			}
 		}
 		else
 		{

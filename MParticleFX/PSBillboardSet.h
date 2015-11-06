@@ -24,9 +24,10 @@ namespace Rad {
 		String mTextureName;
 		int mBillboardType;
 		Float2 mBillboardCenter;
-		int mBlendMode;
 		Float3 mCommonDirection;
 		Float3 mCommonUpVector;
+		int mBlendMode;
+		bool mDepthCheck;
 		bool mAccurateFacing;
 		bool mKeepAspect;
 
@@ -58,11 +59,6 @@ namespace Rad {
 			_getTexture() { return mTexture; }
 
 		void 
-			SetBlendMode(int blendMode);
-		int 
-			GetBlendMode() { return mBlendMode; }
-
-		void 
 			SetBillboardType(int type);
 		int 
 			GetBillboardType() const { return mBillboardType; }
@@ -81,6 +77,16 @@ namespace Rad {
 			SetCommonUpVector(const Float3 & up);
 		const Float3 & 
 			GetCommonUpVector() const { return mCommonUpVector; }
+
+		void 
+			SetBlendMode(int blendMode);
+		int 
+			GetBlendMode() { return mBlendMode; }
+
+		void
+			SetDepthCheck(bool b);
+		bool
+			IsDepthCheck() { return mDepthCheck; }
 
 		void 
 			SetAccurateFacing(bool facing);

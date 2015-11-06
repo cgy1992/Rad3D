@@ -8,10 +8,11 @@
 #pragma once
 
 #include "PSTypes.h"
+#include "PSModifierKeyController.h"
 
 namespace Rad {
 
-	class FX_ENTRY PS_ModifierMagneticField : public PS_Modifier
+	class FX_ENTRY PS_ModifierMagneticField : public PS_ModifierKeyController
 	{
 		DECLARE_RTTI();
 		DECLARE_PROPERTY(PS_Modifier);
@@ -20,15 +21,18 @@ namespace Rad {
 		PS_ModifierMagneticField();
 		virtual ~PS_ModifierMagneticField();
 
+		virtual IKeyController * 
+			GetKeyController() { return &mKeyController; }
+
 		virtual void 
 			Modify(Particle * p, float elapsedTime);
 
 	protected:
 		Float3 mCenter;
 		float mRadius;
-		float mAttraction;
-		int mOperation;
 		float mInnerLife;
+		int mOperation;
+		KeyControllerFloat mKeyController;
 	};
 
 }
