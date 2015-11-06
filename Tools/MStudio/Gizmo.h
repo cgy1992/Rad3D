@@ -25,6 +25,11 @@ public:
 		Update(float mouseX, float mouseY);
 
 	void
+		SetEnable(bool b) { mEnable = b; }
+	bool
+		GetEnable() { return mEnable; }
+
+	void
 		SetOperator(int op) { mOperator = op; }
 	int
 		GetOperator() { return mOperator; }
@@ -62,6 +67,7 @@ protected:
 protected:
 	ShaderFX * mTech;
 	int mOperator;
+	bool mEnable;
 
 	RenderOp * mRender_Move;
 	int mNumVertex_Move;

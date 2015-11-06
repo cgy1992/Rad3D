@@ -23,6 +23,7 @@ Gizmo::Gizmo()
 	World::Instance()->E_RenderAlpha += new cListener0<Gizmo>(this, &Gizmo::OnRender);
 
 	mOperator = OP_MOVE;
+	mEnable = true;
 }
 
 Gizmo::~Gizmo()
@@ -58,16 +59,18 @@ void Gizmo::Update(float _x, float _y)
 {
 	mMouseX = _x;
 	mMouseY = _y;
+	
+	if (!mEnable)
+		return ;
 
 	Camera * cam = World::Instance()->MainCamera();
 
 	if (IMouse::Instance()->KeyUp(InputCode::MKC_LEFT))
 	{
-		if (mPicked && mPickedAxis != -1)
-		{
-			Node * obj = Editor::Instance()->GetSelectNode();
-			d_assert (obj);
+		Node * obj = Editor::Instance()->GetSelectNode();
 
+		if (mPicked && mPickedAxis != -1 && obj != NULL)
+		{
 			Float3 pos = obj->GetPosition();
 			Quat ort = obj->GetRotation();
 			Float3 scl = obj->GetScale();

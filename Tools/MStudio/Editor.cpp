@@ -460,19 +460,18 @@ void Editor::OnPickNodeRect(const MGUI::Rect & rc)
 	Float3 camPos = World::Instance()->MainCamera()->GetWorldPosition();
 	Mat4 vp = World::Instance()->MainCamera()->GetViewProjMatrix();
 	float distSq = MAX_FLOAT;
-
+	Array<Node *> nodes;
+	Array<T_KEY_VALUE<float, Node *> > selectedNodes;
+	
+	World::Instance()->GetSectionNodes(nodes);
 	SetSelectNode(NULL);
 
-	Array<Node *> nodes;
-	World::Instance()->GetSectionNodes(nodes);
 	for (int i = 0; i < nodes.Size(); ++i)
 	{
 		Node * n = nodes[i];
 		if (n->GetFlags() & EDITOR_NODE_PICK)
 		{
-			Float3 pos = n->GetWorldPosition();
-
-			pos *= vp;
+			Float3 pos = n->GetWorldPosition() * vp;
 			pos.x = (pos.x + 1) * 0.5f;
 			pos.y = (1 - pos.y) * 0.5f;
 
@@ -482,9 +481,27 @@ void Editor::OnPickNodeRect(const MGUI::Rect & rc)
 			if (pos.x > rc.x && pos.x < rc.x + rc.w &&
 				pos.y > rc.y && pos.y < rc.y + rc.h)
 			{
-				AddSelectNode(n);
+				float distSq = n->GetWorldPosition().DistanceSq(camPos) / 10000;
+
+				int j = 0;
+				for (j = 0; j < selectedNodes.Size(); ++j)
+				{
+					if (selectedNodes[j].key >= distSq)
+						break;
+				}
+
+				T_KEY_VALUE<float, Node *> kv;
+				kv.key = distSq;
+				kv.value = n;
+				selectedNodes.Insert(j, kv);
 			}
 		}
+	}
+
+	while (selectedNodes.Size())
+	{
+		AddSelectNode(selectedNodes.Back().value);
+		selectedNodes.PopBack();
 	}
 }
 

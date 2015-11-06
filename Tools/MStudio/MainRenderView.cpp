@@ -123,6 +123,8 @@ void MainRenderView::OnMouseDown(const MGUI::MouseEvent * e)
 {
 	if (mRangePick)
 	{
+		Gizmo::Instance()->SetEnable(false);
+
 		mMousePos1.x = e->x;
 		mMousePos1.y = e->y;
 
@@ -161,6 +163,8 @@ void MainRenderView::OnMouseUp(const MGUI::MouseEvent * e)
 
 		mRectWidget->SetVisible(false);
 	}
+
+	Gizmo::Instance()->SetEnable(true);
 }
 
 void MainRenderView::OnMouseDrag(const MGUI::MouseEvent * e)
