@@ -269,7 +269,7 @@ void ParticleFXPanel::OnCopySet(const MGUI::ClickEvent * e)
 	ParticleFXPropertyPanel::Instance()->AttachEmitter(NULL);
 	ParticleFXPropertyPanel::Instance()->AttachModifier(NULL);
 
-	pSet = pSet->GetParent()->CopySet(pSet);
+	pSet = pSet->GetParent()->CloneSet(pSet);
 	if (pSet != NULL)
 	{
 		String typeName = pSet->GetRTTI()->Name();
