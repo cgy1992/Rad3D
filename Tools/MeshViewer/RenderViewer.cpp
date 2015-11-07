@@ -2,6 +2,8 @@
 
 #define GRID_SIZE 16
 
+ImplementSingleton(RenderViewer);
+
 RenderViewer::RenderViewer()
 {
 	mLayout = new MGUI::Layout(NULL, NULL);

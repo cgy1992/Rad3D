@@ -28,7 +28,7 @@ void SkeletonDisplayer::Attach(Mesh * mesh)
 		mLayout->SetPickFlag(MGUI::ePickFlag::NONE);
 
 		mTextBox = new MGUI::TextBox(NULL, mLayout);
-		mTextBox->SetAlign(MGUI::eAlign::RIGHT | MGUI::eAlign::BOTTOM);
+		//mTextBox->SetAlign(MGUI::eAlign::RIGHT | MGUI::eAlign::BOTTOM);
 	}
 }
 
@@ -43,10 +43,11 @@ void SkeletonDisplayer::OnRender()
 	float x = MGUI::InputManager::Instance()->_getMousePosition().x;
 	float y = MGUI::InputManager::Instance()->_getMousePosition().y;
 
-	x -= World::Instance()->MainRenderContext()->GetViewport().x;
-	y -= World::Instance()->MainRenderContext()->GetViewport().y;
-	x /= World::Instance()->MainRenderContext()->GetViewport().w;
-	y /= World::Instance()->MainRenderContext()->GetViewport().h;
+	const Viewport & vp = World::Instance()->MainRenderContext()->GetViewport();
+	x -= vp.x;
+	y -= vp.y;
+	x /= vp.w;
+	y /= vp.h;
 
 	Ray ray = World::Instance()->MainCamera()->GetViewportRay(x, y);
 	bool checked = false;
@@ -65,7 +66,16 @@ void SkeletonDisplayer::OnRender()
 		if (!checked && ray.Intersect(NULL, sph))
 		{
 			RenderHelper::Instance()->DebugDrawSphere(sph, Float4(1, 1, 0), Mat4::Identity);
+			
+			Float3 projPos = sph.center * World::Instance()->MainCamera()->GetViewProjMatrix();
+			projPos.x = projPos.x * 0.5f + 0.5f;
+			projPos.y = 0.5f - projPos.y * 0.5f;
+			projPos.x = vp.x + projPos.x * vp.w;
+			projPos.y = vp.y + projPos.y * vp.h;
+
 			mTextBox->SetCaption(bone->GetName().c_wstr());
+			mTextBox->SetRectPosition(projPos.x + 15, projPos.y - 15);
+			
 			checked = true;
 		}
 		else

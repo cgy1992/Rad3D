@@ -7,7 +7,7 @@
 
 #include "stdafx.h"
 
-class RenderViewer
+class RenderViewer : public Singleton<RenderViewer>
 {
 public:
 	RenderViewer();
