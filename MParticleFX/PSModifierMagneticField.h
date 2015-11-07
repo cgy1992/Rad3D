@@ -24,6 +24,26 @@ namespace Rad {
 		virtual IKeyController * 
 			GetKeyController() { return &mKeyController; }
 
+		void
+			SetCenter(const Float3 & center) { mCenter = center; }
+		const Float3 &
+			GetCenter() const { return mCenter; }
+
+		void
+			SetRadius(float radius) { mRadius = radius; }
+		float
+			GetRadius() const { return mRadius; }
+
+		void
+			SetInnerLife(float life) { mInnerLife = life; }
+		float
+			GetInnerLife() const { return mInnerLife; }
+
+		void
+			SetOperation(int op) { mOperation = op; }
+		int
+			GetOperation() const { return mOperation; }
+
 		virtual void 
 			Modify(Particle * p, float elapsedTime);
 

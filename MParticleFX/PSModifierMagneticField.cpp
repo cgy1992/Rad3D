@@ -36,6 +36,8 @@ namespace Rad {
 		float len = dir.Normalize();
 		if (len - mRadius > p->Speed * elapsedTime)
 		{
+			float time = 1 - p->Life * p->InitLife.y;
+
 			KF_Float v;
 			if (mKeyController.GetValue(v, time, true))
 			{

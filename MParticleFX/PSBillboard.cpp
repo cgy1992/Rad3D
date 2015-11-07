@@ -157,7 +157,7 @@ namespace Rad {
 		Float3 dir = p->Direction;
 		if (mParent->IsLocalSpace())
 		{
-			dir.TransformQ(mParent->GetParent()->GetWorldRotation);
+			dir.TransformQ(mParent->GetParent()->GetWorldRotation());
 		}
 
 		switch (mBillboardType)
