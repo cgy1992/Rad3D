@@ -86,6 +86,8 @@ namespace Rad {
 		
 		PS_Emitter * 
 			NewEmitter(const char * type);
+		PS_Emitter *
+			CloneEmitter(PS_Emitter * emitter);
 		void 
 			DeleteEmitter(int index);
 		int 
@@ -95,6 +97,8 @@ namespace Rad {
 
 		PS_Modifier * 
 			NewModifier(const char * type);
+		PS_Modifier *
+			CloneModifier(PS_Modifier * modifier);
 		void 
 			DeleteModifier(int index);
 		int 
@@ -131,11 +135,11 @@ namespace Rad {
 		ParticleSystem * mParent;
 
 		Array<Particle> mParticlePool;
-		Stack<Particle*> mParticleFreeStack;
+		Array<Particle*, t_alloc_pool<Particle*> > mParticleFreeStack;
 
-		FixedArray<PS_Emitter *, 8> mEmitters;
-		FixedArray<PS_Modifier *, 8> mModifiers;
-		Array<Particle*> mParticles;
+		Array<PS_Emitter*, t_alloc_pool<PS_Emitter*> > mEmitters;
+		Array<PS_Modifier*, t_alloc_pool<PS_Modifier*> > mModifiers;
+		Array<Particle*, t_alloc_pool<Particle*> > mParticles;
 
 		PS_ShaderPtr mShader;
 

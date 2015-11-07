@@ -55,7 +55,7 @@ namespace Rad {
 		PS_Set *	
 			NewSet(const char * type);
 		PS_Set *
-			CopySet(PS_Set * p);
+			CloneSet(PS_Set * p);
 		void		
 			DeleteSet(int index);
 		void		

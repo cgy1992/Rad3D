@@ -53,7 +53,6 @@ namespace Rad {
 		, mTimeOffset(0)
 		, mInternalTime(0)
 		, mLastEmitTime(0)
-		, mEmitCount(0)
 	{
 		mVersion = 1;
 	}
@@ -71,7 +70,6 @@ namespace Rad {
 	{
 		mLastEmitTime = 0;
 		mInternalTime = 0;
-		mEmitCount = 0;
 	}
 
 	void PS_Emitter::SetEnable(bool enable)
@@ -80,7 +78,6 @@ namespace Rad {
 
 		mLastEmitTime = 0;
 		mInternalTime = 0;
-		mEmitCount = 0;
 	}
 
 	bool PS_Emitter::IsEnable() const
@@ -257,11 +254,6 @@ namespace Rad {
 		return mTimeOffset;
 	}
 
-	int PS_Emitter::GetEmitCount() const
-	{
-		return mEmitCount;
-	}
-
 	void PS_Emitter::InitParticle(Particle * p)
 	{
 		p->Emitter = this;
@@ -284,9 +276,9 @@ namespace Rad {
 		p->Param[3].v_int = 0;
 	}
 
-	bool PS_Emitter::Emit(float elapsedTime)
+	int PS_Emitter::Emit(float elapsedTime)
 	{
-		mEmitCount = 0;
+		int count = 0;
 		mInternalTime += elapsedTime;
 
 		float curTime = mInternalTime - mTimeOffset;
@@ -296,7 +288,7 @@ namespace Rad {
 		if (mLastEmitTime == 0 && mFirstEmit > 0)
 		{
 			mLastEmitTime = curTime;
-			mEmitCount = mFirstEmit;
+			count = mFirstEmit;
 		}
 		else if (mRate > 0)
 		{
@@ -306,12 +298,12 @@ namespace Rad {
 			while (time > emit_time)
 			{
 				mLastEmitTime = curTime;
-				mEmitCount += 1;
+				count += 1;
 				time -= emit_time;
 			}
 		}
 
-		return mEmitCount > 0;
+		return count;
 	}
 
 	Float3 PS_Emitter::RandomDirection()

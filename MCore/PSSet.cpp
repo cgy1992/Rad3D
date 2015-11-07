@@ -160,7 +160,7 @@ namespace Rad {
 		mParticlePool.Resize(mQuota);
 		for (int i = 0; i < mQuota; ++i)
 		{
-			mParticleFreeStack.Push(&mParticlePool[i]);
+			mParticleFreeStack.PushBack(&mParticlePool[i]);
 		}
 
 		for (int i = 0; i < mEmitters.Size(); ++i)
@@ -171,9 +171,9 @@ namespace Rad {
 
 	void PS_Set::_doEmit(PS_Emitter * emitter, float elapsedTime)
 	{
-		emitter->Emit(elapsedTime);
+		int count = emitter->Emit(elapsedTime);
 
-		for (int i = 0; i < emitter->GetEmitCount(); ++i)
+		for (int i = 0; i < count; ++i)
 		{
 			Particle * p = _quest_particle();
 
@@ -237,7 +237,7 @@ namespace Rad {
 			mParticlePool.Resize(quota);
 			for (int i = 0; i < quota; ++i)
 			{
-				mParticleFreeStack.Push(&mParticlePool[i]);
+				mParticleFreeStack.PushBack(&mParticlePool[i]);
 			}
 
 			mQuota = quota;
@@ -268,19 +268,48 @@ namespace Rad {
 
 	PS_Emitter * PS_Set::NewEmitter(const char * type)
 	{
-		if (mEmitters.Size() < mEmitters.Capacity())
+		PS_Emitter * emitter = Root::NEW_OBJECT_T<PS_Emitter>(type);
+		if (emitter)
 		{
-			PS_Emitter * emitter = Root::NEW_OBJECT_T<PS_Emitter>(type);
-			if (emitter)
-			{
-				emitter->Init(this);
-				mEmitters.PushBack(emitter);
-			}
-
-			return emitter;
+			emitter->Init(this);
+			mEmitters.PushBack(emitter);
 		}
-		
-		return NULL;
+
+		return emitter;
+	}
+
+	PS_Emitter * PS_Set::CloneEmitter(PS_Emitter * emitter)
+	{
+		PS_Emitter * newEmitter = NewEmitter(emitter->GetRTTI()->Name());
+		if (newEmitter != NULL)
+		{
+			byte buffer[2048];
+			OSerializerM OS(buffer, 2048, false);
+
+			emitter->Serialize(OS);
+
+			ISerializerM IS((byte *)OS.Data(), OS.Size(), false);
+			newEmitter->Serialize(IS);
+		}
+
+		return newEmitter;
+	}
+
+	PS_Modifier * PS_Set::CloneModifier(PS_Modifier * modifier)
+	{
+		PS_Modifier * newModifier = NewModifier(modifier->GetRTTI()->Name());
+		if (newModifier != NULL)
+		{
+			byte buffer[2048];
+			OSerializerM OS(buffer, 2048, false);
+
+			modifier->Serialize(OS);
+
+			ISerializerM IS((byte *)OS.Data(), OS.Size(), false);
+			newModifier->Serialize(IS);
+		}
+
+		return newModifier;
 	}
 
 	void PS_Set::DeleteEmitter(int index)
@@ -291,20 +320,14 @@ namespace Rad {
 
 	PS_Modifier * PS_Set::NewModifier(const char * type)
 	{
-		if (mModifiers.Size() < mModifiers.Capacity())
+		PS_Modifier * modifier = Root::NEW_OBJECT_T<PS_Modifier>(type);
+		if (modifier)
 		{
-			PS_Modifier * modifier = Root::NEW_OBJECT_T<PS_Modifier>(type);
-
-			if (modifier)
-			{
-				modifier->Init(this);
-				mModifiers.PushBack(modifier);
-			}
-
-			return modifier;
+			modifier->Init(this);
+			mModifiers.PushBack(modifier);
 		}
 
-		return NULL;
+		return modifier;
 	}
 
 	void PS_Set::DeleteModifier(int index)
@@ -319,8 +342,8 @@ namespace Rad {
 
 		if (mEnable && !mParticleFreeStack.Empty())
 		{
-			p = mParticleFreeStack.Top();
-			mParticleFreeStack.Pop();
+			p = mParticleFreeStack.Back();
+			mParticleFreeStack.PopBack();
 
 			p->InternalData = NULL;
 		}
@@ -330,7 +353,7 @@ namespace Rad {
 
 	void PS_Set::_free_particle(Particle * p)
 	{
-		mParticleFreeStack.Push(p);
+		mParticleFreeStack.PushFront(p);
 	}
 
 	void PS_Set::_clear_particle()

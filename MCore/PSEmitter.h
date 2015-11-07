@@ -148,12 +148,9 @@ namespace Rad {
 		int
 			GetUVRectCount() const;
 
-		int 
-			GetEmitCount() const;
-
 		virtual void 
 			InitParticle(Particle * p);
-		bool 
+		int
 			Emit(float fElapsedTime);
 
 		virtual void
@@ -186,8 +183,6 @@ namespace Rad {
 		Float2 mUVRectStep;
 		float mInternalTime;
 		float mLastEmitTime;
-
-		int mEmitCount;
 	};
 
 }

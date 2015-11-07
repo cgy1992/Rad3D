@@ -138,7 +138,7 @@ namespace Rad {
 		return NULL;
 	}
 
-	PS_Set * ParticleSystem::CopySet(PS_Set * p)
+	PS_Set * ParticleSystem::CloneSet(PS_Set * p)
 	{
 		PS_Set * render = NewSet(p->GetRTTI()->Name());
 		if (render)
@@ -146,42 +146,17 @@ namespace Rad {
 			OSerializerM2 OS;
 			p->Serialize(OS);
 
-			if (OS.Size() > 0)
-			{
-				ISerializerM IS((byte *)OS.Data(), OS.Size(), false);
-				render->Serialize(IS);
-			}
+			ISerializerM IS((byte *)OS.Data(), OS.Size(), false);
+			render->Serialize(IS);
 
 			for (int i = 0; i < p->GetEmitterCount(); ++i)
 			{
-				OS.Clear();
-
-				PS_Emitter * emitter = render->NewEmitter(p->GetEmitter(i)->GetRTTI()->Name());
-				if (emitter)
-				{
-					p->GetEmitter(i)->Serialize(OS);
-					if (OS.Size() > 0)
-					{
-						ISerializerM IS((byte *)OS.Data(), OS.Size(), false);
-						emitter->Serialize(IS);
-					}
-				}
+				render->CloneEmitter(p->GetEmitter(i));
 			}
 
 			for (int i = 0; i < p->GetModifierCount(); ++i)
 			{
-				OS.Clear();
-
-				PS_Modifier * modifier = render->NewModifier(p->GetModifier(i)->GetRTTI()->Name());
-				if (modifier)
-				{
-					p->GetModifier(i)->Serialize(OS);
-					if (OS.Size() > 0)
-					{
-						ISerializerM IS((byte *)OS.Data(), OS.Size(), false);
-						modifier->Serialize(IS);
-					}
-				}
+				render->CloneModifier(p->GetModifier(i));
 			}
 
 			if (p->GetShader() != NULL && render->GetShader() != NULL &&
