@@ -404,6 +404,8 @@ namespace Rad {
 		DECLARE_KEYVALUE(KF_Float);
 
 		float data;
+
+		KF_Float() : data(0) {}
 	};
 
 	typedef TKeyController<KF_Float> KeyControllerFloat;
