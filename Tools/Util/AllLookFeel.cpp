@@ -250,6 +250,17 @@ namespace Rad {
 		mEditBox->SetUVRect(MGUI::eWidgetState::SELECT, MGUI::Rect(168, 136, 30, 27));
 		mEditBox->SetClientRect(MGUI::ClientRect(5, 5, 5, 5));
 
+		// CheckBox
+		mCheckBox = new MGUI::LookFeel("CheckBox");
+		mCheckBox->SetSkin(skinName);
+		mCheckBox->SetUVRect(MGUI::eWidgetState::NORMAL, MGUI::Rect(0, 23, 24, 23));
+		mCheckBox->SetUVRect(MGUI::eWidgetState::DISABLE, MGUI::Rect(0, 0, 24, 23));
+		mCheckBox->SetUVRect(MGUI::eWidgetState::FOCUS, MGUI::Rect(0, 45, 24, 23));
+		mCheckBox->SetUVRect(MGUI::eWidgetState::PRESS, MGUI::Rect(0, 45, 24, 23));
+		mCheckBox->SetUVRect(MGUI::eWidgetState::SELECT, MGUI::Rect(0, 111, 24, 23));
+		mCheckBox->SetUVRect(MGUI::eWidgetState::SELECT_DISABLE, MGUI::Rect(0, 89, 24, 23));
+		mCheckBox->SetUVRect(MGUI::eWidgetState::SELECT_FOCUS, MGUI::Rect(0, 133, 24, 23));
+		mCheckBox->SetUVRect(MGUI::eWidgetState::SELECT_PRESS, MGUI::Rect(0, 155, 24, 23));
 
 		// ComboBox
 		mComboBox = new MGUI::LookFeel("ComboxBox");
@@ -315,6 +326,8 @@ namespace Rad {
 		delete mProgressBar;
 
 		delete mEditBox;
+
+		delete mCheckBox;
 
 		delete mComboBox;
 

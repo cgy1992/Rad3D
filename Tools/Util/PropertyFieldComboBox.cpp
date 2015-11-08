@@ -13,8 +13,3 @@ PropertyFieldComboBox::PropertyFieldComboBox(PropertyGroup * group, IObject * ob
 PropertyFieldComboBox::~PropertyFieldComboBox()
 {
 }
-
-float PropertyFieldComboBox::_updateHeight(float y)
-{
-	return PropertyField::_updateHeight(y);
-}

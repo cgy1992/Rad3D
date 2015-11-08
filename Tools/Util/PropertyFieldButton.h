@@ -13,8 +13,6 @@ public:
 	PropertyFieldButton(PropertyGroup * group, IObject * obj, const Property * prop);
 	virtual ~PropertyFieldButton();
 
-	virtual float _updateHeight(float y);
-
 protected:
 	MGUI::Button * mButton;
 };

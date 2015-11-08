@@ -15,3 +15,17 @@ public:
 
 	void OnSelChanged(const MGUI::Event * e, int index);
 };
+
+class PropertyFieldBitFlag : public PropertyField
+{
+public:
+	PropertyFieldBitFlag(PropertyGroup * group, IObject * obj, const Property * prop);
+	virtual ~PropertyFieldBitFlag();
+
+	void OnSelChanged(const MGUI::Event * e, int index);
+	void OnChecked(const MGUI::Event * e, bool checked);
+
+protected:
+	MGUI::CheckBox * mCheckBox;
+	MGUI::ComboBox * mComboBox;
+};

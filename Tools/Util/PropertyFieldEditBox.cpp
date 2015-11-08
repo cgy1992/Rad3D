@@ -18,9 +18,3 @@ PropertyFieldEditBox::~PropertyFieldEditBox()
 {
 	safe_delete (mEditBox);
 }
-
-float PropertyFieldEditBox::_updateHeight(float y)
-{
-	return PropertyField::_updateHeight(y);
-}
-

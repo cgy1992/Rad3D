@@ -41,6 +41,8 @@ namespace Rad {
 
 		MGUI::LookFeel * GetEditBox() { return mEditBox; }
 
+		MGUI::LookFeel * GetCheckBox() { return mCheckBox; }
+
 		MGUI::LookFeel * GetComboBox() { return mComboBox; }
 
 		MGUI::LookFeel * GetDialog() { return mDialog; }
@@ -51,45 +53,34 @@ namespace Rad {
 	protected:
 		MGUI::LookFeel * mMenu;
 
-		// Button
 		MGUI::LookFeel * mButton;
 		
-		// panel
 		MGUI::LookFeel * mPanel;
 		MGUI::LookFeel * mWhite;
 
-		// Scroll
 		MGUI::LookFeel * mVScrollBar;
 		MGUI::LookFeel * mHScrollBar;
 
-		// ListBox
 		MGUI::LookFeel * mListBoxItem;
 		MGUI::LookFeel * mListBox;
 
-		// TreeView
 		MGUI::LookFeel * mTreeView;
-
-		// TabControl
 		MGUI::LookFeel * mTabControl;
 
-		// Slider
 		MGUI::LookFeel * mVSlider;
 		MGUI::LookFeel * mHSlider;
 
-		// ProgressBar
 		MGUI::LookFeel * mProgressBar;
 
-		// EditBox
 		MGUI::LookFeel * mEditBox;
 
-		// ComboBox
+		MGUI::LookFeel * mCheckBox;
+
 		MGUI::LookFeel * mComboBox;
 
-		// Dialog
 		MGUI::LookFeel * mDialog;
 		MGUI::LookFeel * mDialogCaption;
 
-		// EditHelper
 		MGUI::LookFeel * mEditorHelper;
 		TexturePtr mHelperTexture;
 	};

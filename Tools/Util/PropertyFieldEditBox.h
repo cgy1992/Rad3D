@@ -13,8 +13,6 @@ public:
 	PropertyFieldEditBox(PropertyGroup * group, IObject * obj, const Property * prop);
 	virtual ~PropertyFieldEditBox();
 
-	virtual float _updateHeight(float y);
-
 protected:
 	MGUI::EditBox * mEditBox;
 };

@@ -95,6 +95,10 @@ PropertyField * PropertyGrid::_createProperty(const Property * prop, IPropertyGr
 		{
 			field = new PropertyFieldClass(pg, mObject, prop);
 		}
+		else if (strcmp(prop->editorName, "PT_BitFlag") == 0)
+		{
+			field = new PropertyFieldBitFlag(pg, mObject, prop);
+		}
 	}
 	
 	if (field == NULL && stricmp(prop->editorName, "None") != 0)

@@ -13,8 +13,6 @@ public:
 	PropertyFieldComboBox(PropertyGroup * group, IObject * obj, const Property * prop);
 	virtual ~PropertyFieldComboBox();
 
-	virtual float _updateHeight(float y);
-
 protected:
 	MGUI::ComboBox * mComboBox;
 };

@@ -12,8 +12,3 @@ PropertyFieldButton::PropertyFieldButton(PropertyGroup * group, IObject * obj, c
 PropertyFieldButton::~PropertyFieldButton()
 {
 }
-
-float PropertyFieldButton::_updateHeight(float y)
-{
-	return PropertyField::_updateHeight(y);
-}
