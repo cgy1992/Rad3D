@@ -24,8 +24,6 @@ namespace Rad {
 			LOCAL,
 			PARENT,
 			WORLD,
-
-			FORCE_DWORD = 0x7FFFFFFF
 		};
 
 		M_ENUMERATION(eTransform);
@@ -200,6 +198,7 @@ namespace Rad {
 			ClearFlags(int flags) { mFlags &= ~flags; }
 		int						
 			GetFlags() const { return mFlags; }
+
 		void
 			SetTmFlags(int type);
 		int

@@ -20,8 +20,11 @@ namespace Rad {
 		BitField()
 		{
 			ClearAll();
+		}
 
-			d_assert(BIT_COUNT % 32 == 0);
+		BitField(const BitField & rk)
+		{
+			*this = rk;
 		}
 
 		~BitField()
@@ -30,7 +33,11 @@ namespace Rad {
 
 		BitField & operator =(const BitField & rk)
 		{ 
-			memcpy(mBits, rk.mBits, sizeof(int) * IntCount());
+			for (int i = 0; i < IntCount(); ++i)
+			{
+				mBits[i] = rk.mBits[i];
+			}
+
 			return *this;
 		}
 
@@ -41,7 +48,10 @@ namespace Rad {
 
 		void ClearAll()
 		{
-			memset(mBits, 0, IntCount() * sizeof(int));
+			for (int i = 0; i < IntCount(); ++i)
+			{
+				mBits[i] = 0;
+			}
 		}
 
 		bool Get(int bit) const
@@ -84,7 +94,7 @@ namespace Rad {
 
 		int IntCount() const
 		{
-			return BIT_COUNT / 32;
+			return (BIT_COUNT + 31) / 32;
 		}
 
 		int * Data() const
@@ -93,7 +103,8 @@ namespace Rad {
 		}
 
 	protected:
-		int mBits[BIT_COUNT / 32];
+		int mBits[(BIT_COUNT + 31) / 32];
 	};
+
 }
 

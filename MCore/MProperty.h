@@ -195,8 +195,7 @@ public:																\
 		}
 
 		template <class T>
-		const T &
-			AsT(const void * data) const
+		const T & AsT(const void * data) const
 		{
 			d_assert (sizeof(T) == size);
 
@@ -204,21 +203,18 @@ public:																\
 		}
 
 		template <class T>
-		void
-			_AsT(T & v, const void * data) const
+		void AsT(T & v, const void * data) const
 		{
 			memcpy(&v, data, size);
 		}
 
-		bool 
-			AsBool(const void * data) const
+		bool AsBool(const void * data) const
 		{
 			d_assert (type == PT_Bool);
 			return *(const bool *)data;
 		}
 
-		int 
-			AsInt(const void * data) const
+		int AsInt(const void * data) const
 		{
 			d_assert (type == PT_Int && size <= sizeof(int));
 
@@ -242,92 +238,79 @@ public:																\
 			return v;
 		}
 
-		Int2 
-			AsInt2(const void * data) const
+		Int2 AsInt2(const void * data) const
 		{
 			d_assert (type == PT_Int2);
 			return *(const Int2 *)data;
 		}
 
-		Int3 
-			AsInt3(const void * data) const
+		Int3 AsInt3(const void * data) const
 		{
 			d_assert (type == PT_Int3);
 			return *(const Int3 *)data;
 		}
 
-		Int4 
-			AsInt4(const void * data) const
+		Int4 AsInt4(const void * data) const
 		{
 			d_assert (type == PT_Int4);
 			return *(const Int4 *)data;
 		}
 
-		const int *
-			AsIntX(const void * data) const
+		const int * AsIntX(const void * data) const
 		{
 			d_assert (type == PT_IntX);
 			return (const int *)data;
 		}
 
-		float 
-			AsFloat(const void * data) const
+		float AsFloat(const void * data) const
 		{
 			d_assert (type == PT_Float && size == sizeof(float));
 			return *(const float *)data;
 		}
 
-		double
-			AsDouble(const void * data) const
+		double AsDouble(const void * data) const
 		{
 			d_assert (type == PT_Float && size == sizeof(double));
 			return *(const double *)data;
 		}
 
-		Float2 
-			AsFloat2(const void * data) const
+		Float2 AsFloat2(const void * data) const
 		{
 			d_assert (type == PT_Float2);
 			return *(const Float2 *)data;
 		}
 
-		Float3 
-			AsFloat3(const void * data) const
+		Float3 AsFloat3(const void * data) const
 		{
 			d_assert (type == PT_Float3);
 			return *(const Float3 *)data;
 		}
 
-		Float4 
-			AsFloat4(const void * data) const
+		Float4 AsFloat4(const void * data) const
 		{
 			d_assert (type == PT_Float4);
 			return *(const Float4 *)data;
 		}
 
-		const float *
-			AsFloatX(const void * data) const
+		const float * AsFloatX(const void * data) const
 		{
 			d_assert (type == PT_FloatX);
 			return (const float *)data;
 		}
 
-		const char * 
-			AsFixedString(const void * data) const
+		const char * AsFixedString(const void * data) const
 		{
 			d_assert (type == PT_FixedString);
 			return (const char *)data;
 		}
 
-		const char * 
-			AsString(const void * data) const
+		const char * AsString(const void * data) const
 		{
 			d_assert (type == PT_String);
 			return ((String*)data)->c_str();
 		}
 
-		const uchar_t * 
-			AsUString(const void * data) const
+		const uchar_t * AsUString(const void * data) const
 		{
 			d_assert (type == PT_UString);
 			return ((UString*)data)->c_str();
