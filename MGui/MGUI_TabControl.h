@@ -46,7 +46,7 @@ namespace Rad { namespace MGUI {
 			GetPage(int _index);
 
 		void 
-			SetSelectIndex(int _index);
+			SetSelectIndex(int _index, bool _sendEvent = true);
 		int 
 			GetSelectIndex() const;
 		TabItem * 

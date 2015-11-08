@@ -82,7 +82,7 @@ namespace Rad { namespace MGUI {
 		return mPages[_index];
 	}
 
-	void TabControl::SetSelectIndex(int _index)
+	void TabControl::SetSelectIndex(int _index, bool _sendEvent)
 	{
 		d_assert (_index < GetCount());
 
@@ -90,7 +90,10 @@ namespace Rad { namespace MGUI {
 		{
 			mSelectIndex = _index;
 
-			E_SelectChanged(_index);
+			if (_sendEvent)
+			{
+				E_SelectChanged(_index);
+			}
 		}
 	}
 

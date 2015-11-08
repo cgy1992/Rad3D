@@ -346,11 +346,29 @@ namespace Rad { namespace MGUI {
 			mRect.x = client.x;
 			mRect.w = client.w;
 		}
+		else if (mAlign._value & eAlign::L_STRETCH)
+		{
+			mRect.w = mRect.x + mRect.w - client.x;
+			mRect.x = client.x;
+		}
+		else if (mAlign._value & eAlign::R_STRETCH)
+		{
+			mRect.w = client.x + client.w - mRect.x;
+		}
 
 		if (mAlign._value & eAlign::V_STRETCH)
 		{
 			mRect.y = client.y;
 			mRect.h = client.h;
+		}
+		else if (mAlign._value & eAlign::T_STRETCH)
+		{
+			mRect.h = mRect.y + mRect.y - client.y;
+			mRect.y = client.y;
+		}
+		else if (mAlign._value & eAlign::B_STRETCH)
+		{
+			mRect.h = client.y + client.h - mRect.y;
 		}
 	}
 

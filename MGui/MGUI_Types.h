@@ -105,10 +105,14 @@ namespace Rad { namespace MGUI {
 			LEFT =  1 << 2,
 			RIGHT = 1 << 3,
 			H_STRETCH = 1 << 4,
+			L_STRETCH = 1 << 8,
+			R_STRETCH = 1 << 9,
 
 			TOP = 1 << 5,
 			BOTTOM = 1 << 6,
 			V_STRETCH = 1 << 7,
+			T_STRETCH = 1 << 10,
+			B_STRETCH = 1 << 11,
 
 			STRETCH = H_STRETCH | V_STRETCH,
 		};
