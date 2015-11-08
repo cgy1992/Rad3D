@@ -73,6 +73,13 @@ namespace Rad {
 			return ;
 
 		Camera * pCamera = World::Instance()->GetCurrentRenderContext()->GetCamera();
+		const Quat & worldQ = mParent->GetParent()->GetWorldRotation();
+		Mat4 worldTM;
+		
+		if (mParent->IsScaleAble())
+			worldTM = mParent->GetParent()->GetWorldTM();
+		else
+			worldTM.MakeTransform(mParent->GetParent()->GetWorldPosition(), worldQ, Float3(1, 1, 1));
 
 		pCamera->GetWorldRotation().ToAxis(mCamXAxis, mCamYAxis, mCamZAxis);
 		mCamPos = pCamera->GetWorldPosition();
@@ -83,32 +90,22 @@ namespace Rad {
 		if (mParent->GetBillboardType() == PS_BillboardType::PERPENDICULAR ||
 			mParent->GetBillboardType() == PS_BillboardType::PERPENDICULAR_COMMON)
 		{
-			mCommonDir.TransformQ(mParent->GetParent()->GetWorldRotation());
-			mCommonUp.TransformQ(mParent->GetParent()->GetWorldRotation());
+			mCommonDir.TransformQ(worldQ);
+			mCommonUp.TransformQ(worldQ);
 		}
 
-		float asecpt = 1;
+		float width, height, asecpt = 1;
+		Float3 xAxis, yAxis;
+		Float3 pos, dir;
+		const Float2 & center = mParent->GetBillboardCenter();
+
 		if (mParent->IsKeepAspect())
 			asecpt = mParent->_getTexture()->_getAscept();
-
-		Mat4 worldTM;
-		if (mParent->IsScaleAble())
-			worldTM = mParent->GetParent()->GetWorldTM();
-		else
-			worldTM.MakeTransform(mParent->GetParent()->GetWorldPosition(), mParent->GetParent()->GetWorldRotation(), Float3(1, 1, 1));
-
-		int count = mParent->GetParticleCount();
-		d_assert (count * 4 <= mRenderOp.vertexBuffers[0]->GetCount());
-
-		const Float2 & center = mParent->GetBillboardCenter();
 		
 		PS_Vertex * v = (PS_Vertex *)mRenderOp.vertexBuffers[0]->Lock(eLockFlag::WRITE);
-		for (int i = 0; i < count; ++i)
+		for (int i = 0; i < mParent->GetParticleCount(); ++i)
 		{
 			const Particle * p = mParent->GetParticle(i);
-
-			Float3 xAxis, yAxis;
-			float width, height;
 
 			height = Max(0.0f, p->Size.y);
 			if (!mParent->IsKeepAspect())
@@ -116,32 +113,44 @@ namespace Rad {
 			else
 				width = height * asecpt;
 
-			_getBillboardXYAxis(xAxis, yAxis, p);
+			pos = p->Position;
+			dir = p->Direction;
+
+			if (mParent->IsLocalSpace())
+			{
+				pos.TransformA(worldTM);
+				dir.TransformQ(mParent->GetParent()->GetWorldRotation());
+			}
+
+			_getBillboardXYAxis(xAxis, yAxis, pos, dir);
+
+			if (p->Rotation.x != 0)
+			{
+				Quat q;
+				q.FromAxis(Float3::Cross(xAxis, yAxis), Math::DegreeToRadian(p->Rotation.x));
+
+				xAxis.TransformQ(q);
+				yAxis.TransformQ(q);
+			}
 
 			xAxis *= width, yAxis *= height;
 
-			Float3 position = p->Position;
-			if (mParent->IsLocalSpace())
-			{
-				position.TransformA(worldTM);
-			}
-
-			v->position = position - xAxis * center.x + yAxis * center.y;
+			v->position = pos - xAxis * center.x + yAxis * center.y;
 			v->color = p->Color;
 			v->uv.x = p->UVRect.x1, v->uv.y = p->UVRect.y1;
 			++v;
 
-			v->position = position + xAxis * (1 - center.x) + yAxis * center.y;
+			v->position = pos + xAxis * (1 - center.x) + yAxis * center.y;
 			v->color = p->Color;
 			v->uv.x = p->UVRect.x2, v->uv.y = p->UVRect.y1;
 			++v;
 
-			v->position = position - xAxis * center.x - yAxis * (1 - center.y);
+			v->position = pos - xAxis * center.x - yAxis * (1 - center.y);
 			v->color = p->Color;
 			v->uv.x = p->UVRect.x1, v->uv.y = p->UVRect.y2;
 			++v;
 
-			v->position = position + xAxis * (1 - center.x) - yAxis * (1 - center.y);
+			v->position = pos + xAxis * (1 - center.x) - yAxis * (1 - center.y);
 			v->color = p->Color;
 			v->uv.x = p->UVRect.x2, v->uv.y = p->UVRect.y2;
 			++v;
@@ -149,23 +158,17 @@ namespace Rad {
 		mRenderOp.vertexBuffers[0]->Unlock();
 	}
 
-	void PS_Billboard::_getBillboardXYAxis(Float3 & xAxis, Float3 & yAxis, const Particle * p)
+	void PS_Billboard::_getBillboardXYAxis(Float3 & xAxis, Float3 & yAxis, const Float3 & pos, const Float3 & dir)
 	{
-		int mBillboardType = mParent->GetBillboardType();
-		bool mAccurateFacing = mParent->GetAccurateFacing();
+		int type = mParent->GetBillboardType();
+		bool facing = mParent->IsAccurateFacing();
 
-		Float3 dir = p->Direction;
-		if (mParent->IsLocalSpace())
-		{
-			dir.TransformQ(mParent->GetParent()->GetWorldRotation());
-		}
-
-		switch (mBillboardType)
+		switch (type)
 		{
 		case PS_BillboardType::POINT:
-			if (mAccurateFacing)
+			if (facing)
 			{
-				Float3 vCamDir = p->Position - mCamPos;
+				Float3 vCamDir = pos - mCamPos;
 				vCamDir.Normalize();
 
 				yAxis = mCamYAxis;
@@ -181,9 +184,9 @@ namespace Rad {
 			break;
 
 		case PS_BillboardType::ORIENTED:
-			if (mAccurateFacing)
+			if (facing)
 			{
-				Float3 vCamDir = p->Position - mCamPos;
+				Float3 vCamDir = pos - mCamPos;
 				vCamDir.Normalize();
 
 				yAxis = dir;
@@ -201,9 +204,9 @@ namespace Rad {
 			break;
 
 		case PS_BillboardType::ORIENTED_COMMON:
-			if (mAccurateFacing)
+			if (facing)
 			{
-				Float3 vCamDir = p->Position - mCamPos;
+				Float3 vCamDir = pos - mCamPos;
 				vCamDir.Normalize();
 
 				yAxis = mCommonDir;
@@ -238,18 +241,6 @@ namespace Rad {
 				xAxis.Normalize();
 			}
 			break;
-		}
-
-
-		if (p->Rotation.x != 0)
-		{
-			Float3 axis = Float3::Cross(xAxis, yAxis);
-
-			Quat q;
-			q.FromAxis(axis, Math::DegreeToRadian(p->Rotation.x));
-
-			xAxis.TransformQ(q);
-			yAxis.TransformQ(q);
 		}
 	}
 

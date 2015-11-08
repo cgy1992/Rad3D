@@ -91,7 +91,7 @@ namespace Rad {
 		void 
 			SetAccurateFacing(bool facing);
 		bool 
-			GetAccurateFacing() const { return mAccurateFacing; }
+			IsAccurateFacing() const { return mAccurateFacing; }
 
 		void
 			SetKeepAspect(bool b);

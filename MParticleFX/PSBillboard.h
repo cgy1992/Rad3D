@@ -33,7 +33,7 @@ namespace Rad {
 		void 
 			_updateBuffer();
 		void 
-			_getBillboardXYAxis(Float3 & xAxis, Float3 & yAxis, const Particle * p);
+			_getBillboardXYAxis(Float3 & xAxis, Float3 & yAxis, const Float3 & pos, const Float3 & dir);
 
 		void
 			_update();
