@@ -42,7 +42,7 @@ namespace Rad {
 					return true;
 			}
 
-			pNode->mZone = this;
+			pNode->_notifyAttachZone(this);
 
 			LINKER_APPEND(mNodeLinker, pNode->GetZoneLinker());
 			
@@ -58,7 +58,7 @@ namespace Rad {
 
 		LINKER_REMOVE(mNodeLinker, pNode->GetZoneLinker());
 
-		pNode->mZone = NULL;
+		pNode->_notifyDetachZone();
 	}
 
 	void Zone::AddChild(Zone * child)

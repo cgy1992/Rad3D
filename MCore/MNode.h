@@ -59,9 +59,6 @@ namespace Rad {
 		DECLARE_PROPERTY(ComponentOwner);
 		DECLARE_USERDATA(Node, 8);
 
-		friend class Zone;
-		friend class WorldSection;
-
 		class ZoneLinker
 		{
 			DECLARE_LINKER(ZoneLinker);
@@ -115,10 +112,20 @@ namespace Rad {
 			GetChild(int index);
 		Node *					
 			GetParent() { return mParent; }
+
+		void
+			_notifyAttachZone(Zone * zone);
+		void
+			_notifyDetachZone();
 		Zone *				
 			GetZone() { return mZone; }
 		ZoneLinker *		
 			GetZoneLinker() { return &mZoneLinker; }
+		
+		void
+			_notifyAttachSection(WorldSection * section);
+		void
+			_notifyDetachSection();
 		WorldSection *
 			GetSection() { return mSection; }
 

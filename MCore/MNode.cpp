@@ -139,6 +139,34 @@ namespace Rad{
 		return mChildren[index];
 	}
 
+	void Node::_notifyAttachZone(Zone * zone)
+	{
+		d_assert (mZone == NULL);
+
+		mZone = zone;
+	}
+
+	void Node::_notifyDetachZone()
+	{
+		d_assert (mZone != NULL);
+
+		mZone = NULL;
+	}
+
+	void Node::_notifyAttachSection(WorldSection * section)
+	{
+		d_assert (mSection == NULL);
+
+		mSection = section;
+	}
+
+	void Node::_notifyDetachSection()
+	{
+		d_assert (mSection != NULL);
+
+		mSection = NULL;
+	}
+
 	void Node::SetUID(int uid)
 	{
 		mUID = uid;

@@ -30,7 +30,8 @@ namespace Rad {
 	{
 		d_assert (node->GetSection() == NULL);
 
-		node->mSection = this;
+		node->_notifyAttachSection(this);
+		
 		mNodes.PushBack(node);
 
 		World::Instance()->E_SectionAddNode(this, node);
