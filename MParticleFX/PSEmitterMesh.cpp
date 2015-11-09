@@ -5,11 +5,16 @@ namespace Rad {
 	ImplementRTTI(PS_EmitterMesh, PS_EmitterPoint);
 
 	DF_PROPERTY_BEGIN(PS_EmitterMesh)
-		DF_PROPERTY_EX(PS_EmitterMesh, mFilename, "", "Filename", "PT_Filename mesh(*.mesh)|*.mesh|", PT_String)
+		DF_PROPERTY_EX(PS_EmitterMesh, mFilename, "Mesh", "Filename", "PT_Filename mesh(*.mesh)|*.mesh|", PT_String)
+		DF_PROPERTY(PS_EmitterMesh, mScale, "Mesh", "Scale", PT_Float3)
+		DF_PROPERTY(PS_EmitterMesh, mRandom, "Mesh", "Random", PT_Bool)
 	DF_PROPERTY_END()
 
 	PS_EmitterMesh::PS_EmitterMesh()
+		: mScale(1, 1, 1)
+		, mRandom(true)
 	{
+		mIndex = 0;
 	}
 
 	PS_EmitterMesh::~PS_EmitterMesh()
@@ -37,7 +42,8 @@ namespace Rad {
 		RenderOp * rop = mMesh->GetMeshBuffer(0)->GetRenderOp();
 
 		int stride = rop->vertexBuffers[0]->GetStride();
-		int index = Math::RandRange(0, rop->vertexBuffers[0]->GetCount() - 1);
+		int vcount = rop->vertexBuffers[0]->GetCount();
+		int index = mRandom ? index = Math::RandRange(0, vcount - 1) : mIndex;
 
 		d_assert (
 			rop->vertexDeclarations[0].HasElement(eVertexSemantic::POSITION, eVertexType::FLOAT3) &&
@@ -48,7 +54,7 @@ namespace Rad {
 			Float3 p = *((Float3 *)vdata);
 			Float3 n = *((Float3 *)vdata + 1);
 
-			position = mPosition + p;
+			position = mPosition + p * mScale;
 
 			Float3 common(1, 0, 0);
 			if (Math::Equal(common.Dot(n), 0.0f))
@@ -59,10 +65,10 @@ namespace Rad {
 			common = Float3::Cross(common, n);
 
 			_randomDirection(direction, n, common);
-			
-			vdata += index * stride;
 		}
 		rop->vertexBuffers[0]->Unlock();
+
+		mIndex = Min(mIndex + 1, vcount - 1);
 	}
 
 	void PS_EmitterMesh::_randomDirection(Float3 & dir, const Float3 & n, const Float3 & common)

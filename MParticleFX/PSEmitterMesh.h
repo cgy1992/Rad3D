@@ -19,6 +19,11 @@ namespace Rad {
 		DECLARE_PROPERTY(PS_EmitterPoint);
 
 	public:
+		String mFilename;
+		Float3 mScale;
+		bool mRandom;
+
+	public:
 		PS_EmitterMesh();
 		virtual ~PS_EmitterMesh();
 
@@ -40,8 +45,8 @@ namespace Rad {
 			_randomDirection(Float3 & dir, const Float3 & n, const Float3 & common);
 
 	protected:
-		String mFilename;
 		MeshSourcePtr mMesh;
+		int mIndex;
 	};
 
 }
