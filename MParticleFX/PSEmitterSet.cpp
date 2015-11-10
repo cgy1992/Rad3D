@@ -58,7 +58,7 @@ namespace Rad {
 						emitter->SetPosition(p->Position);
 						emitter->SetRotation(p->Rotation);
 
-						emitter->GetParent()->_doEmit(emitter, elapsedTime);
+						emitter->GetParent()->_doEmitModify(emitter, elapsedTime);
 					}
 				}
 

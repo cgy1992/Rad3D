@@ -17,9 +17,31 @@ namespace Rad {
 		DECLARE_RTTI();
 		DECLARE_PROPERTY(PS_Modifier);
 
+	protected:
+		Int2 mUVRect;
+		bool mRandom;
+		bool mLooped;
+		float mInterval;
+		int mParamIndex;
+		int mRandomParamIndex;
+
 	public:
 		PS_ModifierUVAnim();
 		virtual ~PS_ModifierUVAnim();
+
+		virtual void
+			OnPropertyChanged(const Property * p);
+
+		void 
+			SetUVRect(const Int2 & xy);
+		const Int2 &
+			GetUVRect() const { return mUVRect; }
+		RectF
+			GetUVRect(int x, int y) const;
+		RectF
+			GetUVRect(int index) const;
+		int
+			GetUVRectCount() const { return mUVRect.x * mUVRect.y; }
 
 		void
 			SetInterval(float r) { mInterval = r; }
@@ -50,12 +72,11 @@ namespace Rad {
 			Modify(Particle * p, float elapsedTime);
 
 	protected:
-		int mParamIndex;
-		float mInterval;
-		bool mLooped;
+		RectF 
+			RandomUVRect();
 
-		bool mRandom;
-		int mRandomParamIndex;
+	protected:
+		Float2 mUVRectStep;
 	};
 
 
