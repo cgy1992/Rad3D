@@ -22,7 +22,6 @@ LOCAL_C_INCLUDES := \
 
 LOCAL_SRC_FILES := \
 ../../MCore/MAnimationController.cpp \
-../../MCore/MBloom.cpp \
 ../../MCore/MComponent.cpp \
 ../../MCore/MConfigFile.cpp \
 ../../MCore/MCodeTimer.cpp \
@@ -65,15 +64,12 @@ LOCAL_SRC_FILES := \
 ../../MCore/MMemory.cpp \
 ../../MCore/MMemoryPool.cpp \
 ../../MCore/MRenderProcess.cpp \
-../../MCore/MShadow.cpp \
 ../../MCore/MRml.cpp \
 ../../MCore/MRef.cpp \
 ../../MCore/MString.cpp \
 ../../MCore/MThread.cpp \
 ../../MCore/MTimer.cpp \
 ../../MCore/MUString.cpp \
-../../MCore/MEnvironment.cpp \
-../../MCore/MEvParam.cpp \
 ../../MCore/MGrass.cpp \
 ../../MCore/MGrassManager.cpp \
 ../../MCore/MLoadRule.cpp \
@@ -109,7 +105,6 @@ LOCAL_SRC_FILES := \
 ../../MCore/MNodeTracker.cpp \
 ../../MCore/MObb.cpp \
 ../../MCore/MParticleSystem.cpp \
-../../MCore/MPerlin.cpp \
 ../../MCore/MPlane.cpp \
 ../../MCore/MObject.cpp \
 ../../MCore/MShape.cpp \
@@ -126,7 +121,6 @@ LOCAL_SRC_FILES := \
 ../../MCore/PSShader.cpp \
 ../../MCore/PSSource.cpp \
 ../../MCore/MQuat.cpp \
-../../MCore/MRain.cpp \
 ../../MCore/MRay.cpp \
 ../../MCore/MRenderContext.cpp \
 ../../MCore/MRenderHelper.cpp \
@@ -147,10 +141,7 @@ LOCAL_SRC_FILES := \
 ../../MCore/MShaderProvider.cpp \
 ../../MCore/MSimpleCollision.cpp \
 ../../MCore/MSkeleton.cpp \
-../../MCore/MSky.cpp \
-../../MCore/MSnow.cpp \
 ../../MCore/MSphere.cpp \
-../../MCore/MSun.cpp \
 ../../MCore/MTerrain.cpp \
 ../../MCore/MTerrainMesh.cpp \
 ../../MCore/MTexture.cpp \
