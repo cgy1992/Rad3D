@@ -138,8 +138,10 @@ namespace Rad {
 		delete mMeshManager;
 		delete mPrefabManager;
 
-		DeleteRenderContext(mMainRenderContext);
-		d_assert(mRenderContexts.Size() == 0);
+		for (int i = 0; i < mRenderContexts.Size(); ++i)
+		{
+			delete mRenderContexts[i];
+		}
 
 		d_assert (mNodeLinker == NULL);
 	}
