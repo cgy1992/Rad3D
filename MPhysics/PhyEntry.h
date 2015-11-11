@@ -6,7 +6,6 @@
 #pragma once
 
 #include "MCore.h"
-#include "MWorld.h"
 
 #ifdef M_PLATFORM_WIN32
 

@@ -1,6 +1,7 @@
 #include "PhyMesh.h"
 #include "PhyWorld.h"
 #include "PhyInternal.h"
+#include "MMesh.h"
 
 namespace Rad {
 
