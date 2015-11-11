@@ -82,7 +82,7 @@ namespace Rad {
 	{
 		obj->GetMaterial()->maps[eMapType::EXTERN0] = mTexture;
 
-		mFX->GetPass(0)->SetUniform("u_MaskUV", mCurrentUV);
+		mFX->GetPass(0)->SetConst("u_MaskUV", mCurrentUV);
 	}
 
 	void PS_ShaderMask::SetTexture(const String & filename)

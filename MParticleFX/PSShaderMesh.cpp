@@ -21,7 +21,7 @@ namespace Rad {
 		color.b = obj->GetMaterial()->diffuse.b;
 		color.a = obj->_getOpacity();
 
-		mFX->GetPass(0)->SetUniform("u_Color", color);
+		mFX->GetPass(0)->SetConst("u_Color", color);
 	}
 
 }
