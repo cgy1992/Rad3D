@@ -21,6 +21,7 @@ LOCAL_SRC_FILES := \
 	../../Samples/Framework.Android/App.cpp \
 	../../Samples/Framework.Android/DebugInfo.cpp \
 	../../Samples/Framework.Android/Framework.cpp \
+	../../Samples/Demo17_Shadow/MShadow.cpp \
 	../../Samples/Demo17_Shadow/Demo17_Shadow.cpp
 
 include $(BUILD_SHARED_LIBRARY)
