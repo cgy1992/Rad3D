@@ -106,7 +106,7 @@ namespace Rad {
 		tm.z = 0;
 		tm.w = 1;
 
-		mShaderFX->GetPass(0)->SetUniform("u_Transform", tm);
+		mShaderFX->GetPass(0)->SetConst("u_Transform", tm);
 
 		RenderSystem::Instance()->SetRenderState(eFillMode::SOLID, eCullMode::NONE, eDepthMode::NONE, eBlendMode::ALPHA_BLEND, eColorMode::ALL);
 		RenderSystem::Instance()->SetShaderPass(mShaderFX->GetPass(0), false);
