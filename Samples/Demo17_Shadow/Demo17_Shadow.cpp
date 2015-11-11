@@ -31,7 +31,7 @@ public:
 #ifdef M_PLATFORM_WIN32
 		ResourceManager::Instance()->AddArchive(new FilePathArchive("../Core"));
 		ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample"));
-		ResourceManager::Instance()->AddArchive(new FilePathArchive("../Media/particle"));
+		ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample/RenderProcess"));
 #endif
 
 #ifdef M_PLATFORM_ANDROID
@@ -64,7 +64,7 @@ public:
 		gPlane->SetReceiveShadow(true);
 		gPlane->GetSubMesh(0)->GetMaterial()->diffuse = Float3(0.2f, 0.2f, 0.2f);
 
-		gShadow = new Shadow;
+		gShadow = new Shadow(World::Instance()->MainRenderContext(), POST_PROCESS_MASK - 1);
 		gShadow->SetMapSize(512);
 		gShadow->SetDistance(50);
 		gShadow->SetFadeRatio(0.8f);
@@ -72,14 +72,12 @@ public:
 		gShadow->SetColor(Float4(0.5f, 0.5f, 0.5f));
 		gShadow->SetEnable(true);
 
-		World::Instance()->MainRenderContext()->AddProcess(gShadow);
-
 		gLayout = new MGUI::Layout(NULL);
 		gLayout->SetAlign(MGUI::eAlign::STRETCH);
 		gLayout->E_DoubleClick += new cListener1<Demo17_Shadow, const MGUI::ClickEvent *>(this, &Demo17_Shadow::OnDoubleClick);
 
-		//MGUI::ImageBox * imageBox = new MGUI::ImageBox(gLayout);
-		//imageBox->SetSkinAlignedEx(gShadow->GetContext()->GetRenderTarget()->GetTexture());
+		//MGUI::ImageBox * imageBox = new MGUI::ImageBox(NULL, gLayout);
+		//imageBox->SetSkinAlignedEx(gShadow->GetShadowContext()->GetRenderTarget()->GetTexture());
 	}
 
 	void OnDoubleClick(const MGUI::ClickEvent * e)

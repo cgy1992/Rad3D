@@ -51,9 +51,6 @@ public:
 
 		mEngine = new Engine;
 
-		// enable Environment manage fog
-		Environment::Instance()->SetFlags(eEnvFlag::FOG);
-		
 		// enable multi-thread load
 		World::Instance()->EnableMultiThreadLoad();
 

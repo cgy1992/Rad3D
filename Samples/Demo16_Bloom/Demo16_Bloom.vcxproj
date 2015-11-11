@@ -94,11 +94,13 @@
     <ClCompile Include="..\Framework\stdafx.cpp" />
     <ClCompile Include="..\Framework\WinMain.cpp" />
     <ClCompile Include="Demo16_Bloom.cpp" />
+    <ClCompile Include="MBloom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Framework\App.h" />
     <ClInclude Include="..\Framework\DebugInfo.h" />
     <ClInclude Include="..\Framework\stdafx.h" />
+    <ClInclude Include="MBloom.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

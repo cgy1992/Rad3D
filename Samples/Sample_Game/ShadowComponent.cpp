@@ -122,7 +122,7 @@ void ShadowComponent::OnRender()
 {
 	if (mVisible)
 	{
-		mShaderFX->GetPass(0)->SetUniform("u_Opacity", Float4(1, 0, 0));
+		mShaderFX->GetPass(0)->SetConst("u_Opacity", Float4(1, 0, 0));
 
 		RenderSystem::Instance()->SetWorldTM(Mat4::Identity);
 		RenderSystem::Instance()->Render(mShaderFX, &mRenderOp);

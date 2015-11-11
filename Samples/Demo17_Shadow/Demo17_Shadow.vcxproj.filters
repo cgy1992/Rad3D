@@ -14,6 +14,7 @@
     <ClCompile Include="..\Framework\WinMain.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
+    <ClCompile Include="MShadow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Framework">
@@ -30,5 +31,6 @@
     <ClInclude Include="..\Framework\stdafx.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="MShadow.h" />
   </ItemGroup>
 </Project>

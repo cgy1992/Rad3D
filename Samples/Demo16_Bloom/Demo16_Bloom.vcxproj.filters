@@ -19,6 +19,7 @@
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="Demo16_Bloom.cpp" />
+    <ClCompile Include="MBloom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Framework\App.h">
@@ -30,5 +31,6 @@
     <ClInclude Include="..\Framework\stdafx.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="MBloom.h" />
   </ItemGroup>
 </Project>

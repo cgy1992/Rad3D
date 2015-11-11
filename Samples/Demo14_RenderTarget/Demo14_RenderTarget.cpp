@@ -60,10 +60,10 @@ public:
 		// Setup RenderTarget
 		const int RT_SIZE = 256;
 
-		RenderTargetPtr pRenderTarget = HWBufferManager::Instance()->NewRenderTarget(RT_SIZE, RT_SIZE, eSizeAlign::NONE, ePixelFormat::R8G8B8);
-		DepthBufferPtr pDepthBuffer = HWBufferManager::Instance()->NewDepthBuffer(RT_SIZE, RT_SIZE, eSizeAlign::NONE, ePixelFormat::D24);
+		RenderTargetPtr pRenderTarget = HWBufferManager::Instance()->NewRenderTarget(RT_SIZE, RT_SIZE, ePixelFormat::R8G8B8);
+		DepthBufferPtr pDepthBuffer = HWBufferManager::Instance()->NewDepthBuffer(RT_SIZE, RT_SIZE, ePixelFormat::D24);
 
-		gRenderContext = World::Instance()->NewRenderContext(8, "RenderTarget1");
+		gRenderContext = World::Instance()->NewRenderContext(8, 0, "RenderTarget1");
 		gRenderContext->SetColorClear(eClearMode::ALL, Float4(0.3f, 0.3f, 0.3f));
 		gRenderContext->SetRenderTarget(pRenderTarget);
 		gRenderContext->SetDepthBuffer(pDepthBuffer);
@@ -114,7 +114,7 @@ public:
 	{
 		delete gMesh;
 		delete gRTCamera;
-		World::Instance()->DeleteRenderContext(4);
+		World::Instance()->DeleteRenderContext(gRenderContext);
 	}
 
 	virtual void OnPause()

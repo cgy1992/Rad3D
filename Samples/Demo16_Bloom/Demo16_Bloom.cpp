@@ -30,6 +30,7 @@ public:
 #ifdef M_PLATFORM_WIN32
 		ResourceManager::Instance()->AddArchive(new FilePathArchive("../Core"));
 		ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample"));
+		ResourceManager::Instance()->AddArchive(new FilePathArchive("../Sample/RenderProcess"));
 #endif
 
 #ifdef M_PLATFORM_ANDROID
@@ -57,16 +58,19 @@ public:
 
 		LookMesh(gMesh);
 
-		RenderTargetPtr pRenderTarget = HWBufferManager::Instance()->NewRenderTarget(0, 0, eSizeAlign::FULL, ePixelFormat::R8G8B8);
-		DepthBufferPtr pDepthBuffer = HWBufferManager::Instance()->NewDepthBuffer(0, 0, eSizeAlign::FULL, ePixelFormat::D24);
+		Viewport vp = World::Instance()->MainRenderContext()->GetViewport();
+
+		RenderTargetPtr pRenderTarget = HWBufferManager::Instance()->NewRenderTarget(vp.w, vp.h, ePixelFormat::R8G8B8);
+		DepthBufferPtr pDepthBuffer = HWBufferManager::Instance()->NewDepthBuffer(vp.w, vp.h, ePixelFormat::D24);
 
 		World::Instance()->MainRenderContext()->SetRenderTarget(pRenderTarget);
 		World::Instance()->MainRenderContext()->SetDepthBuffer(pDepthBuffer);
 
-		gBloom = new Bloom;
-		gBloom->SetEnable(true);
 
-		World::Instance()->MainRenderContext()->AddProcess(gBloom);
+		RenderContext * context = World::Instance()->MainRenderContext();
+
+		gBloom = new Bloom(context, POST_PROCESS_MASK + 1);
+		gBloom->SetEnable(true);
 
 		gLayout = new MGUI::Layout(NULL);
 		gLayout->SetAlign(MGUI::eAlign::STRETCH);
@@ -86,6 +90,7 @@ public:
 	{
 		delete gMesh;
 		delete gLayout;
+		delete gBloom;
 	}
 
 	virtual void OnPause()
