@@ -531,7 +531,7 @@ void Gizmo::_renderMove()
 		else
 			colorData = Float4(1, 0, 0, 1);
 
-		mTech->GetPass(0)->SetUniform("u_Color", colorData);
+		mTech->GetPass(0)->SetConst("u_Color", colorData);
 
 		render->SetWorldTM(matWorld);
 		render->Render(mTech, mRender_Move);
@@ -548,7 +548,7 @@ void Gizmo::_renderMove()
 		else
 			colorData = Float4(0, 1, 0, 1);
 
-		mTech->GetPass(0)->SetUniform("u_Color", colorData);
+		mTech->GetPass(0)->SetConst("u_Color", colorData);
 
 		render->SetWorldTM(matWorld);
 		render->Render(mTech, mRender_Move);
@@ -565,7 +565,7 @@ void Gizmo::_renderMove()
 		else
 			colorData = Float4(0, 0, 1, 1);
 
-		mTech->GetPass(0)->SetUniform("u_Color", colorData);
+		mTech->GetPass(0)->SetConst("u_Color", colorData);
 
 		render->SetWorldTM(matWorld);
 		render->Render(mTech, mRender_Move);
@@ -600,7 +600,7 @@ void Gizmo::_renderRotate()
 		else
 			colorData = Float4(1, 0, 0, 1);
 
-		mTech->GetPass(0)->SetUniform("u_Color", colorData);
+		mTech->GetPass(0)->SetConst("u_Color", colorData);
 
 		render->SetWorldTM(matWorld);
 		render->Render(mTech, mRender_Rotate);
@@ -617,7 +617,7 @@ void Gizmo::_renderRotate()
 		else
 			colorData = Float4(0, 1, 0, 1);
 
-		mTech->GetPass(0)->SetUniform("u_Color", colorData);
+		mTech->GetPass(0)->SetConst("u_Color", colorData);
 
 		render->SetWorldTM(matWorld);
 		render->Render(mTech, mRender_Rotate);
@@ -634,7 +634,7 @@ void Gizmo::_renderRotate()
 		else
 			colorData = Float4(0, 0, 1, 1);
 
-		mTech->GetPass(0)->SetUniform("u_Color", colorData);
+		mTech->GetPass(0)->SetConst("u_Color", colorData);
 
 		render->SetWorldTM(matWorld);
 		render->Render(mTech, mRender_Rotate);
@@ -669,7 +669,7 @@ void Gizmo::_renderScale()
 		else
 			colorData = Float4(1, 0, 0, 1);
 
-		mTech->GetPass(0)->SetUniform("u_Color", colorData);
+		mTech->GetPass(0)->SetConst("u_Color", colorData);
 
 		render->SetWorldTM(matWorld);
 		render->Render(mTech, mRender_Scale);
@@ -686,7 +686,7 @@ void Gizmo::_renderScale()
 		else
 			colorData = Float4(0, 1, 0, 1);
 
-		mTech->GetPass(0)->SetUniform("u_Color", colorData);
+		mTech->GetPass(0)->SetConst("u_Color", colorData);
 
 		render->SetWorldTM(matWorld);
 		render->Render(mTech, mRender_Scale);
@@ -703,7 +703,7 @@ void Gizmo::_renderScale()
 		else
 			colorData = Float4(0, 0, 1, 1);
 
-		mTech->GetPass(0)->SetUniform("u_Color", colorData);
+		mTech->GetPass(0)->SetConst("u_Color", colorData);
 
 		render->SetWorldTM(matWorld);
 		render->Render(mTech, mRender_Scale);

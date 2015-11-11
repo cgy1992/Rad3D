@@ -55,7 +55,7 @@ void EnvironmentModule::Hide()
 
 void EnvironmentModule::OnSceneAfterLoad()
 {
-	mPropertyGrid->Attach(Environment::Instance()->GetEvKeyFrame());
+	mPropertyGrid->Attach(World::Instance()->GetEvInfo());
 }
 
 void EnvironmentModule::OnPick(const MGUI::MouseEvent * e)

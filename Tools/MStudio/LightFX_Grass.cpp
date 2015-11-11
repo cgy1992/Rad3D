@@ -1,6 +1,5 @@
 #include "LightFX_Grass.h"
 #include "LightFX_World.h"
-#include "MEnvironment.h"
 
 namespace Rad {
 
@@ -58,7 +57,7 @@ namespace Rad {
 
 			for (int j = 0; j < array_count(gs.mVertex); ++j)
 			{
-				gs.mLightingColor[j] += Environment::Instance()->GetEvParam()->MainLightAmbient;
+				gs.mLightingColor[j] += FX_World::Instance()->GetSetting()->Ambient;
 			}
 		}
 	}

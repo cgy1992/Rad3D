@@ -1,7 +1,6 @@
 #include "LightFX_Mesh.h"
 #include "LightFX_World.h"
 #include "LightFX_Rasterizer.h"
-#include "MEnvironment.h"
 #include "MUtil.h"
 
 namespace Rad {
@@ -273,7 +272,7 @@ namespace Rad {
 
 				color /= (float)msaa * msaa;
 
-				mLightingMap[j * mLightingMapWidth + i] = color + Environment::Instance()->GetEvParam()->MainLightAmbient;
+				mLightingMap[j * mLightingMapWidth + i] = color + FX_World::Instance()->GetSetting()->Ambient;
 			}
 		}
 	}
@@ -325,7 +324,7 @@ namespace Rad {
 
 		for (int i = 0; i < mVertexBuffer.Size(); ++i)
 		{
-			mLightingColor[i] = Environment::Instance()->GetEvParam()->MainLightAmbient;
+			mLightingColor[i] = FX_World::Instance()->GetSetting()->Ambient;
 		}
 
 		for (int i = 0; i < FX_World::Instance()->GetLightCount(); ++i)

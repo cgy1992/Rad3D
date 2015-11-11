@@ -180,8 +180,8 @@ void GrassModule::OnRender()
 
 			if (x0 <= x1 && z0 <= z1)
 			{
-				mShaderFX_Brush->GetPass(0)->SetUniform("u_MinInvSize", Float4(aabb.minimum.x, aabb.minimum.z, 1 / mBrushSize, 1 / mBrushSize));
-				mShaderFX_Brush->GetPass(0)->SetUniform("u_XZTransform", mesh->GetXZTransform());
+				mShaderFX_Brush->GetPass(0)->SetConst("u_MinInvSize", Float4(aabb.minimum.x, aabb.minimum.z, 1 / mBrushSize, 1 / mBrushSize));
+				mShaderFX_Brush->GetPass(0)->SetConst("u_XZTransform", mesh->GetXZTransform());
 
 				RenderSystem::Instance()->SetTexture(0, MGUI::Helper::Instance()->GetWhiteTexture().c_ptr());
 				RenderSystem::Instance()->Render(mShaderFX_Brush, mesh->GetRenderOp());

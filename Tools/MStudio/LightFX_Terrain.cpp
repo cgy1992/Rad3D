@@ -1,6 +1,5 @@
 #include "LightFX_Terrain.h"
 #include "LightFX_World.h"
-#include "MEnvironment.h"
 #include "MUtil.h"
 
 namespace Rad {
@@ -227,7 +226,7 @@ namespace Rad {
 
 				lightingColor /= (float)msaa * msaa;
 
-				mLightingMap[index++] = lightingColor + Environment::Instance()->GetEvParam()->MainLightAmbient;
+				mLightingMap[index++] = lightingColor + FX_World::Instance()->GetSetting()->Ambient;
 			}
 
 			FX_World::Instance()->SetProgress((int)(j / (float)zMapSize * 100.0f));

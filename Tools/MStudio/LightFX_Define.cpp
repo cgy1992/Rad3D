@@ -23,7 +23,8 @@ namespace Rad {
 	DF_ENUM_END()
 
 	DF_PROPERTY_BEGIN(FX_Setting)
-		DF_PROPERTY_ENUM(FX_Setting, MSAA, "MSAA", "MSAA", FX_MSAA)
+		DF_PROPERTY_ENUM(FX_Setting, MSAA, "", "MSAA", FX_MSAA)
+		DF_PROPERTY_EX(FX_Setting, Ambient, "", "Ambient", "PT_Color3", PT_Float3)
 
 		DF_PROPERTY(FX_Setting, AOEnable, "AO", "Enable", PT_Bool)
 		DF_PROPERTY_ENUM(FX_Setting, AOLevel, "AO", "Level", FX_AOLevel)

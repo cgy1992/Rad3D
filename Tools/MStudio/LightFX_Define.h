@@ -134,6 +134,8 @@ namespace Rad {
 
 		int MSAA;
 
+		Float3 Ambient;
+
 		bool AOEnable;
 		int AOLevel;
 		float AORadius;
@@ -152,6 +154,8 @@ namespace Rad {
 		{
 			NumThread = 4;
 			MSAA = FX_MSAA::NONE;
+
+			Ambient = Float3(0.5f, 0.5f, 0.5f);
 
 			AOEnable = false;
 			AOLevel = FX_AOLevel::HIGH;

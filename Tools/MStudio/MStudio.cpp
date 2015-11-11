@@ -31,8 +31,6 @@ public:
 
 	virtual void OnInit()
 	{
-		Environment::Instance()->SetFlags(eEnvFlag::ALL);
-
 		MGUI::LookFeelManager::Instance()->Load("Editor.lookfeel");
 		MGUI::FontManager::Instance()->Load("Editor.font");
 
