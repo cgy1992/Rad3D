@@ -25,6 +25,9 @@ namespace Rad {
 	
 	void NullRenderSystem::OnResize(int w, int h)
 	{
+		mRenderHelper->OnResize();
+
+		E_Resize(w, h);
 	}
 
 	void NullRenderSystem::Begin()

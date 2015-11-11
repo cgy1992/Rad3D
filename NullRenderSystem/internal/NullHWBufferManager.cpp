@@ -83,27 +83,30 @@ namespace Rad {
 		return p;
 	}
 
-	RenderTargetPtr NullHWBufferManager::NewRenderTarget(int width, int height, eSizeAlign align, ePixelFormat format)
+	RenderTargetPtr NullHWBufferManager::NewRenderTarget(int width, int height, ePixelFormat format)
 	{
-		return NewMultiRenderTarget(width, height, align, &format, 1);
+		return NewMultiRenderTarget(width, height, &format, 1);
 	}
 
-	RenderTargetPtr NullHWBufferManager::NewMultiRenderTarget(int width, int height, eSizeAlign align, ePixelFormat * formats, int count)
+	RenderTargetPtr NullHWBufferManager::NewMultiRenderTarget(int width, int height, ePixelFormat * formats, int count)
 	{
 		NullRenderTarget * p = new NullRenderTarget;
 		p->mWidth = width;
 		p->mHeight = height;
-		p->mAlign = align;
+
+		for (int i = 0; i < count; ++i)
+		{
+			p->mFormats[i] = formats[i];
+		}
 
 		return p;
 	}
 
-	DepthBufferPtr NullHWBufferManager::NewDepthBuffer(int width, int height, eSizeAlign align, ePixelFormat format)
+	DepthBufferPtr NullHWBufferManager::NewDepthBuffer(int width, int height, ePixelFormat format)
 	{
 		NullDepthBuffer * p = new NullDepthBuffer;
 		p->mWidth = width;
 		p->mHeight = height;
-		p->mAlign = align;
 		p->mFormat = format;
 
 		return p;

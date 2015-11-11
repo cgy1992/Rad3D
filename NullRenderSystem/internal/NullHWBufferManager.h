@@ -36,12 +36,12 @@ namespace Rad {
 			RebuildAllTexture() {}
 
 		virtual RenderTargetPtr 
-			NewRenderTarget(int width, int height, eSizeAlign align, ePixelFormat format);
+			NewRenderTarget(int width, int height, ePixelFormat format);
 		virtual RenderTargetPtr
-			NewMultiRenderTarget(int width, int height, eSizeAlign align, ePixelFormat * formats, int count);
+			NewMultiRenderTarget(int width, int height, ePixelFormat * formats, int count);
 
 		virtual DepthBufferPtr
-			NewDepthBuffer(int width, int height, eSizeAlign align, ePixelFormat format);
+			NewDepthBuffer(int width, int height, ePixelFormat format);
 	};
 
 }
