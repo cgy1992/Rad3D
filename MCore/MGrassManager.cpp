@@ -11,6 +11,11 @@ namespace Rad {
 	{
 		mShaderFX = ShaderFXManager::Instance()->Load("Grass", "Shader/MGrass.mfx");
 
+		mWaveDir = Float2(1, 0);
+		mWaveSpeed = 0.8f;
+		mWaveStrength = 0.15f;
+		mVisibleRadius = 2500;
+
 		memset(&mWaveGrid[0], 0, sizeof(mWaveGrid));
 		mWaveGridX = mWaveGridZ = 0;
 		mWaveLastX = mWaveLastZ = 0;
@@ -193,5 +198,13 @@ namespace Rad {
 
 		return NULL;
 	}
+
+	void GrassManager::SetWaveParam(const Float2 & dir, float speed, float strength)
+	{
+		mWaveDir = dir;
+		mWaveSpeed = speed;
+		mWaveStrength = strength;
+	}
+
 }
 

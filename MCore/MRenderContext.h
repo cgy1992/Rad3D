@@ -25,24 +25,25 @@ namespace Rad {
 		tEvent1<RenderContext *> E_RenderEnd;
 
 	public:
-		RenderContext(int Id, const String & name);
+		RenderContext(int id, int order, const String & name);
 		~RenderContext();
 
 		int
-			GetId();
-
+			GetId() { return mId; }
+		int
+			GetOrder() { return mOrder; }
 		const String & 
-			GetName();
+			GetName() { return mName ;}
 		
 		void 
 			SetEnable(bool enable);
 		bool 
-			IsEnable();
+			IsEnable() { return mEnable; }
 
 		void
 			SetMatchId(bool matched);
 		bool
-			IsMatchId();
+			IsMatchId() { return mMatchId; }
 
 		void 
 			SetColorClear(eClearMode mode, const Float4 & color, float depth = 1, int stencil = 0);
@@ -89,14 +90,19 @@ namespace Rad {
 			ReadPixelData(void * data, int x, int y, int w, int h);
 
 		void
-			AddProcess(RenderProcess * p);
+			_addProcess(RenderProcess * p);
 		void
-			RemoveProcess(RenderProcess * p);
+			_removeProcess(RenderProcess * p);
 		RenderProcess *
 			GetProcess(const RTTI_INFO * rtti);
+		RenderProcess *
+			GetProcess(int i) { return mProcesses[i]; }
+		int
+			GetProcessCount() { return mProcesses.Size(); }
 
 	protected:
 		int mId;
+		int mOrder;
 		String mName;
 		bool mEnable;
 		bool mMatchId;

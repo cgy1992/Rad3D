@@ -6,7 +6,6 @@ namespace Rad {
 	RenderTarget::RenderTarget()
 	{
 		mWidth = mHeight = 0;
-		mAlign = eSizeAlign::NONE;
 
 		for (int i = 0; i < MAX_HW_RENDERTARGET; ++i)
 		{

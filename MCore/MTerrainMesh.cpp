@@ -380,8 +380,8 @@ namespace Rad {
 
 		UVScale *= 1.0f / UNIT_METRES;
 
-		mCurrentShaderFX->GetPass(0)->SetUniform("u_UVScale", UVScale);
-		mCurrentShaderFX->GetPass(0)->SetUniform("u_XZTransform", GetXZTransform());
+		mCurrentShaderFX->GetPass(0)->SetConst("u_UVScale", UVScale);
+		mCurrentShaderFX->GetPass(0)->SetConst("u_XZTransform", GetXZTransform());
 	}
 
 	void TerrainMesh::_postRendering()

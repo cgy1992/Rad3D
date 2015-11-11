@@ -51,10 +51,12 @@ namespace Rad {
 
 		void
 			Reset();
-		void
+		int
 			_doEmit(PS_Emitter * emitter, float elapsedTime);
 		void
 			_doModify(PS_Modifier * modifier, float elapsedTime);
+		void
+			_doEmitModify(PS_Emitter * emitter, float elapsedTime);
 
 		const Aabb &
 			GetBound() { return mBound; }

@@ -29,52 +29,6 @@ namespace Rad {
 		return -1;
 	}
 
-	void ShaderPass::SetUniform(int index, const Float4 * data, int count)
-	{
-		FX_Uniform * uniform = mUniforms[index];
-
-		if (uniform->data)
-		{
-			memcpy(uniform->data, data, count * 16);
-		}
-	}
-
-	bool ShaderPass::SetUniform(const FixedString32 & name, const Float4 * data, int count)
-	{
-		for (int i = 0; i < mUniforms.Size(); ++i)
-		{
-			FX_Uniform * uniform = mUniforms[i];
-
-			if (uniform->Name == name)
-			{
-				SetUniform(i, data, count);
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	void ShaderPass::SetUniform(int index, const Float4 & data)
-	{
-		SetUniform(index, &data, 1);
-	}
-
-	bool ShaderPass::SetUniform(const FixedString32 & name, const Float4 & data)
-	{
-		return SetUniform(name, &data, 1);
-	}
-
-	void ShaderPass::SetUniform(int index, const Mat4 & data)
-	{
-		SetUniform(index, (const Float4 *)&data, 4);
-	}
-
-	bool ShaderPass::SetUniform(const FixedString32 & name, const Mat4 & data)
-	{
-		return SetUniform(name, (const Float4 *)&data, 4);
-	}
-
 	int ShaderPass::GetUniformCount() const
 	{
 		return mUniforms.Size();
@@ -93,6 +47,70 @@ namespace Rad {
 	FX_Sampler * ShaderPass::GetSampler(int index)
 	{
 		return mSamplers[index];
+	}
+
+	FX_Uniform * ShaderPass::GetUniform(const FixedString32 & name)
+	{
+		for (int i = 0; i < mUniforms.Size(); ++i)
+		{
+			FX_Uniform * uniform = mUniforms[i];
+
+			if (uniform->Name == name)
+				return uniform;
+		}
+
+		return false;
+	}
+
+	void ShaderPass::SetConst(int index, const Float4 * data, int count)
+	{
+		mUniforms[index]->SetConst(data, count);
+	}
+
+	bool ShaderPass::SetConst(const FixedString32 & name, const Float4 * data, int count)
+	{
+		FX_Uniform * u = GetUniform(name);
+		if (u != NULL)
+		{
+			u->SetConst(data, count);
+			return true;
+		}
+
+		return false;
+	}
+
+	void ShaderPass::SetConst(int index, const Float4 & data)
+	{
+		mUniforms[index]->SetConst(data);
+	}
+
+	bool ShaderPass::SetConst(const FixedString32 & name, const Float4 & data)
+	{
+		FX_Uniform * u = GetUniform(name);
+		if (u != NULL)
+		{
+			u->SetConst(data);
+			return true;
+		}
+
+		return false;
+	}
+
+	void ShaderPass::SetConst(int index, const Mat4 & data)
+	{
+		mUniforms[index]->SetConst(data);
+	}
+
+	bool ShaderPass::SetConst(const FixedString32 & name, const Mat4 & data)
+	{
+		FX_Uniform * u = GetUniform(name);
+		if (u != NULL)
+		{
+			u->SetConst(data);
+			return true;
+		}
+
+		return false;
 	}
 
 	//

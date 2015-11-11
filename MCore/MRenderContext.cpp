@@ -3,8 +3,9 @@
 
 namespace Rad {
 
-	RenderContext::RenderContext(int id, const String & name)
+	RenderContext::RenderContext(int id, int order, const String & name)
 		: mId(id)
+		, mOrder(order)
 		, mName(name)
 		, mEnable(true)
 		, mMatchId(false)
@@ -18,20 +19,10 @@ namespace Rad {
 
 	RenderContext::~RenderContext()
 	{
-		for (int i = 0; i < mProcesses.Size(); ++i)
+		while (mProcesses.Size())
 		{
-			delete mProcesses[i];
+			delete mProcesses.Back();
 		}
-	}
-
-	int RenderContext::GetId()
-	{
-		return mId;
-	}
-
-	const String & RenderContext::GetName()
-	{
-		return mName;
 	}
 
 	void RenderContext::SetEnable(bool enable)
@@ -39,19 +30,9 @@ namespace Rad {
 		mEnable = enable;
 	}
 
-	bool RenderContext::IsEnable()
-	{
-		return mEnable;
-	}
-
 	void RenderContext::SetMatchId(bool matched)
 	{
 		mMatchId = matched;
-	}
-
-	bool RenderContext::IsMatchId()
-	{
-		return mMatchId;
 	}
 
 	void RenderContext::SetColorClear(eClearMode mode, const Float4 & color, float depth, int stencil)
@@ -95,6 +76,11 @@ namespace Rad {
 	void RenderContext::SetViewport(const Viewport & vp)
 	{
 		mViewport = vp;
+
+		for (int i = 0; i < mProcesses.Size(); ++i)
+		{
+			mProcesses[i]->OnResize();
+		}
 	}
 
 	Viewport RenderContext::GetViewport()
@@ -153,19 +139,9 @@ namespace Rad {
 	{
 		if (mCamera != NULL)
 		{
-			int w, h;
-			if (mRenderTarget != NULL)
-			{
-				w = mRenderTarget->GetWidth();
-				h = mRenderTarget->GetHeight();
-			}
-			else
-			{
-				w = RenderSystem::Instance()->GetConfig().width;
-				h = RenderSystem::Instance()->GetConfig().height;
-			}
+			Viewport vp = GetViewport();
 
-			mCamera->SetAspect((float)w / h);
+			mCamera->SetAspect((float)vp.w / vp.h);
 		}
 
 		if (mVisibleCuller != NULL && mCamera != NULL)
@@ -219,29 +195,30 @@ namespace Rad {
 		RenderSystem::Instance()->ReadPixelData(data, x, y, w, h);
 	}
 
-	void RenderContext::AddProcess(RenderProcess * p)
+	void RenderContext::_addProcess(RenderProcess * p)
 	{
-		for (int i = 0; i < mProcesses.Size(); ++i)
+		d_assert (p->GetContext() == this);
+
+		int i = 0;
+		for (i = 0; i < mProcesses.Size(); ++i)
 		{
 			if (mProcesses[i]->GetOrder() >= p->GetOrder())
-			{
-				mProcesses.Insert(i, p);
-				return ;
-			}
+				break;
 		}
 
-		mProcesses.PushBack(p);
+		mProcesses.Insert(i, p);
 	}
 
-	void RenderContext::RemoveProcess(RenderProcess * p)
+	void RenderContext::_removeProcess(RenderProcess * p)
 	{
+		d_assert (p->GetContext() == this);
+
 		for (int i = 0; i < mProcesses.Size(); ++i)
 		{
 			if (mProcesses[i] == p)
 			{
-				delete p;
 				mProcesses.Erase(i);
-				return ;
+				break;
 			}
 		}
 	}

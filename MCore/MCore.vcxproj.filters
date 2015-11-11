@@ -22,9 +22,6 @@
     <Filter Include="Core\RadC">
       <UniqueIdentifier>{7fa26e74-d266-43fd-9d50-486558638469}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\2. RenderSystem\RenderProcess">
-      <UniqueIdentifier>{258f248b-0eb4-48a1-87cc-1cb17662ebf8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\2. RenderSystem\ShaderFX">
       <UniqueIdentifier>{9ef70177-1608-4b16-86db-c52a24a246c5}</UniqueIdentifier>
     </Filter>
@@ -79,9 +76,6 @@
     <Filter Include="Engine\5. World\Entity\Mesh">
       <UniqueIdentifier>{d798c091-933c-4272-95d9-497f9ecf0c2c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\5. World\Entity\ParticleSystem">
-      <UniqueIdentifier>{aa2d4346-2498-4678-9d5c-5a3615aa020d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\5. World\Entity\Component">
       <UniqueIdentifier>{5853def5-3305-4dfc-849b-0f043ed7a978}</UniqueIdentifier>
     </Filter>
@@ -100,9 +94,6 @@
     <Filter Include="Engine\5. World\NavPath">
       <UniqueIdentifier>{08b2f00c-6c1b-4020-a019-258f7f1e587d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\5. World\Animation">
-      <UniqueIdentifier>{16b6ca7e-7558-4d2a-9c91-3191475bed4a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\5. World\Grass">
       <UniqueIdentifier>{f168cb13-e059-4c90-bce4-bc991bccd894}</UniqueIdentifier>
     </Filter>
@@ -111,6 +102,33 @@
     </Filter>
     <Filter Include="Engine\2. RenderSystem\HWBuffer">
       <UniqueIdentifier>{8de2dccf-fd66-4908-a8fc-631be1b00372}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\5. World\Entity\Animation">
+      <UniqueIdentifier>{16b6ca7e-7558-4d2a-9c91-3191475bed4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\5. World\Entity\ParticleSystem">
+      <UniqueIdentifier>{aa2d4346-2498-4678-9d5c-5a3615aa020d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\5. World\Environment\Effect">
+      <UniqueIdentifier>{5f7ea740-1c02-486c-aa23-cd0f84d05eee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\5. World\Environment\Geomtry">
+      <UniqueIdentifier>{4c3d3665-c88f-4a06-9c8b-52f4d65c9c10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\5. World\Environment\DeferredRenderer">
+      <UniqueIdentifier>{7c338393-9756-4840-8bed-5ecdaa9a6dcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\5. World\Environment\Geomtry\Rain">
+      <UniqueIdentifier>{f74f7bd6-3e7f-438b-b10f-aa6fb613b203}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\5. World\Environment\Geomtry\Sky">
+      <UniqueIdentifier>{f4a2d8e3-b973-4fae-adef-107a4c06d454}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\5. World\Environment\Geomtry\Sun">
+      <UniqueIdentifier>{47409489-8366-41c0-b994-fe3ff1a78567}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\5. World\Environment\Geomtry\Snow">
+      <UniqueIdentifier>{a35b4143-649e-45a8-b101-a9fc1f3a738c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -228,9 +246,6 @@
     <ClInclude Include="MObb.h">
       <Filter>Core\Math</Filter>
     </ClInclude>
-    <ClInclude Include="MPerlin.h">
-      <Filter>Core\Math</Filter>
-    </ClInclude>
     <ClInclude Include="MPlane.h">
       <Filter>Core\Math</Filter>
     </ClInclude>
@@ -289,7 +304,7 @@
       <Filter>Engine\4. InputSystem</Filter>
     </ClInclude>
     <ClInclude Include="MAnimation.h">
-      <Filter>Engine\5. World\Animation</Filter>
+      <Filter>Engine\5. World\Entity\Animation</Filter>
     </ClInclude>
     <ClInclude Include="MColMesh.h">
       <Filter>Engine\5. World\Entity\Mesh</Filter>
@@ -344,24 +359,6 @@
     </ClInclude>
     <ClInclude Include="Platform\win32\MPlatform.h">
       <Filter>Core\Platform</Filter>
-    </ClInclude>
-    <ClInclude Include="MEnvironment.h">
-      <Filter>Engine\5. World\Environment</Filter>
-    </ClInclude>
-    <ClInclude Include="MEvParam.h">
-      <Filter>Engine\5. World\Environment</Filter>
-    </ClInclude>
-    <ClInclude Include="MRain.h">
-      <Filter>Engine\5. World\Environment</Filter>
-    </ClInclude>
-    <ClInclude Include="MSky.h">
-      <Filter>Engine\5. World\Environment</Filter>
-    </ClInclude>
-    <ClInclude Include="MSnow.h">
-      <Filter>Engine\5. World\Environment</Filter>
-    </ClInclude>
-    <ClInclude Include="MSun.h">
-      <Filter>Engine\5. World\Environment</Filter>
     </ClInclude>
     <ClInclude Include="MSimpleCollision.h">
       <Filter>Engine\5. World\Entity\Component</Filter>
@@ -429,14 +426,8 @@
     <ClInclude Include="MDepthBuffer.h">
       <Filter>Engine\2. RenderSystem\HWBuffer</Filter>
     </ClInclude>
-    <ClInclude Include="MBloom.h">
-      <Filter>Engine\2. RenderSystem\RenderProcess</Filter>
-    </ClInclude>
     <ClInclude Include="MRenderProcess.h">
       <Filter>Engine\2. RenderSystem\RenderContext</Filter>
-    </ClInclude>
-    <ClInclude Include="MShadow.h">
-      <Filter>Engine\2. RenderSystem\RenderProcess</Filter>
     </ClInclude>
     <ClInclude Include="MMat3.h">
       <Filter>Core\Math</Filter>
@@ -517,13 +508,13 @@
       <Filter>Engine\5. World\Entity\Water</Filter>
     </ClInclude>
     <ClInclude Include="MSkeletonAnimation.h">
-      <Filter>Engine\5. World\Animation</Filter>
+      <Filter>Engine\5. World\Entity\Animation</Filter>
     </ClInclude>
     <ClInclude Include="MAnimationController.h">
-      <Filter>Engine\5. World\Animation</Filter>
+      <Filter>Engine\5. World\Entity\Animation</Filter>
     </ClInclude>
     <ClInclude Include="MVertexAnimation.h">
-      <Filter>Engine\5. World\Animation</Filter>
+      <Filter>Engine\5. World\Entity\Animation</Filter>
     </ClInclude>
     <ClInclude Include="MISerializer.h">
       <Filter>Core\Serializer</Filter>
@@ -577,10 +568,10 @@
       <Filter>Engine\5. World\Entity\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="MAnimationSerializer.h">
-      <Filter>Engine\5. World\Animation</Filter>
+      <Filter>Engine\5. World\Entity\Animation</Filter>
     </ClInclude>
     <ClInclude Include="MKeyController.h">
-      <Filter>Engine\5. World\Animation</Filter>
+      <Filter>Engine\5. World\Entity\Animation</Filter>
     </ClInclude>
     <ClInclude Include="MWorldSection.h">
       <Filter>Engine\5. World</Filter>
@@ -819,9 +810,6 @@
     <ClCompile Include="MObb.cpp">
       <Filter>Core\Math</Filter>
     </ClCompile>
-    <ClCompile Include="MPerlin.cpp">
-      <Filter>Core\Math</Filter>
-    </ClCompile>
     <ClCompile Include="MPlane.cpp">
       <Filter>Core\Math</Filter>
     </ClCompile>
@@ -868,7 +856,7 @@
       <Filter>Engine\3. Audio &amp; Video</Filter>
     </ClCompile>
     <ClCompile Include="MAnimation.cpp">
-      <Filter>Engine\5. World\Animation</Filter>
+      <Filter>Engine\5. World\Entity\Animation</Filter>
     </ClCompile>
     <ClCompile Include="MMesh.cpp">
       <Filter>Engine\5. World\Entity\Mesh</Filter>
@@ -921,24 +909,6 @@
     <ClCompile Include="Platform\win32\MPlatform.cpp">
       <Filter>Core\Platform</Filter>
     </ClCompile>
-    <ClCompile Include="MEnvironment.cpp">
-      <Filter>Engine\5. World\Environment</Filter>
-    </ClCompile>
-    <ClCompile Include="MEvParam.cpp">
-      <Filter>Engine\5. World\Environment</Filter>
-    </ClCompile>
-    <ClCompile Include="MRain.cpp">
-      <Filter>Engine\5. World\Environment</Filter>
-    </ClCompile>
-    <ClCompile Include="MSky.cpp">
-      <Filter>Engine\5. World\Environment</Filter>
-    </ClCompile>
-    <ClCompile Include="MSnow.cpp">
-      <Filter>Engine\5. World\Environment</Filter>
-    </ClCompile>
-    <ClCompile Include="MSun.cpp">
-      <Filter>Engine\5. World\Environment</Filter>
-    </ClCompile>
     <ClCompile Include="MSimpleCollision.cpp">
       <Filter>Engine\5. World\Entity\Component</Filter>
     </ClCompile>
@@ -978,14 +948,8 @@
     <ClCompile Include="MDepthBuffer.cpp">
       <Filter>Engine\2. RenderSystem\HWBuffer</Filter>
     </ClCompile>
-    <ClCompile Include="MBloom.cpp">
-      <Filter>Engine\2. RenderSystem\RenderProcess</Filter>
-    </ClCompile>
     <ClCompile Include="MRenderProcess.cpp">
       <Filter>Engine\2. RenderSystem\RenderContext</Filter>
-    </ClCompile>
-    <ClCompile Include="MShadow.cpp">
-      <Filter>Engine\2. RenderSystem\RenderProcess</Filter>
     </ClCompile>
     <ClCompile Include="MMat3.cpp">
       <Filter>Core\Math</Filter>
@@ -1057,13 +1021,13 @@
       <Filter>Engine\5. World\Entity\Water</Filter>
     </ClCompile>
     <ClCompile Include="MSkeletonAnimation.cpp">
-      <Filter>Engine\5. World\Animation</Filter>
+      <Filter>Engine\5. World\Entity\Animation</Filter>
     </ClCompile>
     <ClCompile Include="MAnimationController.cpp">
-      <Filter>Engine\5. World\Animation</Filter>
+      <Filter>Engine\5. World\Entity\Animation</Filter>
     </ClCompile>
     <ClCompile Include="MVertexAnimation.cpp">
-      <Filter>Engine\5. World\Animation</Filter>
+      <Filter>Engine\5. World\Entity\Animation</Filter>
     </ClCompile>
     <ClCompile Include="MISerializer.cpp">
       <Filter>Core\Serializer</Filter>
@@ -1087,10 +1051,10 @@
       <Filter>Engine\5. World\Entity\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="MAnimationSerializer.cpp">
-      <Filter>Engine\5. World\Animation</Filter>
+      <Filter>Engine\5. World\Entity\Animation</Filter>
     </ClCompile>
     <ClCompile Include="MKeyController.cpp">
-      <Filter>Engine\5. World\Animation</Filter>
+      <Filter>Engine\5. World\Entity\Animation</Filter>
     </ClCompile>
     <ClCompile Include="MWorldSection.cpp">
       <Filter>Engine\5. World</Filter>

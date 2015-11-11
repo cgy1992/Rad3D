@@ -45,6 +45,47 @@ namespace Rad {
 			, data(NULL)
 		{
 		}
+
+		inline void SetConst(float x, float y, float z, float w)
+		{
+			SetConst(Float4(x, y, z, w));
+		}
+
+		inline void SetConst(const Float4 & v)
+		{
+			d_assert (Type == eSPType::FLOAT4);
+
+			if (data)
+			{
+				*(Float4 *)data = v;
+			}
+		}
+
+		inline void SetConst(const Mat4 & v)
+		{
+			d_assert (Type == eSPType::MATRIX4);
+
+			if (data)
+			{
+				*(Mat4 *)data = v;
+			}
+		}
+
+		inline void SetConst(const Float4 * v, int count)
+		{
+			d_assert (Type == eSPType::FLOAT4 && Count > count);
+
+			if (data)
+			{
+				byte * dest = (byte *)data;
+				for (int i = 0; i < count; ++i)
+				{
+					*(Float4 *)data = *v++;
+
+					dest += 16;
+				}
+			}
+		}
 	};
 
 	struct M_ENTRY FX_Sampler
@@ -73,37 +114,38 @@ namespace Rad {
 		ShaderPass();
 		virtual ~ShaderPass();
 
+		virtual ShaderPass * 
+			Clone() = 0;
+
 		RenderState * 
 			GetRenderState();
 
 		int 
 			GetUniformIndex(const FixedString32 & name);
-
-		void 
-			SetUniform(int index, const Float4 * data, int count);
-		bool 
-			SetUniform(const FixedString32 & name, const Float4 * data, int count);
-		void 
-			SetUniform(int index, const Float4 & data);
-		bool 
-			SetUniform(const FixedString32 & name, const Float4 & data);
-		void 
-			SetUniform(int index, const Mat4 & data);
-		bool 
-			SetUniform(const FixedString32 & name, const Mat4 & data);
-
 		int 
 			GetUniformCount() const;
 		FX_Uniform * 
 			GetUniform(int index);
+		FX_Uniform *
+			GetUniform(const FixedString32 & name);
 
 		int 
 			GetSamplerCount() const;
 		FX_Sampler * 
 			GetSampler(int index);
 
-		virtual ShaderPass * 
-			Clone() = 0;
+		void 
+			SetConst(int index, const Float4 * data, int count);
+		bool 
+			SetConst(const FixedString32 & name, const Float4 * data, int count);
+		void 
+			SetConst(int index, const Float4 & data);
+		bool 
+			SetConst(const FixedString32 & name, const Float4 & data);
+		void 
+			SetConst(int index, const Mat4 & data);
+		bool 
+			SetConst(const FixedString32 & name, const Mat4 & data);
 
 	protected:
 		RenderState mRenderState;

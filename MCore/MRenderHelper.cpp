@@ -154,7 +154,7 @@ namespace Rad {
 
 		RenderSystem::Instance()->SetWorldTM(form);
 
-		mDebugShaderFX->GetPass(0)->SetUniform("u_Color", color);
+		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
 		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
 		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, vb, NULL, ePrimType::LINE_LIST, 1);
 	}
@@ -163,7 +163,7 @@ namespace Rad {
 	{
 		RenderSystem::Instance()->SetWorldTM(form);
 
-		mDebugShaderFX->GetPass(0)->SetUniform("u_Color", color);
+		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
 		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
 		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, points, NULL, strip ? ePrimType::LINE_STRIP : ePrimType::LINE_LIST, count);
 	}
@@ -172,7 +172,7 @@ namespace Rad {
 	{
 		RenderSystem::Instance()->SetWorldTM(form);
 
-		mDebugShaderFX->GetPass(0)->SetUniform("u_Color", color);
+		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
 		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
 		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, points, NULL, ePrimType::TRIANGLE_LIST, count);
 	}
@@ -212,7 +212,7 @@ namespace Rad {
 
 		RenderSystem::Instance()->SetWorldTM(form);
 
-		mDebugShaderFX->GetPass(0)->SetUniform("u_Color", color);
+		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
 		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
 		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, vb, ib, ePrimType::TRIANGLE_LIST, 12);
 	}
@@ -232,7 +232,7 @@ namespace Rad {
 
 		RenderSystem::Instance()->SetWorldTM(form);
 
-		mDebugShaderFX->GetPass(0)->SetUniform("u_Color", color);
+		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
 		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
 		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, vb, ib, ePrimType::TRIANGLE_LIST, 2);
 	}
@@ -279,7 +279,7 @@ namespace Rad {
 
 		RenderSystem::Instance()->SetWorldTM(form);
 
-		mDebugShaderFX->GetPass(0)->SetUniform("u_Color", color);
+		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
 		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
 		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, vb.c_ptr(), ib.c_ptr(), ePrimType::LINE_LIST, ib.Size() / 2);
 	}
@@ -348,7 +348,7 @@ namespace Rad {
 
 		RenderSystem::Instance()->SetWorldTM(form);
 
-		mDebugShaderFX->GetPass(0)->SetUniform("u_Color", color);
+		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
 		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
 		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, vb, ib, ePrimType::TRIANGLE_LIST, iPrimCount);
 	}
@@ -357,7 +357,7 @@ namespace Rad {
 	{
 		RenderSystem::Instance()->SetWorldTM(form);
 
-		mDebugShaderFX->GetPass(0)->SetUniform("u_Color", color);
+		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
 		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
 		RenderSystem::Instance()->Render(rop);
 	}

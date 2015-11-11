@@ -7,7 +7,6 @@ namespace Rad {
 		: mWidth(0)
 		, mHeight(0)
 		, mFormat(ePixelFormat::UNKNOWN)
-		, mAlign(eSizeAlign::NONE)
 	{
 	}
 

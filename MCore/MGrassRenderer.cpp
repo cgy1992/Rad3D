@@ -88,10 +88,10 @@ namespace Rad {
 
 		Float3 camPos = World::Instance()->MainCamera()->GetWorldPosition();
 		Float3 camDir = World::Instance()->MainCamera()->GetWorldRotation().GetDirVector();
-		float radius = Environment::Instance()->GetEvParam()->GrassVisibleRadius;
-		Float3 windDir = Environment::Instance()->GetEvParam()->WindDir;
-		float windSpeed = Environment::Instance()->GetEvParam()->GrassWaveSpeed;
-		float windStrength = Environment::Instance()->GetEvParam()->GrassWaveStrength;
+		float radius = GrassManager::Instance()->GetVisibleRadius();
+		Float2 windDir = GrassManager::Instance()->GetWaveDir();
+		float windSpeed = GrassManager::Instance()->GetWaveSpeed();
+		float windStrength = GrassManager::Instance()->GetWaveStrength();
 
 		windSpeed *= Root::Instance()->GetTime();
 		windDir *= windStrength;
@@ -138,16 +138,16 @@ namespace Rad {
 				w *= gi->Size;
 
 				v[WAVE_VERTEX_INDEX[0]].position.x += w * windDir.x;
-				v[WAVE_VERTEX_INDEX[0]].position.z += w * windDir.z;
+				v[WAVE_VERTEX_INDEX[0]].position.z += w * windDir.y;
 
 				v[WAVE_VERTEX_INDEX[1]].position.x += w * windDir.x;
-				v[WAVE_VERTEX_INDEX[1]].position.z += w * windDir.z;
+				v[WAVE_VERTEX_INDEX[1]].position.z += w * windDir.y;
 
 				v[WAVE_VERTEX_INDEX[2]].position.x += w * windDir.x;
-				v[WAVE_VERTEX_INDEX[2]].position.z += w * windDir.z;
+				v[WAVE_VERTEX_INDEX[2]].position.z += w * windDir.y;
 
 				v[WAVE_VERTEX_INDEX[3]].position.x += w * windDir.x;
-				v[WAVE_VERTEX_INDEX[3]].position.z += w * windDir.z;
+				v[WAVE_VERTEX_INDEX[3]].position.z += w * windDir.y;
 
 				v += K_VERTEX_COUNT_PER_GRASS;
 			}

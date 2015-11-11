@@ -21,7 +21,9 @@ namespace Rad {
 		, mOrthoEnable(false)
 		, mOrthoWidth(300.0f)
 		, mOrthoHeight(200.0f)
-	{;
+		, mMirrorPlane(0, 1, 0, 0)
+		, mMirrorEnable(false)
+	{
 	}
 
 	Camera::~Camera()
@@ -71,6 +73,12 @@ namespace Rad {
 		mOrthoWidth = width;
 		mOrthoHeight = height;
 		mOrthoEnable = enable;
+	}
+
+	void Camera::SetMirrorPlane(const Plane & plane)
+	{
+		mMirrorPlane = plane;
+		mMirrorEnable = true;
 	}
 
 	const Mat4 & Camera::GetViewMatrix()
@@ -161,6 +169,11 @@ namespace Rad {
 		mMatViewProj = mMatView * mMatProj;
 
 		_updateFrustum();
+
+		if (mMirrorEnable)
+		{
+			_makeClipProjMatrix();
+		}
 	}
 
 	Camera::Visibility Camera::GetVisibility(const Float3 & point)
@@ -183,42 +196,85 @@ namespace Rad {
 	{
 		_updateTM();
 
-		const Plane * planes = (const Plane *)&mFrustum;
-		Float3 center = box.GetCenter();
-		Float3 half = box.GetHalfSize();
-		bool full = true;
-
-		for (int i = 0; i < 6; ++i)
+		if (!mMirrorEnable)
 		{
-			Plane::Side side = planes[i].AtSide(center, half);
+			const Plane * planes = (const Plane *)&mFrustum;
+			Float3 center = box.GetCenter();
+			Float3 half = box.GetHalfSize();
+			bool full = true;
 
-			if (side == Plane::NEGATIVE)
-				return VB_NONE;
-			else if (side == Plane::BOTH)
-				full = FALSE;
+			for (int i = 0; i < 6; ++i)
+			{
+				Plane::Side side = planes[i].AtSide(center, half);
+
+				if (side == Plane::NEGATIVE)
+					return VB_NONE;
+				else if (side == Plane::BOTH)
+					full = FALSE;
+			}
+
+			return full ? VB_FULL : VB_PARTIAL;
 		}
+		else
+		{
+			Float3 points[8];
+			box.GetPoints(points);
 
-		return full ? VB_FULL : VB_PARTIAL;
+			for (int i = 0; i < 8;  ++i)
+			{
+				points[i].Transform(mMatViewProj);
+			}
+
+			int vb_count = 0;
+			for (int i = 0; i < 8; ++i)
+			{
+				const Float3 & pt = points[i];
+
+				if (pt.x > -1 && pt.x < 1 &&
+					pt.y > -1 && pt.y < 1 &&
+					pt.z > 0 && pt.z < 1)
+					++vb_count;
+			}
+
+			if (vb_count == 0)
+				return VB_NONE;
+			else if (vb_count == 8)
+				return VB_FULL;
+			else
+				return VB_PARTIAL;
+		}
 	}
 
 	Camera::Visibility Camera::GetVisibility(const Sphere & sph)
 	{
 		_updateTM();
 
-		const Plane * planes = (const Plane *)&mFrustum;
-		bool full = true;
-
-		for (int i = 0; i < 6; ++i)
+		if (!mMirrorEnable)
 		{
-			Plane::Side side = planes[i].AtSide(sph);
+			const Plane * planes = (const Plane *)&mFrustum;
+			bool full = true;
 
-			if (side == Plane::NEGATIVE)
-				return VB_NONE;
-			else if (side == Plane::BOTH)
-				full = FALSE;
+			for (int i = 0; i < 6; ++i)
+			{
+				Plane::Side side = planes[i].AtSide(sph);
+
+				if (side == Plane::NEGATIVE)
+					return VB_NONE;
+				else if (side == Plane::BOTH)
+					full = FALSE;
+			}
+
+			return full ? VB_FULL : VB_PARTIAL;
 		}
+		else
+		{
+			Aabb abb;
 
-		return full ? VB_FULL : VB_PARTIAL;
+			abb.minimum = sph.center - Float3(sph.radius, sph.radius, sph.radius);
+			abb.maximum = sph.center + Float3(sph.radius, sph.radius, sph.radius);
+
+			return GetVisibility(abb);
+		}
 	}
 
 	bool Camera::InVisible(const Aabb & box)
@@ -318,6 +374,51 @@ namespace Rad {
 
 		for (int i = 0; i < 8; ++i)
 			mWorldCorner[i] = mCorner[i] * matInvView;
+	}
+
+	void Camera::_makeClipProjMatrix()
+	{
+		Plane clip_plane = mMirrorPlane;
+		Mat4 matClipProj;
+		Mat4 WorldToProjection;
+		WorldToProjection = mMatView * mMatProj;
+
+		WorldToProjection.Inverse();
+		WorldToProjection.Transpose();
+
+		Float4 clipPlane(clip_plane.normal.x, clip_plane.normal.y, clip_plane.normal.z, clip_plane.d);
+		Float4 projClipPlane;
+		// transform clip plane into projection space
+		projClipPlane = clipPlane * WorldToProjection;
+
+		matClipProj = Mat4::Identity;
+
+		if (projClipPlane.w == 0)  // or less than a really small value
+		{
+			// plane is perpendicular to the near plane
+			return;
+		}
+
+		float k_len = projClipPlane.x * projClipPlane.x + projClipPlane.y * projClipPlane.y +
+			projClipPlane.z * projClipPlane.z + projClipPlane.w * projClipPlane.w;
+
+		k_len = Math::Sqrt(k_len);
+		projClipPlane.x /= k_len; projClipPlane.y /= k_len;
+		projClipPlane.z /= k_len; projClipPlane.w /= k_len;
+
+		if (projClipPlane.w > 0)
+		{
+			projClipPlane = -projClipPlane;
+			projClipPlane.w += 1;
+		}
+		// put projection space clip plane in Z column
+		matClipProj[0][2] = projClipPlane.x;
+		matClipProj[1][2] = projClipPlane.y;
+		matClipProj[2][2] = projClipPlane.z;
+		matClipProj[3][2] = projClipPlane.w;
+
+		// multiply into projection matrix
+		mMatProj = mMatProj * matClipProj;
 	}
 
 }

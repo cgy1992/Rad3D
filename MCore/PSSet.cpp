@@ -169,7 +169,7 @@ namespace Rad {
 		}
 	}
 
-	void PS_Set::_doEmit(PS_Emitter * emitter, float elapsedTime)
+	int PS_Set::_doEmit(PS_Emitter * emitter, float elapsedTime)
 	{
 		int count = emitter->Emit(elapsedTime);
 
@@ -213,6 +213,8 @@ namespace Rad {
 
 			mParticles.PushBack(p);
 		}
+
+		return count;
 	}
 
 	void PS_Set::_doModify(PS_Modifier * modifier, float elapsedTime)
@@ -220,6 +222,27 @@ namespace Rad {
 		for (int j = 0; j < mParticles.Size(); ++j)
 		{
 			modifier->Modify(mParticles[j], elapsedTime);
+		}
+	}
+
+	void PS_Set::_doEmitModify(PS_Emitter * emitter, float elapsedTime)
+	{
+		int start = mParticles.Size();
+
+		if (_doEmit(emitter, elapsedTime) > 0)
+		{
+			for (int i = 0; i < mModifiers.Size(); ++i)
+			{
+				PS_Modifier * modifier = mModifiers[i];
+
+				if (!modifier->IsEnable())
+					continue;
+
+				for (int j = start; j < mParticles.Size(); ++j)
+				{
+					modifier->Modify(mParticles[j], elapsedTime);
+				}
+			}
 		}
 	}
 

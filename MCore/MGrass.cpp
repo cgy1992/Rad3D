@@ -6,7 +6,7 @@ namespace Rad {
 
 	void GrassTemplate::InitVertex()
 	{
-		int index1 = 0, index2 = 0;
+		int index = 0;
 		for (int j = 0; j < K_GRASS_ROTATION_SEED; ++j)
 		{
 			int gi = j * K_VERTEX_COUNT_PER_GRASS;
@@ -16,16 +16,40 @@ namespace Rad {
 			form.MakeRotationY(rads);
 
 			//
-			R_POSITION[index1++] = Float3(-0.5f, 0, 0) * form;
-			R_POSITION[index1++] = Float3(+0.5f, 0, 0) * form;
-			R_POSITION[index1++] = Float3(-0.5f, 1, 0) * form;
-			R_POSITION[index1++] = Float3(+0.5f, 1, 0) * form;
+			R_POSITION[index++] = Float3(-0.5f, 0, 0) * form;
+			R_POSITION[index++] = Float3(+0.5f, 0, 0) * form;
+			R_POSITION[index++] = Float3(-0.5f, 1, 0) * form;
+			R_POSITION[index++] = Float3(+0.5f, 1, 0) * form;
 
 			//
-			R_POSITION[index1++] = Float3(0, 0, -0.5f) * form;
-			R_POSITION[index1++] = Float3(0, 0, +0.5f) * form;
-			R_POSITION[index1++] = Float3(0, 1, -0.5f) * form;
-			R_POSITION[index1++] = Float3(0, 1, +0.5f) * form;
+			R_POSITION[index++] = Float3(0, 0, -0.5f) * form;
+			R_POSITION[index++] = Float3(0, 0, +0.5f) * form;
+			R_POSITION[index++] = Float3(0, 1, -0.5f) * form;
+			R_POSITION[index++] = Float3(0, 1, +0.5f) * form;
+		}
+	}
+
+	void GrassTemplate::InitVertexEx(float rads[K_GRASS_ROTATION_SEED])
+	{
+		int index = 0;
+		for (int j = 0; j < K_GRASS_ROTATION_SEED; ++j)
+		{
+			int gi = j * K_VERTEX_COUNT_PER_GRASS;
+
+			Mat4 form;
+			form.MakeRotationY(rads[j]);
+
+			//
+			R_POSITION[index++] = Float3(-0.5f, 0, 0) * form;
+			R_POSITION[index++] = Float3(+0.5f, 0, 0) * form;
+			R_POSITION[index++] = Float3(-0.5f, 1, 0) * form;
+			R_POSITION[index++] = Float3(+0.5f, 1, 0) * form;
+
+			//
+			R_POSITION[index++] = Float3(0, 0, -0.5f) * form;
+			R_POSITION[index++] = Float3(0, 0, +0.5f) * form;
+			R_POSITION[index++] = Float3(0, 1, -0.5f) * form;
+			R_POSITION[index++] = Float3(0, 1, +0.5f) * form;
 		}
 	}
 

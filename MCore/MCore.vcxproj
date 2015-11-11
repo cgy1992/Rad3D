@@ -160,7 +160,6 @@
     <ClInclude Include="MAudioOGG.h" />
     <ClInclude Include="MAudioWAV.h" />
     <ClInclude Include="MBitField.h" />
-    <ClInclude Include="MBloom.h" />
     <ClInclude Include="MComponent.h" />
     <ClInclude Include="MConfigFile.h" />
     <ClInclude Include="MDataStreamPool.h" />
@@ -212,14 +211,11 @@
     <ClInclude Include="MMat3.h" />
     <ClInclude Include="MMath.h" />
     <ClInclude Include="MRenderProcess.h" />
-    <ClInclude Include="MShadow.h" />
     <ClInclude Include="MRml.h" />
     <ClInclude Include="MSet.h" />
     <ClInclude Include="MThread.h" />
     <ClInclude Include="MUserData.h" />
     <ClInclude Include="MUString.h" />
-    <ClInclude Include="MEnvironment.h" />
-    <ClInclude Include="MEvParam.h" />
     <ClInclude Include="MGrass.h" />
     <ClInclude Include="MGrassManager.h" />
     <ClInclude Include="MLoadRule.h" />
@@ -270,7 +266,6 @@
     <ClInclude Include="MWorldSection.h" />
     <ClInclude Include="PSParticle.h" />
     <ClInclude Include="MParticleSystem.h" />
-    <ClInclude Include="MPerlin.h" />
     <ClInclude Include="MPlane.h" />
     <ClInclude Include="MObject.h" />
     <ClInclude Include="MProperty.h" />
@@ -281,7 +276,6 @@
     <ClInclude Include="PSShader.h" />
     <ClInclude Include="PSSource.h" />
     <ClInclude Include="MQuat.h" />
-    <ClInclude Include="MRain.h" />
     <ClInclude Include="MRay.h" />
     <ClInclude Include="MRect.h" />
     <ClInclude Include="MRenderContext.h" />
@@ -327,10 +321,7 @@
     <ClInclude Include="MShaderProvider.h" />
     <ClInclude Include="MSimpleCollision.h" />
     <ClInclude Include="MSkeleton.h" />
-    <ClInclude Include="MSky.h" />
-    <ClInclude Include="MSnow.h" />
     <ClInclude Include="MSphere.h" />
-    <ClInclude Include="MSun.h" />
     <ClInclude Include="MTerrain.h" />
     <ClInclude Include="MTerrainMesh.h" />
     <ClInclude Include="MTexture.h" />
@@ -369,7 +360,6 @@
     <ClCompile Include="MAudio.cpp" />
     <ClCompile Include="MAudioOGG.cpp" />
     <ClCompile Include="MAudioWAV.cpp" />
-    <ClCompile Include="MBloom.cpp" />
     <ClCompile Include="MComponent.cpp" />
     <ClCompile Include="MConfigFile.cpp" />
     <ClCompile Include="MDataStreamPool.cpp" />
@@ -412,15 +402,12 @@
     <ClCompile Include="MMemory.cpp" />
     <ClCompile Include="MMemoryPool.cpp" />
     <ClCompile Include="MRenderProcess.cpp" />
-    <ClCompile Include="MShadow.cpp" />
     <ClCompile Include="MRml.cpp" />
     <ClCompile Include="MRef.cpp" />
     <ClCompile Include="MString.cpp" />
     <ClCompile Include="MThread.cpp" />
     <ClCompile Include="MTimer.cpp" />
     <ClCompile Include="MUString.cpp" />
-    <ClCompile Include="MEnvironment.cpp" />
-    <ClCompile Include="MEvParam.cpp" />
     <ClCompile Include="MGrass.cpp" />
     <ClCompile Include="MGrassManager.cpp" />
     <ClCompile Include="MLoadRule.cpp" />
@@ -449,7 +436,6 @@
     <ClCompile Include="MNodeTracker.cpp" />
     <ClCompile Include="MObb.cpp" />
     <ClCompile Include="MParticleSystem.cpp" />
-    <ClCompile Include="MPerlin.cpp" />
     <ClCompile Include="MPlane.cpp" />
     <ClCompile Include="MObject.cpp" />
     <ClCompile Include="MShape.cpp" />
@@ -470,7 +456,6 @@
     <ClCompile Include="PSShader.cpp" />
     <ClCompile Include="PSSource.cpp" />
     <ClCompile Include="MQuat.cpp" />
-    <ClCompile Include="MRain.cpp" />
     <ClCompile Include="MRay.cpp" />
     <ClCompile Include="MRenderContext.cpp" />
     <ClCompile Include="MRenderHelper.cpp" />
@@ -491,10 +476,7 @@
     <ClCompile Include="MShaderProvider.cpp" />
     <ClCompile Include="MSimpleCollision.cpp" />
     <ClCompile Include="MSkeleton.cpp" />
-    <ClCompile Include="MSky.cpp" />
-    <ClCompile Include="MSnow.cpp" />
     <ClCompile Include="MSphere.cpp" />
-    <ClCompile Include="MSun.cpp" />
     <ClCompile Include="MTerrain.cpp" />
     <ClCompile Include="MTerrainMesh.cpp" />
     <ClCompile Include="MTexture.cpp" />

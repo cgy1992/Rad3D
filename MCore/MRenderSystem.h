@@ -17,7 +17,7 @@
 #include "MRenderHelper.h"
 
 namespace Rad {
-	
+
 	class M_ENTRY RenderSystem : public Singleton<RenderSystem>
 	{
 	public:
@@ -90,6 +90,11 @@ namespace Rad {
 			Begin() = 0;
 		virtual void 
 			End() = 0;
+
+		virtual void
+			BeginEvent(const char * name) {}
+		virtual void
+			EndEvent() {}
 
 		virtual void 
 			SetViewport(const Viewport & vp) = 0;
@@ -222,4 +227,27 @@ namespace Rad {
 		bool mColorWriteEnable;
 	};
 
+#if defined(M_DEBUG) || defined(M_PROFILE)
+	#define RENDER_EVENT_BEGIN(name) RenderSystem::Instance()->BeginEvent(name)
+	#define RENDER_EVENT_END() RenderSystem::Instance()->EndEvent()
+
+	struct __render_event_entry
+	{
+		__render_event_entry(const char * name)
+		{
+			RENDER_EVENT_BEGIN(name);
+		}
+
+		~__render_event_entry()
+		{
+			RENDER_EVENT_END();
+		}
+	};
+
+	#define RENDER_EVENT_ENTRY(name) __render_event_entry(name)
+
+#else
+	#define RENDER_EVENT_BEGIN(evname)
+	#define RENDER_EVENT_END()
+#endif
 }

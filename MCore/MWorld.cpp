@@ -13,6 +13,51 @@ namespace Rad {
 		DF_PROPERTY(World::Info, SectionZoneDepth, "", "", PT_Int)
 	DF_PROPERTY_END()
 
+	DF_PROPERTY_BEGIN(World::EvInfo)
+		DF_PROPERTY(World::EvInfo, MainLightRotation, "MainLight", "Rotation", PT_Float3)
+		DF_PROPERTY_EX(World::EvInfo, MainLightAmbient, "MainLight", "Ambient", "PT_Color3", PT_Float3)
+		DF_PROPERTY_EX(World::EvInfo, MainLightDiffuse, "MainLight", "Diffuse", "PT_Color3", PT_Float3)
+		DF_PROPERTY_EX(World::EvInfo, MainLightSpecular, "MainLight", "Specular", "PT_Color3", PT_Float3)
+		DF_PROPERTY(World::EvInfo, MainLightStrength, "MainLight", "Strength", PT_Float)
+
+		DF_PROPERTY(World::EvInfo, FogStart, "Fog", "Start", PT_Float)
+		DF_PROPERTY(World::EvInfo, FogEnd, "Fog", "End", PT_Float)
+		DF_PROPERTY_EX(World::EvInfo, FogColor, "Fog", "Color", "PT_Color3", PT_Float3)
+
+		DF_PROPERTY(World::EvInfo, GrassWaveDir, "Grass", "WaveDir", PT_Float2)
+		DF_PROPERTY(World::EvInfo, GrassWaveSpeed, "Grass", "WaveSpeed", PT_Float)
+		DF_PROPERTY(World::EvInfo, GrassWaveStrength, "Grass", "WaveStrength", PT_Float)
+		DF_PROPERTY(World::EvInfo, GrassVisibleRadius, "Grass", "VisibleRadius", PT_Float)
+	DF_PROPERTY_END();
+
+	World::EvInfo::EvInfo()
+	{
+		Reset();
+	}
+
+	void World::EvInfo::Reset()
+	{
+		MainLightRotation = Float3(45.0f, -45.0f, 0);
+		MainLightAmbient = Float3(0.5f, 0.5f, 0.5f);
+		MainLightDiffuse = Float3(1.0f, 1.0f, 1.0f);
+		MainLightSpecular = Float3(0.0f, 0.0f, 0.0f);
+		MainLightStrength = 1;
+
+		FogStart = 50 * UNIT_METRES;
+		FogEnd = 200 * UNIT_METRES;
+		FogColor = Float3(1.0f, 1.0f, 1.0f);
+
+		GrassWaveDir = Float2(1, 0);
+		GrassWaveSpeed = 0.8f;
+		GrassWaveStrength = 0.15f;
+		GrassVisibleRadius = 2500;
+	}
+
+	void World::EvInfo::OnPropertyChanged(const Property * p)
+	{
+		World::Instance()->_updateEvInfo();
+	}
+
 	ImplementSingleton(World);
 
 	World::World()
@@ -23,10 +68,6 @@ namespace Rad {
 		mLoadRule = new LoadRuleStandard;
 
 		mCurrentRenderContext = NULL;
-		for (int i = 0; i < MAX_RENDER_CONTEXT; ++i)
-		{
-			mRenderContexts[i] = NULL;
-		}
 
 		mPSManager = new PS_Manager;
 		mMeshManager = new MeshManager;
@@ -36,15 +77,14 @@ namespace Rad {
 		mMainCamera = new Camera;
 		mMainLight = new Light(eLightType::DIRECTION);
 		mTerrain = new Terrain;
-		mEnvironment = new Environment;
 		mGrassManager = new GrassManager;
 		mNavData = new NavData;
 
-		RenderContext * pMainContext = NewRenderContext(MAIN_RENDER_CONTEXT_ID, "MainRenderContext");
-		pMainContext->SetCamera(mMainCamera);
-		pMainContext->SetVisibleCuller(new VisibleCullerStandard);
-		pMainContext->SetShaderProvider(new ShaderProviderStandard);
-		pMainContext->SetRenderPipeline(new RenderPipelineStandard);
+		mMainRenderContext = NewRenderContext(MAIN_RENDER_CONTEXT_ID, MAIN_RENDER_CONTEXT_ORDER, "Main");
+		mMainRenderContext->SetCamera(mMainCamera);
+		mMainRenderContext->SetVisibleCuller(new VisibleCullerStandard);
+		mMainRenderContext->SetShaderProvider(new ShaderProviderStandard);
+		mMainRenderContext->SetRenderPipeline(new RenderPipelineStandard);
 
 		mInfo.SectionSize = Float3(128, 64, 128);
 		mInfo.SectionZoneTile = Int3(4, 1, 4);
@@ -87,14 +127,8 @@ namespace Rad {
 
 		SetLoadRule(NULL);
 
-		for (int i = 0; i < mRenderContexts.Size(); ++i)
-		{
-			delete mRenderContexts[i];
-		}
-
 		delete mNavData;
 		delete mGrassManager;
-		delete mEnvironment;
 		delete mTerrain;
 		delete mMainLight;
 		delete mMainCamera;
@@ -103,6 +137,9 @@ namespace Rad {
 		delete mPSManager;
 		delete mMeshManager;
 		delete mPrefabManager;
+
+		DeleteRenderContext(mMainRenderContext);
+		d_assert(mRenderContexts.Size() == 0);
 
 		d_assert (mNodeLinker == NULL);
 	}
@@ -132,8 +169,6 @@ namespace Rad {
 	void World::Load(const String & filename)
 	{
 		Unload();
-
-		mFilename = filename;
 
 		String basename = FileHelper::RemoveExternName(filename);
 
@@ -182,8 +217,21 @@ namespace Rad {
 			d_log ("X: Load world setting '%s' failed.", filename.c_str());
 		}
 
+		mEvInfo.Reset();
+		stream = ResourceManager::Instance()->OpenResource(basename + ".evi");
+		if (stream != NULL)
+		{
+			rml_doc rdoc;
+			rdoc.open(stream);
+
+			mEvInfo.Serialize(&rdoc, false);
+		}
+
+		mFilename = filename;
+
+		_updateEvInfo();
+
 		mTerrain->Load(basename + ".terrain");
-		mEnvironment->Load(basename + ".environment");
 		mNavData->Load(basename + ".path");
 
 		if (!IsMultiThreadLoad())
@@ -225,12 +273,30 @@ namespace Rad {
 			}
 		}
 
+		rml_doc rdoc;
+		mEvInfo.Serialize(&rdoc, true);
+		rdoc.save_file(basename + ".evi");
+
 		mTerrain->Save(basename + ".terrain");
 		mNavData->Save(basename + ".path");
 
-		Environment::Instance()->Save(basename + ".environment");
-
 		E_Save();
+	}
+
+	void World::_updateEvInfo()
+	{
+		if (mFilename != "")
+		{
+			MainLight()->SetRotationEx(mEvInfo.MainLightRotation);
+			MainLight()->SetAmbient(mEvInfo.MainLightAmbient);
+			MainLight()->SetDiffuse(mEvInfo.MainLightDiffuse);
+			MainLight()->SetSpecular(mEvInfo.MainLightSpecular);
+
+			RenderSystem::Instance()->SetFog(mEvInfo.FogColor, mEvInfo.FogStart, mEvInfo.FogEnd);
+
+			GrassManager::Instance()->SetWaveParam(mEvInfo.GrassWaveDir, mEvInfo.GrassWaveSpeed, mEvInfo.GrassWaveStrength);
+			GrassManager::Instance()->SetVisibleRadius(mEvInfo.GrassVisibleRadius);
+		}
 	}
 
 	WorldSection * World::GetSection(const Float3 & position)
@@ -457,24 +523,36 @@ namespace Rad {
 		}
 	}
 
-	RenderContext * World::NewRenderContext(int id, const String & name)
+	RenderContext * World::NewRenderContext(int id, int order, const String & name)
 	{
-		d_assert (mRenderContexts[id] == NULL);
+		int i = 0;
+		for (i = 0; i < mRenderContexts.Size(); ++i)
+		{
+			if (order < mRenderContexts[i]->GetOrder())
+				break;
+		}
 
-		mRenderContexts[id] = new RenderContext(id, name);
+		RenderContext * context = new RenderContext(id, order, name);
 
-		return mRenderContexts[id];
+		mRenderContexts.Insert(i, context);
+
+		return context;
 	}
 
-	void World::DeleteRenderContext(int id)
+	void World::DeleteRenderContext(RenderContext * context)
 	{
-		d_assert (id != MAIN_RENDER_CONTEXT_ID);
-
-		if (mRenderContexts[id] != NULL)
+		for (int i = 0; i < mRenderContexts.Size(); ++i)
 		{
-			delete mRenderContexts[id];
-			mRenderContexts[id] = 0;
+			if (mRenderContexts[i] == context)
+			{
+				delete mRenderContexts[i];
+				mRenderContexts.Erase(i);
+
+				return ;
+			}
 		}
+
+		d_assert (0);
 	}
 
 	void World::BeginRenderContext(RenderContext * context)
@@ -504,8 +582,6 @@ namespace Rad {
 		if (mResourceLoaderMT)
 			mResourceLoaderMT->Update();
 
-		mEnvironment->Update(elapsedTime);
-
 		if (mSections != NULL)
 			_updateSections(elapsedTime);
 
@@ -522,11 +598,11 @@ namespace Rad {
 
 		E_RenderingBegin();
 
-		for (int i = 0; i < MAX_RENDER_CONTEXT; ++i)
+		for (int i = 0; i < mRenderContexts.Size(); ++i)
 		{
 			BeginRenderContext(mRenderContexts[i]);
 
-			if (mCurrentRenderContext != NULL && mCurrentRenderContext->IsEnable())
+			if (mCurrentRenderContext->IsEnable())
 			{
 				mCurrentRenderContext->DoRender(mFrameId);
 

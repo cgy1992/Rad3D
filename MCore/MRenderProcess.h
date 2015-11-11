@@ -13,16 +13,21 @@ namespace Rad {
 
 #define POST_PROCESS_MASK 10000
 
+	class RenderContext;
+
 	class M_ENTRY RenderProcess : public IObject
 	{
 		DECLARE_RTTI();
 
 	public:
-		RenderProcess(bool post);
+		RenderProcess(RenderContext * context, int order);
 		virtual ~RenderProcess();
 
 		bool
 			IsPost() { return mOrder >= POST_PROCESS_MASK; }
+
+		RenderContext *
+			GetContext() { return mContext; }
 
 		void
 			SetEnable(bool enable);
@@ -39,9 +44,12 @@ namespace Rad {
 		virtual void
 			OnDisable() = 0;
 		virtual void
+			OnResize() = 0;
+		virtual void
 			DoProcess() = 0;
 
 	protected:
+		RenderContext * mContext;
 		bool mEnable;
 		int mOrder;
 	};

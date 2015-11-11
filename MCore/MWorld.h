@@ -26,7 +26,6 @@
 #include "MNodeTracker.h"
 #include "MNodeDisplayer.h"
 #include "MSimpleCollision.h"
-#include "MEnvironment.h"
 #include "MGrassManager.h"
 #include "MResourceLoaderMT.h"
 #include "MLoadRule.h"
@@ -87,6 +86,33 @@ namespace Rad {
 			int SectionZoneDepth;
 		};
 
+		struct EvInfo : public IObject
+		{
+			DECLARE_PROPERTY(IObject);
+
+			Float3 MainLightRotation;
+			Float3 MainLightAmbient;
+			Float3 MainLightDiffuse;
+			Float3 MainLightSpecular;
+			float MainLightStrength;
+
+			float FogStart;
+			float FogEnd;
+			Float3 FogColor;
+
+			Float2 GrassWaveDir;
+			float GrassWaveSpeed;
+			float GrassWaveStrength;
+			float GrassVisibleRadius;
+
+			EvInfo();
+
+			void
+				Reset();
+			virtual void
+				OnPropertyChanged(const Property * p);
+		};
+
 	public:
 		World();
 		~World();
@@ -101,7 +127,7 @@ namespace Rad {
 		Light * 
 			MainLight() { return mMainLight; }
 		RenderContext * 
-			MainRenderContext() { return mRenderContexts[MAIN_RENDER_CONTEXT_ID]; }
+			MainRenderContext() { return mMainRenderContext; }
 
 		NavData *
 			GetNavData() { return mNavData; }
@@ -124,9 +150,13 @@ namespace Rad {
 			Unload();
 		void
 			Save(const String & filename);
+		void
+			_updateEvInfo();
 
 		const Info *
 			GetInfo() { return &mInfo; }
+		EvInfo *
+			GetEvInfo() { return &mEvInfo; }
 		ConfigFile *
 			GetSetting() { return &mSetting; }
 		const String &
@@ -151,16 +181,16 @@ namespace Rad {
 			ImpCullLights(Array<Light *> & lightArray, Camera * camera);
 
 		RenderContext * 
-			NewRenderContext(int id, const String & name);
+			NewRenderContext(int id, int order, const String & name);
 		void 
-			DeleteRenderContext(int id);
+			DeleteRenderContext(RenderContext * context);
 		void
 			BeginRenderContext(RenderContext * context);
 		void
 			EndRenderContext();
 		RenderContext * 
 			GetCurrentRenderContext();
-
+		
 		void 
 			Update(float elapsedTime);
 		void 
@@ -184,7 +214,8 @@ namespace Rad {
 		ResourceLoaderMT * mResourceLoaderMT;
 		ILoadRule * mLoadRule;
 
-		Field<RenderContext *, MAX_RENDER_CONTEXT> mRenderContexts;
+		Array<RenderContext *> mRenderContexts;
+		RenderContext * mMainRenderContext;
 		RenderContext * mCurrentRenderContext;
 
 		Node * mNodeLinker;
@@ -192,11 +223,11 @@ namespace Rad {
 		Camera * mMainCamera;
 		Light * mMainLight;
 		Terrain * mTerrain;
-		Environment * mEnvironment;
 		GrassManager * mGrassManager;
 		NavData * mNavData;
 
 		Info mInfo;
+		EvInfo mEvInfo;
 		String mFilename;
 		ConfigFile mSetting;
 

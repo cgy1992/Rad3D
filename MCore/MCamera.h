@@ -70,6 +70,13 @@ namespace Rad {
 			GetOrthoWidth() const { return mOrthoWidth; }
 		float           
 			GetOrthoHeight() const { return mOrthoHeight; }
+		
+		void
+			SetMirrorPlane(const Plane & plane);
+		const Plane &
+			GetMirrorPlane() const { return mMirrorPlane; }
+		bool
+			IsMirrorEnable() const { return mMirrorEnable; }
 
 		const Mat4 &    
 			GetViewMatrix();
@@ -107,6 +114,8 @@ namespace Rad {
 			_updateTM();
 		void            
 			_updateFrustum();
+		void 
+			_makeClipProjMatrix();
 
 	protected:
 		float mFovy;
@@ -117,6 +126,9 @@ namespace Rad {
 		bool mOrthoEnable;
 		float mOrthoWidth;
 		float mOrthoHeight;
+
+		Plane mMirrorPlane;
+		bool mMirrorEnable;
 
 		Mat4 mMatView;
 		Mat4 mMatProj;

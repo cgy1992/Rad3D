@@ -28,9 +28,10 @@ namespace Rad {
 		DF_PROPERTY(PS_Emitter, mMinSize, "Randomness", "MinSize", PT_Float3)
 		DF_PROPERTY(PS_Emitter, mMaxSize, "Randomness", "MaxSize", PT_Float3)
 		DF_PROPERTY(PS_Emitter, mUVRect, "Randomness", "UVRect", PT_Int2)
-		DF_PROPERTY_END()
+		DF_PROPERTY(PS_Emitter, mUVRandom, "Randomness", "UVRandom", PT_Bool)
+	DF_PROPERTY_END()
 
-		PS_Emitter::PS_Emitter()
+	PS_Emitter::PS_Emitter()
 		: mParent(NULL)
 		, mEnable(true)
 		, mSizeable(false)
@@ -46,6 +47,7 @@ namespace Rad {
 		, mMinSize(1, 1, 1), mMaxSize(1, 1, 1)
 		, mMinRotation(0, 0, 0), mMaxRotation(0, 0, 0)
 		, mUVRect(1, 1)
+		, mUVRandom(false)
 		, mUVRectStep(1, 1)
 		, mFirstEmit(0)
 		, mRate(10)
@@ -80,30 +82,14 @@ namespace Rad {
 		mInternalTime = 0;
 	}
 
-	bool PS_Emitter::IsEnable() const
-	{
-		return mEnable;
-	}
-
 	void PS_Emitter::SetSizeable(bool able)
 	{
 		mSizeable = able;
 	}
 
-	bool PS_Emitter::IsSizeable() const
-	{
-		return mSizeable; 
-	}
-
-
 	void PS_Emitter::SetPosition(const Float3 & pos)
 	{
 		mPosition = pos;
-	}
-
-	const Float3 & PS_Emitter::GetPosition() const
-	{
-		return mPosition;
 	}
 
 	void PS_Emitter::SetRotation(const Float3 & angels)
@@ -123,30 +109,10 @@ namespace Rad {
 		mCommonDirection = commonDir;
 	}
 
-	const Float3 & PS_Emitter::GetDirection() const
-	{
-		return mDirection;
-	}
-
-	const Float3 & PS_Emitter::GetCommonDirection() const
-	{
-		return mCommonDirection;
-	}
-
 	void PS_Emitter::SetColor(const Float4 & _min, const Float4 & _max)
 	{
 		mMinColor = _min;
 		mMaxColor = _max;
-	}
-
-	const Float4 & PS_Emitter::GetMinColor() const
-	{
-		return mMinColor;
-	}
-
-	const Float4 & PS_Emitter::GetMaxColor() const
-	{
-		return mMaxColor;
 	}
 
 	void PS_Emitter::SetAngle(const Float2 & v)
@@ -190,11 +156,6 @@ namespace Rad {
 		mUVRectStep.y = 1.0f / mUVRect.y;
 	}
 
-	const Int2 & PS_Emitter::GetUVRect() const
-	{
-		return mUVRect;
-	}
-
 	RectF PS_Emitter::GetUVRect(int x, int y) const
 	{
 		d_assert (x < mUVRect.x && y < mUVRect.y);
@@ -216,19 +177,9 @@ namespace Rad {
 		return GetUVRect(x, y);
 	}
 
-	int PS_Emitter::GetUVRectCount() const
-	{
-		return mUVRect.x * mUVRect.y;
-	}
-
 	void PS_Emitter::SetRate(float rate)
 	{
 		mRate = rate;
-	}
-
-	float PS_Emitter::GetRate() const
-	{
-		return mRate;
 	}
 
 	void PS_Emitter::SetDuration(float time)
@@ -239,25 +190,13 @@ namespace Rad {
 		mLastEmitTime = 0;
 	}
 
-	float PS_Emitter::GetDuration() const
-	{
-		return mDuration;
-	}
-
 	void PS_Emitter::SetTimeOffset(float time)
 	{
 		mTimeOffset = time;
 	}
 
-	float PS_Emitter::GetTimeOffset() const
-	{
-		return mTimeOffset;
-	}
-
 	void PS_Emitter::InitParticle(Particle * p)
 	{
-		p->Emitter = this;
-
 		p->Color = RandomColor();
 		p->Direction = RandomDirection();
 		p->UVRect = RandomUVRect();
@@ -297,9 +236,9 @@ namespace Rad {
 
 			while (time > emit_time)
 			{
-				mLastEmitTime = curTime;
 				count += 1;
 				time -= emit_time;
+				mLastEmitTime += emit_time;
 			}
 		}
 
@@ -325,11 +264,7 @@ namespace Rad {
 
 	Float3 PS_Emitter::RandomRotation()
 	{
-		float x = Math::RandRange(mMinRotation.x, mMaxRotation.x);
-		float y = Math::RandRange(mMinRotation.y, mMaxRotation.y);
-		float z = Math::RandRange(mMinRotation.z, mMaxRotation.z);
-
-		return Float3(x, y, z);
+		return mMinRotation + (mMaxRotation - mMinRotation) * Math::RandomUnit();
 	}
 
 	Float3 PS_Emitter::RandomSize()
@@ -342,30 +277,29 @@ namespace Rad {
 		}
 		else
 		{
-			float x = Math::RandRange(mMinSize.x, mMaxSize.x);
-			float y = Math::RandRange(mMinSize.y, mMaxSize.y);
-			float z = Math::RandRange(mMinSize.z, mMaxSize.z);
-
-			return Float3(x, y, z);
+			return mMinSize + (mMaxSize - mMinSize) * Math::RandomUnit();
 		}
 	}
 
 	Float4 PS_Emitter::RandomColor()
 	{
-		Float4 color;
-
-		color.r = Math::RandRange(mMinColor.r, mMaxColor.r);
-		color.g = Math::RandRange(mMinColor.g, mMaxColor.g);
-		color.b = Math::RandRange(mMinColor.b, mMaxColor.b);
-		color.a = Math::RandRange(mMinColor.a, mMaxColor.a);
-
-		return color;
+		return mMinColor + (mMaxColor - mMinColor) * Math::RandomUnit();
 	}
 
 	RectF PS_Emitter::RandomUVRect()
 	{
-		int x = Math::RandRange(0, mUVRect.x - 1);
-		int y = Math::RandRange(0, mUVRect.y - 1);
+		int x, y;
+
+		if (!mUVRandom)
+		{
+			x = 0;
+			y = 0;
+		}
+		else
+		{
+			x = Math::RandRange(0, mUVRect.x - 1);
+			y = Math::RandRange(0, mUVRect.y - 1);
+		}
 
 		return GetUVRect(x, y);
 	}

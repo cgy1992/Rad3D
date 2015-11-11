@@ -26,8 +26,6 @@ namespace Rad {
 			GetWidth() { return mWidth; }
 		int
 			GetHeight() { return mHeight; }
-		eSizeAlign
-			GetAlign() { return mAlign; }
 		ePixelFormat
 			GetFormat() { return mFormat; }
 		bool
@@ -39,7 +37,6 @@ namespace Rad {
 	protected:
 		int mWidth;
 		int mHeight;
-		eSizeAlign mAlign;
 		ePixelFormat mFormat;
 	};
 

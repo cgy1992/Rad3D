@@ -29,8 +29,6 @@ namespace Rad {
 			GetWidth() { return mWidth; }
 		int
 			GetHeight() { return mHeight; }
-		eSizeAlign
-			GetAlign() { return mAlign; }
 		ePixelFormat
 			GetFormat(int i = 0) { return mFormats[i]; }
 		TexturePtr
@@ -42,7 +40,6 @@ namespace Rad {
 	public:
 		int mWidth;
 		int mHeight;
-		eSizeAlign mAlign;
 		ePixelFormat mFormats[MAX_HW_RENDERTARGET];
 		TexturePtr mTextures[MAX_HW_RENDERTARGET];
 	};

@@ -128,8 +128,8 @@ namespace Rad {
 
 	void WaterShaderStandard::OnCallBack(RenderObject * obj)
 	{
-		mFX->GetPass(0)->SetUniform("u_UVScale", Float4(mUVScale, mAlphaScale, 0, 0));
-		mFX->GetPass(0)->SetUniform("u_Color", Float4(mColor.r, mColor.g, mColor.b, 1));
+		mFX->GetPass(0)->SetConst("u_UVScale", Float4(mUVScale, mAlphaScale, 0, 0));
+		mFX->GetPass(0)->SetConst("u_Color", Float4(mColor.r, mColor.g, mColor.b, 1));
 	}
 
 }

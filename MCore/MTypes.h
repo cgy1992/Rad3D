@@ -21,8 +21,8 @@
 
 #define LIGHTING_COLOR_STREAM 3
 
-#define MAX_RENDER_CONTEXT 32
-#define MAIN_RENDER_CONTEXT_ID 16
+#define MAIN_RENDER_CONTEXT_ID 2048
+#define MAIN_RENDER_CONTEXT_ORDER 2048
 
 namespace Rad {
 
@@ -423,21 +423,6 @@ namespace Rad {
 		Viewport(int _x, int _y, int _w, int _h) : x(_x), y(_y), w(_w), h(_h)
 		{
 		}
-	};
-
-	//
-	struct M_ENTRY eSizeAlign
-	{
-		enum enum_t {
-			NONE,
-			FULL,
-			HALF,
-			QUAD,
-
-			FORCE_DWORD = 0x7FFFFFFF
-		};
-
-		M_ENUMERATION(eSizeAlign);
 	};
 
 	//

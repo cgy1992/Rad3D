@@ -18,13 +18,9 @@ namespace Rad {
 
 #define PS_PARTICLE_PARAM_SIZE 4
 
-	class PS_Emitter;
-
 	struct Particle
 	{
 		DECLARE_ALLOC();
-
-		PS_Emitter * Emitter;
 
 		Float3 Position;
 		Float3 Direction;

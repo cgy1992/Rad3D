@@ -44,6 +44,7 @@ namespace Rad {
 		Float3 mMinRotation, mMaxRotation;
 
 		Int2 mUVRect;
+		bool mUVRandom;
 
 	public:
 		PS_Emitter();
@@ -60,48 +61,48 @@ namespace Rad {
 		void 
 			SetEnable(bool enable);
 		bool 
-			IsEnable() const;
+			IsEnable() const { return mEnable; }
 
 		void
 			SetSizeable(bool able);
 		bool
-			IsSizeable() const;
+			IsSizeable() const { return mSizeable; }
 
 		void 
 			SetRate(float rate);
 		float 
-			GetRate() const;
+			GetRate() const { return mRate; }
 
 		void 
 			SetDuration(float time);
 		float 
-			GetDuration() const;
+			GetDuration() const { return mDuration; }
 
 		void
 			SetTimeOffset(float time);
 		float
-			GetTimeOffset() const;
+			GetTimeOffset() const { return mTimeOffset; }
 
 		void 
 			SetPosition(const Float3 & pos);
 		const Float3 & 
-			GetPosition() const;
+			GetPosition() const { return mPosition; }
 
 		void 
 			SetRotation(const Float3 & angles);
 		void 
 			SetDirection(const Float3 & dir, const Float3 & commonDir);
 		const Float3 & 
-			GetDirection() const;
+			GetDirection() const { return mDirection; }
 		const Float3 & 
-			GetCommonDirection() const;
+			GetCommonDirection() const { return mCommonDirection; }
 
 		void 
 			SetColor(const Float4 & _min, const Float4 & _max);
 		const Float4 & 
-			GetMinColor() const;
+			GetMinColor() const { return mMinColor; }
 		const Float4 & 
-			GetMaxColor() const;
+			GetMaxColor() const { return mMaxColor; }
 
 		void 
 			SetAngle(const Float2 & v);
@@ -140,13 +141,13 @@ namespace Rad {
 		void 
 			SetUVRect(const Int2 & xy);
 		const Int2 &
-			GetUVRect() const;
+			GetUVRect() const { return mUVRect; }
 		RectF
 			GetUVRect(int x, int y) const;
 		RectF
 			GetUVRect(int index) const;
 		int
-			GetUVRectCount() const;
+			GetUVRectCount() const { return mUVRect.x * mUVRect.y; }
 
 		virtual void 
 			InitParticle(Particle * p);

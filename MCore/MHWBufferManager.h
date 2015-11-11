@@ -61,11 +61,11 @@ namespace Rad {
 			RebuildAllTexture() = 0;
 
 		virtual RenderTargetPtr 
-			NewRenderTarget(int width, int height, eSizeAlign align = eSizeAlign::NONE, ePixelFormat format = ePixelFormat::R8G8B8) = 0;
+			NewRenderTarget(int width, int height, ePixelFormat format = ePixelFormat::R8G8B8) = 0;
 		virtual RenderTargetPtr
-			NewMultiRenderTarget(int width, int height, eSizeAlign align, ePixelFormat * formats, int count) = 0;
+			NewMultiRenderTarget(int width, int height, ePixelFormat * formats, int count) = 0;
 		virtual DepthBufferPtr
-			NewDepthBuffer(int width, int height, eSizeAlign align = eSizeAlign::NONE, ePixelFormat format = ePixelFormat::D16) = 0;
+			NewDepthBuffer(int width, int height, ePixelFormat format = ePixelFormat::D16) = 0;
 
 	protected:
 		TexturePtr 

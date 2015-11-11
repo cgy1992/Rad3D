@@ -36,6 +36,8 @@ namespace Rad {
 
 		static void
 			InitVertex();
+		static void
+			InitVertexEx(float rads[K_GRASS_ROTATION_SEED]);
 
 		void 
 			GetVertex(GrassVertex * v, const Float3 & pos, const Float3 & color, int rotation, float scale) const;

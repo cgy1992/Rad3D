@@ -1,17 +1,21 @@
 #include "MRenderProcess.h"
+#include "MRenderContext.h"
 
 namespace Rad {
 
 	ImplementRTTI(RenderProcess, IObject);
 
-	RenderProcess::RenderProcess(bool post)
-		: mOrder(post ? POST_PROCESS_MASK : 0)
+	RenderProcess::RenderProcess(RenderContext * context, int order)
+		: mContext(context)
+		, mOrder(order)
 		, mEnable(false)
 	{
+		mContext->_addProcess(this);
 	}
 
 	RenderProcess::~RenderProcess()
 	{
+		mContext->_removeProcess(this);
 	}
 
 	void RenderProcess::SetEnable(bool enable)
