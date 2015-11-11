@@ -162,7 +162,6 @@ namespace Rad {
 			mConfig.width = w;
 			mConfig.height = h;
 
-			mHWBufferManager->OnResize();
 			mRenderHelper->OnResize();
 
 			E_Resize(w, h);

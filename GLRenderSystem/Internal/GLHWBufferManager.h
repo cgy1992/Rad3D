@@ -44,14 +44,14 @@ namespace Rad {
 			RebuildAllTexture();
 
 		virtual RenderTargetPtr 
-			NewRenderTarget(int width, int height, eSizeAlign align, ePixelFormat format);
+			NewRenderTarget(int width, int height, ePixelFormat format);
 		virtual RenderTargetPtr
-			NewMultiRenderTarget(int width, int height, eSizeAlign align, ePixelFormat * formats, int count);
+			NewMultiRenderTarget(int width, int height, ePixelFormat * formats, int count);
 		void 
 			DeleteRenderTarget(GLRenderTarget * p);
 
 		virtual DepthBufferPtr
-			NewDepthBuffer(int width, int height, eSizeAlign align, ePixelFormat format);
+			NewDepthBuffer(int width, int height, ePixelFormat format);
 		void
 			DeleteDepthBuffer(GLDepthBuffer * p);
 
@@ -59,8 +59,6 @@ namespace Rad {
 			OnLostDevice();
 		void 
 			OnResetDevice();
-		void
-			OnResize();
 
 		GLuint
 			GetTempFbo() { return mTempFbo; }

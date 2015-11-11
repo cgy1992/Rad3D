@@ -37,27 +37,15 @@ namespace Rad {
 	void GLDepthBuffer::OnLostDevice()
 	{
 		if (mGLDepthBuffer != 0)
+		{
 			glDeleteRenderbuffers(1, &mGLDepthBuffer);
+			mGLDepthBuffer = 0;
+		}
 	}
 
 	void GLDepthBuffer::OnResetDevice()
 	{
-		if (mAlign == eSizeAlign::FULL)
-		{
-			mWidth = RenderSystem::Instance()->GetConfig().width;
-			mHeight = RenderSystem::Instance()->GetConfig().height;
-		}
-		else if (mAlign == eSizeAlign::HALF)
-		{
-			mWidth = RenderSystem::Instance()->GetConfig().width / 2;
-			mHeight = RenderSystem::Instance()->GetConfig().height / 2;
-		}
-		else if (mAlign == eSizeAlign::QUAD)
-		{
-			mWidth = RenderSystem::Instance()->GetConfig().width / 4;
-			mHeight = RenderSystem::Instance()->GetConfig().height / 4;
-		}
-
+		d_assert (mGLDepthBuffer == 0);
 		d_assert (mWidth > 0 && mHeight > 0);
 
 		GLuint fbo = GLHWBufferManager::getGLInstance()->GetTempFbo();

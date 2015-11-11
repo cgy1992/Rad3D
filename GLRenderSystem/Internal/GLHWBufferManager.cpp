@@ -142,18 +142,17 @@ namespace Rad {
 		}
 	}
 
-	RenderTargetPtr GLHWBufferManager::NewRenderTarget(int width, int height, eSizeAlign align, ePixelFormat format)
+	RenderTargetPtr GLHWBufferManager::NewRenderTarget(int width, int height, ePixelFormat format)
 	{
-		return NewMultiRenderTarget(width, height, align, &format, 1);
+		return NewMultiRenderTarget(width, height, &format, 1);
 	}
 
-	RenderTargetPtr GLHWBufferManager::NewMultiRenderTarget(int width, int height, eSizeAlign align, ePixelFormat * formats, int count)
+	RenderTargetPtr GLHWBufferManager::NewMultiRenderTarget(int width, int height, ePixelFormat * formats, int count)
 	{
 		GLRenderTarget * p = new GLRenderTarget;
 
 		p->mWidth = width;
 		p->mHeight = height;
-		p->mAlign = align;
 
 		for (int i = 0; i < count; ++i)
 		{
@@ -199,12 +198,11 @@ namespace Rad {
 		delete p;
 	}
 
-	DepthBufferPtr GLHWBufferManager::NewDepthBuffer(int width, int height, eSizeAlign align, ePixelFormat format)
+	DepthBufferPtr GLHWBufferManager::NewDepthBuffer(int width, int height, ePixelFormat format)
 	{
 		GLDepthBuffer * p = new GLDepthBuffer;
 		p->mWidth = width;
 		p->mHeight = height;
-		p->mAlign = align;
 		p->mFormat = format;
 
 		p->OnCreate();
@@ -328,25 +326,5 @@ namespace Rad {
 		mTempFbo = 0;
 	}
 
-	void GLHWBufferManager::OnResize()
-	{
-		GLRenderTarget * pRenderTarget = mRenderTargetLinker;
-		while (pRenderTarget != NULL)
-		{
-			pRenderTarget->OnLostDevice();
-			pRenderTarget->OnResetDevice();
-
-			pRenderTarget = LINKER_NEXT(pRenderTarget);
-		}
-
-		GLDepthBuffer * pDepthBuffer = mDepthBufferLinker;
-		while (pDepthBuffer != NULL)
-		{
-			pDepthBuffer->OnLostDevice();
-			pDepthBuffer->OnResetDevice();
-
-			pDepthBuffer = LINKER_NEXT(pDepthBuffer);
-		}
-	}
 }
 

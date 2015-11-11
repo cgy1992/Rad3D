@@ -116,23 +116,6 @@ namespace Rad {
 	void GLRenderTarget::OnResetDevice()
 	{
 		d_assert (mGLFrameBuffer == 0);
-
-		if (mAlign == eSizeAlign::FULL)
-		{
-			mWidth = RenderSystem::Instance()->GetConfig().width;
-			mHeight = RenderSystem::Instance()->GetConfig().height;
-		}
-		else if (mAlign == eSizeAlign::HALF)
-		{
-			mWidth = RenderSystem::Instance()->GetConfig().width / 2;
-			mHeight = RenderSystem::Instance()->GetConfig().height / 2;
-		}
-		else if (mAlign == eSizeAlign::QUAD)
-		{
-			mWidth = RenderSystem::Instance()->GetConfig().width / 4;
-			mHeight = RenderSystem::Instance()->GetConfig().height / 4;
-		}
-
 		d_assert (mWidth > 0 && mHeight > 0);
 
 		glGenFramebuffers(1, &mGLFrameBuffer);
