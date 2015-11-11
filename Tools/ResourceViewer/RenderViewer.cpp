@@ -54,10 +54,10 @@ RenderViewer::RenderViewer(int x, int y, int resolution)
 		RenderPipelineNodeArray * pRenderPipeline = new RenderPipelineNodeArray(true);
 		pRenderPipeline->NodeArray.PushBack(mNode[i]);
 
-		RenderTargetPtr pRenderTarget = HWBufferManager::Instance()->NewRenderTarget(resolution, resolution, eSizeAlign::NONE, ePixelFormat::R8G8B8A8);
-		DepthBufferPtr pDepthBuffer = HWBufferManager::Instance()->NewDepthBuffer(resolution, resolution, eSizeAlign::NONE, ePixelFormat::D24);
+		RenderTargetPtr pRenderTarget = HWBufferManager::Instance()->NewRenderTarget(resolution, resolution, ePixelFormat::R8G8B8A8);
+		DepthBufferPtr pDepthBuffer = HWBufferManager::Instance()->NewDepthBuffer(resolution, resolution, ePixelFormat::D24);
 
-		mRenderContext[i] = World::Instance()->NewRenderContext(i >= MAIN_RENDER_CONTEXT_ID ? i + 1 : i, "RenderViewer");
+		mRenderContext[i] = World::Instance()->NewRenderContext(i, 0, "RenderViewer");
 		mRenderContext[i]->SetColorClear(eClearMode::ALL, Float4(0, 0, 0, 0));
 		mRenderContext[i]->SetRenderTarget(pRenderTarget);
 		mRenderContext[i]->SetDepthBuffer(pDepthBuffer);
@@ -71,8 +71,6 @@ RenderViewer::RenderViewer(int x, int y, int resolution)
 	}
 
 	World::Instance()->MainLight()->SetDirection(Float3(0, -1, 1));
-	Environment::Instance()->GetEvKeyFrame()->FogStart = 100000.0f;
-	Environment::Instance()->GetEvKeyFrame()->FogEnd = 1000000.0f;
 
 	mCurrentGroupIndex = 0;
 
