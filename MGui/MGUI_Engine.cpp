@@ -43,6 +43,8 @@ namespace Rad {
 		REG_WIDGET<ScrollBarV>();
 		REG_WIDGET<ScrollViewH>();
 		REG_WIDGET<ScrollViewV>();
+		REG_WIDGET<SliderBarH>();
+		REG_WIDGET<SliderBarV>();
 
 		mLocale = new Locale;
 		mLookFeelManager = new LookFeelManager;

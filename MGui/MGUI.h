@@ -28,6 +28,7 @@
 #include "MGUI_TreeView.h"
 #include "MGUI_ProgressBar.h"
 #include "MGUI_ScrollBar.h"
+#include "MGUI_SliderBar.h"
 #include "MGUI_ScrollView.h"
 #include "MGUI_TabControl.h"
 #include "MGUI_GridBox.h"
