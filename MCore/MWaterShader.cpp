@@ -21,7 +21,7 @@ namespace Rad {
 	ImplementRTTI(WaterShaderStandard, WaterShader);
 
 	DF_PROPERTY_BEGIN(WaterShaderStandard)
-		DF_PROPERTY_EX(WaterShaderStandard, mColor, "Material", "Color", "PT_Color3", PT_Float3)
+		DF_PROPERTY_EX(WaterShaderStandard, mColor, "Material", "Color", "PT_Color", PT_Float3)
 		DF_PROPERTY(WaterShaderStandard, mUVScale, "Material", "UVScale", PT_Float)
 		DF_PROPERTY(WaterShaderStandard, mAlphaScale, "Material", "AlphaScale", PT_Float)
 		DF_PROPERTY_EX(WaterShaderStandard, mTextureName, "Animation", "Texture", "Filename", PT_String)

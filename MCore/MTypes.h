@@ -104,6 +104,9 @@ namespace Rad {
 	struct M_ENTRY eSPType
 	{
 		enum enum_t {
+			FLOAT1,
+			FLOAT2,
+			FLOAT3,
 			FLOAT4,
 			MATRIX4,
 

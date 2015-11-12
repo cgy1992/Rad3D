@@ -232,7 +232,19 @@ namespace Rad { namespace util {
 
 	inline eSPType getSPType(const String & str)
 	{
-		if (str == "FLOAT4")
+		if (str == "FLOAT1")
+		{
+			return eSPType::FLOAT1;
+		}
+		else if (str == "FLOAT2")
+		{
+			return eSPType::FLOAT2;
+		}
+		else if (str == "FLOAT3")
+		{
+			return eSPType::FLOAT3;
+		}
+		else if (str == "FLOAT4")
 		{
 			return eSPType::FLOAT4;
 		}

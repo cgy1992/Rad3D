@@ -24,12 +24,12 @@ namespace Rad {
 
 	//
 	DF_PROPERTY_BEGIN(KF_Color3)
-		DF_PROPERTY_EX(KF_Color3, data, "", "Data", "PT_Color3", PT_Float3)
+		DF_PROPERTY_EX(KF_Color3, data, "", "Data", "PT_Color", PT_Float3)
 	DF_PROPERTY_END()
 
 	//
 	DF_PROPERTY_BEGIN(KF_Color4)
-		DF_PROPERTY_EX(KF_Color4, data, "", "Data", "PT_Color4", PT_Float4)
+		DF_PROPERTY_EX(KF_Color4, data, "", "Data", "PT_Color", PT_Float4)
 	DF_PROPERTY_END()
 
 	//

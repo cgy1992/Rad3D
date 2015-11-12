@@ -15,14 +15,14 @@ namespace Rad {
 
 	DF_PROPERTY_BEGIN(World::EvInfo)
 		DF_PROPERTY(World::EvInfo, MainLightRotation, "MainLight", "Rotation", PT_Float3)
-		DF_PROPERTY_EX(World::EvInfo, MainLightAmbient, "MainLight", "Ambient", "PT_Color3", PT_Float3)
-		DF_PROPERTY_EX(World::EvInfo, MainLightDiffuse, "MainLight", "Diffuse", "PT_Color3", PT_Float3)
-		DF_PROPERTY_EX(World::EvInfo, MainLightSpecular, "MainLight", "Specular", "PT_Color3", PT_Float3)
+		DF_PROPERTY_EX(World::EvInfo, MainLightAmbient, "MainLight", "Ambient", "PT_Color", PT_Float3)
+		DF_PROPERTY_EX(World::EvInfo, MainLightDiffuse, "MainLight", "Diffuse", "PT_Color", PT_Float3)
+		DF_PROPERTY_EX(World::EvInfo, MainLightSpecular, "MainLight", "Specular", "PT_Color", PT_Float3)
 		DF_PROPERTY(World::EvInfo, MainLightStrength, "MainLight", "Strength", PT_Float)
 
 		DF_PROPERTY(World::EvInfo, FogStart, "Fog", "Start", PT_Float)
 		DF_PROPERTY(World::EvInfo, FogEnd, "Fog", "End", PT_Float)
-		DF_PROPERTY_EX(World::EvInfo, FogColor, "Fog", "Color", "PT_Color3", PT_Float3)
+		DF_PROPERTY_EX(World::EvInfo, FogColor, "Fog", "Color", "PT_Color", PT_Float3)
 
 		DF_PROPERTY(World::EvInfo, GrassWaveDir, "Grass", "WaveDir", PT_Float2)
 		DF_PROPERTY(World::EvInfo, GrassWaveSpeed, "Grass", "WaveSpeed", PT_Float)

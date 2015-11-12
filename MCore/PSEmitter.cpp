@@ -16,8 +16,8 @@ namespace Rad {
 		DF_PROPERTY(PS_Emitter, mDuration, "", "Duration", PT_Float)
 		DF_PROPERTY(PS_Emitter, mTimeOffset, "", "TimeOffset", PT_Float)
 
-		DF_PROPERTY_EX(PS_Emitter, mMinColor, "Randomness", "MinColor", "PT_Color4", PT_Float4)
-		DF_PROPERTY_EX(PS_Emitter, mMaxColor, "Randomness", "MaxColor", "PT_Color4", PT_Float4)
+		DF_PROPERTY_EX(PS_Emitter, mMinColor, "Randomness", "MinColor", "PT_Color", PT_Float4)
+		DF_PROPERTY_EX(PS_Emitter, mMaxColor, "Randomness", "MaxColor", "PT_Color", PT_Float4)
 		DF_PROPERTY(PS_Emitter, mMinRotation, "Randomness", "MinRotation", PT_Float3)
 		DF_PROPERTY(PS_Emitter, mMaxRotation, "Randomness", "MaxRotation", PT_Float3)
 		DF_PROPERTY(PS_Emitter, mAngle, "Randomness", "Angle", PT_Float2)
