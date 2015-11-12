@@ -38,12 +38,16 @@ namespace Rad {
 			{
 			case eSPType::FLOAT1:
 				glUniform1fv(u->handle, u->Count, (const GLfloat *)u->data);
+				break;
+
 			case eSPType::FLOAT2:
 				glUniform2fv(u->handle, u->Count, (const GLfloat *)u->data);
 				break;
+
 			case eSPType::FLOAT3:
 				glUniform3fv(u->handle, u->Count, (const GLfloat *)u->data);
 				break;
+
 			case eSPType::FLOAT4:
 				glUniform4fv(u->handle, u->Count, (const GLfloat *)u->data);
 				break;
