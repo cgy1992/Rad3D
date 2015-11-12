@@ -85,19 +85,10 @@ namespace Rad {
 
 	RenderTargetPtr NullHWBufferManager::NewRenderTarget(int width, int height, ePixelFormat format)
 	{
-		return NewMultiRenderTarget(width, height, &format, 1);
-	}
-
-	RenderTargetPtr NullHWBufferManager::NewMultiRenderTarget(int width, int height, ePixelFormat * formats, int count)
-	{
 		NullRenderTarget * p = new NullRenderTarget;
 		p->mWidth = width;
 		p->mHeight = height;
-
-		for (int i = 0; i < count; ++i)
-		{
-			p->mFormats[i] = formats[i];
-		}
+		p->mFormat = format;
 
 		return p;
 	}

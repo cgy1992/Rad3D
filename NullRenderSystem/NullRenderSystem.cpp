@@ -50,11 +50,7 @@ namespace Rad {
 	{
 	}
 
-	void NullRenderSystem::SetRenderTarget(RenderTarget * p)
-	{
-	}
-
-	void NullRenderSystem::SetDepthBuffer(DepthBuffer * p)
+	void NullRenderSystem::PrepareRendering()
 	{
 	}
 

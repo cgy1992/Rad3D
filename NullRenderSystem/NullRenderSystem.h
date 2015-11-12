@@ -50,10 +50,8 @@ namespace Rad {
 		virtual void 
 			SetProjTM(const Mat4 & projTM);
 
-		virtual void 
-			SetRenderTarget(RenderTarget * p);
 		virtual void
-			SetDepthBuffer(DepthBuffer * p);
+			PrepareRendering();
 
 		virtual void 
 			ReadPixelData(void * data, int x, int y, int w, int h);

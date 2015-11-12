@@ -23,6 +23,8 @@ namespace Rad {
 	void NullTexture::OnLoad()
 	{
 		Resource::OnLoad();
+
+		_update();
 	}
 
 	void NullTexture::OnUnload()
