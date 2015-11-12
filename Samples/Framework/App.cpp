@@ -163,6 +163,8 @@ void App::Resize(int w, int h)
 		mRenderSystem->OnResize(w, h);
 		mUIEngine->OnResize(w, h);
 
+		mRenderSystem->E_Resize(w, h);
+
 		OnResize(w, h);
 	}
 }

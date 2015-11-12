@@ -75,6 +75,8 @@ public:
 		gLayout = new MGUI::Layout(NULL);
 		gLayout->SetAlign(MGUI::eAlign::STRETCH);
 		gLayout->E_MouseDoubleClick += new cListener1<Demo16_Bloom, const MGUI::MouseEvent *>(this, &Demo16_Bloom::OnDoubleClick);
+
+		World::Instance()->E_RenderingEnd += new cListener0<Demo16_Bloom>(this, &Demo16_Bloom::OnPostRender);
 	}
 
 	void OnDoubleClick(const MGUI::MouseEvent * e)
@@ -99,6 +101,16 @@ public:
 
 	virtual void OnResume()
 	{
+	}
+
+	void OnPostRender()
+	{
+		RenderTargetPtr pRenderTarget = World::Instance()->MainRenderContext()->GetRenderTarget();
+		if (pRenderTarget != NULL)
+		{
+			RenderSystem::Instance()->SetViewport(World::Instance()->MainRenderContext()->GetViewport());
+			RenderHelper::Instance()->DrawSumit(pRenderTarget->GetTexture().c_ptr());
+		}
 	}
 };
 
