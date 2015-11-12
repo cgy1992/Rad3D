@@ -62,8 +62,6 @@ namespace Rad {
 
 		virtual RenderTargetPtr 
 			NewRenderTarget(int width, int height, ePixelFormat format = ePixelFormat::R8G8B8) = 0;
-		virtual RenderTargetPtr
-			NewMultiRenderTarget(int width, int height, ePixelFormat * formats, int count) = 0;
 		virtual DepthBufferPtr
 			NewDepthBuffer(int width, int height, ePixelFormat format = ePixelFormat::D16) = 0;
 

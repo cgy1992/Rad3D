@@ -88,9 +88,6 @@
     <Filter Include="Engine\5. World\Terrain">
       <UniqueIdentifier>{104c4574-fb46-4134-8a9d-9020106f4d07}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\5. World\Environment">
-      <UniqueIdentifier>{90dec52d-4af0-432b-9c42-a9559f3570ba}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\5. World\NavPath">
       <UniqueIdentifier>{08b2f00c-6c1b-4020-a019-258f7f1e587d}</UniqueIdentifier>
     </Filter>
@@ -108,27 +105,6 @@
     </Filter>
     <Filter Include="Engine\5. World\Entity\ParticleSystem">
       <UniqueIdentifier>{aa2d4346-2498-4678-9d5c-5a3615aa020d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\5. World\Environment\Effect">
-      <UniqueIdentifier>{5f7ea740-1c02-486c-aa23-cd0f84d05eee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\5. World\Environment\Geomtry">
-      <UniqueIdentifier>{4c3d3665-c88f-4a06-9c8b-52f4d65c9c10}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\5. World\Environment\DeferredRenderer">
-      <UniqueIdentifier>{7c338393-9756-4840-8bed-5ecdaa9a6dcc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\5. World\Environment\Geomtry\Rain">
-      <UniqueIdentifier>{f74f7bd6-3e7f-438b-b10f-aa6fb613b203}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\5. World\Environment\Geomtry\Sky">
-      <UniqueIdentifier>{f4a2d8e3-b973-4fae-adef-107a4c06d454}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\5. World\Environment\Geomtry\Sun">
-      <UniqueIdentifier>{47409489-8366-41c0-b994-fe3ff1a78567}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\5. World\Environment\Geomtry\Snow">
-      <UniqueIdentifier>{a35b4143-649e-45a8-b101-a9fc1f3a738c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

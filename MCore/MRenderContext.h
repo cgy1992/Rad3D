@@ -49,9 +49,9 @@ namespace Rad {
 			SetColorClear(eClearMode mode, const Float4 & color, float depth = 1, int stencil = 0);
 
 		void 
-			SetRenderTarget(RenderTargetPtr p);
+			SetRenderTarget(int i, RenderTargetPtr p);
 		RenderTargetPtr 
-			GetRenderTarget();
+			GetRenderTarget(int i);
 
 		void
 			SetDepthBuffer(DepthBufferPtr p);
@@ -118,7 +118,7 @@ namespace Rad {
 		ShaderProviderPtr mShaderProvider;
 		RenderPipelinePtr mRenderPipeline;
 
-		RenderTargetPtr mRenderTarget;
+		RenderTargetPtr mRenderTarget[MAX_HW_RENDERTARGET];
 		DepthBufferPtr mDepthBuffer;
 
 		Array<RenderProcess *> mProcesses;

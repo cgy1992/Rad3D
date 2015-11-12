@@ -28,6 +28,7 @@ namespace Rad {
 			int alphaBits;
 			int depthBits;
 			int stencilBits;
+			bool msaa;
 
 			Config()
 			{
@@ -38,11 +39,13 @@ namespace Rad {
 				alphaBits = 8;
 				depthBits = 24;
 				stencilBits = 8;
+				msaa = false;
 #else
 				colorBits = 16;
 				alphaBits = 0;
 				depthBits = 24;
 				stencilBits = 8;
+				msaa = false;
 #endif
 			}
 		};
@@ -152,10 +155,12 @@ namespace Rad {
 		void 
 			SetShaderPass(ShaderPass * pass, bool _bindState);
 
-		virtual void 
-			SetRenderTarget(RenderTarget * p) = 0;
+		void 
+			SetRenderTarget(int i, RenderTarget * p);
+		void
+			SetDepthBuffer(DepthBuffer * p);
 		virtual void
-			SetDepthBuffer(DepthBuffer * p) = 0;
+			PrepareRendering() = 0;
 		virtual void 
 			ReadPixelData(void * data, int x, int y, int w, int h) = 0;
 
@@ -170,7 +175,7 @@ namespace Rad {
 
 		//
 		RenderTarget * 
-			_getCurrentRenderTarget() { return mCurrentRenderTarget; }
+			_getCurrentRenderTarget(int i) { return mCurrentRenderTarget[i]; }
 		DepthBuffer *
 			_getCurrentDepthBuffer() { return mCurrentDepthBuffer; }
 		Texture *
@@ -200,8 +205,9 @@ namespace Rad {
 		RenderHelper * mRenderHelper;
 		RenderRegister * mRenderRegister;
 
+		RenderTarget * mCurrentRenderTarget[MAX_HW_RENDERTARGET];
 		DepthBuffer * mCurrentDepthBuffer;
-		RenderTarget * mCurrentRenderTarget;
+		bool mRenderTargetChanged;
 
 		bool mRenderStateChanged;
 		eFillMode mMaterialFillMode;

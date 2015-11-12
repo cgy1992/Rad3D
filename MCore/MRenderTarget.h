@@ -22,17 +22,14 @@ namespace Rad {
 		virtual void
 			Release() = 0;
 
-		bool
-			IsMRT();
-
 		int
 			GetWidth() { return mWidth; }
 		int
 			GetHeight() { return mHeight; }
 		ePixelFormat
-			GetFormat(int i = 0) { return mFormats[i]; }
+			GetFormat() { return mFormat; }
 		TexturePtr
-			GetTexture(int i = 0) { return mTextures[i]; }
+			GetTexture() { return mTexture; }
 
 		virtual void
 			Resize(int w, int h) = 0;
@@ -40,8 +37,8 @@ namespace Rad {
 	public:
 		int mWidth;
 		int mHeight;
-		ePixelFormat mFormats[MAX_HW_RENDERTARGET];
-		TexturePtr mTextures[MAX_HW_RENDERTARGET];
+		ePixelFormat mFormat;
+		TexturePtr mTexture;;
 	};
 
 	typedef SmartPtr<RenderTarget> RenderTargetPtr;

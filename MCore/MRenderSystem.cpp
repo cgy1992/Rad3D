@@ -20,9 +20,7 @@ namespace Rad {
 		IMG_Reg(JPG_Test, JPG_Load);
 
 		for (int i = 0; i < mCaps.pixelFormats.Size(); ++i)
-		{
 			mCaps.pixelFormats[i] = true;
-		}
     }
 
     RenderSystem::~RenderSystem()
@@ -32,9 +30,6 @@ namespace Rad {
 
 	void RenderSystem::_clearState()
 	{
-		mCurrentRenderTarget = NULL;
-		mCurrentDepthBuffer = NULL;
-
 		mCurrentShaderPass = NULL;
 		mShaderPassChanged = true;
 		mRenderStateChanged = true;
@@ -56,6 +51,13 @@ namespace Rad {
 		}
 
 		mCurrentVertexBuffer = NULL;
+
+		for (int i = 0; i < MAX_HW_RENDERTARGET; ++i)
+		{
+			mCurrentRenderTarget[i] = NULL;
+		}
+		mCurrentDepthBuffer = NULL;
+		mRenderTargetChanged = true;
 	}
 
 	void RenderSystem::OnInit()
@@ -187,6 +189,24 @@ namespace Rad {
 					SetTexture(sampler->Index, sampler->SamplerTexture.c_ptr());
 				}
 			}
+		}
+	}
+
+	void RenderSystem::SetRenderTarget(int i, RenderTarget * p)
+	{
+		if (mCurrentRenderTarget[i] != p)
+		{
+			mCurrentRenderTarget[i] = p;
+			mRenderTargetChanged = true;
+		}
+	}
+
+	void RenderSystem::SetDepthBuffer(DepthBuffer * p)
+	{
+		if (mCurrentDepthBuffer != p)
+		{
+			mCurrentDepthBuffer = p;
+			mRenderTargetChanged = true;
 		}
 	}
 

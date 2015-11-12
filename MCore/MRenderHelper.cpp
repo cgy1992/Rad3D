@@ -138,8 +138,9 @@ namespace Rad {
 
 	void RenderHelper::DrawSumit(Texture * texture)
 	{
-		RenderSystem::Instance()->SetRenderTarget(NULL);
+		RenderSystem::Instance()->SetRenderTarget(0, NULL);
 		RenderSystem::Instance()->SetDepthBuffer(NULL);
+		RenderSystem::Instance()->PrepareRendering();
 
 		RenderSystem::Instance()->SetTexture(0, texture);
 

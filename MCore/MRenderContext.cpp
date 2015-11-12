@@ -38,14 +38,14 @@ namespace Rad {
 		mClearStencil = stencil;
 	}
 
-	void RenderContext::SetRenderTarget(RenderTargetPtr p)
+	void RenderContext::SetRenderTarget(int i, RenderTargetPtr p)
 	{
-		mRenderTarget = p;
+		mRenderTarget[i] = p;
 	}
 
-	RenderTargetPtr RenderContext::GetRenderTarget()
+	RenderTargetPtr RenderContext::GetRenderTarget(int i)
 	{
-		return mRenderTarget;
+		return mRenderTarget[i];
 	}
 
 	void RenderContext::SetDepthBuffer(DepthBufferPtr p)
@@ -90,10 +90,10 @@ namespace Rad {
 		{
 			vp.x = vp.y = 0;
 
-			if (mRenderTarget != NULL)
+			if (mRenderTarget[0] != NULL)
 			{
-				vp.w = mRenderTarget->GetWidth();
-				vp.h = mRenderTarget->GetHeight();
+				vp.w = mRenderTarget[0]->GetWidth();
+				vp.h = mRenderTarget[0]->GetHeight();
 			}
 			else
 			{
@@ -161,8 +161,12 @@ namespace Rad {
 		}
 
 		// render scene
-		RenderSystem::Instance()->SetRenderTarget(mRenderTarget.c_ptr());
+		RenderSystem::Instance()->SetRenderTarget(0, mRenderTarget[0].c_ptr());
+		RenderSystem::Instance()->SetRenderTarget(1, mRenderTarget[1].c_ptr());
+		RenderSystem::Instance()->SetRenderTarget(2, mRenderTarget[2].c_ptr());
+		RenderSystem::Instance()->SetRenderTarget(3, mRenderTarget[3].c_ptr());
 		RenderSystem::Instance()->SetDepthBuffer(mDepthBuffer.c_ptr());
+		RenderSystem::Instance()->PrepareRendering();
 
 		RenderSystem::Instance()->SetViewport(mViewport);
 
@@ -191,7 +195,8 @@ namespace Rad {
 		d_assert (x >= mViewport.x && y >= mViewport.y && w <= mViewport.w && h <= mViewport.h);
 		d_assert (data != NULL);
 
-		RenderSystem::Instance()->SetRenderTarget(mRenderTarget.c_ptr());
+		RenderSystem::Instance()->SetRenderTarget(NULL, mRenderTarget[0].c_ptr());
+		RenderSystem::Instance()->PrepareRendering();
 		RenderSystem::Instance()->ReadPixelData(data, x, y, w, h);
 	}
 

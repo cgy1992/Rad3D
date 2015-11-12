@@ -612,7 +612,11 @@ namespace Rad {
 			}
 		}
 
-		RenderSystem::Instance()->SetRenderTarget(NULL);
+		RenderSystem::Instance()->SetRenderTarget(0, NULL);
+		RenderSystem::Instance()->SetRenderTarget(1, NULL);
+		RenderSystem::Instance()->SetRenderTarget(2, NULL);
+		RenderSystem::Instance()->SetRenderTarget(3, NULL);
+		RenderSystem::Instance()->SetDepthBuffer(NULL);
 
 		E_RenderingEnd();
 
