@@ -2,85 +2,59 @@
 #include "ColorPickerDialog.h"
 #include "AllLookFeel.h"
 
-PropertyFieldColor3::PropertyFieldColor3(PropertyGroup * group, IObject * obj, const Property * prop)
+PropertyFieldColor::PropertyFieldColor(PropertyGroup * group, IObject * obj, const Property * prop)
 	: PropertyField(group, obj, prop)
 {
 	mWidget = new MGUI::Widget(AllLookFeel::Instance()->GetWhite(), mWidget_Value);
 	mWidget->SetAlign(MGUI::eAlign::H_STRETCH | MGUI::eAlign::V_CENTER);
 	mWidget->SetRect(0, 0, 0, 24);
 
-	Float3 v = prop->AsFloat3(obj->GetPropertyData(prop));
+	Float4 v;
+	if (prop->type == PT_Float3)
+	{
+		Float3 v3 = prop->AsFloat3(obj->GetPropertyData(prop));
+		v = Float4(v3.r, v3.g, v3.b, 1);
+	}
+	else if (prop->type == PT_Float4)
+	{
+		v = prop->AsFloat4(obj->GetPropertyData(prop));
+	}
+	else
+	{
+		d_assert (0);
+	}
 
-	mColor = Float4(v.r, v.g, v.b, 1);
+	mColor = Float4(v.r, v.g, v.b, v.a);
 	mWidget->SetColor(mColor);
-	mWidget->E_MouseClick += new cListener1<PropertyFieldColor3, const MGUI::MouseEvent *>(this, &PropertyFieldColor3::OnClick);
+	mWidget->E_MouseClick += new cListener1<PropertyFieldColor, const MGUI::MouseEvent *>(this, &PropertyFieldColor::OnClick);
 }
 
-PropertyFieldColor3::~PropertyFieldColor3()
+PropertyFieldColor::~PropertyFieldColor()
 {
 }
 
-void PropertyFieldColor3::OnClick(const MGUI::MouseEvent *)
+void PropertyFieldColor::OnClick(const MGUI::MouseEvent *)
 {
-	Float3 v = mProperty->AsFloat3(mObject->GetPropertyData(mProperty));
-	mColor = Float4(v.r, v.g, v.b, 1);
+	Float4 v;
+	if (mProperty->type == PT_Float3)
+	{
+		Float3 v3 = mProperty->AsFloat3(mObject->GetPropertyData(mProperty));
+		v = Float4(v3.r, v3.g, v3.b, 1);
+	}
+	else if (mProperty->type == PT_Float4)
+	{
+		v = mProperty->AsFloat4(mObject->GetPropertyData(mProperty));
+	}
 
-	ColorPickerDialog::Instance()->E_EndDialog += new cListener1<PropertyFieldColor3, bool>(this, &PropertyFieldColor3::OnEndDialog_);
-	ColorPickerDialog::Instance()->E_Preview += new cListener0<PropertyFieldColor3>(this, &PropertyFieldColor3::OnPreview_);
+	mColor = Float4(v.r, v.g, v.b, v.a);
+
+	ColorPickerDialog::Instance()->E_EndDialog += new cListener1<PropertyFieldColor, bool>(this, &PropertyFieldColor::OnEndDialog_);
+	ColorPickerDialog::Instance()->E_Preview += new cListener0<PropertyFieldColor>(this, &PropertyFieldColor::OnPreview_);
 
 	ColorPickerDialog::Instance()->DoModal(mColor, this);
 }
 
-void PropertyFieldColor3::OnEndDialog_(bool _ok)
-{
-	if (_ok)
-		mColor = ColorPickerDialog::Instance()->GetCurrentColor();
-
-	mWidget->SetColor(Float4(mColor.r, mColor.g, mColor.b, 1));
-
-	mObject->SetPropertyData(mProperty, &mColor);
-}
-
-void PropertyFieldColor3::OnPreview_()
-{
-	Float4 v = ColorPickerDialog::Instance()->GetCurrentColor();
-
-	mObject->SetPropertyData(mProperty, &v);
-}
-
-
-
-
-PropertyFieldColor4::PropertyFieldColor4(PropertyGroup * group, IObject * obj, const Property * prop)
-	: PropertyField(group, obj, prop)
-{
-	mWidget = new MGUI::Widget(AllLookFeel::Instance()->GetWhite(), mWidget_Value);
-	mWidget->SetAlign(MGUI::eAlign::H_STRETCH | MGUI::eAlign::V_CENTER);
-	mWidget->SetRect(0, 0, 0, 24);
-
-	Float4 v = prop->AsFloat4(obj->GetPropertyData(prop));
-
-	mColor = Float4(v.r, v.g, v.b, v.a);
-	mWidget->SetColor(mColor);
-	mWidget->E_MouseClick += new cListener1<PropertyFieldColor4, const MGUI::MouseEvent *>(this, &PropertyFieldColor4::OnClick);
-}
-
-PropertyFieldColor4::~PropertyFieldColor4()
-{
-}
-
-void PropertyFieldColor4::OnClick(const MGUI::MouseEvent *)
-{
-	Float4 v = mProperty->AsFloat4(mObject->GetPropertyData(mProperty));
-	mColor = Float4(v.r, v.g, v.b, v.a);
-
-	ColorPickerDialog::Instance()->E_EndDialog += new cListener1<PropertyFieldColor4, bool>(this, &PropertyFieldColor4::OnEndDialog_);
-	ColorPickerDialog::Instance()->E_Preview += new cListener0<PropertyFieldColor4>(this, &PropertyFieldColor4::OnPreview_);
-
-	ColorPickerDialog::Instance()->DoModal(mColor, this);
-}
-
-void PropertyFieldColor4::OnEndDialog_(bool _ok)
+void PropertyFieldColor::OnEndDialog_(bool _ok)
 {
 	if (_ok)
 		mColor = ColorPickerDialog::Instance()->GetCurrentColor();
@@ -92,7 +66,7 @@ void PropertyFieldColor4::OnEndDialog_(bool _ok)
 	mObject->SetPropertyData(mProperty, &mColor);
 }
 
-void PropertyFieldColor4::OnPreview_()
+void PropertyFieldColor::OnPreview_()
 {
 	Float4 v = ColorPickerDialog::Instance()->GetCurrentColor();
 

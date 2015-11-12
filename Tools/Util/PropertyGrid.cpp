@@ -71,13 +71,9 @@ PropertyField * PropertyGrid::_createProperty(const Property * prop, IPropertyGr
 		{
 			field = new PropertyFieldQuaternion(pg, mObject, prop);
 		}
-		else if (strcmp(prop->editorName, "PT_Color3") == 0)
+		else if (strcmp(prop->editorName, "PT_Color") == 0)
 		{
-			field = new PropertyFieldColor3(pg, mObject, prop);
-		}
-		else if (strcmp(prop->editorName, "PT_Color4") == 0)
-		{
-			field = new PropertyFieldColor4(pg, mObject, prop);
+			field = new PropertyFieldColor(pg, mObject, prop);
 		}
 		else if (strstr(prop->editorName, "PT_Filename") == prop->editorName)
 		{
