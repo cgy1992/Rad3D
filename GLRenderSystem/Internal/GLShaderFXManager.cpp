@@ -82,6 +82,9 @@ namespace Rad {
 
 		switch (uniform->Type)
 		{
+		case eSPType::FLOAT1:
+		case eSPType::FLOAT2:
+		case eSPType::FLOAT3:
 		case eSPType::FLOAT4:
 			{
 				uniform->data = pool_alloc(sizeof(Float4) * uniform->Count);
@@ -107,7 +110,7 @@ namespace Rad {
 			break;
 		}
 
-		uniform->handle = glGetUniformLocation(pass->GetGLShaderProgram(), uniform->Name.c_str()); 
+		uniform->handle = glGetUniformLocation(pass->GetGLShaderProgram(), uniform->Name.c_str());
 		if (uniform->handle != -1)
 		{
 			pass->AddUniform(uniform);
