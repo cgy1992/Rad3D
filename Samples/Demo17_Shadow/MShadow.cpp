@@ -71,7 +71,7 @@ namespace Rad {
 		RenderTargetPtr pRenderTarget = HWBufferManager::Instance()->NewRenderTarget(mMapSize, mMapSize, ePixelFormat::R5G6B5);
 		DepthBufferPtr pDepthBuffer = HWBufferManager::Instance()->NewDepthBuffer(mMapSize, mMapSize, ePixelFormat::D16);
 
-		mShadowContext->SetRenderTarget(pRenderTarget);
+		mShadowContext->SetRenderTarget(0, pRenderTarget);
 		mShadowContext->SetDepthBuffer(pDepthBuffer);
 
 		Viewport vp;
@@ -94,7 +94,7 @@ namespace Rad {
 	{
 		if (mContext->GetCamera() != NULL)
 		{
-			if (mShadowContext->GetRenderTarget()->GetWidth() != mMapSize)
+			if (mShadowContext->GetRenderTarget(0)->GetWidth() != mMapSize)
 				_updateRT();
 
 			_updateCamera();
@@ -105,7 +105,7 @@ namespace Rad {
 
 	void Shadow::_updateRT()
 	{
-		mShadowContext->GetRenderTarget()->Resize(mMapSize, mMapSize);
+		mShadowContext->GetRenderTarget(0)->Resize(mMapSize, mMapSize);
 		mShadowContext->GetDepthBuffer()->Resize(mMapSize, mMapSize);
 
 		Viewport vp;
@@ -206,7 +206,7 @@ namespace Rad {
 		do 
 		{
 			Mat4 matShadow = mShadowCamera->GetViewProjMatrix();
-			TexturePtr depthMap = mShadowContext->GetRenderTarget()->GetTexture();
+			TexturePtr depthMap = mShadowContext->GetRenderTarget(0)->GetTexture();
 			
 			Float4 fadeParam;
 			fadeParam.x = mFadeRatio * mDistance;

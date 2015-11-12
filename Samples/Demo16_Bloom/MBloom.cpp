@@ -75,7 +75,7 @@ namespace Rad {
 	void Bloom::DoProcess()
 	{
 		RenderContext * context = World::Instance()->GetCurrentRenderContext();
-		if (context != NULL && context->GetRenderTarget() != NULL)
+		if (context != NULL && context->GetRenderTarget(0) != NULL)
 		{
 			mInvMapSize.x = 0.5f / RenderSystem::Instance()->GetConfig().width;
 			mInvMapSize.y = 0.5f / RenderSystem::Instance()->GetConfig().height;
@@ -94,12 +94,13 @@ namespace Rad {
 	{
 		RenderContext * context = World::Instance()->GetCurrentRenderContext();
 
-		RenderSystem::Instance()->SetRenderTarget(mRTQuad1.c_ptr());
+		RenderSystem::Instance()->SetRenderTarget(0, mRTQuad1.c_ptr());
 		RenderSystem::Instance()->SetDepthBuffer(NULL);
+		RenderSystem::Instance()->PrepareRendering();
 
 		RenderSystem::Instance()->SetViewport(Viewport());
 
-		RenderSystem::Instance()->SetTexture(0, context->GetRenderTarget()->GetTexture().c_ptr());
+		RenderSystem::Instance()->SetTexture(0, context->GetRenderTarget(0)->GetTexture().c_ptr());
 
 		mTechDownSample->GetPass(0)->SetConst("u_Threshold", Float4(mThreshold, 1 / (1 - mThreshold), 0));
 
@@ -108,8 +109,9 @@ namespace Rad {
 
 	void Bloom::_doBlurH()
 	{
-		RenderSystem::Instance()->SetRenderTarget(mRTQuad2.c_ptr());
+		RenderSystem::Instance()->SetRenderTarget(0, mRTQuad2.c_ptr());
 		RenderSystem::Instance()->SetDepthBuffer(NULL);
+		RenderSystem::Instance()->PrepareRendering();
 
 		RenderSystem::Instance()->SetViewport(Viewport());
 
@@ -122,8 +124,9 @@ namespace Rad {
 
 	void Bloom::_doBlurV()
 	{
-		RenderSystem::Instance()->SetRenderTarget(mRTQuad1.c_ptr());
+		RenderSystem::Instance()->SetRenderTarget(0, mRTQuad1.c_ptr());
 		RenderSystem::Instance()->SetDepthBuffer(NULL);
+		RenderSystem::Instance()->PrepareRendering();
 
 		RenderSystem::Instance()->SetViewport(Viewport());
 
@@ -138,8 +141,9 @@ namespace Rad {
 	{
 		RenderContext * context = World::Instance()->GetCurrentRenderContext();
 
-		RenderSystem::Instance()->SetRenderTarget(context->GetRenderTarget().c_ptr());
+		RenderSystem::Instance()->SetRenderTarget(0, context->GetRenderTarget(0).c_ptr());
 		RenderSystem::Instance()->SetDepthBuffer(NULL);
+		RenderSystem::Instance()->PrepareRendering();
 
 		RenderSystem::Instance()->SetViewport(Viewport());
 

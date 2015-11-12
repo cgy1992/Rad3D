@@ -63,7 +63,7 @@ public:
 		RenderTargetPtr pRenderTarget = HWBufferManager::Instance()->NewRenderTarget(vp.w, vp.h, ePixelFormat::R8G8B8);
 		DepthBufferPtr pDepthBuffer = HWBufferManager::Instance()->NewDepthBuffer(vp.w, vp.h, ePixelFormat::D24);
 
-		World::Instance()->MainRenderContext()->SetRenderTarget(pRenderTarget);
+		World::Instance()->MainRenderContext()->SetRenderTarget(0, pRenderTarget);
 		World::Instance()->MainRenderContext()->SetDepthBuffer(pDepthBuffer);
 
 
@@ -105,7 +105,7 @@ public:
 
 	void OnPostRender()
 	{
-		RenderTargetPtr pRenderTarget = World::Instance()->MainRenderContext()->GetRenderTarget();
+		RenderTargetPtr pRenderTarget = World::Instance()->MainRenderContext()->GetRenderTarget(0);
 		if (pRenderTarget != NULL)
 		{
 			RenderSystem::Instance()->SetViewport(World::Instance()->MainRenderContext()->GetViewport());
