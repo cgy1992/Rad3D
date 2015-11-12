@@ -18,11 +18,6 @@ namespace Rad {
 		d_assert (mGLTexture == 0);
 	}
 
-	void GLRenderTexture::Release()
-	{
-		delete this;
-	}
-
 	void * GLRenderTexture::Lock(eLockFlag flag)
 	{
 		d_assert (0 && "RenderTexture can't lockable");
@@ -37,7 +32,7 @@ namespace Rad {
 
 	void GLRenderTexture::_loadImp(DataStreamPtr stream)
 	{
-		d_assert (0);
+		d_assert(0 && "RenderTexture can't call this function");
 	}
 
 	bool GLRenderTexture::SetColorData(const Float4 & color, int u, int v)
@@ -57,12 +52,8 @@ namespace Rad {
 
 	//
 	GLRenderTarget::GLRenderTarget()
-		: mGLFrameBuffer(0)
+		: mGLTexture(0)
 	{
-		for (int i = 0; i < MAX_HW_RENDERTARGET; ++i)
-		{
-			mGLTextures[i] = 0;
-		}
 	}
 
 	GLRenderTarget::~GLRenderTarget()
@@ -91,68 +82,40 @@ namespace Rad {
 
 	void GLRenderTarget::OnLostDevice()
 	{
-		for (int i = 0; i < MAX_HW_RENDERTARGET; ++i)
+		if (mGLTexture != 0)
 		{
-			if (mGLTextures[i] != 0)
-			{
-				glDeleteTextures(1, &mGLTextures[i]);
-
-				mGLTextures[i] = 0;
-			}
-
-			GLRenderTexture * p = (GLRenderTexture *)mTextures[i].c_ptr();
-			if (p != NULL)
-			{
-				p->SetGLTexture(0);
-			}
+			glDeleteTextures(1, &mGLTexture);
+			mGLTexture = 0;
 		}
 
-		if (mGLFrameBuffer != 0)
-			glDeleteFramebuffers(1, &mGLFrameBuffer);
+		GLRenderTexture * p = (GLRenderTexture *)mTexture.c_ptr();
 
-		mGLFrameBuffer = 0;
+		p->SetGLTexture(0);
 	}
 
 	void GLRenderTarget::OnResetDevice()
 	{
-		d_assert (mGLFrameBuffer == 0);
-		d_assert (mWidth > 0 && mHeight > 0);
+		d_assert (mWidth > 0 && mHeight > 0 && mGLTexture == 0);
 
-		glGenFramebuffers(1, &mGLFrameBuffer);
-		glBindFramebuffer(GL_FRAMEBUFFER, mGLFrameBuffer);
+		GLRenderTexture * p = (GLRenderTexture *)mTexture.c_ptr();
 
-		d_assert (glGetError() == 0);
-
-		for (int i = 0; i < MAX_HW_RENDERTARGET; ++i)
+		if (GLUtil::IsRenderTargetFormat(mFormat))
 		{
-			GLRenderTexture * p = (GLRenderTexture *)mTextures[i].c_ptr();
+			GLenum _internal = GLUtil::GetGLInernalFormat(mFormat);
+			GLenum _format = GLUtil::GetGLPixelFormat(mFormat);
+			GLenum _type = GLUtil::GetGLPixelType(mFormat);
 
-			if (GLUtil::IsRenderTargetFormat(mFormats[i]))
-			{
-				GLenum _internal = GLUtil::GetGLInernalFormat(mFormats[i]);
-				GLenum _format = GLUtil::GetGLPixelFormat(mFormats[i]);
-				GLenum _type = GLUtil::GetGLPixelType(mFormats[i]);
+			glGenTextures(1, &mGLTexture);
+			glBindTexture(GL_TEXTURE_2D, mGLTexture);
+			glTexImage2D(GL_TEXTURE_2D, 0, _internal, mWidth, mHeight, 0, _format, _type, NULL);
 
-				GLuint pGLTexture = 0;
-				glGenTextures(1, &pGLTexture);
-				glBindTexture(GL_TEXTURE_2D, pGLTexture);
-				glTexImage2D(GL_TEXTURE_2D, 0, _internal, mWidth, mHeight, 0, _format, _type, NULL);
-
-				glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, pGLTexture, 0);
-
-				p->SetGLSize(mWidth, mHeight);
-				p->SetGLTexture(pGLTexture);
-			}
+			p->SetGLSize(mWidth, mHeight);
+			p->SetGLTexture(mGLTexture);
 		}
 
-		GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-		if (status != GL_FRAMEBUFFER_COMPLETE)
-		{
-			d_log("Error: create render target '%d' failed.", mFormats[0]);
-		}
-
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		p->_update();
 
 		d_assert (glGetError() == 0);
 	}
+
 }

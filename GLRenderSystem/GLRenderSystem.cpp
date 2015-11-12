@@ -200,10 +200,10 @@ namespace Rad {
 		int rtWidth = mConfig.width;
 		int rtHeight = mConfig.height;
 
-		if (mCurrentRenderTarget != NULL)
+		if (mCurrentRenderTarget[0] != NULL)
 		{
-			rtWidth = mCurrentRenderTarget->GetWidth();
-			rtHeight = mCurrentRenderTarget->GetHeight();
+			rtWidth = mCurrentRenderTarget[0]->GetWidth();
+			rtHeight = mCurrentRenderTarget[0]->GetHeight();
 		}
 
 		if (vp.w == 0 || vp.h == 0)
@@ -263,7 +263,7 @@ namespace Rad {
 	void GLRenderSystem::SetProjTM(const Mat4 & projTM)
 	{
 		Mat4 adjTM;
-		if (mCurrentRenderTarget == NULL)
+		if (mCurrentRenderTarget[0] == NULL)
 		{
 			adjTM = Mat4(
 				1, 0, 0, 0,
@@ -283,30 +283,33 @@ namespace Rad {
 		RenderRegister::Instance()->SetProjTM(projTM * adjTM);
 	}
 
-	void GLRenderSystem::SetRenderTarget(RenderTarget * p)
+	void GLRenderSystem::PrepareRendering()
 	{
-		GLRenderTarget * pGLRenderTarget = (GLRenderTarget *)p;
+		if (!mRenderTargetChanged)
+			return ;
 
-		if (pGLRenderTarget != NULL)
+		if (mCurrentRenderTarget[0] != NULL)
 		{
-			glBindFramebuffer(GL_FRAMEBUFFER, pGLRenderTarget->GetGLFrameBuffer());
-		}
-		else
-		{
-			glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		}
+			glBindFramebuffer(GL_FRAMEBUFFER, mHWBufferManager->GetFrameBuffer());
 
-		mCurrentRenderTarget = p;
+			for (int i = 0; i < MAX_HW_RENDERTARGET; ++i)
+			{
+				GLRenderTarget * pGLRenderTarget = (GLRenderTarget *)mCurrentRenderTarget[i];
+				if (pGLRenderTarget != NULL)
+				{
+					glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, pGLRenderTarget->GetGLTexture(), 0);
+				}
+				else
+				{
+					glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, 0, 0);
+				}
 
-		d_assert (glGetError() == 0);
-	}
+				d_assert (glGetError() == 0);
+			}
 
-	void GLRenderSystem::SetDepthBuffer(DepthBuffer * p)
-	{
-		if (mCurrentRenderTarget != NULL)
-		{
-			GLDepthBuffer * pGLDepthBuffer = (GLDepthBuffer *)p;
+			d_assert (glGetError() == 0);
 
+			GLDepthBuffer * pGLDepthBuffer = (GLDepthBuffer *)mCurrentDepthBuffer;
 			if (pGLDepthBuffer)
 			{
 				glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, pGLDepthBuffer->GetGLDepthBuffer());
@@ -321,19 +324,23 @@ namespace Rad {
 				glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, 0);
 				glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, 0);
 			}
-			
-			mCurrentDepthBuffer = p;
+
+			d_assert (glGetError() == 0);
+
+#ifdef M_DEBUG
+			GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+			if (status != GL_FRAMEBUFFER_COMPLETE)
+			{
+				d_assert (0 && "depth buffer format check failed.");
+			}
+#endif
+		}
+		else
+		{
+			glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		}
 
-		d_assert (glGetError() == 0);
-
-#ifdef _DEBUG
-		/*GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-		if (status != GL_FRAMEBUFFER_COMPLETE)
-		{
-			d_assert (0 && "depth buffer format check failed.");
-		}*/
-#endif
+		mRenderTargetChanged = false;
 	}
 
 	void GLRenderSystem::ReadPixelData(void * data, int x, int y, int w, int h)
@@ -370,12 +377,12 @@ namespace Rad {
 
 			case eCullMode::FRONT:
 				glEnable(GL_CULL_FACE);
-				glCullFace(mCurrentRenderTarget == NULL ? GL_BACK : GL_FRONT);
+				glCullFace(mCurrentRenderTarget[0] == NULL ? GL_BACK : GL_FRONT);
 				break;
 
 			case eCullMode::BACK:
 				glEnable(GL_CULL_FACE);
-				glCullFace(mCurrentRenderTarget == NULL ? GL_FRONT : GL_BACK);
+				glCullFace(mCurrentRenderTarget[0] == NULL ? GL_FRONT : GL_BACK);
 				break;
 			}
 

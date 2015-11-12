@@ -8,14 +8,13 @@ namespace Rad {
 		, mIndexBufferLinker(NULL)
 		, mRenderTargetLinker(NULL)
 		, mDepthBufferLinker(NULL)
-		, mTempFbo(0)
 	{
-		glGenFramebuffers(1, &mTempFbo);
+		glGenFramebuffers(1, &mFrameBuffer);
 	}
 
 	GLHWBufferManager::~GLHWBufferManager()
 	{
-		glDeleteFramebuffers(1, &mTempFbo);
+		glDeleteFramebuffers(1, &mFrameBuffer);
 
 		d_assert (mVertexBufferLinker == NULL);
 		d_assert (mIndexBufferLinker == NULL);
@@ -144,51 +143,26 @@ namespace Rad {
 
 	RenderTargetPtr GLHWBufferManager::NewRenderTarget(int width, int height, ePixelFormat format)
 	{
-		return NewMultiRenderTarget(width, height, &format, 1);
-	}
+		d_assert (GLUtil::IsRenderTargetFormat(format));
 
-	RenderTargetPtr GLHWBufferManager::NewMultiRenderTarget(int width, int height, ePixelFormat * formats, int count)
-	{
 		GLRenderTarget * p = new GLRenderTarget;
-
 		p->mWidth = width;
 		p->mHeight = height;
+		p->mFormat = format;
 
-		for (int i = 0; i < count; ++i)
-		{
-			p->mFormats[i] = formats[i];
+		GLRenderTexture * t = new GLRenderTexture;
+		t->mWidth = width;
+		t->mHeight = height;
+		t->mMipmaps = 1;
+		t->mFormat = format;
+		t->mUsage = eUsage::DYNAMIC;
 
-			if (p->mFormats[i] != ePixelFormat::UNKNOWN)
-			{
-				d_assert (GLUtil::IsRenderTargetFormat(p->mFormats[i]));
-
-				GLRenderTexture * t = new GLRenderTexture;
-				t->mWidth = width;
-				t->mHeight = height;
-				t->mMipmaps = 1;
-				t->mFormat = p->mFormats[i];
-				t->mUsage = eUsage::DYNAMIC;
-
-				p->mTextures[i] = t;
-			}
-		}
-
+		p->mTexture = t;
 		p->OnCreate();
 
-		if (p->GetGLFrameBuffer() != 0)
-		{
-			LINKER_APPEND(mRenderTargetLinker, p);
+		LINKER_APPEND(mRenderTargetLinker, p);
 
-			return p;
-		}
-		else
-		{
-			delete p;
-
-			d_log("?: Create Render Target '%d, %d, %d, %d' Failed.", formats[0], formats[1], formats[2], formats[3]);
-
-			return NULL;
-		}
+		return p;
 	}
 
 	void GLHWBufferManager::DeleteRenderTarget(GLRenderTarget * p)
@@ -221,7 +195,7 @@ namespace Rad {
 
 	void GLHWBufferManager::OnLostDevice()
 	{
-		glGenFramebuffers(1, &mTempFbo);
+		glGenFramebuffers(1, &mFrameBuffer);
 
 		GLVertexBuffer * vb = mVertexBufferLinker;
 		while (vb != NULL)
@@ -322,8 +296,8 @@ namespace Rad {
 			pDepthBuffer = LINKER_NEXT(pDepthBuffer);
 		}
 
-		glDeleteFramebuffers(1, &mTempFbo);
-		mTempFbo = 0;
+		glDeleteFramebuffers(1, &mFrameBuffer);
+		mFrameBuffer = 0;
 	}
 
 }

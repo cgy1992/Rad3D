@@ -182,7 +182,7 @@ namespace Rad {
 				WGL_DEPTH_BITS_ARB,			config.depthBits,
 				WGL_STENCIL_BITS_ARB,		config.stencilBits,
 				WGL_DOUBLE_BUFFER_ARB,		GL_TRUE,
-				WGL_SAMPLE_BUFFERS_ARB,		GL_TRUE,
+				WGL_SAMPLE_BUFFERS_ARB,		config.msaa ? GL_TRUE : GL_FALSE,
 				WGL_SAMPLES_ARB,			4,
 				0,							0
 			};

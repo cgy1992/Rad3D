@@ -22,7 +22,7 @@ namespace Rad {
 		virtual ~GLRenderTexture();
 
 		virtual void
-			Release();
+			Release() { delete this; }
 
 		virtual void * 
 			Lock(eLockFlag flag);
@@ -73,11 +73,10 @@ namespace Rad {
 			OnResetDevice();
 
 		GLuint 
-			GetGLFrameBuffer() { return mGLFrameBuffer; }
+			GetGLTexture() { return mGLTexture; }
 
 	protected:
-		GLuint mGLFrameBuffer;
-		GLuint mGLTextures[MAX_HW_RENDERTARGET];
+		GLuint mGLTexture;
 	};
 
 }

@@ -48,7 +48,7 @@ namespace Rad {
 		d_assert (mGLDepthBuffer == 0);
 		d_assert (mWidth > 0 && mHeight > 0);
 
-		GLuint fbo = GLHWBufferManager::getGLInstance()->GetTempFbo();
+		GLuint fbo = GLHWBufferManager::getGLInstance()->GetFrameBuffer();
 		glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
 		glGenRenderbuffers(1, &mGLDepthBuffer);

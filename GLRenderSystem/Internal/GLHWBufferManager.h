@@ -45,8 +45,6 @@ namespace Rad {
 
 		virtual RenderTargetPtr 
 			NewRenderTarget(int width, int height, ePixelFormat format);
-		virtual RenderTargetPtr
-			NewMultiRenderTarget(int width, int height, ePixelFormat * formats, int count);
 		void 
 			DeleteRenderTarget(GLRenderTarget * p);
 
@@ -61,7 +59,7 @@ namespace Rad {
 			OnResetDevice();
 
 		GLuint
-			GetTempFbo() { return mTempFbo; }
+			GetFrameBuffer() { return mFrameBuffer; }
 
 	protected:
 		GLVertexBuffer * mVertexBufferLinker;
@@ -70,7 +68,7 @@ namespace Rad {
 		GLRenderTarget * mRenderTargetLinker;
 		GLDepthBuffer * mDepthBufferLinker;
 
-		GLuint mTempFbo;
+		GLuint mFrameBuffer;
 	};
 
 }
