@@ -159,13 +159,9 @@ void App::Resize(int w, int h)
 {
 	if (mRoot)
 	{
-		mRenderSystem->OnResize(w, h);
 		mUIEngine->OnResize(w, h);
+		mRenderSystem->OnResize(w, h);
 
-		Viewport vp;
-		vp.x = 0, vp.y = 0;
-		vp.w = w, vp.h = h;
-		World::Instance()->MainRenderContext()->SetViewport(vp);
 
 		OnResize(w, h);
 	}
