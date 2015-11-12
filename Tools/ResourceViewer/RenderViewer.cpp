@@ -59,7 +59,7 @@ RenderViewer::RenderViewer(int x, int y, int resolution)
 
 		mRenderContext[i] = World::Instance()->NewRenderContext(i, 0, "RenderViewer");
 		mRenderContext[i]->SetColorClear(eClearMode::ALL, Float4(0, 0, 0, 0));
-		mRenderContext[i]->SetRenderTarget(pRenderTarget);
+		mRenderContext[i]->SetRenderTarget(0, pRenderTarget);
 		mRenderContext[i]->SetDepthBuffer(pDepthBuffer);
 		mRenderContext[i]->SetCamera(pCamera);
 		mRenderContext[i]->SetViewport(Viewport(0, 0, resolution, resolution));
