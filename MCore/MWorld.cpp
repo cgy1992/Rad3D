@@ -602,23 +602,14 @@ namespace Rad {
 
 		for (int i = 0; i < mRenderContexts.Size(); ++i)
 		{
-			BeginRenderContext(mRenderContexts[i]);
-
-			if (mCurrentRenderContext->IsEnable())
+			if (mRenderContexts[i]->IsEnable())
 			{
+				BeginRenderContext(mRenderContexts[i]);
+
 				mCurrentRenderContext->DoRender(mFrameId);
 
-				if (MainRenderContext() == mCurrentRenderContext &&
-					MainRenderContext()->GetRenderTarget() != NULL &&
-					!MainRenderContext()->GetRenderTarget()->IsMRT())
-				{
-					RenderSystem::Instance()->SetViewport(MainRenderContext()->GetViewport());
-
-					RenderHelper::Instance()->DrawSumit(MainRenderContext()->GetRenderTarget()->GetTexture().c_ptr());
-				}
+				EndRenderContext();
 			}
-
-			EndRenderContext();
 		}
 
 		RenderSystem::Instance()->SetRenderTarget(NULL);

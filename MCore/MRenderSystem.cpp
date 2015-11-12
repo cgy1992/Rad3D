@@ -127,11 +127,22 @@ namespace Rad {
 
 	void RenderSystem::SetLight(Light * light)
 	{
-		mRenderRegister->SetLightPosition(light->GetPosition());
-		mRenderRegister->SetLightDirection(light->GetWorldRotation().GetDirVector());
-		mRenderRegister->SetLightColor(light->GetAmbient(), light->GetDiffuse(), light->GetSpecular());
-		mRenderRegister->SetLightAttenParam(light->GetAttenParam());
-		mRenderRegister->SetLightSpotParam(light->GetSpotParam());
+		if (light)
+		{
+			mRenderRegister->SetLightPosition(light->GetPosition());
+			mRenderRegister->SetLightDirection(light->GetWorldRotation().GetDirVector());
+			mRenderRegister->SetLightColor(light->GetAmbient(), light->GetDiffuse(), light->GetSpecular());
+			mRenderRegister->SetLightAttenParam(light->GetAttenParam());
+			mRenderRegister->SetLightSpotParam(light->GetSpotParam());
+		}
+		else
+		{
+			mRenderRegister->SetLightPosition(Float3(0, 0, 0));
+			mRenderRegister->SetLightDirection(Float3(0, 0, 1));
+			mRenderRegister->SetLightColor(Float3(1, 1, 1), Float3(1, 1, 1), Float3(1, 1, 1));
+			mRenderRegister->SetLightAttenParam(Float4(0, 0, 0, 0));
+			mRenderRegister->SetLightSpotParam(Float4(0, 0, 0, 0));
+		}
 	}
 
 	void RenderSystem::SetFog(const Float3 & fogColor, float fogNear, float fogFar)

@@ -30,11 +30,6 @@ namespace Rad {
 		mEnable = enable;
 	}
 
-	void RenderContext::SetMatchId(bool matched)
-	{
-		mMatchId = matched;
-	}
-
 	void RenderContext::SetColorClear(eClearMode mode, const Float4 & color, float depth, int stencil)
 	{
 		mClearMode = mode;
@@ -75,11 +70,16 @@ namespace Rad {
 
 	void RenderContext::SetViewport(const Viewport & vp)
 	{
-		mViewport = vp;
-
-		for (int i = 0; i < mProcesses.Size(); ++i)
+		Viewport vp0 = GetViewport();
+		if (vp0.x != vp.x || vp0.w != vp.w ||
+			vp0.y != vp.y || vp0.h != vp.h)
 		{
-			mProcesses[i]->OnResize();
+			mViewport = vp;
+
+			for (int i = 0; i < mProcesses.Size(); ++i)
+			{
+				mProcesses[i]->OnResize();
+			}
 		}
 	}
 

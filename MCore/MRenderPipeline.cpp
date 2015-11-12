@@ -71,7 +71,7 @@ namespace Rad {
 		RenderSystem::Instance()->SetClipPlane(pCamera->GetNearClip(), pCamera->GetFarClip());
 		RenderSystem::Instance()->SetTime(Root::Instance()->GetTime());
 
-		RenderSystem::Instance()->SetLight(World::Instance()->MainLight());
+		RenderSystem::Instance()->SetLight(NULL);
 
 		World::Instance()->E_RenderSolidBegin();
 

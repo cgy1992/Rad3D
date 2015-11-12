@@ -53,7 +53,7 @@ namespace Rad {
 
 		inline void SetConst(const Float4 & v)
 		{
-			d_assert (Type == eSPType::FLOAT4);
+			d_assert (Type <= eSPType::FLOAT4);
 
 			if (data)
 			{

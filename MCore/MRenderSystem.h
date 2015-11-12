@@ -44,7 +44,6 @@ namespace Rad {
 				depthBits = 24;
 				stencilBits = 8;
 #endif
-				
 			}
 		};
 
