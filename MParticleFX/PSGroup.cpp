@@ -7,29 +7,22 @@ namespace Rad {
 		: mParent(parent)
 	{
 		mParticleSystem = new ParticleSystem;
-		mParticleSystem->SetUserData(0, (void *)1);
-		mParticleSystem->SetSource(mParent->_getSource());
-
-		for (int i = 0; i < mParticleSystem->GetSetCount(); ++i)
-		{
-			mParticleSystem->GetSet(i)->SetEnable(false);
-		}
 
 		int i0 = mParent->GetSetIndex().x;
-		if (i0 >= 0 && i0 < mParticleSystem->GetSetCount())
-			mParticleSystem->GetSet(i0)->SetEnable(true);
+		if (i0 >= 0 && i0 < mParent->GetParent()->GetSetCount() && mParent->GetParent()->GetSet(i0) != parent)
+			mParticleSystem->CloneSet(mParent->GetParent()->GetSet(i0));
 
 		int i1 = mParent->GetSetIndex().y;
-		if (i1 >= 0 && i1 < mParticleSystem->GetSetCount())
-			mParticleSystem->GetSet(i1)->SetEnable(true);
+		if (i1 >= 0 && i1 < mParent->GetParent()->GetSetCount() && mParent->GetParent()->GetSet(i1) != parent)
+			mParticleSystem->CloneSet(mParent->GetParent()->GetSet(i1));
 
 		int i2 = mParent->GetSetIndex().z;
-		if (i2 >= 0 && i2 < mParticleSystem->GetSetCount())
-			mParticleSystem->GetSet(i2)->SetEnable(true);
+		if (i2 >= 0 && i2 < mParent->GetParent()->GetSetCount() && mParent->GetParent()->GetSet(i2) != parent)
+			mParticleSystem->CloneSet(mParent->GetParent()->GetSet(i2));
 
 		int i3 = mParent->GetSetIndex().w;
-		if (i3 >= 0 && i3 < mParticleSystem->GetSetCount())
-			mParticleSystem->GetSet(i3)->SetEnable(true);
+		if (i3 >= 0 && i3 < mParent->GetParent()->GetSetCount() && mParent->GetParent()->GetSet(i3) != parent)
+			mParticleSystem->CloneSet(mParent->GetParent()->GetSet(i3));
 	}
 
 	PS_Group::~PS_Group()

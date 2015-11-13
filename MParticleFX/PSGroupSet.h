@@ -24,9 +24,6 @@ namespace Rad {
 		PS_GroupSet();
 		virtual ~PS_GroupSet();
 
-		virtual void
-			OnPropertyChanged(const Property * p);
-
 		virtual void 
 			AllocQuota(int quota);
 		virtual void 
@@ -34,9 +31,6 @@ namespace Rad {
 
 		virtual void
 			Update(float elapsedTime);
-
-		PS_SourcePtr
-			_getSource() { return mSource; }
 
 		void
 			SetSetIndex(const Int4 & sets);
@@ -50,12 +44,6 @@ namespace Rad {
 			_free_particle(Particle * p);
 		virtual void 
 			_clear_particle();
-
-		void
-			_updateSource();
-
-	protected:
-		PS_SourcePtr mSource;
 	};
 
 }
