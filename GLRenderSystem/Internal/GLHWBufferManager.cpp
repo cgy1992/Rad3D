@@ -195,7 +195,8 @@ namespace Rad {
 
 	void GLHWBufferManager::OnLostDevice()
 	{
-		glGenFramebuffers(1, &mFrameBuffer);
+		glDeleteFramebuffers(1, &mFrameBuffer);
+		mFrameBuffer = 0;
 
 		GLVertexBuffer * vb = mVertexBufferLinker;
 		while (vb != NULL)
@@ -248,6 +249,8 @@ namespace Rad {
 
 	void GLHWBufferManager::OnResetDevice()
 	{
+		glGenFramebuffers(1, &mFrameBuffer);
+
 		GLVertexBuffer * vb = mVertexBufferLinker;
 		while (vb != NULL)
 		{
@@ -295,9 +298,6 @@ namespace Rad {
 
 			pDepthBuffer = LINKER_NEXT(pDepthBuffer);
 		}
-
-		glDeleteFramebuffers(1, &mFrameBuffer);
-		mFrameBuffer = 0;
 	}
 
 }

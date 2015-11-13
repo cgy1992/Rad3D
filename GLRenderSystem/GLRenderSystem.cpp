@@ -12,6 +12,9 @@
 
 namespace Rad {
 
+	GLuint mFrameBufferRead = 0;
+	GLuint mFrameBufferDraw = 0;
+
 #ifdef M_PLATFORM_WIN32
 	GLRenderSystem::GLRenderSystem(HWND hWnd, const Config & config)
 #else
@@ -96,30 +99,47 @@ namespace Rad {
 		mCaps.pixelFormats[ePixelFormat::R32G32B32A32F] = false;
 #endif
 
+		//
+		mScreenQuad = new RenderOp;
+
+		mScreenQuad->vertexDeclarations[0].AddElement(eVertexSemantic::POSITION, eVertexType::FLOAT4);
+		mScreenQuad->vertexDeclarations[0].AddElement(eVertexSemantic::TEXCOORD0, eVertexType::FLOAT2);
+
+		mScreenQuad->vertexBuffers[0] = HWBufferManager::Instance()->NewVertexBuffer(sizeof(float) * 6, 4);
+
+		mScreenQuad->primCount = 2;
+		mScreenQuad->primType = ePrimType::TRIANGLE_STRIP;
+
+		mScreenQuadRT = new RenderOp;
+
+		mScreenQuadRT->vertexDeclarations[0].AddElement(eVertexSemantic::POSITION, eVertexType::FLOAT4);
+		mScreenQuadRT->vertexDeclarations[0].AddElement(eVertexSemantic::TEXCOORD0, eVertexType::FLOAT2);
+
+		mScreenQuadRT->vertexBuffers[0] = HWBufferManager::Instance()->NewVertexBuffer(sizeof(float) * 6, 4);
+
+		mScreenQuadRT->primCount = 2;
+		mScreenQuadRT->primType = ePrimType::TRIANGLE_STRIP;
+
+		_updateScreenQuad(config.width, config.height);
+
+		//
 		OnInit();
 	}
-
-#ifdef M_PLATFORM_WIN32
-	GLRenderSystem::GLRenderSystem(HWND hWnd)
-	{
-		RECT rc;
-		GetClientRect(hWnd, &rc);
-		mConfig.width = rc.right - rc.left;
-		mConfig.height = rc.bottom - rc.top;
-
-#ifdef M_PLATFORM_WIN32
-		WGL_CreateContext(hWnd, mConfig);
-#endif
-		mHWBufferManager = new GLHWBufferManager;
-		mShaderFXManager = new GLShaderFXManager;
-
-		OnInit();
-	}
-#endif
 
 	GLRenderSystem::~GLRenderSystem()
 	{
 		OnShutdown();
+
+		if (mFrameBufferDraw != 0)
+		{
+			glDeleteFramebuffers(1, &mFrameBufferRead);
+			glDeleteFramebuffers(1, &mFrameBufferDraw);
+			mFrameBufferDraw = 0;
+			mFrameBufferRead = 0;
+		}
+
+		delete mScreenQuad;
+		delete mScreenQuadRT;
 
 		delete mShaderFXManager;
 		delete mHWBufferManager;
@@ -131,6 +151,14 @@ namespace Rad {
 
 	void GLRenderSystem::OnLostDevice()
 	{
+		if (mFrameBufferDraw != 0)
+		{
+			glDeleteFramebuffers(1, &mFrameBufferRead);
+			glDeleteFramebuffers(1, &mFrameBufferDraw);
+			mFrameBufferDraw = 0;
+			mFrameBufferRead = 0;
+		}
+
 		mShaderFXManager->OnLostDevice();
 		d_assert(glGetError() == 0);
 
@@ -162,7 +190,7 @@ namespace Rad {
 			mConfig.width = w;
 			mConfig.height = h;
 
-			mRenderHelper->OnResize();
+			_updateScreenQuad(w, h);
 
 			E_Resize(w, h);
 		}
@@ -191,6 +219,11 @@ namespace Rad {
 	#endif
 
 		_clearState();
+	}
+
+	void GLRenderSystem::Finish()
+	{
+		glFinish();
 	}
 
 	void GLRenderSystem::SetViewport(const Viewport & viewport)
@@ -290,6 +323,8 @@ namespace Rad {
 
 		if (mCurrentRenderTarget[0] != NULL)
 		{
+			FixedArray<GLenum, MAX_HW_RENDERTARGET> targets;
+
 			glBindFramebuffer(GL_FRAMEBUFFER, mHWBufferManager->GetFrameBuffer());
 
 			for (int i = 0; i < MAX_HW_RENDERTARGET; ++i)
@@ -298,6 +333,8 @@ namespace Rad {
 				if (pGLRenderTarget != NULL)
 				{
 					glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, pGLRenderTarget->GetGLTexture(), 0);
+
+					targets.PushBack(GL_COLOR_ATTACHMENT0 + i);
 				}
 				else
 				{
@@ -325,8 +362,6 @@ namespace Rad {
 				glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, 0);
 			}
 
-			d_assert (glGetError() == 0);
-
 #ifdef M_DEBUG
 			GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 			if (status != GL_FRAMEBUFFER_COMPLETE)
@@ -334,18 +369,80 @@ namespace Rad {
 				d_assert (0 && "depth buffer format check failed.");
 			}
 #endif
+
+			glDrawBuffers(targets.Size(), &targets[0]);
 		}
 		else
 		{
 			glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		}
 
+		d_assert (glGetError() == 0);
+
 		mRenderTargetChanged = false;
 	}
 
-	void GLRenderSystem::ReadPixelData(void * data, int x, int y, int w, int h)
+	void GLRenderSystem::ReadPixels(void * pixels, int x, int y, int w, int h)
 	{
-		glReadPixels(x, y, w, h, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		glReadPixels(x, y, w, h, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+	}
+
+	void GLRenderSystem::StretchRect(RenderTarget * rtDest, RectI * rcDest, RenderTarget * rtSrc, RectI * rcSrc, eTexFilter filter)
+	{
+#ifdef M_PLATFORM_WIN32
+		if (mFrameBufferDraw == 0)
+		{
+			glGenFramebuffers(1, &mFrameBufferRead);
+			glGenFramebuffers(1, &mFrameBufferDraw);
+		}
+
+		RectI drc, src;
+		if (rcDest == NULL)
+		{
+			drc.x1 = 0;
+			drc.y1 = 0;
+			drc.x2 = rtDest->GetWidth();
+			drc.y2 = rtDest->GetHeight();
+		}
+		else
+		{
+			drc = *rcDest;
+		}
+
+		if (rcSrc == NULL)
+		{
+			src.x1 = 0;
+			src.y1 = 0;
+			src.x2 = rtSrc->GetWidth();
+			src.y2 = rtSrc->GetHeight();
+		}
+		else
+		{
+			src = *rcSrc;
+		}
+
+		GLRenderTarget * pGLDest = (GLRenderTarget *)rtDest;
+		GLRenderTarget * pGLSrc = (GLRenderTarget *)rtSrc;
+
+		glBindFramebuffer(GL_READ_FRAMEBUFFER, mFrameBufferRead);
+		glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, pGLSrc->GetGLTexture(), 0);
+
+		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, mFrameBufferDraw);
+		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, pGLDest->GetGLTexture(), 0);
+
+		glBlitFramebuffer(
+			src.x1, src.y1, src.x2, src.y2, 
+			drc.x1, drc.y1, drc.x2, drc.y2, 
+			GL_COLOR_BUFFER_BIT,
+			filter == eTexFilter::POINT ? GL_NEAREST : GL_LINEAR);
+
+		glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+
+		d_assert (glGetError() == 0);
+#else
+		d_assert (0 && "not support!");
+#endif
 	}
 
 	void GLRenderSystem::_bindRenderState()
@@ -710,6 +807,67 @@ namespace Rad {
 
 		mBatchCount += 1;
 		mPrimitiveCount += primCount;
+	}
+
+	void GLRenderSystem::_updateScreenQuad(int w, int h)
+	{
+		float halfInvWidth = 0.5f / w;
+		float halfInvHeight = 0.5f / h;
+
+		float * vert = (float *)mScreenQuad->vertexBuffers[0]->Lock(eLockFlag::WRITE);
+		{
+			float x = 0, y = 0, z = 0;
+
+			*vert++ = -1; *vert++ = 1; *vert++ = 0; *vert++ = 1;
+			//*vert++ = 0 + halfInvWidth; *vert++ = 0 + halfInvHeight;
+			*vert++ = 0; *vert++ = 0;
+
+			*vert++ = 1; *vert++ = 1; *vert++ = 0; *vert++ = 1;
+			//*vert++ = 1 + halfInvWidth; *vert++ = 0 + halfInvHeight;
+			*vert++ = 1; *vert++ = 0;
+
+			*vert++ = -1; *vert++ = -1; *vert++ = 0; *vert++ = 1;
+			//*vert++ = 0 + halfInvWidth; *vert++ = 1 + halfInvHeight;
+			*vert++ = 0; *vert++ = 1;
+
+			*vert++ = 1; *vert++ = -1; *vert++ = 0; *vert++ = 1;
+			//*vert++ = 1 + halfInvWidth; *vert++ = 1 + halfInvHeight;
+			*vert++ = 1; *vert++ = 1;
+		}
+		mScreenQuad->vertexBuffers[0]->Unlock();
+
+		vert = (float *)mScreenQuadRT->vertexBuffers[0]->Lock(eLockFlag::WRITE);
+		{
+			float x = 0, y = 0, z = 0;
+
+			*vert++ = -1; *vert++ = -1; *vert++ = 0; *vert++ = 1;
+			//*vert++ = 0 + halfInvWidth; *vert++ = 0 + halfInvHeight;
+			*vert++ = 0; *vert++ = 0;
+
+			*vert++ = 1; *vert++ = -1; *vert++ = 0; *vert++ = 1;
+			//*vert++ = 1 + halfInvWidth; *vert++ = 0 + halfInvHeight;
+			*vert++ = 1; *vert++ = 0;
+
+			*vert++ = -1; *vert++ = 1; *vert++ = 0; *vert++ = 1;
+			//*vert++ = 0 + halfInvWidth; *vert++ = 1 + halfInvHeight;
+			*vert++ = 0; *vert++ = 1;
+
+			*vert++ = 1; *vert++ = 1; *vert++ = 0; *vert++ = 1;
+			//*vert++ = 1 + halfInvWidth; *vert++ = 1 + halfInvHeight;
+			*vert++ = 1; *vert++ = 1;
+		}
+		mScreenQuadRT->vertexBuffers[0]->Unlock();
+	}
+
+	void GLRenderSystem::RenderScreenQuad(ShaderFX * fx)
+	{
+		SetWorldTM(Mat4::Identity);
+
+		for (int i = 0; i < fx->GetPassCount(); ++i)
+		{
+			SetShaderPass(fx->GetPass(i), true);
+			Render(mCurrentRenderTarget[0] != NULL ? mScreenQuadRT : mScreenQuad);
+		}
 	}
 
 }

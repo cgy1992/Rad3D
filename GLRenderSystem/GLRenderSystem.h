@@ -32,7 +32,6 @@ namespace Rad {
 	public:
 #ifdef M_PLATFORM_WIN32
 		GLRenderSystem(HWND hWnd, const Config & config);
-		GLRenderSystem(HWND hWnd);
 #else
 		GLRenderSystem(const Config & config);
 #endif
@@ -51,6 +50,8 @@ namespace Rad {
 			Begin();
 		virtual void 
 			End();
+		virtual void
+			Finish();
 
 		virtual void 
 			SetViewport(const Viewport & vp);
@@ -65,13 +66,16 @@ namespace Rad {
 			PrepareRendering();
 
 		virtual void 
-			ReadPixelData(void * data, int x, int y, int w, int h);
+			ReadPixels(void * pixels, int x, int y, int w, int h);
+		virtual void
+			StretchRect(RenderTarget * rtDest, RectI * rcDest, RenderTarget * rtSrc, RectI * rcSrc, eTexFilter filter);
 
 		virtual void 
 			Render(RenderOp * rop);
-
 		virtual void 
 			RenderEx(VertexDeclaration * decl, const void * vertexData, const void * indexData, ePrimType primType, int primCount);
+		virtual void
+			RenderScreenQuad(ShaderFX * fx);
 
 	protected:
 		void 
@@ -81,8 +85,14 @@ namespace Rad {
 		void 
 			_bindSamplers();
 
+		void
+			_updateScreenQuad(int w, int h);
+
 	protected:
 		GLHWBufferManager * mHWBufferManager;
 		GLShaderFXManager * mShaderFXManager;
+
+		RenderOp * mScreenQuad;
+		RenderOp * mScreenQuadRT;
 	};
 }
