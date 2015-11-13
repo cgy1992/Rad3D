@@ -359,6 +359,29 @@ namespace Rad {
 		mModifiers.Erase(index);
 	}
 
+	PS_ShaderPtr PS_Set::CloneShader(PS_ShaderPtr shader)
+	{
+		const Property * prop = GetProperty("ShaderClass");
+		if (prop != NULL)
+		{
+			FixedString32 ShaderClass = shader->GetRTTI()->Name();
+			SetPropertyData(prop, &ShaderClass);
+
+			if (mShader != NULL)
+			{
+				byte buffer[2048];
+				OSerializerM OS(buffer, 2048, false);
+
+				shader->Serialize(OS);
+
+				ISerializerM IS((byte *)OS.Data(), OS.Size(), false);
+				mShader->Serialize(IS);
+			}
+		}
+
+		return mShader;
+	}
+
 	Particle * PS_Set::_quest_particle()
 	{
 		Particle * p = NULL;

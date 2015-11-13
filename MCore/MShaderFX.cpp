@@ -62,6 +62,16 @@ namespace Rad {
 		return false;
 	}
 
+	void ShaderPass::SetConst(int index, float x, float y, float z, float w)
+	{
+		SetConst(index, Float4(x, y, z, w));
+	}
+
+	void ShaderPass::SetConst(const FixedString32 & name, float x, float y, float z, float w)
+	{
+		SetConst(name, Float4(x, y, z, w));
+	}
+
 	void ShaderPass::SetConst(int index, const Float4 * data, int count)
 	{
 		mUniforms[index]->SetConst(data, count);

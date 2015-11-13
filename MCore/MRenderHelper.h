@@ -18,9 +18,6 @@ namespace Rad {
 		RenderHelper();
 		~RenderHelper();
 
-		void 
-			OnResize();
-
 		TexturePtr 
 			GetWhiteTexture() { return mWhiteTexture; }
 		TexturePtr 
@@ -34,10 +31,8 @@ namespace Rad {
 		ShaderFX * 
 			GetDebugShader() { return mDebugShaderFX; }
 
-		void 
-			DrawScreenQuad(ShaderFX * fx);
 		void
-			DrawSumit(Texture * texture);
+			DrawSumit(const Viewport & vp, Texture * texture);
 		void 
 			DebugDrawLine(const Float3 & point1, const Float3 & point2, const Float4 & color, const Mat4 & form);
 		void 
@@ -56,17 +51,11 @@ namespace Rad {
 			DebugDraw(RenderOp * rop, const Float4 & color, const Mat4 & form);
 		
 	protected:
-		void
-			_updateScreenQuad(int w, int h);
-
-	protected:
 		TexturePtr mWhiteTexture;
 		TexturePtr mBlackTexture;
 		TexturePtr mEmptyTexture;
 		TexturePtr mDefaultNormalMap;
 		TexturePtr mDefaultLightingMap;
-
-		RenderOp mScreenQuad;
 
 		VertexDeclaration mDebugVertexDecl;
 		ShaderFX * mDebugShaderFX;

@@ -87,7 +87,7 @@ namespace Rad {
 			DoRender(int frameId);
 
 		void 
-			ReadPixelData(void * data, int x, int y, int w, int h);
+			ReadPixels(void * pixels, int x, int y, int w, int h);
 
 		void
 			_addProcess(RenderProcess * p);

@@ -190,14 +190,14 @@ namespace Rad {
 		E_RenderEnd(this);
 	}
 
-	void RenderContext::ReadPixelData(void * data, int x, int y, int w, int h)
+	void RenderContext::ReadPixels(void * pixels, int x, int y, int w, int h)
 	{
 		d_assert (x >= mViewport.x && y >= mViewport.y && w <= mViewport.w && h <= mViewport.h);
-		d_assert (data != NULL);
+		d_assert (pixels != NULL);
 
 		RenderSystem::Instance()->SetRenderTarget(NULL, mRenderTarget[0].c_ptr());
 		RenderSystem::Instance()->PrepareRendering();
-		RenderSystem::Instance()->ReadPixelData(data, x, y, w, h);
+		RenderSystem::Instance()->ReadPixels(pixels, x, y, w, h);
 	}
 
 	void RenderContext::_addProcess(RenderProcess * p)

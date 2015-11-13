@@ -159,10 +159,9 @@ namespace Rad {
 				render->CloneModifier(p->GetModifier(i));
 			}
 
-			if (p->GetShader() != NULL && render->GetShader() != NULL &&
-				p->GetShader()->GetRTTI() == render->GetShader()->GetRTTI())
+			if (p->GetShader() != NULL)
 			{
-				render->GetShader()->Copy(p->GetShader().c_ptr());
+				render->CloneShader(p->GetShader());
 			}
 		}
 

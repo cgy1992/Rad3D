@@ -55,35 +55,24 @@ namespace Rad {
 		{
 			d_assert (Type <= eSPType::FLOAT4);
 
-			if (data)
-			{
-				*(Float4 *)data = v;
-			}
+			*(Float4 *)data = v;
 		}
 
 		inline void SetConst(const Mat4 & v)
 		{
 			d_assert (Type == eSPType::MATRIX4);
 
-			if (data)
-			{
-				*(Mat4 *)data = v;
-			}
+			*(Mat4 *)data = v;
 		}
 
 		inline void SetConst(const Float4 * v, int count)
 		{
-			d_assert (Type == eSPType::FLOAT4 && Count > count);
+			d_assert (Type == eSPType::FLOAT4 && Count >= count);
 
-			if (data)
+			Float4 * d = (Float4 *)data;
+			for (int i = 0; i < count; ++i)
 			{
-				byte * dest = (byte *)data;
-				for (int i = 0; i < count; ++i)
-				{
-					*(Float4 *)data = *v++;
-
-					dest += 16;
-				}
+				*d++ = *v++;
 			}
 		}
 	};
@@ -134,6 +123,10 @@ namespace Rad {
 		FX_Sampler * 
 			GetSampler(int index);
 
+		void
+			SetConst(int index, float x, float y, float z, float w);
+		void
+			SetConst(const FixedString32 & name, float x, float y, float z, float w);
 		void 
 			SetConst(int index, const Float4 * data, int count);
 		bool 

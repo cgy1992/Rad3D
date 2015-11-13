@@ -67,15 +67,6 @@ namespace Rad {
 			mDefaultLightingMap->Unlock();
 		}
 
-		// 
-		mScreenQuad.vertexDeclarations[0].AddElement(eVertexSemantic::POSITION, eVertexType::FLOAT4);
-		mScreenQuad.vertexDeclarations[0].AddElement(eVertexSemantic::TEXCOORD0, eVertexType::FLOAT2);
-
-		mScreenQuad.vertexBuffers[0] = HWBufferManager::Instance()->NewVertexBuffer(sizeof(float) * 6, 4);
-
-		mScreenQuad.primCount = 2;
-		mScreenQuad.primType = ePrimType::TRIANGLE_STRIP;
-
 		//
 		mDebugVertexDecl.AddElement(eVertexSemantic::POSITION, eVertexType::FLOAT3);
 
@@ -84,67 +75,23 @@ namespace Rad {
 
 		//
 		mSubmitShaderFX = ShaderFXManager::Instance()->Load("Submit", "Shader/MSubmit.mfx");
-
-		OnResize();
 	}
 
 	RenderHelper::~RenderHelper()
 	{
 	}
 
-	void RenderHelper::OnResize()
-	{
-		_updateScreenQuad(RenderSystem::Instance()->GetConfig().width, RenderSystem::Instance()->GetConfig().height);
-	}
-
-	void RenderHelper::_updateScreenQuad(int w, int h)
-	{
-		float halfInvWidth = 0.5f / w;
-		float halfInvHeight = 0.5f / h;
-
-		float * vert = (float *)mScreenQuad.vertexBuffers[0]->Lock(eLockFlag::WRITE);
-		{
-			float x = 0, y = 0, z = 0;
-
-			*vert++ = -1; *vert++ = 1; *vert++ = 0; *vert++ = 1;
-			//*vert++ = 0 + halfInvWidth; *vert++ = 0 + halfInvHeight;
-			*vert++ = 0; *vert++ = 0;
-
-			*vert++ = 1; *vert++ = 1; *vert++ = 0; *vert++ = 1;
-			//*vert++ = 1 + halfInvWidth; *vert++ = 0 + halfInvHeight;
-			*vert++ = 1; *vert++ = 0;
-
-			*vert++ = -1; *vert++ = -1; *vert++ = 0; *vert++ = 1;
-			//*vert++ = 0 + halfInvWidth; *vert++ = 1 + halfInvHeight;
-			*vert++ = 0; *vert++ = 1;
-
-			*vert++ = 1; *vert++ = -1; *vert++ = 0; *vert++ = 1;
-			//*vert++ = 1 + halfInvWidth; *vert++ = 1 + halfInvHeight;
-			*vert++ = 1; *vert++ = 1;
-		}
-		mScreenQuad.vertexBuffers[0]->Unlock();
-	}
-
-	void RenderHelper::DrawScreenQuad(ShaderFX * fx)
-	{
-		RenderSystem::Instance()->SetWorldTM(Mat4::Identity);
-
-		for (int i = 0; i < fx->GetPassCount(); ++i)
-		{
-			RenderSystem::Instance()->SetShaderPass(fx->GetPass(i), true);
-			RenderSystem::Instance()->Render(&mScreenQuad);
-		}
-	}
-
-	void RenderHelper::DrawSumit(Texture * texture)
+	void RenderHelper::DrawSumit(const Viewport & vp, Texture * texture)
 	{
 		RenderSystem::Instance()->SetRenderTarget(0, NULL);
 		RenderSystem::Instance()->SetDepthBuffer(NULL);
 		RenderSystem::Instance()->PrepareRendering();
 
+		RenderSystem::Instance()->SetViewport(vp);
+
 		RenderSystem::Instance()->SetTexture(0, texture);
 
-		DrawScreenQuad(mSubmitShaderFX);
+		RenderSystem::Instance()->RenderScreenQuad(mSubmitShaderFX);
 	}
 
 	void RenderHelper::DebugDrawLine(const Float3 & point1, const Float3 & point2, const Float4 & color, const Mat4 & form)

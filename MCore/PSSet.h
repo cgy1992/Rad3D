@@ -108,6 +108,8 @@ namespace Rad {
 		PS_Modifier * 
 			GetModifier(int index) { return mModifiers[index]; }
 		
+		PS_ShaderPtr
+			CloneShader(PS_ShaderPtr shader);
 		void
 			SetShader(PS_ShaderPtr shader) { mShader = shader; }
 		PS_ShaderPtr

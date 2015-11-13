@@ -92,12 +92,16 @@ namespace Rad {
 			Begin() = 0;
 		virtual void 
 			End() = 0;
+		virtual void
+			Finish() = 0;
 
 		virtual void
 			BeginEvent(const char * name) {}
 		virtual void
 			EndEvent() {}
 
+		void
+			SetViewport(int x, int y, int w, int h) { SetViewport(Viewport(x, y, w, h)); }
 		virtual void 
 			SetViewport(const Viewport & vp) = 0;
 
@@ -161,8 +165,11 @@ namespace Rad {
 			SetDepthBuffer(DepthBuffer * p);
 		virtual void
 			PrepareRendering() = 0;
+
 		virtual void 
-			ReadPixelData(void * data, int x, int y, int w, int h) = 0;
+			ReadPixels(void * pixels, int x, int y, int w, int h) = 0;
+		virtual void
+			StretchRect(RenderTarget * rtDest, RectI * rcDest, RenderTarget * rtSrc, RectI * rcSrc, eTexFilter filter = eTexFilter::POINT) = 0;
 
 		void 
 			Render(ShaderFX * fx, RenderObject * able);
@@ -172,8 +179,9 @@ namespace Rad {
 			Render(RenderOp * rop) = 0;
 		virtual void 
 			RenderEx(VertexDeclaration * decl, const void * vertexData, const void * indexData, ePrimType primType, int primCount) = 0;
+		virtual void 
+			RenderScreenQuad(ShaderFX * fx) = 0;
 
-		//
 		RenderTarget * 
 			_getCurrentRenderTarget(int i) { return mCurrentRenderTarget[i]; }
 		DepthBuffer *
