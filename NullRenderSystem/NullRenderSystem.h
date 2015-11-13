@@ -40,6 +40,8 @@ namespace Rad {
 			Begin();
 		virtual void 
 			End();
+		virtual void
+			Finish();
 
 		virtual void 
 			SetViewport(const Viewport & vp);
