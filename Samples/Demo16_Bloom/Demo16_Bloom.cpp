@@ -66,7 +66,6 @@ public:
 		World::Instance()->MainRenderContext()->SetRenderTarget(0, pRenderTarget);
 		World::Instance()->MainRenderContext()->SetDepthBuffer(pDepthBuffer);
 
-
 		RenderContext * context = World::Instance()->MainRenderContext();
 
 		gBloom = new Bloom(context, POST_PROCESS_MASK + 1);
@@ -108,8 +107,9 @@ public:
 		RenderTargetPtr pRenderTarget = World::Instance()->MainRenderContext()->GetRenderTarget(0);
 		if (pRenderTarget != NULL)
 		{
-			RenderSystem::Instance()->SetViewport(World::Instance()->MainRenderContext()->GetViewport());
-			RenderHelper::Instance()->DrawSumit(pRenderTarget->GetTexture().c_ptr());
+			RenderHelper::Instance()->DrawSumit(
+				World::Instance()->MainRenderContext()->GetViewport(),
+				pRenderTarget->GetTexture().c_ptr());
 		}
 	}
 };
