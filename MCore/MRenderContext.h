@@ -12,7 +12,6 @@
 #include "MVisibleCuller.h"
 #include "MRenderPipeline.h"
 #include "MShaderProvider.h"
-#include "MRenderProcess.h"
 
 namespace Rad {
 
@@ -89,17 +88,6 @@ namespace Rad {
 		void 
 			ReadPixels(void * pixels, int x, int y, int w, int h);
 
-		void
-			_addProcess(RenderProcess * p);
-		void
-			_removeProcess(RenderProcess * p);
-		RenderProcess *
-			GetProcess(const RTTI_INFO * rtti);
-		RenderProcess *
-			GetProcess(int i) { return mProcesses[i]; }
-		int
-			GetProcessCount() { return mProcesses.Size(); }
-
 	protected:
 		int mId;
 		int mOrder;
@@ -120,8 +108,6 @@ namespace Rad {
 
 		RenderTargetPtr mRenderTarget[MAX_HW_RENDERTARGET];
 		DepthBufferPtr mDepthBuffer;
-
-		Array<RenderProcess *> mProcesses;
 	};
 
 }

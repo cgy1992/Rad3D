@@ -19,10 +19,6 @@ namespace Rad {
 
 	RenderContext::~RenderContext()
 	{
-		while (mProcesses.Size())
-		{
-			delete mProcesses.Back();
-		}
 	}
 
 	void RenderContext::SetEnable(bool enable)
@@ -70,17 +66,7 @@ namespace Rad {
 
 	void RenderContext::SetViewport(const Viewport & vp)
 	{
-		Viewport vp0 = GetViewport();
-		if (vp0.x != vp.x || vp0.w != vp.w ||
-			vp0.y != vp.y || vp0.h != vp.h)
-		{
-			mViewport = vp;
-
-			for (int i = 0; i < mProcesses.Size(); ++i)
-			{
-				mProcesses[i]->OnResize();
-			}
-		}
+		mViewport = vp;
 	}
 
 	Viewport RenderContext::GetViewport()
@@ -147,18 +133,7 @@ namespace Rad {
 		if (mVisibleCuller != NULL && mCamera != NULL)
 			mVisibleCuller->DoCull(frameId, mCamera);
 
-		 E_RenderBegin(this);
-
 		 RenderSystem::Instance()->_clearState();
-
-		// pre-process
-		for (int i = 0; i < mProcesses.Size(); ++i)
-		{
-			if (mProcesses[i]->IsEnable() && !mProcesses[i]->IsPost())
-			{
-				mProcesses[i]->DoProcess();
-			}
-		}
 
 		// render scene
 		RenderSystem::Instance()->SetRenderTarget(0, mRenderTarget[0].c_ptr());
@@ -170,22 +145,16 @@ namespace Rad {
 
 		RenderSystem::Instance()->SetViewport(mViewport);
 
-		RenderSystem::Instance()->Clear(mClearMode, mClearColor, mClearDepth, mClearStencil);
+		if (mClearMode != eClearMode::NONE)
+			RenderSystem::Instance()->Clear(mClearMode, mClearColor, mClearDepth, mClearStencil);
 
 		if (mCamera != NULL)
 			RenderSystem::Instance()->SetCamera(mCamera);
 
+		E_RenderBegin(this);
+
 		if (mRenderPipeline != NULL)
 			mRenderPipeline->DoRender();
-
-		// post-process
-		for (int i = 0; i < mProcesses.Size(); ++i)
-		{
-			if (mProcesses[i]->IsEnable() && mProcesses[i]->IsPost())
-			{
-				mProcesses[i]->DoProcess();
-			}
-		}
 
 		E_RenderEnd(this);
 	}
@@ -198,47 +167,6 @@ namespace Rad {
 		RenderSystem::Instance()->SetRenderTarget(NULL, mRenderTarget[0].c_ptr());
 		RenderSystem::Instance()->PrepareRendering();
 		RenderSystem::Instance()->ReadPixels(pixels, x, y, w, h);
-	}
-
-	void RenderContext::_addProcess(RenderProcess * p)
-	{
-		d_assert (p->GetContext() == this);
-
-		int i = 0;
-		for (i = 0; i < mProcesses.Size(); ++i)
-		{
-			if (mProcesses[i]->GetOrder() >= p->GetOrder())
-				break;
-		}
-
-		mProcesses.Insert(i, p);
-	}
-
-	void RenderContext::_removeProcess(RenderProcess * p)
-	{
-		d_assert (p->GetContext() == this);
-
-		for (int i = 0; i < mProcesses.Size(); ++i)
-		{
-			if (mProcesses[i] == p)
-			{
-				mProcesses.Erase(i);
-				break;
-			}
-		}
-	}
-
-	RenderProcess * RenderContext::GetProcess(const RTTI_INFO * rtti)
-	{
-		for (int i = 0; i < mProcesses.Size(); ++i)
-		{
-			if (mProcesses[i]->GetRTTI() == rtti)
-			{
-				return mProcesses[i];
-			}
-		}
-
-		return NULL;
 	}
 
 }

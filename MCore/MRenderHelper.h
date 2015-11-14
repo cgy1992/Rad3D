@@ -9,6 +9,7 @@
 
 #include "MSingleton.h"
 #include "MRenderObject.h"
+#include "MRenderTarget.h"
 
 namespace Rad {
 
@@ -32,7 +33,7 @@ namespace Rad {
 			GetDebugShader() { return mDebugShaderFX; }
 
 		void
-			DrawSumit(const Viewport & vp, Texture * texture);
+			DrawSumit(const Viewport & vp, Texture * texture, RenderTarget * target = NULL);
 		void 
 			DebugDrawLine(const Float3 & point1, const Float3 & point2, const Float4 & color, const Mat4 & form);
 		void 

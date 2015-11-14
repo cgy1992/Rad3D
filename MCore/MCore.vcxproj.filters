@@ -402,9 +402,6 @@
     <ClInclude Include="MDepthBuffer.h">
       <Filter>Engine\2. RenderSystem\HWBuffer</Filter>
     </ClInclude>
-    <ClInclude Include="MRenderProcess.h">
-      <Filter>Engine\2. RenderSystem\RenderContext</Filter>
-    </ClInclude>
     <ClInclude Include="MMat3.h">
       <Filter>Core\Math</Filter>
     </ClInclude>
@@ -923,9 +920,6 @@
     </ClCompile>
     <ClCompile Include="MDepthBuffer.cpp">
       <Filter>Engine\2. RenderSystem\HWBuffer</Filter>
-    </ClCompile>
-    <ClCompile Include="MRenderProcess.cpp">
-      <Filter>Engine\2. RenderSystem\RenderContext</Filter>
     </ClCompile>
     <ClCompile Include="MMat3.cpp">
       <Filter>Core\Math</Filter>

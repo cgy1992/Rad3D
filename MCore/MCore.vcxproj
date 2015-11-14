@@ -210,7 +210,6 @@
     <ClInclude Include="MLinker.h" />
     <ClInclude Include="MMat3.h" />
     <ClInclude Include="MMath.h" />
-    <ClInclude Include="MRenderProcess.h" />
     <ClInclude Include="MRml.h" />
     <ClInclude Include="MSet.h" />
     <ClInclude Include="MThread.h" />
@@ -401,7 +400,6 @@
     <ClCompile Include="MMath.cpp" />
     <ClCompile Include="MMemory.cpp" />
     <ClCompile Include="MMemoryPool.cpp" />
-    <ClCompile Include="MRenderProcess.cpp" />
     <ClCompile Include="MRml.cpp" />
     <ClCompile Include="MRef.cpp" />
     <ClCompile Include="MString.cpp" />

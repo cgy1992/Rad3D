@@ -81,9 +81,9 @@ namespace Rad {
 	{
 	}
 
-	void RenderHelper::DrawSumit(const Viewport & vp, Texture * texture)
+	void RenderHelper::DrawSumit(const Viewport & vp, Texture * texture, RenderTarget * target)
 	{
-		RenderSystem::Instance()->SetRenderTarget(0, NULL);
+		RenderSystem::Instance()->SetRenderTarget(0, target);
 		RenderSystem::Instance()->SetDepthBuffer(NULL);
 		RenderSystem::Instance()->PrepareRendering();
 

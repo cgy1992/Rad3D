@@ -16,6 +16,8 @@
 #include "MHWBufferManager.h"
 #include "MRenderHelper.h"
 
+#define QUERY_OCCLUSION 0x01
+
 namespace Rad {
 
 	class M_ENTRY RenderSystem : public Singleton<RenderSystem>
@@ -99,6 +101,10 @@ namespace Rad {
 			BeginEvent(const char * name) {}
 		virtual void
 			EndEvent() {}
+		virtual void
+			BeginQuery(int flag = QUERY_OCCLUSION) {}
+		virtual int
+			EndQuery() { return 0; }
 
 		void
 			SetViewport(int x, int y, int w, int h) { SetViewport(Viewport(x, y, w, h)); }
@@ -182,6 +188,8 @@ namespace Rad {
 		virtual void 
 			RenderScreenQuad(ShaderFX * fx) = 0;
 
+		const Viewport &
+			_getCurrentViewport() { return mCurrentViewport; }
 		RenderTarget * 
 			_getCurrentRenderTarget(int i) { return mCurrentRenderTarget[i]; }
 		DepthBuffer *
@@ -213,6 +221,7 @@ namespace Rad {
 		RenderHelper * mRenderHelper;
 		RenderRegister * mRenderRegister;
 
+		Viewport mCurrentViewport;
 		RenderTarget * mCurrentRenderTarget[MAX_HW_RENDERTARGET];
 		DepthBuffer * mCurrentDepthBuffer;
 		bool mRenderTargetChanged;
@@ -260,7 +269,8 @@ namespace Rad {
 	#define RENDER_EVENT_ENTRY(name) __render_event_entry(name)
 
 #else
-	#define RENDER_EVENT_BEGIN(evname)
+	#define RENDER_EVENT_BEGIN(name)
 	#define RENDER_EVENT_END()
+	#define RENDER_EVENT_ENTRY(name)
 #endif
 }
