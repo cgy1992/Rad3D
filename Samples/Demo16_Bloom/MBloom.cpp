@@ -4,10 +4,8 @@
 
 namespace Rad {
 
-	ImplementRTTI(Bloom, RenderProcess);
-
-	Bloom::Bloom(RenderContext * context, int order)
-		: RenderProcess(context, order)
+	Bloom::Bloom(RenderContext * context)
+		: mContext(context)
 		, mTechDownSample(NULL)
 		, mTechBlurH(NULL)
 		, mTechBlurV(NULL)
@@ -15,29 +13,7 @@ namespace Rad {
 	{
 		SetThreshold(0.8f);
 		SetDensity(0.6f);
-	}
 
-	Bloom::~Bloom()
-	{
-		if (mEnable)
-		{
-			OnDisable();
-		}
-	}
-
-	void Bloom::SetThreshold(float v)
-	{
-		mThreshold = v;
-		mThreshold = Max(0.01f, mThreshold);
-	}
-
-	void Bloom::SetDensity(float v)
-	{
-		mDensity = v;
-	}
-
-	void Bloom::OnEnable()
-	{
 		mTechDownSample = ShaderFXManager::Instance()->Load("BloomDownSample", "Bloom/DownSample.mfx");
 		mTechBlurH = ShaderFXManager::Instance()->Load("BloomBlurH", "Bloom/BlurH.mfx");
 		mTechBlurV = ShaderFXManager::Instance()->Load("BloomBlurV", "Bloom/BlurV.mfx");
@@ -46,7 +22,7 @@ namespace Rad {
 		OnResize();
 	}
 
-	void Bloom::OnDisable()
+	Bloom::~Bloom()
 	{
 		ShaderFXManager::Instance()->Remove(mTechDownSample);
 		ShaderFXManager::Instance()->Remove(mTechBlurH);
@@ -62,6 +38,17 @@ namespace Rad {
 		mTechBlend = NULL;
 	}
 
+	void Bloom::SetThreshold(float v)
+	{
+		mThreshold = v;
+		mThreshold = Max(0.01f, mThreshold);
+	}
+
+	void Bloom::SetDensity(float v)
+	{
+		mDensity = v;
+	}
+
 	void Bloom::OnResize()
 	{
 		Viewport vp = mContext->GetViewport();
@@ -72,9 +59,9 @@ namespace Rad {
 		mRTQuad2 = HWBufferManager::Instance()->NewRenderTarget(width, height);
 	}
 
-	void Bloom::DoProcess()
+	void Bloom::OnRender()
 	{
-		RenderContext * context = World::Instance()->GetCurrentRenderContext();
+		RenderContext * context = mContext;
 		if (context != NULL && context->GetRenderTarget(0) != NULL)
 		{
 			mInvMapSize.x = 0.5f / RenderSystem::Instance()->GetConfig().width;
@@ -92,7 +79,7 @@ namespace Rad {
 
 	void Bloom::_doDownSample()
 	{
-		RenderContext * context = World::Instance()->GetCurrentRenderContext();
+		RenderContext * context = mContext;
 
 		RenderSystem::Instance()->SetRenderTarget(0, mRTQuad1.c_ptr());
 		RenderSystem::Instance()->SetDepthBuffer(NULL);
@@ -104,7 +91,7 @@ namespace Rad {
 
 		mTechDownSample->GetPass(0)->SetConst("u_Threshold", Float4(mThreshold, 1 / (1 - mThreshold), 0));
 
-		RenderHelper::Instance()->DrawScreenQuad(mTechDownSample);
+		RenderSystem::Instance()->RenderScreenQuad(mTechDownSample);
 	}
 
 	void Bloom::_doBlurH()
@@ -119,7 +106,7 @@ namespace Rad {
 
 		mTechBlurH->GetPass(0)->SetConst("u_InvMapSize", mInvMapSize);
 
-		RenderHelper::Instance()->DrawScreenQuad(mTechBlurH);
+		RenderSystem::Instance()->RenderScreenQuad(mTechBlurH);
 	}
 
 	void Bloom::_doBlurV()
@@ -134,12 +121,12 @@ namespace Rad {
 
 		mTechBlurV->GetPass(0)->SetConst("u_InvMapSize", mInvMapSize);
 
-		RenderHelper::Instance()->DrawScreenQuad(mTechBlurV);
+		RenderSystem::Instance()->RenderScreenQuad(mTechBlurV);
 	}
 
 	void Bloom::_doBlend()
 	{
-		RenderContext * context = World::Instance()->GetCurrentRenderContext();
+		RenderContext * context = mContext;
 
 		RenderSystem::Instance()->SetRenderTarget(0, context->GetRenderTarget(0).c_ptr());
 		RenderSystem::Instance()->SetDepthBuffer(NULL);
@@ -151,7 +138,7 @@ namespace Rad {
 
 		mTechBlend->GetPass(0)->SetConst("u_Density", Float4(mDensity, 0, 0));
 
-		RenderHelper::Instance()->DrawScreenQuad(mTechBlend);
+		RenderSystem::Instance()->RenderScreenQuad(mTechBlend);
 	}
 
 }

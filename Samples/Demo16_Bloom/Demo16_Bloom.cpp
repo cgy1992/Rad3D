@@ -1,7 +1,6 @@
 #include "App.h"
 #include "MBloom.h"
 
-MGUI::Layout * gLayout = NULL;
 Mesh * gMesh = NULL;
 Bloom * gBloom = NULL;
 
@@ -66,21 +65,9 @@ public:
 		World::Instance()->MainRenderContext()->SetRenderTarget(0, pRenderTarget);
 		World::Instance()->MainRenderContext()->SetDepthBuffer(pDepthBuffer);
 
-		RenderContext * context = World::Instance()->MainRenderContext();
-
-		gBloom = new Bloom(context, POST_PROCESS_MASK + 1);
-		gBloom->SetEnable(true);
-
-		gLayout = new MGUI::Layout(NULL);
-		gLayout->SetAlign(MGUI::eAlign::STRETCH);
-		gLayout->E_MouseDoubleClick += new cListener1<Demo16_Bloom, const MGUI::MouseEvent *>(this, &Demo16_Bloom::OnDoubleClick);
+		gBloom = new Bloom(World::Instance()->MainRenderContext());
 
 		World::Instance()->E_RenderingEnd += new cListener0<Demo16_Bloom>(this, &Demo16_Bloom::OnPostRender);
-	}
-
-	void OnDoubleClick(const MGUI::MouseEvent * e)
-	{
-		gBloom->SetEnable(!gBloom->IsEnable());
 	}
 
 	virtual void OnUpdate()
@@ -90,7 +77,6 @@ public:
 	virtual void OnShutdown()
 	{
 		delete gMesh;
-		delete gLayout;
 		delete gBloom;
 	}
 
@@ -107,6 +93,8 @@ public:
 		RenderTargetPtr pRenderTarget = World::Instance()->MainRenderContext()->GetRenderTarget(0);
 		if (pRenderTarget != NULL)
 		{
+			gBloom->OnRender();
+
 			RenderHelper::Instance()->DrawSumit(
 				World::Instance()->MainRenderContext()->GetViewport(),
 				pRenderTarget->GetTexture().c_ptr());

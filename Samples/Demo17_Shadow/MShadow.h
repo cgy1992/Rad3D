@@ -7,32 +7,22 @@
 */
 #pragma once
 
-#include "MCamera.h"
-#include "MRenderProcess.h"
+#include "MRenderContext.h"
 #include "MShaderProvider.h"
 #include "MVisibleCuller.h"
 #include "MRenderPipeline.h"
 
 namespace Rad {
 
-	class RenderContext;
-
-	class Shadow : public RenderProcess
+	class Shadow
 	{
-		DECLARE_RTTI();
-
 	public:
 		tEvent1<Shadow *> E_RenderDepth;
 		tEvent1<Shadow *> E_RenderShadow;
 
 	public:
-		Shadow(RenderContext * context, int order);
+		Shadow(RenderContext * context, int mapSize);
 		virtual ~Shadow();
-
-		void
-			SetMapSize(int size);
-		int
-			GetMapSize() { return mMapSize; }
 
 		void
 			SetDistance(float distance);
@@ -53,16 +43,9 @@ namespace Rad {
 			SetColor(const Float4 & color);
 		const Float4 &
 			GetColor() { return mColor; }
-
-
-		virtual void
-			OnEnable();
-		virtual void
-			OnDisable();
-		virtual void
+		
+		void
 			OnResize() {}
-		virtual void 
-			DoProcess();
 		
 		Camera *
 			GetShadowCamera() { return mShadowCamera; }
@@ -71,15 +54,12 @@ namespace Rad {
 
 	protected:
 		void
-			_updateRT();
-		void
 			_updateCamera();
-		void
-			_renderDepth();
 		void
 			_renderShadow();
 
 	protected:
+		RenderContext * mContext;
 		int mMapSize;
 		float mDistance;
 		float mFadeRatio;
@@ -89,7 +69,8 @@ namespace Rad {
 		Camera * mShadowCamera;
 		RenderContext * mShadowContext;
 
-		cListener0<Shadow> L_OnRender;
+		cListener0<Shadow> L_OnUpdateCamera;
+		cListener0<Shadow> L_OnRenderShadow;
 	};
 
 	//

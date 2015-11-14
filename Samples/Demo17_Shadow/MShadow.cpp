@@ -6,31 +6,50 @@
 
 namespace Rad {
 
-	ImplementRTTI(Shadow, RenderProcess);
-
-	Shadow::Shadow(RenderContext * context, int order)
-		: RenderProcess(context, order)
+	Shadow::Shadow(RenderContext * context, int mapSize)
+		: mContext(context)
 		, mShadowCamera(NULL)
 		, mShadowContext(NULL)
 	{
-		mMapSize = 512;
+		mMapSize = mapSize;
 		mDistance = 15 * UNIT_METRES;
 		mFadeRatio = 0.8f;
 		mOffset = 30 * UNIT_METRES;
 		mColor = Float4(0.5f, 0.5f, 0.5f);
+
+		mShadowCamera = new Camera;
+		mShadowContext = World::Instance()->NewRenderContext(0, 0, "ShadowContext");
+
+		mShadowContext->SetCamera(mShadowCamera);
+		mShadowContext->SetVisibleCuller(new ShadowVisibleCuller);
+		mShadowContext->SetShaderProvider(new ShadowShaderProvider);
+		mShadowContext->SetRenderPipeline(new ShadowRenderPipline(this));
+		mShadowContext->SetColorClear(eClearMode::ALL, Float4(1, 1, 1, 1));
+
+		RenderTargetPtr pRenderTarget = HWBufferManager::Instance()->NewRenderTarget(mMapSize, mMapSize, ePixelFormat::R5G6B5);
+		DepthBufferPtr pDepthBuffer = HWBufferManager::Instance()->NewDepthBuffer(mMapSize, mMapSize, ePixelFormat::D16);
+
+		mShadowContext->SetRenderTarget(0, pRenderTarget);
+		mShadowContext->SetDepthBuffer(pDepthBuffer);
+
+		Viewport vp;
+		vp.x = 1;
+		vp.y =1;
+		vp.w = mMapSize - 1;
+		vp.h = mMapSize - 1;
+		mShadowContext->SetViewport(vp);
+
+		World::Instance()->E_RenderingBegin += L_OnUpdateCamera(this, &Shadow::_updateCamera);
+		World::Instance()->E_RenderSolidEnd += L_OnRenderShadow(this, &Shadow::_renderShadow);
 	}
 
 	Shadow::~Shadow()
 	{
-		if (mEnable)
-		{
-			OnDisable();
-		}
-	}
+		World::Instance()->DeleteRenderContext(mShadowContext);
+		safe_delete (mShadowCamera);
 
-	void Shadow::SetMapSize(int size)
-	{
-		mMapSize = size;
+		World::Instance()->E_RenderSolidEnd -= L_OnRenderShadow(this, &Shadow::_renderShadow);
+		World::Instance()->E_RenderingBegin -= L_OnUpdateCamera(this, &Shadow::_updateCamera);
 	}
 
 	void Shadow::SetDistance(float distance)
@@ -51,69 +70,6 @@ namespace Rad {
 	void Shadow::SetColor(const Float4 & color)
 	{
 		mColor = color;
-	}
-
-	void Shadow::OnEnable()
-	{
-		d_assert (mShadowCamera == NULL && mShadowContext == NULL);
-
-		mShadowCamera = new Camera;
-		mShadowContext = new RenderContext(0, -1, "ShadowContext");
-
-		mShadowContext->SetCamera(mShadowCamera);
-		mShadowContext->SetVisibleCuller(new ShadowVisibleCuller);
-		mShadowContext->SetShaderProvider(new ShadowShaderProvider);
-		mShadowContext->SetRenderPipeline(new ShadowRenderPipline(this));
-		mShadowContext->SetColorClear(eClearMode::ALL, Float4(1, 1, 1, 1));
-
-		World::Instance()->E_RenderSolidEnd += L_OnRender(this, &Shadow::_renderShadow);
-
-		RenderTargetPtr pRenderTarget = HWBufferManager::Instance()->NewRenderTarget(mMapSize, mMapSize, ePixelFormat::R5G6B5);
-		DepthBufferPtr pDepthBuffer = HWBufferManager::Instance()->NewDepthBuffer(mMapSize, mMapSize, ePixelFormat::D16);
-
-		mShadowContext->SetRenderTarget(0, pRenderTarget);
-		mShadowContext->SetDepthBuffer(pDepthBuffer);
-
-		Viewport vp;
-		vp.x = 1;
-		vp.y =1;
-		vp.w = mMapSize - 1;
-		vp.h = mMapSize - 1;
-		mShadowContext->SetViewport(vp);
-	}
-
-	void Shadow::OnDisable()
-	{
-		safe_delete (mShadowContext);
-		safe_delete (mShadowCamera);
-
-		World::Instance()->E_RenderSolidEnd -= L_OnRender(this, &Shadow::_renderShadow);
-	}
-
-	void Shadow::DoProcess()
-	{
-		if (mContext->GetCamera() != NULL)
-		{
-			if (mShadowContext->GetRenderTarget(0)->GetWidth() != mMapSize)
-				_updateRT();
-
-			_updateCamera();
-
-			_renderDepth();
-		}
-	}
-
-	void Shadow::_updateRT()
-	{
-		mShadowContext->GetRenderTarget(0)->Resize(mMapSize, mMapSize);
-		mShadowContext->GetDepthBuffer()->Resize(mMapSize, mMapSize);
-
-		Viewport vp;
-		vp.x = 1;
-		vp.y =1;
-		vp.w = mMapSize - 1;
-		vp.h = mMapSize - 1;
-		mShadowContext->SetViewport(vp);
 	}
 
 	void Shadow::_updateCamera()
@@ -187,13 +143,6 @@ namespace Rad {
 		mShadowCamera->SetRotation(qOrient);
 		mShadowCamera->SetClipPlane(nearClip, mOffset + depth);
 		mShadowCamera->SetOrthoParam(width, height, true);
-	}
-
-	void Shadow::_renderDepth()
-	{
-		mShadowContext->DoRender(World::Instance()->FrameId());
-
-		E_RenderDepth(this);
 	}
 
 	void Shadow::_renderShadow()
@@ -383,6 +332,8 @@ namespace Rad {
 			}
 
 		} while (0);
+
+		mShadow->E_RenderDepth(mShadow);
 	}
 
 }

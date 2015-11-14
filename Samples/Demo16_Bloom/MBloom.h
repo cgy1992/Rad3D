@@ -7,17 +7,15 @@
 */
 #pragma once
 
-#include "MRenderProcess.h"
 #include "MShaderFX.h"
+#include "MRenderContext.h"
 
 namespace Rad {
 
-	class Bloom : public RenderProcess
+	class Bloom
 	{
-		DECLARE_RTTI();
-
 	public:
-		Bloom(RenderContext * context, int order);
+		Bloom(RenderContext * context);
 		virtual ~Bloom();
 
 		void 
@@ -30,14 +28,10 @@ namespace Rad {
 		float
 			GetDensity() { return mDensity; }
 
-		virtual void
-			OnEnable();
-		virtual void
-			OnDisable();
-		virtual void
+		void
 			OnResize();
-		virtual void
-			DoProcess();
+		void
+			OnRender();
 
 	protected:
 		void 
@@ -50,6 +44,7 @@ namespace Rad {
 			_doBlend();
 
 	protected:
+		RenderContext * mContext;
 		float mThreshold;
 		float mDensity;
 		Float4 mInvMapSize;
