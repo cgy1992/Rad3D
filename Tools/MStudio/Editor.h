@@ -29,6 +29,7 @@ public:
 	tEvent0 E_Init;
 	tEvent0 E_Shutdown;
 	tEvent0 E_Update;
+	tEvent2<int, int> E_Resize;
 
 	tEvent0 E_ProjectLoaded;
 	tEvent0 E_ProjectUnload;
