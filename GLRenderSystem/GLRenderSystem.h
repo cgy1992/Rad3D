@@ -53,6 +53,11 @@ namespace Rad {
 		virtual void
 			Finish();
 
+		virtual void
+			BeginQuery(int flag);
+		virtual int
+			EndQuery();
+
 		virtual void 
 			SetViewport(const Viewport & vp);
 

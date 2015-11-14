@@ -14,6 +14,7 @@ namespace Rad {
 
 	GLuint mFrameBufferRead = 0;
 	GLuint mFrameBufferDraw = 0;
+	GLuint mQueryId = 0;
 
 #ifdef M_PLATFORM_WIN32
 	GLRenderSystem::GLRenderSystem(HWND hWnd, const Config & config)
@@ -138,6 +139,14 @@ namespace Rad {
 			mFrameBufferRead = 0;
 		}
 
+#ifdef M_PLATFORM_WIN32
+		if (mQueryId != 0)
+		{
+			glDeleteQueries(1, &mQueryId);
+			mQueryId = 0;
+		}
+#endif
+
 		delete mScreenQuad;
 		delete mScreenQuadRT;
 
@@ -157,6 +166,12 @@ namespace Rad {
 			glDeleteFramebuffers(1, &mFrameBufferDraw);
 			mFrameBufferDraw = 0;
 			mFrameBufferRead = 0;
+		}
+
+		if (mQueryId != 0)
+		{
+			glDeleteQueries(1, &mQueryId);
+			mQueryId = 0;
 		}
 
 		mShaderFXManager->OnLostDevice();
@@ -226,6 +241,36 @@ namespace Rad {
 		glFinish();
 	}
 
+	void GLRenderSystem::BeginQuery(int flag)
+	{
+#ifdef M_PLATFORM_WIN32
+		if (mQueryId == 0)
+			glGenQueries(1, &mQueryId);
+
+		glBeginQuery(GL_SAMPLES_PASSED, mQueryId);
+
+		d_assert (glGetError() == 0);
+#endif
+	}
+
+	int GLRenderSystem::EndQuery()
+	{
+#ifdef M_PLATFORM_WIN32
+		d_assert(mQueryId != 0);
+
+		glEndQuery(GL_SAMPLES_PASSED);
+
+		GLint pixels = 0;
+		glGetQueryObjectiv(mQueryId, GL_QUERY_RESULT, &pixels);
+
+		d_assert (glGetError() == 0);
+		
+		return (int)pixels;
+#else
+		return 0;
+#endif
+	}
+
 	void GLRenderSystem::SetViewport(const Viewport & viewport)
 	{
 		Viewport vp = viewport;
@@ -251,20 +296,24 @@ namespace Rad {
 			vp.x >= 0 && vp.x + vp.w <= rtWidth &&
 			vp.y >= 0 && vp.y + vp.h <= rtHeight);
 
-		GLint x = vp.x;
-		GLint y = rtHeight - (vp.y + vp.h);
-		GLint w = vp.w;
-		GLint h = vp.h;
+		if (mCurrentViewport != vp)
+		{
+			GLint x = vp.x;
+			GLint y = rtHeight - (vp.y + vp.h);
+			GLint w = vp.w;
+			GLint h = vp.h;
 
-		glViewport(x, y, w, h);
+			glViewport(x, y, w, h);
 
-		d_assert (glGetError() == 0);
+			mCurrentViewport = vp;
+
+			d_assert (glGetError() == 0);
+		}
 	}
 
 	void GLRenderSystem::Clear(eClearMode mode, const Float4 & color, float depth, int stencil)
 	{
-		if (mode == eClearMode::NONE)
-			return ;
+		d_assert (mode != eClearMode::NONE);
 
 		glClearColor(color.r, color.g, color.b, color.a);
 		glClearDepth(depth);
