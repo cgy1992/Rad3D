@@ -24,18 +24,18 @@ namespace Rad {
 
 	DF_PROPERTY_BEGIN(FX_Setting)
 		DF_PROPERTY_ENUM(FX_Setting, MSAA, "", "MSAA", FX_MSAA)
-		DF_PROPERTY_EX(FX_Setting, Ambient, "", "Ambient", "PT_Color3", PT_Float3)
+		DF_PROPERTY_EX(FX_Setting, Ambient, "", "Ambient", "PT_Color", PT_Float3)
 
 		DF_PROPERTY(FX_Setting, AOEnable, "AO", "Enable", PT_Bool)
 		DF_PROPERTY_ENUM(FX_Setting, AOLevel, "AO", "Level", FX_AOLevel)
 		DF_PROPERTY(FX_Setting, AORadius, "AO", "Radius", PT_Float)
-		DF_PROPERTY_EX(FX_Setting, AOColor, "AO", "Color", "PT_Color3", PT_Float3)
+		DF_PROPERTY_EX(FX_Setting, AOColor, "AO", "Color", "PT_Color", PT_Float3)
 		DF_PROPERTY(FX_Setting, AOStrength, "AO", "Strength", PT_Float)
 
 		DF_PROPERTY(FX_Setting, AOGrassEnable, "GrassAO", "Enable", PT_Bool)
 		DF_PROPERTY(FX_Setting, AOGrassRadius, "GrassAO", "Radius", PT_Float)
 		DF_PROPERTY(FX_Setting, AOGrassFactory, "GrassAO", "Factory", PT_Float)
-		DF_PROPERTY_EX(FX_Setting, AOGrassColor, "GrassAO", "Color", "PT_Color3", PT_Float3)
+		DF_PROPERTY_EX(FX_Setting, AOGrassColor, "GrassAO", "Color", "PT_Color", PT_Float3)
 
 		DF_PROPERTY(FX_Setting, NumThread, "Editor", "NumThread", PT_Bool)
 		DF_PROPERTY(FX_Setting, AutoShutdown, "Editor", "Shutdown", PT_Bool)
