@@ -9,23 +9,32 @@
 
 #include "MSingleton.h"
 #include "MShaderFX.h"
+#include "MMap.h"
 
 namespace Rad {
 
 	class M_ENTRY ShaderFXManager : public Singleton<ShaderFXManager>
 	{
 	public:
+		tEvent0 E_ReloadAll;
+	
+	public:
 		ShaderFXManager();
 		virtual ~ShaderFXManager();
 
-		virtual ShaderFX * 
-			Load(const String & name, const String & source, const String & macros = "") = 0;
-		virtual void 
-			Remove(ShaderFX * fx) = 0;
 		virtual void
-			Reload(ShaderFX * fx) = 0;
-		virtual void 
-			ReloadAll() = 0;
+			_loadImp(ShaderFX * fx, DataStreamPtr stream) = 0;
+
+		ShaderFX * 
+			Load(const String & name, const String & source, const String & macros = "");
+		ShaderFX * 
+			Load(const String & name, DataStreamPtr stream, const String & macros = "");
+		void 
+			Remove(ShaderFX * fx);
+		void
+			Reload(ShaderFX * fx);
+		void 
+			ReloadAll();
 
 		void
 			LoadLibrary(const String & libname);
@@ -38,7 +47,12 @@ namespace Rad {
 			GetGlobalMacroString();
 
 	protected:
+		ShaderFX * 
+			_find(Hash2 hash, const String & name);
+
+	protected:
 		FixedString256 mGlobalMacroString;
+		Map<Hash2, ShaderFX *> mFXMap;
 	};
 
 }
