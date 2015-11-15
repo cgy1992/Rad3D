@@ -598,7 +598,7 @@ namespace Rad {
 	{
 		profile_code();
 
-		E_RenderingBegin();
+		E_RenderBegin();
 
 		for (int i = 0; i < mRenderContexts.Size(); ++i)
 		{
@@ -606,7 +606,11 @@ namespace Rad {
 			{
 				BeginRenderContext(mRenderContexts[i]);
 
+				E_RenderContextBegin();
+
 				mCurrentRenderContext->DoRender(mFrameId);
+
+				E_RenderContextEnd();
 
 				EndRenderContext();
 			}
@@ -618,7 +622,7 @@ namespace Rad {
 		RenderSystem::Instance()->SetRenderTarget(3, NULL);
 		RenderSystem::Instance()->SetDepthBuffer(NULL);
 
-		E_RenderingEnd();
+		E_RenderEnd();
 
 		mFrameId = mFrameId + 1;
 	}

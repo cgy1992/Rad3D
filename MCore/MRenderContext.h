@@ -20,10 +20,6 @@ namespace Rad {
 		DECLARE_ALLOC();
 
 	public:
-		tEvent1<RenderContext *> E_RenderBegin;
-		tEvent1<RenderContext *> E_RenderEnd;
-
-	public:
 		RenderContext(int id, int order, const String & name);
 		~RenderContext();
 

@@ -133,9 +133,6 @@ namespace Rad {
 		if (mVisibleCuller != NULL && mCamera != NULL)
 			mVisibleCuller->DoCull(frameId, mCamera);
 
-		 RenderSystem::Instance()->_clearState();
-
-		// render scene
 		RenderSystem::Instance()->SetRenderTarget(0, mRenderTarget[0].c_ptr());
 		RenderSystem::Instance()->SetRenderTarget(1, mRenderTarget[1].c_ptr());
 		RenderSystem::Instance()->SetRenderTarget(2, mRenderTarget[2].c_ptr());
@@ -151,12 +148,8 @@ namespace Rad {
 		if (mCamera != NULL)
 			RenderSystem::Instance()->SetCamera(mCamera);
 
-		E_RenderBegin(this);
-
 		if (mRenderPipeline != NULL)
 			mRenderPipeline->DoRender();
-
-		E_RenderEnd(this);
 	}
 
 	void RenderContext::ReadPixels(void * pixels, int x, int y, int w, int h)

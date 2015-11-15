@@ -48,11 +48,15 @@ namespace Rad {
 		tEvent0 E_Shutdown;
 		tEvent1<float> E_Update;
 
+		tEvent0 E_RenderBegin;
+		tEvent0 E_RenderEnd;
+
 		tEvent0 E_VisibleCullBegin;
 		tEvent0 E_VisibleCullEnd;
+		tEvent0 E_RenderContextBegin;
+		tEvent0 E_RenderContextEnd;
 
-		tEvent0 E_RenderingBegin;
-		tEvent0 E_RenderingEnd;
+		tEvent0 E_RenderPrepare;
 
 		tEvent0 E_RenderSolidBegin;
 		tEvent0 E_RenderSolid;

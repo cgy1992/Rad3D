@@ -73,6 +73,8 @@ namespace Rad {
 
 		RenderSystem::Instance()->SetLight(World::Instance()->MainLight());
 
+		World::Instance()->E_RenderPrepare();
+
 		World::Instance()->E_RenderSolidBegin();
 
 		do 
