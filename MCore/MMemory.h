@@ -49,6 +49,8 @@ public:
 
 	static void *
 		QueryStaticMemory(int chanel, int size);
+	static void *
+		QueryStaticMemory(int size);
 	static void
 		FreeStaticMemory(void * p);
 
@@ -153,6 +155,13 @@ public: \
 			i_size = 0;
 		}
 
+		static_memory(int size)
+		{
+			i_data = NULL;
+			i_size = size;
+			query(size);
+		}
+
 		static_memory(int chanel, int size)
 		{
 			i_data = NULL;
@@ -176,6 +185,16 @@ public: \
 			return i_size;
 		}
 
+		void * query(int size)
+		{
+			d_assert (i_data == NULL);
+
+			i_data = Memory::QueryStaticMemory(size);
+			i_size = size;
+
+			return i_data;
+		}
+
 		void * query(int chanel, int size)
 		{
 			d_assert (i_data == NULL);
@@ -191,10 +210,9 @@ public: \
 			if (i_data != NULL)
 			{
 				Memory::FreeStaticMemory(i_data);
+				i_data = NULL;
+				i_size = 0;
 			}
-
-			i_data = NULL;
-			i_size = 0;
 		}
 
 	private:

@@ -180,6 +180,41 @@ void * Memory::QueryStaticMemory(int chanel, int size)
 	return p;
 }
 
+void * Memory::QueryStaticMemory(int size)
+{
+	int i = 0;
+	for (i = 0; i < M_STATIC_MEMORY_MAX_CHANEL; ++i)
+	{
+		if (_static_memory_[i].size == 0)
+			break;
+	}
+
+	d_assert (i < M_STATIC_MEMORY_MAX_CHANEL);
+
+	int chanel = i;
+
+	_static_memory_[chanel].size = size;
+
+	if (size > _static_memory_[chanel].capacity)
+	{
+		if (_static_memory_[chanel].data)
+		{
+			delete[] (_static_memory_[chanel].data);
+		}
+
+		_static_memory_[chanel].capacity = size;
+		_static_memory_[chanel].data = new byte[size + 2];
+		_static_memory_[chanel].data[0] = (byte)chanel;
+	}
+
+	// set end 0xFF, check memory overflow in free.
+	byte * p = _static_memory_[chanel].data + 1;
+
+	p[size] = 0xFF;
+
+	return p;
+}
+
 void Memory::FreeStaticMemory(void * p)
 {
 	byte * data = (byte *)p - 1;
