@@ -15,29 +15,14 @@ namespace Rad {
 	public:
 		GLShaderFXManager();
 		virtual ~GLShaderFXManager();
-
-		virtual ShaderFX * 
-			Load(const String & name, const String & source, const String & macros);
-		virtual void 
-			Remove(ShaderFX * fx);
-		virtual void
-			Reload(ShaderFX * fx);
-		virtual void 
-			ReloadAll();
+		
+		void 
+			_loadImp(ShaderFX * fx, DataStreamPtr stream);
 
 		void 
 			OnLostDevice();
 		void 
 			OnResetDevice();
-
-	protected:
-		void 
-			_loadImp(ShaderFX * fx, DataStreamPtr stream);
-		ShaderFX * 
-			_find(Hash2 hash, const String & name);
-
-	protected:
-		Map<Hash2, ShaderFX *> mFXMap;
 	};
 
 }

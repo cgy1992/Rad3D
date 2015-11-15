@@ -253,66 +253,17 @@ namespace Rad {
 	//
 	GLShaderFXManager::GLShaderFXManager()
 	{
-		AddGlobalMacro("#define D_OGL\n");
-		AddGlobalMacro("#define float2 vec2\n");
-		AddGlobalMacro("#define float3 vec3\n");
-		AddGlobalMacro("#define float4 vec4\n");
-		AddGlobalMacro("#define tex2D texture2D\n");
+		AddGlobalMacro(
+			"#define D_OGL\n" \
+			"#define float2 vec2\n" \
+			"#define float3 vec3\n" \
+			"#define float4 vec4\n" \
+			"#define tex2D texture2D\n" \
+			"#define saturate(s) clamp(s, 0.0, 1.0)\n");
 	}
 
 	GLShaderFXManager::~GLShaderFXManager()
 	{
-		for (int i = 0; i < mFXMap.Size(); ++i)
-		{
-			delete mFXMap[i].value;
-		}
-
-		mFXMap.Clear();
-	}
-
-	ShaderFX * GLShaderFXManager::_find(Hash2 hash, const String & name)
-	{
-		int i = mFXMap.Find(hash);
-
-		d_assert (i == -1 || name == mFXMap[i].value->GetName());
-
-		return i != -1 ? mFXMap[i].value : NULL;
-	}
-
-	ShaderFX * GLShaderFXManager::Load(const String & name, const String & source, const String & macros)
-	{
-		Hash2 hash(name.c_str());
-
-		ShaderFX * pShaderFX = _find(hash, name);
-		if (pShaderFX != NULL)
-		{
-			return pShaderFX;
-		}
-
-		DataStreamPtr stream = ResourceManager::Instance()->OpenResource(source);
-		if (stream == NULL)
-		{
-			d_log("?: ShaderFX '%s' Open Failed.", source.c_str());
-			return NULL;
-		}
-
-		pShaderFX = new ShaderFX(name, source, macros);
-		_loadImp(pShaderFX, stream);
-
-		mFXMap.Insert(hash, pShaderFX);
-
-		return pShaderFX;
-	}
-
-	void GLShaderFXManager::Remove(ShaderFX * fx)
-	{
-		Hash2 hash(fx->GetName().c_str());
-		int i = mFXMap.Find(hash);
-
-		d_assert (i != -1);
-
-		delete mFXMap[i].value;
-		mFXMap.Erase(i);
 	}
 
 	void GLShaderFXManager::_loadImp(ShaderFX * fx, DataStreamPtr stream)
@@ -338,27 +289,6 @@ namespace Rad {
 		}
 
 		d_log("-: Loading ShaderFX OK...\n");
-	}
-
-	void GLShaderFXManager::Reload(ShaderFX * fx)
-	{
-		fx->Clear();
-
-		DataStreamPtr stream = ResourceManager::Instance()->OpenResource(fx->GetSource());
-		if (stream == NULL)
-		{
-			d_log("?: ShaderFX '%s' Open Failed.", fx->GetSource().c_str());
-		}
-
-		_loadImp(fx, stream);
-	}
-
-	void GLShaderFXManager::ReloadAll()
-	{
-		for (int i = 0; i < mFXMap.Size(); ++i)
-		{
-			Reload(mFXMap[i].value);
-		}
 	}
 
 	void GLShaderFXManager::OnLostDevice()
