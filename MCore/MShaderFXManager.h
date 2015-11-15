@@ -40,9 +40,9 @@ namespace Rad {
 			LoadLibrary(const String & libname);
 
 		void 
-			AddGlobalMacro(const FixedString32 & macro);
+			AddGlobalMacro(const String & macro);
 		void 
-			RemoveGlobalMacro(const FixedString32 & macro);
+			RemoveGlobalMacro(const String & macro);
 		const char * 
 			GetGlobalMacroString();
 
@@ -51,7 +51,7 @@ namespace Rad {
 			_find(Hash2 hash, const String & name);
 
 	protected:
-		FixedString256 mGlobalMacroString;
+		String mGlobalMacroString;
 		Map<Hash2, ShaderFX *> mFXMap;
 	};
 

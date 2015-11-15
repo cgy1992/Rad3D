@@ -38,7 +38,7 @@ namespace Rad {
 			return NULL;
 		}
 
-	pShaderFX = new ShaderFX(name, stream->GetSource(), macros);
+		pShaderFX = new ShaderFX(name, stream->GetSource(), macros);
 
 		_loadImp(pShaderFX, stream);
 
@@ -140,14 +140,14 @@ namespace Rad {
 		}
 	}
 
-	void ShaderFXManager::AddGlobalMacro(const FixedString32 & macro)
+	void ShaderFXManager::AddGlobalMacro(const String & macro)
 	{
-		mGlobalMacroString += macro.c_str();
+		mGlobalMacroString += macro;
 	}
 	
-	void ShaderFXManager::RemoveGlobalMacro(const FixedString32 & macro)
+	void ShaderFXManager::RemoveGlobalMacro(const String & macro)
 	{
-		int i = mGlobalMacroString.Find(macro.c_str());
+		int i = mGlobalMacroString.Find(macro, 0);
 		if (i != -1)
 		{
 			mGlobalMacroString.Erase(i, macro.Length());

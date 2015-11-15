@@ -348,7 +348,7 @@ namespace Rad {
 	void RenderRegister::SetClipPlane(float nearClip, float farClip)
 	{
 		mClipPlane.x = nearClip; mClipPlane.y = farClip;
-		mClipPlane.z = 1 / nearClip; mClipPlane.w = 1 / farClip;
+		mClipPlane.z = 1 / (farClip - nearClip); mClipPlane.w = 1 / farClip;
 	}
 
 	const Float4 & RenderRegister::GetClipPlane()
