@@ -145,7 +145,7 @@ namespace Rad {
 
 	//
 	FileStream::FileStream(const String & file)
-		: mFilename(file)
+		: DataStream(file)
 	{
 		mData = NULL;
 		mFileHandle = fopen(file.c_str(), "rb");
@@ -158,7 +158,7 @@ namespace Rad {
 
 	DataStream * FileStream::Clone()
 	{
-		return new FileStream(mFilename);
+		return new FileStream(mSource);
 	}
 
 	bool FileStream::IsOpen()

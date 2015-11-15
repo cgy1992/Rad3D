@@ -21,11 +21,15 @@ namespace Rad {
 
 	public:
 		DataStream() {}
+		DataStream(const String & source) : mSource(source) {}
 		virtual ~DataStream() {}
+
+		const String &
+			GetSource() { return mSource; }
 
 		virtual void
 			Release() { delete this; }
-
+		
 		virtual DataStream *
 			Clone() = 0;
 
@@ -59,6 +63,9 @@ namespace Rad {
 
 		template <class T> DataStream &
 			operator >>(T & data) { ReadT(data); return *this; }
+
+	protected:
+		String mSource;
 	};
 
 	template<> 
@@ -146,7 +153,6 @@ namespace Rad {
 			Tell();
 
 	protected:
-		String mFilename;
 		FILE * mFileHandle;
 		char * mData;
 	};
