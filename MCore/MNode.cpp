@@ -16,19 +16,10 @@ namespace Rad{
 		DF_PROPERTY(Node, mVisible, "", "Visible", PT_Bool)
 	DF_PROPERTY_END();
 
-	IObject * Node::Clone()
-	{
-		Node * node = new Node;
-
-		node->Copy(this);
-
-		return node;
-	}
-
 	//
 	ImplementRTTI(Node, ComponentOwner);
 
-	Node::Node(const FixedString32 & name, bool _inword)
+	Node::Node(const FixedString32 & name, bool _inworld)
 		: mParent(NULL)
 		, mZone(NULL)
 		, mZoneLinker(this)
@@ -56,7 +47,7 @@ namespace Rad{
 		, mLocalAABBValid(true)
 		, mInheritRotation(true)
 		, mInheritScale(true)
-		, mInWorld(_inword)
+		, mInWorld(_inworld)
 		, mShape(NULL)
 	{
 		if (mInWorld)
@@ -83,6 +74,15 @@ namespace Rad{
 
 		if (mInWorld)
 			LINKER_REMOVE(World::Instance()->mNodeLinker, this);
+	}
+
+	IObject * Node::Clone()
+	{
+		Node * node = new Node;
+
+		node->Copy(this);
+
+		return node;
 	}
 
 	void Node::Attach(Node * child)
@@ -155,6 +155,7 @@ namespace Rad{
 
 	void Node::_notifyAttachSection(WorldSection * section)
 	{
+		d_assert (mInWorld && "node must be in world");
 		d_assert (mSection == NULL);
 
 		mSection = section;
@@ -162,9 +163,32 @@ namespace Rad{
 
 	void Node::_notifyDetachSection()
 	{
+		d_assert (mInWorld && "node must be in world");
 		d_assert (mSection != NULL);
 
 		mSection = NULL;
+	}
+
+	void Node::SetInWorld(bool inworld)
+	{
+		d_assert (mSection == NULL && "node must be not in section");
+
+		if (mInWorld != inworld)
+		{
+			if (mInWorld)
+			{
+				if (mZone != NULL)
+					mZone->RemoveNode(this);
+
+				LINKER_REMOVE(World::Instance()->mNodeLinker, this);
+				mInWorld = false;
+			}
+			else
+			{
+				LINKER_APPEND(World::Instance()->mNodeLinker, this);
+				mInWorld = true;
+			}
+		}
 	}
 
 	void Node::SetUID(int uid)
@@ -579,7 +603,7 @@ namespace Rad{
 		if (mTmChangeFlags != 0)
 			_updateTM();
 
-		if (mZone == NULL)
+		if (mZone == NULL && mInWorld)
 			World::Instance()->MainZone()->AddNode(this);
 	}
 

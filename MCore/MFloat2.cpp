@@ -157,7 +157,7 @@ namespace Rad {
 	{
 		float len = Length();
 
-		if (Math::Abs(len) > EPSILON_E4)
+		if (len > EPSILON_E4)
 		{
 			float inv_len = 1 / len;
 			x *= inv_len;

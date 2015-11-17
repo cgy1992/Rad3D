@@ -121,8 +121,10 @@ namespace Rad {
 			SetWorldTM(const Mat4 & worldTM);
 		void 
 			SetViewTM(const Mat4 & viewTM);
-		virtual void 
-			SetProjTM(const Mat4 & projTM) = 0;
+		void 
+			SetProjTM(const Mat4 & projTM);
+		virtual const Mat4 &
+			_getAdjustProjTM() { return Mat4::Identity; }
 
 		void 
 			SetCamera(Camera * camera);

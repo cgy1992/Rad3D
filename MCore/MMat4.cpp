@@ -558,44 +558,40 @@ namespace Rad {
 
 	void Mat4::MakeOrthoLH(float w, float h, float zn, float zf)
 	{
+		float xScale = 2.0f / w;
+		float yScale = 2.0f / h;
 		float inv = 1.0f / (zf - zn);
-		(*this) = Mat4::Zero;
 
-		_11 = 2.0f / w;
-		_22 = 2.0f / h;
-		_33 = inv;
-		_43 = -zn * inv;
-		_44 = 1.0f;
+		_11 = xScale,	_12 = 0,		_13 = 0,			_14 = 0;
+		_21 = 0,		_22 = yScale,	_23 = 0,			_24 = 0;
+		_31 = 0,		_32 = 0,		_33 = inv,			_34 = 0;
+		_41 = 0,		_42 = 0,		_43 = -zn * inv,	_44 = 1;
 	}
 
 	/*
 	void Mat4::MakePerspectiveLH(float w, float h,float zn, float zf)
 	{
-		(*this) = Mat4::Zero;
+		float xScale = 2.0f / w;
+		float yScale = 2.0f / h;
+		float inv = 1.0f / (zf - zn);
 
-		float inv_d = 1.0f / (zf - zn);
-
-		_11 = 2.0f / w;
-		_22 = 2.0f / h;
-		_33 = zf * inv_d;
-		_43 = -zn * zf * inv_d;
-		_34 = 1.0f;
+		_11 = xScale,	_12 = 0,		_13 = 0,				_14 = 0;
+		_21 = 0,		_22 = yScale,	_23 = 0,				_24 = 0;
+		_31 = 0,		_32 = 0,		_33 = zf * inv,			_34 = 1;
+		_41 = 0,		_42 = 0,		_43 = -zn * zf * inv,	_44 = 0;
 	}
 	*/
 
 	void Mat4::MakePerspectiveLH(float fovy, float aspect,float zn, float zf)
 	{
-		(*this) = Mat4::Zero;
-
 		float yScale = Math::Cot(fovy / 2);
 		float xScale = yScale / aspect;
-		float inv_d = 1.0f / (zf - zn);
+		float inv = 1.0f / (zf - zn);
 
-		_11 = xScale;
-		_22 = yScale;
-		_33 = zf * inv_d;
-		_43 = -zn * zf * inv_d;
-		_34 = 1.0f;
+		_11 = xScale,	_12 = 0,		_13 = 0,				_14 = 0;
+		_21 = 0,		_22 = yScale,	_23 = 0,				_24 = 0;
+		_31 = 0,		_32 = 0,		_33 = zf * inv,			_34 = 1;
+		_41 = 0,		_42 = 0,		_43 = -zn * zf * inv,	_44 = 0;
 	}
 
 	void QDUDecompose(Mat4 & kQ, Float3 & kD, Float3 & kU, const Mat4 & mat)

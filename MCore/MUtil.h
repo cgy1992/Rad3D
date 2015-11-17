@@ -593,7 +593,7 @@ namespace Rad { namespace util {
 	{
 		float denominator = (B.x-A.x)*(D.y-C.y) - (B.y-A.y)*(D.x-C.x);
 
-		if (Math::Equal(denominator, 0.0f))
+		if (Math::Abs(denominator) < EPSILON_E4)
 			return false;
 
 		float numeratorR = (A.y-C.y)*(D.x-C.x) - (A.x-C.x)*(D.y-C.y);
@@ -614,7 +614,7 @@ namespace Rad { namespace util {
 	inline void FastNormalize2(Float2 & n)
 	{
 		float len = n.LengthSq();
-		if (len > EPSILON_E4)
+		if (len > 0)
 		{
 			n *= Math::FastInvSqrt(len);
 		}
@@ -623,7 +623,7 @@ namespace Rad { namespace util {
 	inline void FastNormalize3(Float3 & n)
 	{
 		float len = n.LengthSq();
-		if (len > EPSILON_E4)
+		if (len > 0)
 		{
 			n *= Math::FastInvSqrt(len);
 		}

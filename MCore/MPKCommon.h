@@ -39,7 +39,7 @@ namespace Rad {
 	M_ENTRY int
 		MPK_Compress(byte * data, int len);
 	M_ENTRY int
-		MPK_Decompress(byte * uncomp, int unc_len, const byte * comp, int c_len);
+		MPK_Decompress(byte * uncomp, int max_len, const byte * comp, int c_len);
 	M_ENTRY int
 		MPK_Append(MPKFileInfo & fi, const String & existFilename, const String & newFilename, const byte * pwd);
 }

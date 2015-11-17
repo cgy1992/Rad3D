@@ -550,7 +550,7 @@ namespace Rad {
 	{
 		float denominator = (B.x-A.x)*(D.z-C.z) - (B.z-A.z)*(D.x-C.x);
 
-		if (Math::Equal(denominator, 0.0f))
+		if (Math::Abs(denominator) < EPSILON_E4)
 			return false;
 
 		float numeratorR = (A.z-C.z)*(D.x-C.x) - (A.x-C.x)*(D.z-C.z);

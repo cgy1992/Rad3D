@@ -139,13 +139,12 @@ namespace Rad {
 	ImplementRTTI(Mesh, Node);
 
 	Mesh::Mesh()
-		: mSource(NULL)
+		: Node("Mesh")
+		, mSource(NULL)
 		, mSkeleton(NULL)
 		, mSkeletonShared(false)
 		, mAnimtionPaused(false)
 	{
-		mName = "Mesh";
-
 		mSLMode = eStaticLightingMode::NONE;
 		mSLCastShadow = true;
 		mSLReceiveShadow = true;

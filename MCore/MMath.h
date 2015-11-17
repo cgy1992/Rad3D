@@ -98,8 +98,6 @@ namespace Rad {
 			Sign(T x);
 		template<class T> static T
 			Clamp(T x, T low, T hight);
-		template<class T> static T
-			Equal(T a, T b);
 
 		template<class T> static T
 			Lerp(const T & a, const T & b, float k);

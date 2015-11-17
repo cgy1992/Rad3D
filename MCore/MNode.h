@@ -90,11 +90,13 @@ namespace Rad {
 		bool mVisible;
 
 	public:
-		Node(const FixedString32 & name = "Node", bool _inword = true);
+		Node(const FixedString32 & name = "Node", bool _inworld = true);
 		virtual ~Node();
 
 		virtual IObject *
 			Clone();
+
+		
 
 		void					
 			Attach(Node * child);
@@ -126,6 +128,11 @@ namespace Rad {
 			_notifyDetachSection();
 		WorldSection *
 			GetSection() { return mSection; }
+
+		void
+			SetInWorld(bool inworld);
+		bool
+			IsInWorld() { return mInWorld; }
 
 		void
 			SetUID(int uid);

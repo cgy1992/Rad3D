@@ -624,7 +624,7 @@ namespace Rad {
 
 		E_RenderEnd();
 
-		mFrameId = mFrameId + 1;
+		mFrameId = Max(0, mFrameId + 1);
 	}
 
 	Node * World::RayCheck(float * dist, const Ray & ray, float length, int flags)

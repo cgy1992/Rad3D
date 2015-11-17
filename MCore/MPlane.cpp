@@ -64,7 +64,9 @@ namespace Rad {
 
 	void Plane::Normalize()
 	{
-		d /= normal.Normalize();
+		float len = normal.Normalize();
+		if (len > 0)
+			d /= len;
 	}
 
 	float Plane::Distance(const Float3 & v) const

@@ -18,14 +18,57 @@ namespace Rad {
 
 	struct Frustum
 	{
-		Plane		Near;
-		Plane       Far;
-		Plane       Left;
-		Plane       Right;
-		Plane       Top;
-		Plane       Bottom;
+		Plane Near;
+		Plane Far;
+		Plane Left;
+		Plane Right;
+		Plane Top;
+		Plane Bottom;
+
+		void FromMatrix(const Mat4 & matViewProj)
+		{
+			Frustum & frustum = *this;
+			const Mat4 & mat = matViewProj;
+
+			frustum.Left.normal.x = mat._14 + mat._11;
+			frustum.Left.normal.y = mat._24 + mat._21;
+			frustum.Left.normal.z = mat._34 + mat._31;
+			frustum.Left.d = mat._44 + mat._41;
+
+			frustum.Right.normal.x = mat._14 - mat._11;
+			frustum.Right.normal.y = mat._24 - mat._21;
+			frustum.Right.normal.z = mat._34 - mat._31;
+			frustum.Right.d = mat._44 - mat._41;
+
+			frustum.Top.normal.x = mat._14 - mat._12;
+			frustum.Top.normal.y = mat._24 - mat._22;
+			frustum.Top.normal.z = mat._34 - mat._32;
+			frustum.Top.d = mat._44 - mat._42;
+
+			frustum.Bottom.normal.x = mat._14 + mat._12;
+			frustum.Bottom.normal.y = mat._24 + mat._22;
+			frustum.Bottom.normal.z = mat._34 + mat._32;
+			frustum.Bottom.d = mat._44 + mat._42;
+
+			frustum.Near.normal.x = mat._13;
+			frustum.Near.normal.y = mat._23;
+			frustum.Near.normal.z = mat._33;
+			frustum.Near.d = mat._43;
+
+			frustum.Far.normal.x = mat._14 - mat._13;
+			frustum.Far.normal.y = mat._24 - mat._23;
+			frustum.Far.normal.z = mat._34 - mat._33;
+			frustum.Far.d = mat._44 - mat._43;
+
+			frustum.Left.Normalize();
+			frustum.Right.Normalize();
+			frustum.Top.Normalize();
+			frustum.Bottom.Normalize();
+			frustum.Near.Normalize();
+		}
 	};
 
+	//
 	class M_ENTRY Camera : public Node
 	{
 		DECLARE_RTTI();
@@ -88,7 +131,7 @@ namespace Rad {
 		const Frustum &
 			GetFrustum();
 		const Float3 *
-			GetCorner();
+			GetViewCorner();
 		const Float3 *
 			GetWorldCorner();
 		void 
@@ -112,8 +155,6 @@ namespace Rad {
 	protected:
 		void            
 			_updateTM();
-		void            
-			_updateFrustum();
 		void 
 			_makeClipProjMatrix();
 
@@ -135,7 +176,7 @@ namespace Rad {
 		Mat4 mMatViewProj;
 
 		Frustum mFrustum;
-		Float3 mCorner[8];
+		Float3 mViewCorner[8];
 		Float3 mWorldCorner[8];
 	};
 

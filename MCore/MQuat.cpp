@@ -132,11 +132,14 @@ namespace Rad {
 
 		d_assert (len != 0);
 
-		float inv_len = 1.0f / len;
-		x *= inv_len;
-		y *= inv_len;
-		z *= inv_len;
-		w *= inv_len;
+		if (len > 0)
+		{
+			float inv_len = 1.0f / len;
+			x *= inv_len;
+			y *= inv_len;
+			z *= inv_len;
+			w *= inv_len;
+		}
 	}
 
 	void Quat::Conjugate()

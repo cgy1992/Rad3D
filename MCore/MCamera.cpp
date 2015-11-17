@@ -73,6 +73,8 @@ namespace Rad {
 		mOrthoWidth = width;
 		mOrthoHeight = height;
 		mOrthoEnable = enable;
+
+		ChangeTm(eTmFlags::UNKNOWN);
 	}
 
 	void Camera::SetMirrorPlane(const Plane & plane)
@@ -105,10 +107,10 @@ namespace Rad {
 		return mFrustum;
 	}
 
-	const Float3 * Camera::GetCorner()
+	const Float3 * Camera::GetViewCorner()
 	{
 		_updateTM();
-		return mCorner;
+		return mViewCorner;
 	}
 
 	const Float3 * Camera::GetWorldCorner()
@@ -168,12 +170,27 @@ namespace Rad {
 
 		mMatViewProj = mMatView * mMatProj;
 
-		_updateFrustum();
+		mFrustum.FromMatrix(mMatViewProj);
+
+		// update corner
+		Float3 corner[8] = { 
+			Float3(-1, 1, 0), Float3(1, 1, 0), Float3(-1, -1, 0), Float3(1, -1, 0), 
+			Float3(-1, 1, 1), Float3(1, 1, 1), Float3(-1, -1, 1), Float3(1, -1, 1)
+		};
+
+		Mat4 matInvProj = mMatProj, matInvView = mMatView;
+
+		matInvProj.Inverse();
+		matInvView.Inverse();
+
+		for (int i = 0; i < 8; ++i)
+			mViewCorner[i] = corner[i] * matInvProj;
+
+		for (int i = 0; i < 8; ++i)
+			mWorldCorner[i] = mViewCorner[i] * matInvView;
 
 		if (mMirrorEnable)
-		{
 			_makeClipProjMatrix();
-		}
 	}
 
 	Camera::Visibility Camera::GetVisibility(const Float3 & point)
@@ -316,64 +333,6 @@ namespace Rad {
 		result.dir.Normalize();
 
 		return result;
-	}
-
-	void Camera::_updateFrustum()
-	{
-		Frustum & frustum = mFrustum;
-		const Mat4 & mat = mMatViewProj;
-
-		frustum.Left.normal.x = mat._14 + mat._11;
-		frustum.Left.normal.y = mat._24 + mat._21;
-		frustum.Left.normal.z = mat._34 + mat._31;
-		frustum.Left.d = mat._44 + mat._41;
-
-		frustum.Right.normal.x = mat._14 - mat._11;
-		frustum.Right.normal.y = mat._24 - mat._21;
-		frustum.Right.normal.z = mat._34 - mat._31;
-		frustum.Right.d = mat._44 - mat._41;
-
-		frustum.Top.normal.x = mat._14 - mat._12;
-		frustum.Top.normal.y = mat._24 - mat._22;
-		frustum.Top.normal.z = mat._34 - mat._32;
-		frustum.Top.d = mat._44 - mat._42;
-
-		frustum.Bottom.normal.x = mat._14 + mat._12;
-		frustum.Bottom.normal.y = mat._24 + mat._22;
-		frustum.Bottom.normal.z = mat._34 + mat._32;
-		frustum.Bottom.d = mat._44 + mat._42;
-
-		frustum.Near.normal.x = mat._13;
-		frustum.Near.normal.y = mat._23;
-		frustum.Near.normal.z = mat._33;
-		frustum.Near.d = mat._43;
-
-		frustum.Far.normal.x = mat._14 - mat._13;
-		frustum.Far.normal.y = mat._24 - mat._23;
-		frustum.Far.normal.z = mat._34 - mat._33;
-		frustum.Far.d = mat._44 - mat._43;
-
-		frustum.Left.Normalize();
-		frustum.Right.Normalize();
-		frustum.Top.Normalize();
-		frustum.Bottom.Normalize();
-		frustum.Near.Normalize();
-		frustum.Far.Normalize();
-
-		Float3 corner[8] = { 
-			Float3(-1, 1, 0), Float3(1, 1, 0), Float3(-1, -1, 0), Float3(1, -1, 0), 
-			Float3(-1, 1, 1), Float3(1, 1, 1), Float3(-1, -1, 1), Float3(1, -1, 1)
-		};
-
-		Mat4 matInvProj = mMatProj, matInvView = mMatView;
-		matInvProj.Inverse();
-		matInvView.Inverse();
-
-		for (int i = 0; i < 8; ++i)
-			mCorner[i] = corner[i] * matInvProj;
-
-		for (int i = 0; i < 8; ++i)
-			mWorldCorner[i] = mCorner[i] * matInvView;
 	}
 
 	void Camera::_makeClipProjMatrix()

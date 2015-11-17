@@ -90,6 +90,11 @@ namespace Rad {
 		mRenderRegister->SetViewTM(viewTM);
 	}
 
+	void RenderSystem::SetProjTM(const Mat4 & projTM)
+	{
+		mRenderRegister->SetProjTM(projTM * _getAdjustProjTM());
+	}
+
 	void RenderSystem::SetCamera(Camera * camera)
 	{
 		mRenderRegister->SetCameraPosition(camera->GetPosition());

@@ -73,9 +73,9 @@ namespace Rad {
 		return -1;
 	}
 
-	int MPK_Decompress(byte * uncomp, int unc_len, const byte * comp, int c_len)
+	int MPK_Decompress(byte * uncomp, int max_len, const byte * comp, int c_len)
 	{
-		return fastlz_decompress((const char *)comp, c_len, uncomp, unc_len);
+		return fastlz_decompress((const char *)comp, c_len, uncomp, max_len);
 	}
 
 	int MPK_Append(MPKFileInfo & fi, const String & existFilename, const String & newFilename, const byte * pwd)

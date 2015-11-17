@@ -42,8 +42,6 @@ namespace Rad {
 
 	class M_ENTRY CodeTimer
 	{
-		friend class CodeTimerManager;
-
 	public:
 		CodeTimer(const char * name);
 		~CodeTimer();

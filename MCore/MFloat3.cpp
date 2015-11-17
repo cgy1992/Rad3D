@@ -198,7 +198,7 @@ namespace Rad {
 #else
 		len = Length();
 
-		if (len > EPSILON_E4)
+		if (len > 0)
 		{
 			float inv_len = 1 / len;
 			x *= inv_len;
