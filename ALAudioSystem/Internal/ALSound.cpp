@@ -321,7 +321,7 @@ namespace Rad {
 		fade = mFadeTime / AL_FADETIME;
 
 		vol *= fade;
-		if (!Math::Equal(mVolumeAbs, vol))
+		if (mVolumeAbs != vol)
 		{
 			mVolumeAbs = vol;
 			alSourcef(mALSourceId, AL_GAIN, vol);
