@@ -29,3 +29,17 @@
 
 #endif
 
+#define M_OPEN_GL_2_0 0x0020
+#define M_OPEN_GL_2_1 0x0021
+#define M_OPEN_GL_2_2 0x0022
+#define M_OPEN_GL_3_0 0x0030
+#define M_OPEN_GL_3_1 0x0031
+#define M_OPEN_GL_3_2 0x0032
+#define M_OPEN_GL_3_3 0x0033
+#define M_OPEN_GL_4_0 0x0040
+#define M_OPEN_GL_4_1 0x0041
+#define M_OPEN_GL_4_2 0x0042
+#define M_OPEN_GL_4_3 0x0043
+
+#define M_OPEN_GLES_2_0 0x1020
+#define M_OPEN_GLES_3_0 0x1030

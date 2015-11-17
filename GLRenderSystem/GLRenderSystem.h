@@ -64,8 +64,8 @@ namespace Rad {
 		virtual void 
 			Clear(eClearMode mode, const Float4 & color, float depth, int stencil);
 
-		virtual void 
-			SetProjTM(const Mat4 & projTM);
+		virtual const Mat4 &
+			_getAdjustProjTM();
 
 		virtual void
 			PrepareRendering();

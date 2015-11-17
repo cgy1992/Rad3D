@@ -251,15 +251,36 @@ namespace Rad {
 
 
 	//
+	struct GLSL_VERSION
+	{
+		int ver;
+		const char * str;
+	};
+
 	GLShaderFXManager::GLShaderFXManager()
 	{
+		const GLSL_VERSION glv[] = {
+			{M_OPEN_GL_2_0, "#version 110 \n"},
+			{M_OPEN_GL_2_1, "#version 120 \n"},
+			{M_OPEN_GL_3_0, "#version 130 \n"},
+			{M_OPEN_GL_3_1, "#version 140 \n"},
+			{M_OPEN_GL_3_2, "#version 150 \n"},
+			{M_OPEN_GL_3_3, "#version 330 \n"},
+			{M_OPEN_GL_4_0, "#version 400 \n"},
+			{M_OPEN_GL_4_1, "#version 410 \n"},
+			{M_OPEN_GL_4_2, "#version 420 \n"},
+			{M_OPEN_GL_4_3, "#version 430 \n"},
+
+			{M_OPEN_GLES_2_0, "#version 100 \n"},
+			{M_OPEN_GLES_3_0, "#version 300 \n"}
+		};
+
 		AddGlobalMacro(
 			"#define D_OGL\n" \
 			"#define float2 vec2\n" \
 			"#define float3 vec3\n" \
 			"#define float4 vec4\n" \
-			"#define tex2D texture2D\n" \
-			"#define saturate(s) clamp(s, 0.0, 1.0)\n");
+			"#define tex2D texture2D\n");
 	}
 
 	GLShaderFXManager::~GLShaderFXManager()

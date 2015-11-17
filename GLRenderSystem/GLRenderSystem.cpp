@@ -52,9 +52,9 @@ namespace Rad {
 		{
 			d_printf("-: PixelFormat DXT1_RGBA DXT3_RGBA DXT5_RGBA support!");
 
-			//mCaps.pixelFormats[ePixelFormat::DXT1_RGB] = true;
-			//mCaps.pixelFormats[ePixelFormat::DXT3_RGBA] = true;
-			//mCaps.pixelFormats[ePixelFormat::DXT5_RGBA] = true;
+			mCaps.pixelFormats[ePixelFormat::DXT1_RGB] = true;
+			mCaps.pixelFormats[ePixelFormat::DXT3_RGBA] = true;
+			mCaps.pixelFormats[ePixelFormat::DXT5_RGBA] = true;
 		}
 
 		if (strstr(extensions, "GL_OES_compressed_ETC1_RGB8_texture") != NULL)
@@ -342,27 +342,21 @@ namespace Rad {
 		d_assert (glGetError() == 0);
 	}
 
-	void GLRenderSystem::SetProjTM(const Mat4 & projTM)
+	const Mat4 & GLRenderSystem::_getAdjustProjTM()
 	{
-		Mat4 adjTM;
-		if (mCurrentRenderTarget[0] == NULL)
-		{
-			adjTM = Mat4(
-				1, 0, 0, 0,
-				0, 1, 0, 0,
-				0, 0, 2, 0,
-				0, 0,-1, 1);
-		}
-		else
-		{
-			adjTM = Mat4(
-				1, 0, 0, 0,
-				0,-1, 0, 0,
-				0, 0, 2, 0,
-				0, 0,-1, 1);
-		}
+		static const Mat4 adjTM = Mat4(
+			1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 2, 0,
+			0, 0,-1, 1);
 
-		RenderRegister::Instance()->SetProjTM(projTM * adjTM);
+		static const Mat4 adjTM_rt = Mat4(
+			1, 0, 0, 0,
+			0, -1, 0, 0,
+			0, 0, 2, 0,
+			0, 0,-1, 1);
+
+		return mCurrentRenderTarget[0] != NULL ? adjTM_rt : adjTM;
 	}
 
 	void GLRenderSystem::PrepareRendering()
