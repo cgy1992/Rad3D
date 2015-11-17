@@ -48,15 +48,11 @@ namespace Rad {
 	{
 	}
 
-	void NullRenderSystem::SetProjTM(const Mat4 & projTM)
-	{
-	}
-
 	void NullRenderSystem::PrepareRendering()
 	{
 	}
 
-	void NullRenderSystem::ReadPixelData(void * data, int x, int y, int w, int h)
+	void NullRenderSystem::ReadPixels(void * data, int x, int y, int w, int h)
 	{
 	}
 
@@ -65,6 +61,10 @@ namespace Rad {
 	}
 
 	void NullRenderSystem::RenderEx(VertexDeclaration * vdecl, const void * vertexData, const void * indexData, ePrimType primType, int primCount)
+	{
+	}
+
+	void NullRenderSystem::RenderScreenQuad(ShaderFX * fx)
 	{
 	}
 

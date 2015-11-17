@@ -49,20 +49,18 @@ namespace Rad {
 		virtual void 
 			Clear(eClearMode mode, const Float4 & color, float depth, int stencil);
 
-		virtual void 
-			SetProjTM(const Mat4 & projTM);
-
 		virtual void
 			PrepareRendering();
 
 		virtual void 
-			ReadPixelData(void * data, int x, int y, int w, int h);
+			ReadPixels(void * data, int x, int y, int w, int h);
 
 		virtual void 
 			Render(RenderOp * rop);
-
 		virtual void 
 			RenderEx(VertexDeclaration * decl, const void * vertexData, const void * indexData, ePrimType primType, int primCount);
+		virtual void 
+			RenderScreenQuad(ShaderFX * fx);
 
 	protected:
 		NullHWBufferManager * mHWBufferManager;
