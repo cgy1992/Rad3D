@@ -57,7 +57,7 @@ namespace Rad {
 			position = mPosition + p * mScale;
 
 			Float3 common(1, 0, 0);
-			if (Math::Equal(common.Dot(n), 0.0f))
+			if (Math::Abs(common.Dot(n)) < EPSILON_E4)
 			{
 				common = Float3(0, 1, 0);
 			}
