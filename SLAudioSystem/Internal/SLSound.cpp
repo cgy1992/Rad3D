@@ -347,7 +347,7 @@ namespace Rad {
 		fade = mFadeTime / SL_FADETIME;
 		vol *= fade;
 
-		if (!Math::Equal(mVolumeAbs, vol))
+		if (mVolumeAbs != vol)
 		{
 			SLmillibel volume = _getVolumeLevel(vol);
 
