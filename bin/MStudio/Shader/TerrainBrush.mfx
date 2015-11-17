@@ -47,9 +47,9 @@ Pass
 
 		void main()
 		{
-			i_XZ.xy = i_XZ.xy * u_XZTransform.w + u_XZTransform.xy;
+			float2 xz = i_XZ.xy * u_XZTransform.w + u_XZTransform.xy;
 
-			float4 position = float4(i_XZ.x, i_NormalHeight.w, i_XZ.y, 1);
+			float4 position = float4(xz.x, i_NormalHeight.w, xz.y, 1);
 
 			gl_Position = u_WVP * position;
 			o_uv = CalcuUV(position.xz);
