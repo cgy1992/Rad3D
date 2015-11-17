@@ -39,7 +39,7 @@ namespace Rad {
 		vp.h = mMapSize - 1;
 		mShadowContext->SetViewport(vp);
 
-		World::Instance()->E_RenderingBegin += L_OnUpdateCamera(this, &Shadow::_updateCamera);
+		World::Instance()->E_RenderBegin += L_OnUpdateCamera(this, &Shadow::_updateCamera);
 		World::Instance()->E_RenderSolidEnd += L_OnRenderShadow(this, &Shadow::_renderShadow);
 	}
 
@@ -48,8 +48,8 @@ namespace Rad {
 		World::Instance()->DeleteRenderContext(mShadowContext);
 		safe_delete (mShadowCamera);
 
+		World::Instance()->E_RenderBegin -= L_OnUpdateCamera(this, &Shadow::_updateCamera);
 		World::Instance()->E_RenderSolidEnd -= L_OnRenderShadow(this, &Shadow::_renderShadow);
-		World::Instance()->E_RenderingBegin -= L_OnUpdateCamera(this, &Shadow::_updateCamera);
 	}
 
 	void Shadow::SetDistance(float distance)
