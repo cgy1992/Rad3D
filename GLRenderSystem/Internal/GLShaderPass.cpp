@@ -1,5 +1,4 @@
 #include "GLShaderPass.h"
-#include "GLUtil.h"
 
 namespace Rad {
 
@@ -114,6 +113,34 @@ namespace Rad {
 
 			case eSPType::LIGHT_SPOT_PARAM:
 				glUniform4fv(u->handle, 1, rr->GetLightSpotParam().ToFloatPtr());
+				break;
+
+			case eSPType::LIGHT_AMBIENT:
+				glUniform4fv(u->handle, 1, rr->GetLightAmbient().ToFloatPtr());
+				break;
+
+			case eSPType::LIGHT_DIFFUSE:
+				glUniform4fv(u->handle, 1, rr->GetLightDiffuse().ToFloatPtr());
+				break;
+
+			case eSPType::LIGHT_SPECULAR:
+				glUniform4fv(u->handle, 1, rr->GetLightSpecular().ToFloatPtr());
+				break;
+
+			case eSPType::MATERIAL_EMISSIVE:
+				glUniform4fv(u->handle, 1, rr->GetMaterialEmissive().ToFloatPtr());
+				break;
+
+			case eSPType::MATERIAL_AMBIENT:
+				glUniform4fv(u->handle, 1, rr->GetMaterialAmbient().ToFloatPtr());
+				break;
+
+			case eSPType::MATERIAL_DIFFUSE:
+				glUniform4fv(u->handle, 1, rr->GetMaterialDiffuse().ToFloatPtr());
+				break;
+
+			case eSPType::MATERIAL_SPECULAR:
+				glUniform4fv(u->handle, 1, rr->GetMaterialSpecular().ToFloatPtr());
 				break;
 
 			case eSPType::EMISSIVE:

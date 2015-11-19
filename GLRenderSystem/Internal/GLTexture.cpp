@@ -55,9 +55,7 @@ namespace Rad {
 			mWidth = image.width;
 			mHeight = image.height;
 			mFormat = image.format;
-
-			if (image.mipmaps != 0)
-				mMipmaps = image.mipmaps;
+			mMipmaps = image.mipmaps != 0 ? image.mipmaps : mMipmaps;
 
 			_checkFormat();
 
