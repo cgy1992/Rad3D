@@ -7,6 +7,7 @@ namespace Rad {
 	const Plane Plane::Zero = Plane(Float3(0, 0, 0), 0);
 
 	Plane::Plane()
+		: d(0)
 	{
 	}
 

@@ -21,9 +21,6 @@
 
 #define LIGHTING_COLOR_STREAM 3
 
-#define MAIN_RENDER_CONTEXT_ID 2048
-#define MAIN_RENDER_CONTEXT_ORDER 2048
-
 namespace Rad {
 
 	struct M_ENTRY eUsage

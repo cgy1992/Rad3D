@@ -41,27 +41,12 @@ namespace Rad {
 			return ;
 
 		Array<Node*> & visibleArray = pRenderContext->GetVisibleCuller()->GetNodeArray();
-
-		if (pRenderContext->IsMatchId())
+		for (int i = 0; i < visibleArray.Size(); ++i)
 		{
-			for (int i = 0; i < visibleArray.Size(); ++i)
+			Node * n = visibleArray[i];
+			if (n->GetRenderContextId() == pRenderContext->GetId())
 			{
-				Node * n = visibleArray[i];
-				if (n->GetRenderContextId() == pRenderContext->GetId())
-				{
-					visibleArray[i]->AddRenderQueue(&mRenderQueue);
-				}
-			}
-		}
-		else
-		{
-			for (int i = 0; i < visibleArray.Size(); ++i)
-			{
-				Node * n = visibleArray[i];
-				if (n->GetRenderContextId() == -1)
-				{
-					visibleArray[i]->AddRenderQueue(&mRenderQueue);
-				}
+				visibleArray[i]->AddRenderQueue(&mRenderQueue);
 			}
 		}
 
@@ -301,6 +286,112 @@ namespace Rad {
 			}
 
 		} while(0);
+	}
+
+	//
+	RenderPipelineReflection::RenderPipelineReflection()
+	{
+	}
+
+	RenderPipelineReflection::~RenderPipelineReflection()
+	{
+	}
+
+	void RenderPipelineReflection::DoRender()
+	{
+		mRenderQueue.Clear();
+
+		RenderContext * pRenderContext = World::Instance()->GetCurrentRenderContext();
+		Camera * pCamera = pRenderContext->GetCamera();
+		VisibleCullerPtr pVisibleCuller = pRenderContext->GetVisibleCuller();
+		ShaderProviderPtr pShaderProvider = pRenderContext->GetShaderProvider();
+
+		if (pVisibleCuller == NULL || pShaderProvider == NULL || pCamera == NULL)
+			return ;
+
+		Array<Node*> & visibleArray = pRenderContext->GetVisibleCuller()->GetNodeArray();
+		for (int i = 0; i < visibleArray.Size(); ++i)
+		{
+			Node * n = visibleArray[i];
+			if (n->GetRenderContextId() == pRenderContext->GetId())
+			{
+				visibleArray[i]->AddRenderQueue(&mRenderQueue);
+			}
+		}
+
+		Mat4 clipTM;
+		clipTM.MakeClipProjection(mPlane, pCamera->GetViewProjMatrix());
+
+		RenderSystem::Instance()->SetViewTM(pCamera->GetViewMatrix());
+		RenderSystem::Instance()->SetProjTM(pCamera->GetProjMatrix() * clipTM);
+
+		RenderSystem::Instance()->SetClipPlane(pCamera->GetNearClip(), pCamera->GetFarClip());
+		RenderSystem::Instance()->SetTime(Root::Instance()->GetTime());
+
+		RenderSystem::Instance()->SetLight(World::Instance()->MainLight());
+
+		World::Instance()->E_RenderPrepare();
+
+		World::Instance()->E_RenderSolidBegin();
+
+		do 
+		{
+			Array<RenderObject *> & arr = mRenderQueue.GetSolidObjects();
+
+			for (int i = 0; i < arr.Size(); ++i)
+			{
+				pShaderProvider->ApplyShaderFX(arr[i]);
+			}
+
+			if (arr.Size() > 0)
+			{
+				SolidSorter sorter;
+				Sort(&arr[0], arr.Size(), sorter);
+			}
+
+			for (int i = 0; i < arr.Size(); ++i)
+			{
+				RenderSystem::Instance()->Render(arr[i]->GetCurrentShaderFX(), arr[i]);
+			}
+
+		} while (0);
+
+		World::Instance()->E_RenderSolid();
+
+		World::Instance()->E_RenderSolidEnd();
+
+		World::Instance()->E_RenderAlphaBegin();
+
+		do 
+		{
+			Array<RenderObject *> & arr = mRenderQueue.GetAlphaObjects();
+
+			if (arr.Size() > 0)
+			{
+				AlphaSorter sorter(pCamera);
+				Sort(&arr[0], arr.Size(), sorter);
+			}
+
+			for (int i = 0; i < arr.Size(); ++i)
+			{
+				pShaderProvider->ApplyShaderFX(arr[i]);
+
+				eBlendMode bm = arr[i]->GetMaterial()->blendMode;
+				if (bm == eBlendMode::OPACITY || bm == eBlendMode::ALPHA_TEST)
+				{
+					RenderSystem::Instance()->SetColorWriteEnable(false);
+					RenderSystem::Instance()->Render(arr[i]->GetCurrentShaderFX(), arr[i]);
+					RenderSystem::Instance()->SetColorWriteEnable(true);
+				}
+
+				RenderSystem::Instance()->Render(arr[i]->GetCurrentShaderFX(), arr[i]);
+			}
+
+		} while(0);
+
+		World::Instance()->E_RenderAlpha();
+
+		World::Instance()->E_RenderAlphaEnd();
 	}
 
 }

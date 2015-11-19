@@ -39,6 +39,8 @@
 
 namespace Rad {
 
+#define MAIN_CONETEX_ORDER 2048
+
 	class M_ENTRY World : public Singleton<World>
 	{
 		friend class Node;
@@ -185,7 +187,7 @@ namespace Rad {
 			ImpCullLights(Array<Light *> & lightArray, Camera * camera);
 
 		RenderContext * 
-			NewRenderContext(int id, int order, const String & name);
+			NewRenderContext(int order, const String & name, int id = -1);
 		void 
 			DeleteRenderContext(RenderContext * context);
 		void

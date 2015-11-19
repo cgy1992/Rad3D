@@ -80,7 +80,7 @@ namespace Rad {
 		mGrassManager = new GrassManager;
 		mNavData = new NavData;
 
-		mMainRenderContext = NewRenderContext(MAIN_RENDER_CONTEXT_ID, MAIN_RENDER_CONTEXT_ORDER, "Main");
+		mMainRenderContext = NewRenderContext(MAIN_CONETEX_ORDER, "Main");
 		mMainRenderContext->SetCamera(mMainCamera);
 		mMainRenderContext->SetVisibleCuller(new VisibleCullerStandard);
 		mMainRenderContext->SetShaderProvider(new ShaderProviderStandard);
@@ -525,7 +525,7 @@ namespace Rad {
 		}
 	}
 
-	RenderContext * World::NewRenderContext(int id, int order, const String & name)
+	RenderContext * World::NewRenderContext(int order, const String & name, int id)
 	{
 		int i = 0;
 		for (i = 0; i < mRenderContexts.Size(); ++i)
@@ -534,7 +534,7 @@ namespace Rad {
 				break;
 		}
 
-		RenderContext * context = new RenderContext(id, order, name);
+		RenderContext * context = new RenderContext(order, name, id);
 
 		mRenderContexts.Insert(i, context);
 

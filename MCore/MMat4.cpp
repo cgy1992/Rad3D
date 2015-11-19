@@ -1,5 +1,6 @@
 #include "MMat4.h"
 #include "MMathASM.h"
+#include "MPlane.h"
 
 namespace Rad {
 
@@ -335,10 +336,52 @@ namespace Rad {
 		float d23 = - (v4 * m00 - v2 * m01 + v0 * m03) * invDet;
 		float d33 = + (v3 * m00 - v1 * m01 + v0 * m02) * invDet;
 
-		(*this) = Mat4(d00, d10, d20, d30,
-					 d01, d11, d21, d31,
-					 d02, d12, d22, d32,
-					 d03, d13, d23, d33);
+		(*this) = Mat4(
+			d00, d10, d20, d30,
+			d01, d11, d21, d31,
+			d02, d12, d22, d32,
+			d03, d13, d23, d33);
+	}
+
+	void Mat4::InverseAffine()
+	{
+		d_assert(IsAffine());
+
+		float m00 = m[0][0], m10 = m[0][1], m20 = m[0][2], m30 = m[0][3];
+		float m01 = m[1][0], m11 = m[1][1], m21 = m[1][2], m31 = m[1][3];
+		float m02 = m[2][0], m12 = m[2][1], m22 = m[2][2], m32 = m[2][3];
+		float m03 = m[3][0], m13 = m[3][1], m23 = m[3][2], m33 = m[3][3];
+
+		float t00 = m22 * m11 - m21 * m12;
+		float t10 = m20 * m12 - m22 * m10;
+		float t20 = m21 * m10 - m20 * m11;
+
+		float invDet = 1 / (m00 * t00 + m01 * t10 + m02 * t20);
+
+		t00 *= invDet; t10 *= invDet; t20 *= invDet;
+		m00 *= invDet; m01 *= invDet; m02 *= invDet;
+
+		float r00 = t00;
+		float r01 = m02 * m21 - m01 * m22;
+		float r02 = m01 * m12 - m02 * m11;
+
+		float r10 = t10;
+		float r11 = m00 * m22 - m02 * m20;
+		float r12 = m02 * m10 - m00 * m12;
+
+		float r20 = t20;
+		float r21 = m01 * m20 - m00 * m21;
+		float r22 = m00 * m11 - m01 * m10;
+
+		float r03 = - (r00 * m03 + r01 * m13 + r02 * m23);
+		float r13 = - (r10 * m03 + r11 * m13 + r12 * m23);
+		float r23 = - (r20 * m03 + r21 * m13 + r22 * m23);
+
+		*this = Mat4(
+			r00, r10, r20, 0,
+			r01, r11, r21, 0,
+			r02, r12, r22, 0,
+			r03, r13, r23, 1);
 	}
 
 	void Mat4::EnsureOrtho()
@@ -592,6 +635,82 @@ namespace Rad {
 		_21 = 0,		_22 = yScale,	_23 = 0,				_24 = 0;
 		_31 = 0,		_32 = 0,		_33 = zf * inv,			_34 = 1;
 		_41 = 0,		_42 = 0,		_43 = -zn * zf * inv,	_44 = 0;
+	}
+
+	void Mat4::MakeShadow(const Float4 & l, const Plane & p)
+	{
+		/*
+		*		d = l * p;
+		*
+		*		d - p.a * l.x     -p.a * l.y     -p.a * l.z    -p.a
+		*		-p.b * l.x		  d - p.b * l.y  -p.b * l.z    -p.b
+		*		-p.c * l.x        -p.c * l.y     d - p.c * l.z -p.c                        
+		*		-p.d * l.x        -p.d * l.y     -p.d * l.z    d - p.d
+		*/
+		Plane neg = -p;
+
+		float a = neg.normal.x;
+		float b = neg.normal.y;
+		float c = neg.normal.z;
+		float d = p.normal.x * l.x + p.normal.y * l.y + p.normal.z * l.z + p.d * l.w;
+		_11 = a * l.x,	_12 = a * l.y,		_13 = a * l.z,		_14 = a;
+		_21 = b * l.x,	_22 = b * l.y + d,	_23 = b * l.z,		_24 = b;
+		_31 = c * l.x,	_32 = c * l.y,		_33 = c * l.z + d,	_34 = c;
+		_41 = d * l.x,	_42 = d * l.y,		_43 = d * l.z,		_44 = d + d;
+	}
+
+	void Mat4::MakeReflection(const Plane & p)
+	{
+		float a = p.normal.x;
+		float b = p.normal.y;
+		float c = p.normal.z;
+		float d = p.d;
+
+		_11 = -2 * a * a + 1,   _12 = -2 * a * b,		_13 = -2 * a * c,		_14 = 0;
+        _21 = -2 * a * b,		_22 = -2 * b * b + 1,   _23 = -2 * b * c,		_24 = 0;
+        _31 = -2 * a * c,       _32 = -2 * b * c,       _33 = -2 * c * c + 1,	_34 = 0;
+        _41 = -2 * a * d,       _42 = -2 * b * d,       _43 = -2 * c * d,		_44 = 1;
+	}
+
+	bool Mat4::MakeClipProjection(const Plane & plane, const Mat4 & matViewProj)
+	{
+		Mat4  & matClipProj = *this;
+		matClipProj = Mat4::Identity;
+
+		Mat4 WorldToProjection = matViewProj;
+		WorldToProjection.Inverse();
+		WorldToProjection.Transpose();
+
+		Float4 clipPlane(plane.normal.x, plane.normal.y, plane.normal.z, plane.d);
+		Float4 projClipPlane;
+		// transform clip plane into projection space
+		projClipPlane = clipPlane * WorldToProjection;
+
+		if (projClipPlane.w == 0)  // or less than a really small value
+		{
+			// plane is perpendicular to the near plane
+			return false;
+		}
+
+		float k_len = projClipPlane.x * projClipPlane.x + projClipPlane.y * projClipPlane.y +
+			projClipPlane.z * projClipPlane.z + projClipPlane.w * projClipPlane.w;
+
+		k_len = Math::Sqrt(k_len);
+		projClipPlane.x /= k_len; projClipPlane.y /= k_len;
+		projClipPlane.z /= k_len; projClipPlane.w /= k_len;
+
+		if (projClipPlane.w > 0)
+		{
+			projClipPlane = -projClipPlane;
+			projClipPlane.w += 1;
+		}
+		// put projection space clip plane in Z column
+		matClipProj[0][2] = projClipPlane.x;
+		matClipProj[1][2] = projClipPlane.y;
+		matClipProj[2][2] = projClipPlane.z;
+		matClipProj[3][2] = projClipPlane.w;
+
+		return true;
 	}
 
 	void QDUDecompose(Mat4 & kQ, Float3 & kD, Float3 & kU, const Mat4 & mat)

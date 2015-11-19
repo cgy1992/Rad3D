@@ -13,7 +13,9 @@
 namespace Rad {
 
 	class Float3;
+	class Float4;
 	class Quat;
+	class Plane;
 
 	class M_ENTRY Mat4
 	{
@@ -105,6 +107,8 @@ namespace Rad {
 		void 
 			Inverse();
 		void 
+			InverseAffine();
+		void 
 			InverseOrtho();
 		void 
 			EnsureOrtho();
@@ -139,6 +143,13 @@ namespace Rad {
 		void 
 			MakePerspectiveLH(float fovy, float aspect,float zn, float zf);
 
+		void
+			MakeShadow(const Float4 & l, const Plane & p);
+		void
+			MakeReflection(const Plane & p);
+		bool
+			MakeClipProjection(const Plane & clipPlane, const Mat4 & matViewProj);
+
 		void 
 			Decompose(Float3 & pos, Quat & orient, Float3 & scale) const;
 	};
@@ -147,4 +158,5 @@ namespace Rad {
 	{
 		return (const float *)this;
 	}
+
 }

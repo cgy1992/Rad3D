@@ -96,8 +96,6 @@ namespace Rad {
 		virtual IObject *
 			Clone();
 
-		
-
 		void					
 			Attach(Node * child);
 		void					
@@ -229,6 +227,9 @@ namespace Rad {
 			Yaw(float x, eTransform ts = eTransform::PARENT);
 		void                    
 			Roll(float x, eTransform ts = eTransform::PARENT);
+
+		void
+			Reflect(const Plane & plane);
 
 		const Float3 &          
 			GetWorldPosition();

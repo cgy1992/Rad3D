@@ -437,6 +437,30 @@ namespace Rad{
 		Rotate(q, ts);
 	}
 
+	void Node::Reflect(const Plane & plane)
+	{
+		Float3 position = mPosition;
+		Quat rotation = mRotation;
+
+		Mat4 matReflection;
+		matReflection.MakeReflection(plane);
+
+		Float3 xaixs, yaxis, zaxis;
+		rotation.ToAxis(xaixs, yaxis, zaxis);
+
+		Float3 raxis = zaxis;
+		raxis.TransformA(matReflection);
+
+		Quat q;
+		q.FromDir(zaxis, raxis, yaxis);
+
+		position.TransformA(matReflection);
+		rotation = q * rotation;
+
+		SetPosition(position);
+		SetRotation(rotation);
+	}
+
 	const Float3 & Node::GetWorldPosition()
 	{
 		if (mTmChangeFlags != 0)

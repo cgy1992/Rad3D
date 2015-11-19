@@ -3,12 +3,11 @@
 
 namespace Rad {
 
-	RenderContext::RenderContext(int id, int order, const String & name)
+	RenderContext::RenderContext(int order, const String & name, int id)
 		: mId(id)
 		, mOrder(order)
 		, mName(name)
 		, mEnable(true)
-		, mMatchId(false)
 		, mClearMode(eClearMode::ALL)
 		, mClearColor(0, 0, 0, 1)
 		, mClearDepth(1)

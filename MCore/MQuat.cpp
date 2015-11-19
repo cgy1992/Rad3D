@@ -182,10 +182,8 @@ namespace Rad {
 		FromMatrix(m);
 	}
 
-	void Quat::FromDir(const Float3 & dir1, const Float3 & dir2, const Float3 & fallbackAxis)
+	void Quat::FromDir(const Float3 & d1, const Float3 & d2, const Float3 & fallbackAxis)
 	{
-		Float3 d1 = dir1, d2 = dir2;
-
 		float d = d1.Dot(d2);
 
 		if (d >= 1.0f)
@@ -196,15 +194,12 @@ namespace Rad {
 		{
 			if (fallbackAxis != Float3::Zero)
 			{
-				// rotate 180 degrees about the fallback axis
 				FromAxis(fallbackAxis, PI);
 			}
 			else
 			{
-				// Generate an axis
 				Float3 axis = Float3::Cross(Float3(1, 0, 0), d1);
-
-				if (axis.LengthSq() < DEFAULT_EPSILON) // pick another if colinear
+				if (axis.LengthSq() < DEFAULT_EPSILON)
 				{
 					axis = Float3::Cross(Float3(0, 1, 0), d1);
 				}

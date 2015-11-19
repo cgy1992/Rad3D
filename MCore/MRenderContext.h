@@ -20,7 +20,7 @@ namespace Rad {
 		DECLARE_ALLOC();
 
 	public:
-		RenderContext(int id, int order, const String & name);
+		RenderContext(int order, const String & name, int id = -1);
 		~RenderContext();
 
 		int
@@ -34,11 +34,6 @@ namespace Rad {
 			SetEnable(bool enable);
 		bool 
 			IsEnable() { return mEnable; }
-
-		void
-			SetMatchId(bool matched);
-		bool
-			IsMatchId() { return mMatchId; }
 
 		void 
 			SetColorClear(eClearMode mode, const Float4 & color, float depth = 1, int stencil = 0);
@@ -89,7 +84,6 @@ namespace Rad {
 		int mOrder;
 		String mName;
 		bool mEnable;
-		bool mMatchId;
 
 		eClearMode mClearMode;
 		Float4 mClearColor;

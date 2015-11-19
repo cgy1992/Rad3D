@@ -163,6 +163,11 @@ namespace Rad {
 			GetNormal(const Float3 & a, const Float3 & b, const Float3 & c);
 	};
 
+	inline Float3 operator * (float lk, const Float3 & rk)
+	{
+		return rk * lk;
+	}
+
 	inline const float * Float3::ToFloatPtr() const
 	{
 		return (const float *)this;
@@ -215,8 +220,4 @@ namespace Rad {
 		return n;
 	}
 
-	inline Float3 operator * (float lk, const Float3 & rk)
-	{
-		return rk * lk;
-	}
 }
