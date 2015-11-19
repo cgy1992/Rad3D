@@ -44,11 +44,12 @@ namespace Rad {
 
 	class FX_ENTRY PS_Line_RenderObject : public RenderObject
 	{
-		friend class PS_LineSet;
-
 	public:
 		PS_Line_RenderObject();
 		virtual ~PS_Line_RenderObject();
+
+		void
+			Init(PS_LineSet * parent);
 
 		virtual void 
 			_getWorldPosition(Float3 & pos);

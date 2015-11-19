@@ -6,6 +6,7 @@
 namespace Rad {
 
 	PS_Billboard::PS_Billboard()
+		: mParent(NULL)
 	{
 		mRenderOp.vertexDeclarations[0].AddElement(eVertexSemantic::POSITION, eVertexType::FLOAT3);
 		mRenderOp.vertexDeclarations[0].AddElement(eVertexSemantic::COLOR, eVertexType::FLOAT4);
@@ -18,6 +19,12 @@ namespace Rad {
 
 	PS_Billboard::~PS_Billboard()
 	{
+	}
+	
+	void PS_Billboard::Init(PS_BillboardSet * parent)
+	{
+		mParent = parent;
+		mNode = parent->GetParent();
 	}
 
 	void PS_Billboard::_getWorldPosition(Float3 & pos)

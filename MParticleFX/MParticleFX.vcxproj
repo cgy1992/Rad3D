@@ -64,6 +64,7 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>./;./Internal;../MCore;../MCore/Platform/Win32;../ThirdParty/xml</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FX_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4355;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -85,6 +86,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>./;./Internal;../MCore;../MCore/Platform/Win32;../ThirdParty/xml</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FX_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4355;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -108,6 +110,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>./;./Internal;../MCore;../MCore/Platform/Win32;../ThirdParty/xml</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FX_EXPORT;M_PROFILE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4355;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>false</GenerateDebugInformation>

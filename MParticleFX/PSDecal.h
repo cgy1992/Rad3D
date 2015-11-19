@@ -44,11 +44,12 @@ namespace Rad {
 
 	class FX_ENTRY PS_Decal_RenderObject : public RenderObject
 	{
-		friend class PS_DecalSet;
-
 	public:
 		PS_Decal_RenderObject();
 		virtual ~PS_Decal_RenderObject();
+
+		void
+			Init(PS_DecalSet * parent);
 
 		virtual void 
 			_getWorldPosition(Float3 & pos);

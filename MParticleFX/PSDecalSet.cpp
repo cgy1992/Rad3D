@@ -20,7 +20,6 @@ namespace Rad {
 		, mGrids(4, 4)
 	{
 		mTexture = RenderHelper::Instance()->GetWhiteTexture();
-		mRenderObject.mParent = this;
 
 		SetShaderClass("PS_ShaderStandard");
 	}
@@ -91,6 +90,13 @@ namespace Rad {
 
 			rq->AddRenderObject(&mRenderObject);
 		}
+	}
+
+	void PS_DecalSet::Init(ParticleSystem * parent)
+	{
+		PS_Set::Init(parent);
+
+		mRenderObject.Init(this);
 	}
 
 	void PS_DecalSet::Update(float elapsedTime)

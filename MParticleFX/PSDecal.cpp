@@ -164,6 +164,12 @@ namespace Rad {
 	{
 	}
 
+	void PS_Decal_RenderObject::Init(PS_DecalSet * parent)
+	{
+		mParent = parent;
+		mNode = parent->GetParent();
+	}
+
 	void PS_Decal_RenderObject::_getWorldPosition(Float3 & pos)
 	{
 		if (mParent->IsLocalSpace())

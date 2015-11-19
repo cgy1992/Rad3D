@@ -28,8 +28,6 @@ namespace Rad {
 		, mAccurateFacing(false)
 		, mKeepAspect(false)
 	{
-		mBillboard.mParent = this;
-
 		SetShaderClass("PS_ShaderStandard");
 	}
 
@@ -78,6 +76,13 @@ namespace Rad {
 		mBillboard._updateBuffer();
 
 		rq->AddRenderObject(&mBillboard);
+	}
+
+	void PS_BillboardSet::Init(ParticleSystem * parent)
+	{
+		PS_Set::Init(parent);
+
+		mBillboard.Init(this);
 	}
 
 	void PS_BillboardSet::Update(float elapsedTime)

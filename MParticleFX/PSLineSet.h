@@ -44,6 +44,8 @@ namespace Rad {
 			AddRenderQueue(RenderQueue * rq);
 
 		virtual void
+			Init(ParticleSystem * parent);
+		virtual void
 			Update(float elapsedTime);
 
 		void 

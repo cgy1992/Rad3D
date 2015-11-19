@@ -215,6 +215,12 @@ namespace Rad {
 	{
 	}
 
+	void PS_Slice_RenderObject::Init(PS_SliceSet * parent)
+	{
+		mParent = parent;
+		mNode = parent->GetParent();
+	}
+
 	void PS_Slice_RenderObject::_getWorldPosition(Float3 & pos)
 	{
 		if (mParent->IsLocalSpace())

@@ -191,6 +191,12 @@ namespace Rad {
 	{
 	}
 
+	void PS_Ribbon_RenderObject::Init(PS_RibbonSet * parent)
+	{
+		mParent = parent;
+		mNode = parent->GetParent();
+	}
+
 	void PS_Ribbon_RenderObject::_getWorldPosition(Float3 & pos)
 	{
 		if (mParent->IsLocalSpace())

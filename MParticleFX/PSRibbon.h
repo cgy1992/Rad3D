@@ -46,11 +46,12 @@ namespace Rad {
 
 	class FX_ENTRY PS_Ribbon_RenderObject : public RenderObject
 	{
-		friend class PS_RibbonSet;
-
 	public:
 		PS_Ribbon_RenderObject();
 		virtual ~PS_Ribbon_RenderObject();
+
+		void
+			Init(PS_RibbonSet * parent);
 
 		virtual void 
 			_getWorldPosition(Float3 & pos);

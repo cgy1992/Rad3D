@@ -29,7 +29,6 @@ namespace Rad {
 		, mUsePoint(false)
 	{
 		mTexture = RenderHelper::Instance()->GetWhiteTexture();
-		mRenderObject.mParent = this;
 
 		SetShaderClass("PS_ShaderStandard");
 	}
@@ -100,6 +99,13 @@ namespace Rad {
 
 			rq->AddRenderObject(&mRenderObject);
 		}
+	}
+
+	void PS_LineSet::Init(ParticleSystem * parent)
+	{
+		PS_Set::Init(parent);
+
+		mRenderObject.Init(this);
 	}
 
 	void PS_LineSet::Update(float elapsedTime)

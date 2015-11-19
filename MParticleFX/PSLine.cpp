@@ -212,6 +212,12 @@ namespace Rad {
 	{
 	}
 
+	void PS_Line_RenderObject::Init(PS_LineSet * parent)
+	{
+		mParent = parent;
+		mNode = parent->GetParent();
+	}
+
 	void PS_Line_RenderObject::_getWorldPosition(Float3 & pos)
 	{
 		if (mParent->IsLocalSpace())

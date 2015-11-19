@@ -15,11 +15,12 @@ namespace Rad {
 
 	class FX_ENTRY PS_Billboard : public RenderObject
 	{
-		friend class PS_BillboardSet;
-
 	public:
 		PS_Billboard();
 		virtual ~PS_Billboard();
+
+		void 
+			Init(PS_BillboardSet * parent);
 
 		virtual void 
 			_getWorldPosition(Float3 & pos);

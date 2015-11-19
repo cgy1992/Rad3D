@@ -52,11 +52,12 @@ namespace Rad {
 
 	class FX_ENTRY PS_Slice_RenderObject : public RenderObject
 	{
-		friend class PS_SliceSet;
-
 	public:
 		PS_Slice_RenderObject();
 		virtual ~PS_Slice_RenderObject();
+
+		void
+			Init(PS_SliceSet * parent);
 
 		virtual void 
 			_getWorldPosition(Float3 & pos);
