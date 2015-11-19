@@ -65,7 +65,7 @@ Pass
 
 		void main()
 		{
-			gl_Position = u_WVP * i_Position;
+			gl_Position = mul4(i_Position, u_WVP);
 			o_uv = i_UV;
 			o_color = rgbe_to_rgba(i_LightingColor);
 

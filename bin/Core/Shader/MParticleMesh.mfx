@@ -42,7 +42,7 @@ Pass
 
 		void main()
 		{			
-			gl_Position = u_WVP * i_Position;
+			gl_Position = mul4(i_Position, u_WVP);
 			o_color = u_Color;
 			o_uv = i_Texcoord0;
 		}

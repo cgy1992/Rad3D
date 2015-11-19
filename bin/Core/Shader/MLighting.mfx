@@ -93,15 +93,6 @@ Pass
 			normal = n;
 		}
 
-		mat3 mat4_to_mat3(mat4 m)
-		{
-			return mat3(
-				m[0].x, m[0].y, m[0].z,
-				m[1].x, m[1].y, m[1].z,
-				m[2].x, m[2].y, m[2].z
-			);
-		}
-
 		void main()
 		{
 			float4 position;
@@ -110,8 +101,8 @@ Pass
 		#ifdef D_SKINED
 			doHwSkin(position, normal);
 		#else
-			position = u_World * i_Position;
-			normal = mat4_to_mat3(u_World) * i_Normal.xyz;
+			position = mul4(i_Position, u_World);
+			normal = mul3(i_Normal.xyz, u_World);
 			normal = normalize(normal);
 		#endif
 

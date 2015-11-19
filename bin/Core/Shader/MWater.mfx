@@ -55,7 +55,7 @@ Pass
 
 		void main()
 		{
-			gl_Position = u_WVP * float4(i_Position.x, 0, i_Position.y, 1.0);
+			gl_Position = mul4(float4(i_Position.x, 0, i_Position.y, 1.0), u_WVP);
 
 			o_uv = i_Position.xy * u_UVScale.x;
 			o_uvDepth = float2(i_Texcoord * u_UVScale.y, 0.0);
