@@ -48,14 +48,6 @@ namespace Rad {
 			_preRendering();
 		virtual void
 			_postRendering();
-		virtual void 
-			_getWorldPosition(Float3 & pos) { pos = GetWorldPosition(); }
-		virtual void 
-			_getWorldBound(Aabb & bound) { bound = GetWorldAabb(); }
-		virtual void 
-			_getWorldTM(Mat4 & form) { form = GetWorldTM(); }
-		virtual Node *
-			_getNode() { return this; }
 
 		int 
 			GetLevel() const { return mLevel; }
@@ -63,9 +55,11 @@ namespace Rad {
 			GetIndex() const { return mIndex; }
 		
 		void 
-			SetLayer(int index, int layer) { d_assert (index < Terrain::kMaxBlendLayers); mLayer[index] = layer; }
+			SetLayer(int index, int layer) { mLayer[index] = layer; }
 		int 
-			GetLayer(int index) const { d_assert (index < Terrain::kMaxBlendLayers); return mLayer[index]; }
+			GetLayer(int index) const { return mLayer[index]; }
+		int 
+			GetMaxLayer() const;
 
 		TerrainSection *
 			GetSection() { return mSection; }
@@ -129,7 +123,7 @@ namespace Rad {
 		TerrainSection * mSection;
 		TerrainMesh * mNeighbor[4];
 		int mLevel;
-		int mLayer[Terrain::kMaxBlendLayers];
+		Field<int, Terrain::kMaxBlendLayers> mLayer;
 		float mErrorMetric[Terrain::kMaxDetailLevel];
 		float mLevelDistSq[Terrain::kMaxDetailLevel];
 		VertexBufferPtr mMorphBuffer[Terrain::kMaxDetailLevel];

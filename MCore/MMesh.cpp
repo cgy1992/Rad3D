@@ -11,10 +11,11 @@
 namespace Rad {
 
 	SubMesh::SubMesh(Mesh * parent, MeshBuffer * sm)
-		: mParent(parent)
-		, mMeshBuffer(sm)
+		: mMeshBuffer(sm)
 		, mMeshShader(NULL)
 	{
+		mNode = parent;
+
 		if (mMeshBuffer != NULL)
 		{
 			mMaterial = *(mMeshBuffer->GetMaterial());
@@ -59,21 +60,6 @@ namespace Rad {
 		return mVertexAnimtionBuffer;
 	}
 
-	void SubMesh::_getWorldPosition(Float3 & pos)
-	{
-		pos = mParent->GetWorldPosition();
-	}
-
-	void SubMesh::_getWorldBound(Aabb & bound)
-	{
-		bound = mParent->GetWorldAabb();
-	}
-
-	void SubMesh::_getWorldTM(Mat4 & form)
-	{
-		form = mParent->GetWorldTM();
-	}
-
 	int SubMesh::_getBoneTM(Mat4 * boneTM)
 	{
 		if (mMeshBuffer != NULL)
@@ -85,7 +71,7 @@ namespace Rad {
 				return boneIdMap.Size();
 			}
 
-			SkeletonPtr skel = mParent->GetSkeleton();
+			SkeletonPtr skel = GetParent()->GetSkeleton();
 
 			for (int i = 0; i < boneIdMap.Size(); ++i)
 			{
@@ -98,10 +84,6 @@ namespace Rad {
 		return 0;
 	}
 
-	Node * SubMesh::_getNode()
-	{
-		return mParent;
-	}
 
 	//
 	DF_PROPERTY_BEGIN(Mesh)

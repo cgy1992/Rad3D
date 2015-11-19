@@ -45,13 +45,6 @@ namespace Rad {
 		virtual void 
 			AddRenderQueue(RenderQueue * RQ);
 
-		virtual void 
-			_getWorldPosition(Float3 & pos) { pos = GetWorldPosition(); }
-		virtual void 
-			_getWorldBound(Aabb & bound) { bound = GetWorldAabb(); }
-		virtual void 
-			_getWorldTM(Mat4 & form) { form = GetWorldTM(); }
-
 	protected:
 		Float2 mSize;
 		RectF mTexcoord;

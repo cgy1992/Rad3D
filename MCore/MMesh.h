@@ -24,7 +24,7 @@ namespace Rad {
 		virtual ~SubMesh();
 
 		Mesh * 
-			GetParent() { return mParent; }
+			GetParent() { return (Mesh *)mNode; }
 		MeshBuffer *
 			GetMeshBuffer() { return mMeshBuffer; }
 
@@ -36,19 +36,10 @@ namespace Rad {
 		VertexBufferPtr
 			QueryVertexAnimationBuffer();
 
-		virtual void 
-			_getWorldPosition(Float3 & pos);
-		virtual void 
-			_getWorldBound(Aabb & bound);
-		virtual void 
-			_getWorldTM(Mat4 & form);
 		virtual int 
 			_getBoneTM(Mat4 * boneTM);
-		virtual Node *
-			_getNode();
 
 	protected:
-		Mesh * mParent;
 		MeshBuffer * mMeshBuffer;
 		MeshShaderPtr mMeshShader;
 		VertexBufferPtr mVertexAnimtionBuffer;

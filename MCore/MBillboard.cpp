@@ -15,6 +15,8 @@ namespace Rad {
 		, mColor(1, 1, 1, 1)
 		, mNeedUpdate(true)
 	{
+		mNode = this;
+
 		mRenderOp.vertexDeclarations[0].AddElement(eVertexSemantic::POSITION, eVertexType::FLOAT2);
 		mRenderOp.vertexDeclarations[0].AddElement(eVertexSemantic::COLOR, eVertexType::FLOAT4);
 		mRenderOp.vertexDeclarations[0].AddElement(eVertexSemantic::TEXCOORD0, eVertexType::FLOAT2);

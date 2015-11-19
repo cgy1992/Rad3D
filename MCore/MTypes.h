@@ -57,8 +57,10 @@ namespace Rad {
 	};
 
 	//
-	struct M_ENTRY eSamplerBindType
+	struct M_ENTRY eSamplerBindType : public IEnum
 	{
+		DECLARE_ENUM(eSamplerBindType);
+
 		enum enum_t {
 			NONE,
 			EMISSIVE,
@@ -71,18 +73,18 @@ namespace Rad {
 			EXTERN1,
 			EXTERN2,
 			EXTERN3,
-			EXTERN4,
-			EXTERN5,
-			EXTERN6,
-			EXTERN7,
 
 			SAMPLER,
+
+			SPECIAL,
 
 			FORCE_DWORD = 0x7FFFFFFF
 		};
 
 		M_ENUMERATION(eSamplerBindType);
 	};
+
+#define MAX_SEPCIAL_SAMPLER 16
 
 	//
 	struct M_ENTRY ePrimType
@@ -101,8 +103,10 @@ namespace Rad {
 	};
 
 	//
-	struct M_ENTRY eSPType
+	struct M_ENTRY eSPType : public IEnum
 	{
+		DECLARE_ENUM(eSPType);
+
 		enum enum_t {
 			FLOAT1,
 			FLOAT2,
@@ -127,6 +131,14 @@ namespace Rad {
 			LIGHT_DIRECTION,
 			LIGHT_ATTEN_PARAM,
 			LIGHT_SPOT_PARAM,
+			LIGHT_AMBIENT,
+			LIGHT_DIFFUSE,
+			LIGHT_SPECULAR,
+
+			MATERIAL_EMISSIVE,
+			MATERIAL_AMBIENT,
+			MATERIAL_DIFFUSE,
+			MATERIAL_SPECULAR,
 
 			EMISSIVE,
 			AMBIENT,
@@ -153,8 +165,10 @@ namespace Rad {
 
 
 	//
-	struct M_ENTRY eTexAddress
+	struct M_ENTRY eTexAddress : public IEnum
 	{
+		DECLARE_ENUM(eTexAddress);
+
 		enum enum_t {
 			WRAP,
 			MIRROR,
@@ -168,8 +182,10 @@ namespace Rad {
 	};
 
 
-	struct M_ENTRY eTexFilter
+	struct M_ENTRY eTexFilter : public IEnum
 	{
+		DECLARE_ENUM(eTexFilter);
+
 		enum enum_t {
 			DEFAULT,
 			POINT,
@@ -184,8 +200,10 @@ namespace Rad {
 
 
 	//
-	struct M_ENTRY eVertexSemantic
+	struct M_ENTRY eVertexSemantic : public IEnum
 	{
+		DECLARE_ENUM(eVertexSemantic)
+
 		enum enum_t {
 			UNKNOWN = 0xFF,
 
@@ -212,26 +230,33 @@ namespace Rad {
 
 
 	//
-	struct M_ENTRY eVertexType
+	struct M_ENTRY eVertexType : public IEnum
 	{
+		DECLARE_ENUM(eVertexType)
+
 		enum enum_t {
 			UNKNOWN,
+
 			BYTE1,
 			BYTE2,
 			BYTE3,
 			BYTE4,
+
 			UBYTE1,
 			UBYTE2,
 			UBYTE3,
 			UBYTE4,
+
 			SHORT1,
 			SHORT2,
 			SHORT3,
 			SHORT4,
+
 			USHORT1,
 			USHORT2,
 			USHORT3,
 			USHORT4,
+
 			FLOAT1,
 			FLOAT2,
 			FLOAT3,

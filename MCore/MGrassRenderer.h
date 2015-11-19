@@ -17,6 +17,8 @@ namespace Rad {
 
 	class M_ENTRY GrassRenderer : public Node, public RenderObject
 	{
+		DECLARE_RTTI();
+
 	public:
 		GrassRenderer(GrassSection * section);
 		virtual ~GrassRenderer();
@@ -28,10 +30,6 @@ namespace Rad {
 
 		virtual void 
 			_getWorldPosition(Float3 & pos);
-		virtual void 
-			_getWorldBound(Aabb & bound);
-		virtual void 
-			_getWorldTM(Mat4 & form);
 
 	protected:
 		GrassSection * mSection;

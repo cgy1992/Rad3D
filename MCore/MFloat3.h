@@ -150,6 +150,8 @@ namespace Rad {
 		static Float3 
 			Cross(const Float3 & lk, const Float3 & rk);
 		static Float3 
+			CrossN(const Float3 & lk, const Float3 & rk);
+		static Float3 
 			Lerp(const Float3 & lk, const Float3 & rk, float t);
 
 		static Float3 
@@ -164,6 +166,15 @@ namespace Rad {
 	inline const float * Float3::ToFloatPtr() const
 	{
 		return (const float *)this;
+	}
+
+	inline Float3 Float3::CrossN(const Float3 & lk, const Float3 & rk)
+	{
+		Float3 n = Cross(lk, rk);
+		
+		n.Normalize();
+
+		return n;
 	}
 
 	inline Float3 Float3::Lerp(const Float3 & lk, const Float3 & rk, float t)

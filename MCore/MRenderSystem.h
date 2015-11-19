@@ -154,6 +154,8 @@ namespace Rad {
 
 		void 
 			SetTexture(int index, Texture * texture);
+		void
+			SetSpecialTexture(int index, Texture * texture);
 
 		void 
 			SetRenderState(
@@ -197,7 +199,7 @@ namespace Rad {
 		DepthBuffer *
 			_getCurrentDepthBuffer() { return mCurrentDepthBuffer; }
 		Texture *
-			_getCurrentTexture(int i) { d_assert(i < MAX_HW_SAMPLER); return mCurrentTextures[i]; }
+			_getCurrentTexture(int i) { return mCurrentTextures[i]; }
 		RenderState 
 			_getCurrentRenderState() { return mCurrentRenderState; }
 		ShaderPass * 
@@ -223,8 +225,10 @@ namespace Rad {
 		RenderHelper * mRenderHelper;
 		RenderRegister * mRenderRegister;
 
+		Field<Texture *, MAX_SEPCIAL_SAMPLER> mSpecialTextures;
+
 		Viewport mCurrentViewport;
-		RenderTarget * mCurrentRenderTarget[MAX_HW_RENDERTARGET];
+		Field<RenderTarget *, MAX_HW_RENDERTARGET> mCurrentRenderTarget;
 		DepthBuffer * mCurrentDepthBuffer;
 		bool mRenderTargetChanged;
 
@@ -236,7 +240,7 @@ namespace Rad {
 		RenderState mCurrentRenderState;
 
 		ShaderPass * mCurrentShaderPass;
-		Texture * mCurrentTextures[MAX_HW_SAMPLER];
+		Field<Texture *, MAX_HW_SAMPLER> mCurrentTextures;
 
 		bool mShaderPassChanged;
 		bool mTextureChanged[MAX_HW_SAMPLER];

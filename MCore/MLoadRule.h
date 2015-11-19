@@ -18,7 +18,7 @@ namespace Rad {
 		virtual ~ILoadRule() {}
 
 		virtual float 
-			GetLoadPriority(Node * node, const Float3 & vPos) = 0;
+			GetLoadPriority(Node * node, const Float3 & pos) = 0;
 	};
 
 	class M_ENTRY LoadRuleStandard : public ILoadRule

@@ -58,6 +58,11 @@ namespace Rad {
 		}
 		mCurrentDepthBuffer = NULL;
 		mRenderTargetChanged = true;
+
+		for (int i = 0; i < MAX_SEPCIAL_SAMPLER; ++ i)
+		{
+			mSpecialTextures[i] = NULL;
+		}
 	}
 
 	void RenderSystem::OnInit()
@@ -204,6 +209,11 @@ namespace Rad {
 			mCurrentRenderTarget[i] = p;
 			mRenderTargetChanged = true;
 		}
+	}
+
+	void RenderSystem::SetSpecialTexture(int index, Texture * texture)
+	{
+		mSpecialTextures[index] = texture;
 	}
 
 	void RenderSystem::SetDepthBuffer(DepthBuffer * p)
@@ -357,21 +367,13 @@ namespace Rad {
 				case eSamplerBindType::EXTERN3:
 					SetTexture(sampler->Index, mtl->maps[eMapType::EXTERN3].c_ptr());
 					break;
-				case eSamplerBindType::EXTERN4:
-					SetTexture(sampler->Index, mtl->maps[eMapType::EXTERN4].c_ptr());
-					break;
-				case eSamplerBindType::EXTERN5:
-					SetTexture(sampler->Index, mtl->maps[eMapType::EXTERN5].c_ptr());
-					break;
-				case eSamplerBindType::EXTERN6:
-					SetTexture(sampler->Index, mtl->maps[eMapType::EXTERN6].c_ptr());
-					break;
-				case eSamplerBindType::EXTERN7:
-					SetTexture(sampler->Index, mtl->maps[eMapType::EXTERN7].c_ptr());
-					break;
 
 				case eSamplerBindType::SAMPLER:
 					SetTexture(sampler->Index, sampler->SamplerTexture.c_ptr());
+					break;
+
+				case eSamplerBindType::SPECIAL:
+					SetTexture(sampler->Index, mSpecialTextures[sampler->BindId]);
 					break;
 				}
 			}
@@ -405,9 +407,15 @@ namespace Rad {
 			{
 				FX_Sampler * sampler = pass->GetSampler(i);
 
-				if (sampler->BindType == eSamplerBindType::SAMPLER)
+				switch(sampler->BindType)
 				{
+				case eSamplerBindType::SAMPLER:
 					SetTexture(sampler->Index, sampler->SamplerTexture.c_ptr());
+					break;
+
+				case eSamplerBindType::SPECIAL:
+					SetTexture(sampler->Index, mSpecialTextures[sampler->BindId]);
+					break;
 				}
 			}
 

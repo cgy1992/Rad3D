@@ -38,12 +38,6 @@ namespace Rad {
 		void 
 			Destroy();
 
-		virtual void 
-			_getWorldPosition(Float3 & pos) { pos = GetWorldPosition(); }
-		virtual void 
-			_getWorldBound(Aabb & bound) { bound = GetWorldAabb(); }
-		virtual void 
-			_getWorldTM(Mat4 & form) { form = GetWorldTM(); }
 		virtual int
 			SortSpecial(RenderObject * obj2, const Float3 & eye);
 		

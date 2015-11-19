@@ -280,18 +280,18 @@ namespace Rad {
 			return RenderHelper::Instance()->GetWhiteTexture();
 	}
 
-	ShaderFX * Terrain::_getShaderFX(int techId, bool lightingmap)
+	ShaderFX * Terrain::_getShaderFX(int maxlayer, bool lightingmap)
 	{
-		d_assert (techId < kMaxBlendLayers);
+		d_assert (maxlayer <= kMaxBlendLayers);
 
-		return lightingmap ? mLightingMapShaderFX[techId] : mShaderFX[techId];
+		return lightingmap ? mLightingMapShaderFX[maxlayer] : mShaderFX[maxlayer];
 	}
 
-	ShaderFX * Terrain::_getLightingShaderFX(eLightType type, int techId)
+	ShaderFX * Terrain::_getLightingShaderFX(eLightType type, int maxlayer)
 	{
-		d_assert (type < eLightType::MAX && techId < kMaxBlendLayers);
+		d_assert (type < eLightType::MAX && maxlayer < kMaxBlendLayers);
 
-		return mLightingShaderFX[type][techId];
+		return mLightingShaderFX[type][maxlayer];
 	}
 
 	TerrainMesh * Terrain::_getBlock(int i, int j)

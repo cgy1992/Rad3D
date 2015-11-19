@@ -17,9 +17,6 @@ namespace Rad {
 	{
 		KEY key;
 		T value;
-
-		T_KEY_VALUE() {}
-		T_KEY_VALUE(KEY _k, T _v) { key = _k; value = _v; }
 	};
 
 	template <

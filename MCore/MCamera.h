@@ -65,6 +65,7 @@ namespace Rad {
 			frustum.Top.Normalize();
 			frustum.Bottom.Normalize();
 			frustum.Near.Normalize();
+			frustum.Far.Normalize();
 		}
 	};
 

@@ -215,9 +215,9 @@ namespace Rad {
 		TexturePtr			
 			_getNormalMap(int layer);
 		ShaderFX *			
-			_getShaderFX(int techId, bool lightingmap);
+			_getShaderFX(int maxlayer, bool lightingmap);
 		ShaderFX *			
-			_getLightingShaderFX(eLightType type, int techId);
+			_getLightingShaderFX(eLightType type, int maxlayer);
 
 		TerrainMesh *
 			_getBlock(int i, int j);

@@ -82,6 +82,7 @@ namespace Rad {
 		int	Index;
 		FixedString32 Name;
 		eSamplerBindType BindType;
+		int BindId;
 		eTexFilter Filter; 
 		eTexAddress Address;
 		Float4 BorderColor;
@@ -90,6 +91,7 @@ namespace Rad {
 		FX_Sampler()
 			: Index(0)
 			, BindType(eSamplerBindType::NONE)
+			, BindId(0)
 			, Filter(eTexFilter::DEFAULT)
 			, Address(eTexAddress::WRAP)
 			, BorderColor(0, 0, 0, 0)

@@ -203,7 +203,7 @@ namespace Rad {
 
 		if (pt.x > -1 && pt.x < 1 &&
 			pt.y > -1 && pt.y < 1 &&
-			pt.z > 0 && pt.z < 1)
+			pt.z >  0 && pt.z < 1)
 			return VB_FULL;
 
 		return VB_NONE;

@@ -18,9 +18,10 @@ namespace Rad {
 	struct M_ENTRY EnumDesc
 	{
 		const char * name;
+		int id;
 		int val;
 
-		EnumDesc(const char * n, int v) : name(n), val(v) {}
+		EnumDesc(const char * n, int i, int v) : name(n), id(i), val(v) {}
 	};
 
 	struct M_ENTRY IEnum
@@ -36,7 +37,7 @@ namespace Rad {
 		virtual const EnumDesc * 
 			GetEnumByValue(int val) const { return NULL; }
 		virtual const EnumDesc * 
-			GetEnum(const FixedString32 & name) const { return NULL; }
+			GetEnum(const char * name) const { return NULL; }
 	};
 
 
@@ -44,10 +45,10 @@ namespace Rad {
 	classname classname::msInstance; \
 	const EnumDesc classname::msEnums[] = {
 
-#define DF_ENUM_END() EnumDesc("", -1) };
+#define DF_ENUM_END() EnumDesc("", 0, -1) };
 
-#define DF_ENUM(e) EnumDesc(#e, e),
-#define DF_ENUM_EX(s, e) EnumDesc(s, e),
+#define DF_ENUM(e) EnumDesc(#e, Math::Crc32(#e), e),
+#define DF_ENUM_EX(s, e) EnumDesc(s, Math::Crc32(s), e),
 
 
 #define DECLARE_ENUM(classname)										\
@@ -90,14 +91,13 @@ public:																\
 																	\
 	virtual const EnumDesc * GetEnum(const char * name) const		\
 	{																\
-		int index = 0;												\
-																	\
-		while (msEnums[index].val != -1)							\
+		int id = Math::Crc32(name), i = 0;							\
+		while (msEnums[i].val != -1)								\
 		{															\
-			if (strcmp(msEnums[index].name, name) == 0)				\
-				return &msEnums[index];								\
+			if (msEnums[i].id == id)								\
+				return &msEnums[i];									\
 																	\
-			++index;												\
+			++i;													\
 		}															\
 																	\
 		return NULL;												\

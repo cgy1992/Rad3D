@@ -8,6 +8,7 @@
 #pragma once
 
 #include "MMath.h"
+#include "MFloat3.h"
 
 namespace Rad {
 
@@ -39,6 +40,7 @@ namespace Rad {
 
 	public:
 		Float4(float _x, float _y, float _z, float _w = 1);
+		Float4(const Float3 & rk);
 		Float4(const Float4 & rk);
 		Float4();
 		~Float4();

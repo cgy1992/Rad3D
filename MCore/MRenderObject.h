@@ -98,25 +98,25 @@ namespace Rad {
 		virtual void
 			_postRendering() {}
 		virtual void 
-			_getWorldPosition(Float3 & pos) = 0;
+			_getWorldPosition(Float3 & pos);
 		virtual void 
-			_getWorldBound(Aabb & bound) = 0;
+			_getWorldBound(Aabb & bound);
 		virtual void 
-			_getWorldTM(Mat4 & form) = 0;
+			_getWorldTM(Mat4 & form);
 		virtual int 
 			_getBoneTM(Mat4 * boneTM) { return 0; }
 		virtual Node *
-			_getNode() { return NULL; }
+			_getNode() { return mNode; }
 		float
 			_getOpacity();
 
-		bool
-			IsSortSpecial();
 		virtual int
 			SortSpecial(RenderObject * obj2, const Float3 & eye) { return -1; }
+		bool
+			IsSortSpecial() { return mSortSpecial; }
 
 	protected:
-		
+		Node * mNode;
 		Material mMaterial;
 		RenderOp mRenderOp;
 

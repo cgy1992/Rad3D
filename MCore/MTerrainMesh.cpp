@@ -6,10 +6,13 @@ namespace Rad {
 	ImplementRTTI(TerrainMesh, Node);
 
 	TerrainMesh::TerrainMesh()
-		: mMorph(0)
+		: Node("TerrainMesh")
+		, mMorph(0)
 		, mUnused(false)
 		, mSection(NULL)
 	{
+		mNode = this;
+
 		for (int i = 0; i < 4; ++i)
 		{
 			mNeighbor[i] = NULL;
@@ -390,6 +393,18 @@ namespace Rad {
 		mMaterial.maps[eMapType::LIGHTING_MAP] = NULL;
 	}
 
+	int TerrainMesh::GetMaxLayer() const
+	{
+		if (mLayer[3] >= 0)
+			return 3;
+		else if (mLayer[2] >= 0)
+			return 2;
+		else if (mLayer[1] >= 0)
+			return 1;
+		else
+			return 0;
+	}
+
 	void TerrainMesh::Update(float elapsedTime)
 	{
 		Node::Update(elapsedTime);
@@ -438,19 +453,12 @@ namespace Rad {
 
 	void TerrainMesh::AddRenderQueue(RenderQueue * rq)
 	{
-		int techId = 0;
+		int maxlayer = GetMaxLayer();
 
-		if (mLayer[1] >= 0)
-			techId++;
-		if (mLayer[2] >= 0)
-			techId++;
-		if (mLayer[3] >= 0)
-			techId++;
-
-		mShaderFX = Terrain::Instance()->_getShaderFX(techId, _hasLightingmap() || mUnused);
-		mLightingShaderFX[eLightType::DIRECTION] = Terrain::Instance()->_getLightingShaderFX(eLightType::DIRECTION, techId);
-		mLightingShaderFX[eLightType::POINT] = Terrain::Instance()->_getLightingShaderFX(eLightType::POINT, techId);
-		mLightingShaderFX[eLightType::SPOT] = Terrain::Instance()->_getLightingShaderFX(eLightType::SPOT, techId);
+		mShaderFX = Terrain::Instance()->_getShaderFX(maxlayer, _hasLightingmap());
+		mLightingShaderFX[eLightType::DIRECTION] = Terrain::Instance()->_getLightingShaderFX(eLightType::DIRECTION, maxlayer);
+		mLightingShaderFX[eLightType::POINT] = Terrain::Instance()->_getLightingShaderFX(eLightType::POINT, maxlayer);
+		mLightingShaderFX[eLightType::SPOT] = Terrain::Instance()->_getLightingShaderFX(eLightType::SPOT, maxlayer);
 
 		//
 		Terrain::LodKey key;

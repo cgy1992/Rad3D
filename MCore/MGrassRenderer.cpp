@@ -6,9 +6,14 @@
 
 namespace Rad {
 
+	ImplementRTTI(GrassRenderer, Node);
+
 	GrassRenderer::GrassRenderer(GrassSection * section)
-		: mSection(section)
+		: Node("GrassRenderer")
+		, mSection(section)
 	{
+		mNode = this;
+
 		int iVertexCount = K_GRASS_RENDER_POOL * K_VERTEX_COUNT_PER_GRASS;
 		int iIndexCount = K_GRASS_RENDER_POOL * K_PRIM_COUNT_PER_GRASS * 3;
 
@@ -177,15 +182,5 @@ namespace Rad {
 			pos = mSection->GetWorldSection()->GetBound().GetCenter();
 		}
 	}
-
-	void GrassRenderer::_getWorldBound(Aabb & bound)
-	{
-		bound = Node::GetWorldAabb();
-	}
-
-	void GrassRenderer::_getWorldTM(Mat4 & form)
-	{
-		form = Node::GetWorldTM();
-	}
-
+	
 }

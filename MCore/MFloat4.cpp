@@ -19,6 +19,11 @@ namespace Rad {
 	{
 	}
 
+	Float4::Float4(const Float3 & rk)
+	{
+		x = rk.x; y = rk.y; z = rk.z; w = 1;
+	}
+
 	Float4::Float4(const Float4 & rk)
 	{
 		x = rk.x; y = rk.y; z = rk.z; w = rk.w;

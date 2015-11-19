@@ -50,6 +50,7 @@ namespace Rad {
 	{
 		mVersion = WATER_VERSION;
 
+		mNode = this;
 		mSortSpecial = true;
 
 		mMaterial.blendMode = eBlendMode::ALPHA_BLEND;
@@ -59,6 +60,7 @@ namespace Rad {
 
 		SetShaderClass("WaterShaderStandard");
 	}
+
 	Water::~Water()
 	{
 		Destroy();

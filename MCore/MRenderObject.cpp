@@ -30,7 +30,8 @@ namespace Rad {
 
 	//
 	RenderObject::RenderObject()
-		: mShaderFX(NULL)
+		: mNode(NULL)
+		, mShaderFX(NULL)
 		, mCurrentShaderFX(NULL)
 		, mSortSpecial(false)
 	{
@@ -75,15 +76,24 @@ namespace Rad {
 		return mRenderCallBack[i];
 	}
 
+	void RenderObject::_getWorldPosition(Float3 & pos)
+	{
+		pos = mNode->GetWorldPosition();
+	}
+
+	void RenderObject::_getWorldBound(Aabb & bound)
+	{
+		bound = mNode->GetWorldAabb();
+	}
+
+	void RenderObject::_getWorldTM(Mat4 & form)
+	{
+		form = mNode->GetWorldTM();
+	}
+
 	float RenderObject::_getOpacity()
 	{
-		Node * n = _getNode();
-
-		return n != NULL ? n->GetWorldOpacity() : 1.0f;
+		return mNode->GetWorldOpacity();
 	}
 
-	bool RenderObject::IsSortSpecial()
-	{
-		return mSortSpecial;
-	}
 }
