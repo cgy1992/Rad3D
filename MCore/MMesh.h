@@ -29,6 +29,11 @@ namespace Rad {
 			GetMeshBuffer() { return mMeshBuffer; }
 
 		void
+			SetVisible(bool visbile) { mVisible = visbile; }
+		bool
+			IsVisible() const { return mVisible; }
+
+		void
 			SetMeshShader(MeshShaderPtr shader);
 		MeshShaderPtr
 			GetMeshShader() { return mMeshShader; }
@@ -40,6 +45,7 @@ namespace Rad {
 			_getBoneTM(Mat4 * boneTM);
 
 	protected:
+		bool mVisible;
 		MeshBuffer * mMeshBuffer;
 		MeshShaderPtr mMeshShader;
 		VertexBufferPtr mVertexAnimtionBuffer;

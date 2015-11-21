@@ -24,25 +24,13 @@ namespace Rad {
 		}
 
 		int 
-			_refcount()
-		{
-			return i_ref_count;
-		}
+			_refcount() { return i_ref_count; } 
 
 		int 
-			_refinc()
-		{
-			++i_ref_count;
-			return i_ref_count;
-		}
+			_refinc() { return ++i_ref_count; }
 
 		int 
-			_refdec()
-		{
-			d_assert(i_ref_count > 0);
-			--i_ref_count;
-			return i_ref_count;
-		}
+			_refdec() { d_assert(i_ref_count > 0); return --i_ref_count; }
 
 	protected:
 		int i_ref_count;

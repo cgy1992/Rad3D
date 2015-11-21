@@ -449,7 +449,7 @@ namespace Rad{
 		rotation.ToAxis(xaixs, yaxis, zaxis);
 
 		Float3 raxis = zaxis;
-		raxis.TransformA(matReflection);
+		raxis.TransformN(matReflection);
 
 		Quat q;
 		q.FromDir(zaxis, raxis, yaxis);

@@ -116,11 +116,11 @@ namespace Rad {
 			GetOrthoHeight() const { return mOrthoHeight; }
 		
 		const Mat4 &    
-			GetViewMatrix();
+			GetViewTM();
 		const Mat4 &    
-			GetProjMatrix();
+			GetProjTM();
 		const Mat4 &    
-			GetViewProjMatrix();
+			GetViewProjTM();
 		
 		const Frustum &
 			GetFrustum();

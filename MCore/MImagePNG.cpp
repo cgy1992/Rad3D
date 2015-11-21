@@ -112,47 +112,45 @@ namespace Rad {
 		image.depth = 1;
 		image.cubmaps = 1;
 		image.mipmaps = 0;
-		image.bitcount = 0;
 
 		LodePNGColorType colortype;
+		int chanels = 0;
 
 		switch (header.colortype)
 		{
 		case 0:
-			image.bitcount = 8;
 			image.format = ePixelFormat::L8;
 			colortype = LCT_GREY;
+			chanels = 1;
 			break;
 
 		case 2:
-			image.bitcount = 24;
 			image.format = ePixelFormat::R8G8B8;
 			colortype = LCT_RGB;
+			chanels = 3;
 			break;
 
 		case 3:
-			image.bitcount = 32;
 			image.format = ePixelFormat::R8G8B8A8;
 			colortype = LCT_RGBA;
+			chanels = 4;
 			break;
 
 		case 4:
-			image.bitcount = 16;
 			image.format = ePixelFormat::L8A8;
 			colortype = LCT_GREY_ALPHA;
+			chanels = 2;
 			break;
 
 		case 6:
-			image.bitcount = 32;
 			image.format = ePixelFormat::R8G8B8A8;
 			colortype = LCT_RGBA;
+			chanels = 4;
 			break;
 		}
 
-		if (image.bitcount == 0)
-			return NULL;
-
-		image.chanels = image.bitcount / 8;
+		if (chanels == ePixelFormat::UNKNOWN)
+			return false;
 
 		IS.Skip(-nreads);
 

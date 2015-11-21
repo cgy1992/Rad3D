@@ -100,8 +100,6 @@ namespace Rad {
 		image.depth = 1;
 		image.mipmaps = 0;
 		image.cubmaps = 1;
-		image.chanels = 3;
-		image.bitcount = (byte)header.info.bitcount;
 
 		if (header.info.bitcount == 8)
 		{
@@ -152,7 +150,6 @@ namespace Rad {
 				Swap(image.pixels[i * 4 + 0], image.pixels[i * 4 + 2]);
 			}
 
-			image.chanels = 4;
 			image.format = ePixelFormat::R8G8B8A8;
 		}
 		else
@@ -163,7 +160,7 @@ namespace Rad {
 
 		if (flip_vertically)
 		{
-			int line_bytes = image.width * image.bitcount / 8;
+			int line_bytes = image.width * header.info.bitcount / 8;
 			static_memory buffer;
 
 			buffer.query(M_STATIC_MEMORY_I_CHANEL, line_bytes);

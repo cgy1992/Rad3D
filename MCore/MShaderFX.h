@@ -127,7 +127,7 @@ namespace Rad {
 
 		void
 			SetConst(int index, float x, float y, float z, float w);
-		void
+		bool
 			SetConst(const FixedString32 & name, float x, float y, float z, float w);
 		void 
 			SetConst(int index, const Float4 * data, int count);

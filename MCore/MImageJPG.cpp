@@ -29,16 +29,16 @@ namespace Rad {
 			return false;
 		}
 
+		int channels = decoder.IsColor() ? 3 : 1;
+
 		image.format = decoder.IsColor() ? ePixelFormat::R8G8B8 : ePixelFormat::L8;
 		image.width = decoder.GetWidth();
 		image.height = decoder.GetHeight();
 		image.depth = 1;
-		image.chanels = decoder.IsColor() ? 3 : 1;
-		image.bitcount = 8;
 		image.mipmaps = 0;
 		image.cubmaps = 1;
 
-		image.pixels = new byte[image.width * image.height * image.chanels];
+		image.pixels = new byte[image.width * image.height * channels];
 
 		memcpy(image.pixels, decoder.GetImage(), decoder.GetImageSize());
 

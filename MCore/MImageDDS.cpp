@@ -119,7 +119,6 @@ namespace Rad {
 		image.height = header.height;
 		image.depth = header.depth;
 		image.mipmaps = header.mipmap;
-		image.bitcount = 0;
 
 		if (is_compressed)
 		{
@@ -128,20 +127,17 @@ namespace Rad {
 			{
 			case FOURCC_DXT1:
 				image.format = ePixelFormat::DXT1_RGB;
-				image.chanels = 3;
 				blockSize = 8;
 				break;
 
 			case FOURCC_DXT2:
 			case FOURCC_DXT3:
-				image.chanels = 4;
 				image.format = ePixelFormat::DXT3_RGBA;
 				blockSize = 16;
 				break;
 
 			case FOURCC_DXT4:
 			case FOURCC_DXT5:
-				image.chanels = 4;
 				image.format = ePixelFormat::DXT5_RGBA;
 				blockSize = 16;
 				break;
@@ -171,27 +167,18 @@ namespace Rad {
 		}
 		else
 		{
+			int chanels = has_alpha ? 4 : 3;
+			int sizeOfBytes = image.width * image.height * chanels;
+
 			image.depth = 1;
-			image.mipmaps = 1;
-
-			if (!has_alpha)
-			{
-				image.format = ePixelFormat::R8G8B8;
-				image.chanels = 3;
-			}
-			else
-			{
-				image.format = ePixelFormat::R8G8B8A8;
-				image.chanels = 4;
-			}
-
-			int sizeOfBytes = image.width * image.height * image.chanels;
+			image.mipmaps = 0;
+			image.format = !has_alpha ? ePixelFormat::R8G8B8 : ePixelFormat::R8G8B8A8;
 
 			image.pixels = new byte[sizeOfBytes];
 
 			IS.Read(image.pixels, sizeOfBytes);
 
-			for (int i = 0; i < sizeOfBytes; i += image.chanels)
+			for (int i = 0; i < sizeOfBytes; i += chanels)
 			{
 				Swap(image.pixels[i + 0], image.pixels[i + 2]);
 			}

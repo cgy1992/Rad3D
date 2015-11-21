@@ -13,6 +13,7 @@ namespace Rad {
 	SubMesh::SubMesh(Mesh * parent, MeshBuffer * sm)
 		: mMeshBuffer(sm)
 		, mMeshShader(NULL)
+		, mVisible(true)
 	{
 		mNode = parent;
 
@@ -315,7 +316,10 @@ namespace Rad {
 	{
 		for (int i = 0; i < mMeshes.Size(); ++i)
 		{
-			rq->AddRenderObject(mMeshes[i]);
+			if (mMeshes[i]->IsVisible())
+			{
+				rq->AddRenderObject(mMeshes[i]);
+			}
 		}
 	}
 

@@ -30,16 +30,12 @@ namespace Rad {
 		TexturePtr
 			GetDefaultLightingMap() { return mDefaultLightingMap; }
 		ShaderFX * 
-			GetDebugShader() { return mDebugShaderFX; }
+			GetDebugFX() { return mDebugFX; }
 
 		void
 			DrawSumit(const Viewport & vp, Texture * texture, RenderTarget * target = NULL);
 		void 
 			DebugDrawLine(const Float3 & point1, const Float3 & point2, const Float4 & color, const Mat4 & form);
-		void 
-			DebugDrawLines(const Float3 * points, int count, const Float4 & color, const Mat4 & form, bool strip);
-		void 
-			DebugDrawTriangles(const Float3 * points, int count, const Float4 & color, const Mat4 & form);
 		void 
 			DebugDrawBox(const Obb & obb, const Float4 & color, const Mat4 & form);
 		void
@@ -48,6 +44,8 @@ namespace Rad {
 			DebugDrawRectFrames(const RectF & rect, int xTile, int yTile, const Float4 & color, const Mat4 & form);
 		void 
 			DebugDrawSphere(const Sphere & sph, const Float4 & color, const Mat4 & form);
+		void 
+			DebugDraw(const Float3 * points, ePrimType primType, int primCount, const Float4 & color, const Mat4 & form);
 		void
 			DebugDraw(RenderOp * rop, const Float4 & color, const Mat4 & form);
 		
@@ -59,9 +57,8 @@ namespace Rad {
 		TexturePtr mDefaultLightingMap;
 
 		VertexDeclaration mDebugVertexDecl;
-		ShaderFX * mDebugShaderFX;
-
-		ShaderFX * mSubmitShaderFX;
+		ShaderFX * mDebugFX;
+		ShaderFX * mSubmitFX;
 	};
 
 }

@@ -70,11 +70,12 @@ namespace Rad {
 		//
 		mDebugVertexDecl.AddElement(eVertexSemantic::POSITION, eVertexType::FLOAT3);
 
-		mDebugShaderFX = ShaderFXManager::Instance()->Load("Debug", "Shader/MDebug.mfx");
-		d_assert (mDebugShaderFX != NULL && mDebugShaderFX->GetPassCount() > 0);
+		mDebugFX = ShaderFXManager::Instance()->Load("RenderHelper.Debug", "Shader/MDebug.mfx");
+		d_assert (mDebugFX != NULL && mDebugFX->GetPassCount() > 0);
 
 		//
-		mSubmitShaderFX = ShaderFXManager::Instance()->Load("Submit", "Shader/MSubmit.mfx");
+		mSubmitFX = ShaderFXManager::Instance()->Load("RenderHelper.Submit", "Shader/MSubmit.mfx");
+		d_assert (mSubmitFX != NULL && mSubmitFX->GetPassCount() > 0);
 	}
 
 	RenderHelper::~RenderHelper()
@@ -91,7 +92,16 @@ namespace Rad {
 
 		RenderSystem::Instance()->SetTexture(0, texture);
 
-		RenderSystem::Instance()->RenderScreenQuad(mSubmitShaderFX);
+		RenderSystem::Instance()->RenderScreenQuad(mSubmitFX);
+	}
+
+	void RenderHelper::DebugDraw(const Float3 * points, ePrimType primType, int primCount, const Float4 & color, const Mat4 & form)
+	{
+		RenderSystem::Instance()->SetWorldTM(form);
+
+		mDebugFX->GetPass(0)->SetConst("u_Color", color);
+		RenderSystem::Instance()->SetShaderPass(mDebugFX->GetPass(0), false);
+		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, points, NULL, primType, primCount);
 	}
 
 	void RenderHelper::DebugDrawLine(const Float3 & point1, const Float3 & point2, const Float4 & color, const Mat4 & form)
@@ -102,27 +112,9 @@ namespace Rad {
 
 		RenderSystem::Instance()->SetWorldTM(form);
 
-		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
-		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
+		mDebugFX->GetPass(0)->SetConst("u_Color", color);
+		RenderSystem::Instance()->SetShaderPass(mDebugFX->GetPass(0), false);
 		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, vb, NULL, ePrimType::LINE_LIST, 1);
-	}
-
-	void RenderHelper::DebugDrawLines(const Float3 * points, int count, const Float4 & color, const Mat4 & form, bool strip)
-	{
-		RenderSystem::Instance()->SetWorldTM(form);
-
-		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
-		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
-		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, points, NULL, strip ? ePrimType::LINE_STRIP : ePrimType::LINE_LIST, count);
-	}
-
-	void RenderHelper::DebugDrawTriangles(const Float3 * points, int count, const Float4 & color, const Mat4 & form)
-	{
-		RenderSystem::Instance()->SetWorldTM(form);
-
-		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
-		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
-		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, points, NULL, ePrimType::TRIANGLE_LIST, count);
 	}
 
 	void RenderHelper::DebugDrawBox(const Obb & obb, const Float4 & color, const Mat4 & form)
@@ -160,8 +152,8 @@ namespace Rad {
 
 		RenderSystem::Instance()->SetWorldTM(form);
 
-		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
-		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
+		mDebugFX->GetPass(0)->SetConst("u_Color", color);
+		RenderSystem::Instance()->SetShaderPass(mDebugFX->GetPass(0), false);
 		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, vb, ib, ePrimType::TRIANGLE_LIST, 12);
 	}
 
@@ -180,8 +172,8 @@ namespace Rad {
 
 		RenderSystem::Instance()->SetWorldTM(form);
 
-		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
-		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
+		mDebugFX->GetPass(0)->SetConst("u_Color", color);
+		RenderSystem::Instance()->SetShaderPass(mDebugFX->GetPass(0), false);
 		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, vb, ib, ePrimType::TRIANGLE_LIST, 2);
 	}
 
@@ -227,8 +219,8 @@ namespace Rad {
 
 		RenderSystem::Instance()->SetWorldTM(form);
 
-		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
-		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
+		mDebugFX->GetPass(0)->SetConst("u_Color", color);
+		RenderSystem::Instance()->SetShaderPass(mDebugFX->GetPass(0), false);
 		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, vb.c_ptr(), ib.c_ptr(), ePrimType::LINE_LIST, ib.Size() / 2);
 	}
 
@@ -296,8 +288,8 @@ namespace Rad {
 
 		RenderSystem::Instance()->SetWorldTM(form);
 
-		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
-		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
+		mDebugFX->GetPass(0)->SetConst("u_Color", color);
+		RenderSystem::Instance()->SetShaderPass(mDebugFX->GetPass(0), false);
 		RenderSystem::Instance()->RenderEx(&mDebugVertexDecl, vb, ib, ePrimType::TRIANGLE_LIST, iPrimCount);
 	}
 
@@ -305,8 +297,8 @@ namespace Rad {
 	{
 		RenderSystem::Instance()->SetWorldTM(form);
 
-		mDebugShaderFX->GetPass(0)->SetConst("u_Color", color);
-		RenderSystem::Instance()->SetShaderPass(mDebugShaderFX->GetPass(0), false);
+		mDebugFX->GetPass(0)->SetConst("u_Color", color);
+		RenderSystem::Instance()->SetShaderPass(mDebugFX->GetPass(0), false);
 		RenderSystem::Instance()->Render(rop);
 	}
 }

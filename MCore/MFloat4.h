@@ -40,7 +40,7 @@ namespace Rad {
 
 	public:
 		Float4(float _x, float _y, float _z, float _w = 1);
-		Float4(const Float3 & rk);
+		Float4(const Float3 & rk, float _w = 1);
 		Float4(const Float4 & rk);
 		Float4();
 		~Float4();
@@ -128,6 +128,8 @@ namespace Rad {
 
 		void 
 			Transform(const Mat4 & m);
+		void 
+			TransformA(const Mat4 & m);
 		void 
 			TransformN(const Mat4 & m);
 

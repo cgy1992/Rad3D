@@ -124,20 +124,4 @@ namespace Rad {
 		bool mChildable;
 	};
 
-	//
-	class M_ENTRY RenderPipelineReflection : public RenderPipeline
-	{
-	public:
-		RenderPipelineReflection();
-		virtual ~RenderPipelineReflection();
-
-		virtual void 
-			DoRender();
-
-		void
-			SetPlane(const Plane & plane) { mPlane = plane; }
-
-	protected:
-		Plane mPlane;
-	};
 }

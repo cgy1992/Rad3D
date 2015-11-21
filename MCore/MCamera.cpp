@@ -75,19 +75,19 @@ namespace Rad {
 		ChangeTm(eTmFlags::UNKNOWN);
 	}
 
-	const Mat4 & Camera::GetViewMatrix()
+	const Mat4 & Camera::GetViewTM()
 	{
 		_updateTM();
 		return mMatView;
 	}
 
-	const Mat4 & Camera::GetProjMatrix()
+	const Mat4 & Camera::GetProjTM()
 	{
 		_updateTM();
 		return mMatProj;
 	}
 
-	const Mat4 & Camera::GetViewProjMatrix()
+	const Mat4 & Camera::GetViewProjTM()
 	{
 		_updateTM();
 		return mMatViewProj;
@@ -116,8 +116,8 @@ namespace Rad {
 		Float3 nearPos = Float3(0, 0, nearClip);
 		Float3 farPos = Float3(0, 0, farClip);
 
-		nearPos *= GetProjMatrix();
-		farPos *= GetProjMatrix();
+		nearPos *= GetProjTM();
+		farPos *= GetProjTM();
 
 		Float3 t_corner[8] = { 
 			Float3(-1, 1, 0), Float3(1, 1, 0), Float3(-1, -1, 0), Float3(1, -1, 0), 
@@ -130,7 +130,7 @@ namespace Rad {
 			t_corner[i + 4].z = farPos.z;
 		}
 
-		Mat4 matInverseVP = GetViewProjMatrix();
+		Mat4 matInverseVP = GetViewProjTM();
 		matInverseVP.Inverse();
 
 		for (int i = 0; i < 8; ++i)
@@ -261,7 +261,7 @@ namespace Rad {
 		x = Math::Clamp(x, 0.0f, 1.0f);
 		y = Math::Clamp(y, 0.0f, 1.0f);
 
-		Mat4 matInvViewProj = GetViewProjMatrix();
+		Mat4 matInvViewProj = GetViewProjTM();
 		matInvViewProj.Inverse();
 
 		x = x * 2.0f - 1.0f;

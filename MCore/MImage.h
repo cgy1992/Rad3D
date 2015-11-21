@@ -20,8 +20,6 @@ namespace Rad {
 		int width;
 		int height;
 		int depth;
-		byte chanels;
-		byte bitcount;
 		byte mipmaps;
 		byte cubmaps;
 
@@ -33,8 +31,6 @@ namespace Rad {
 			width = 0;
 			height = 0;
 			depth = 1;
-			chanels = 0;
-			bitcount = 0;
 			mipmaps = 0;
 			cubmaps = 1;
 		}

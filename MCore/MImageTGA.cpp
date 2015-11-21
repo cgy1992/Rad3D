@@ -53,14 +53,15 @@ namespace Rad {
 			return false;
 		}
 
+		int bitcount = header[4];
+		int chanels = bitcount == 24 ? 3 : 4;
+
 		image.width = header[1] * 256 + header[0];
 		image.height = header[3] * 256 + header[2];
 		image.depth = 1;
 		image.mipmaps = 0;
 		image.cubmaps = 1;
-		image.bitcount = header[4];
-		image.chanels = image.bitcount == 24 ? 3 : 4;
-		image.format = image.bitcount == 24 ? ePixelFormat::R8G8B8 : ePixelFormat::R8G8B8A8;
+		image.format = bitcount == 24 ? ePixelFormat::R8G8B8 : ePixelFormat::R8G8B8A8;
 
 		if (image.width > MAX_HW_TEXTURE_SIZE || image.height > MAX_HW_TEXTURE_SIZE)
 		{
@@ -68,14 +69,14 @@ namespace Rad {
 			return false;
 		}
 
-		image.pixels = new byte[image.width * image.height * image.chanels];
+		image.pixels = new byte[image.width * image.height * chanels];
 
 		if (!rle)
 		{
-			IS.Read(image.pixels, image.width * image.height * image.chanels);
+			IS.Read(image.pixels, image.width * image.height * chanels);
 
-			int count = image.width * image.height * image.chanels;
-			for (int i = 0; i < count; i += image.chanels)
+			int count = image.width * image.height * chanels;
+			for (int i = 0; i < count; i += chanels)
 			{
 				Swap(image.pixels[i], image.pixels[i + 2]);
 			}
@@ -105,9 +106,9 @@ namespace Rad {
 
 				if (read_pixel)
 				{
-					IS.Read(raw_data, image.chanels);
+					IS.Read(raw_data, chanels);
 
-					switch (image.chanels)
+					switch (chanels)
 					{
 					case 3:
 						pixel[0] = raw_data[2];
@@ -124,7 +125,7 @@ namespace Rad {
 					}
 				}
 
-				switch (image.chanels)
+				switch (chanels)
 				{
 				case 3:
 					image.pixels[i * 3 + 0] = pixel[0];
@@ -146,7 +147,7 @@ namespace Rad {
 
 		if (image.pixels != NULL)
 		{
-			int line_bytes = image.width * image.bitcount / 8;
+			int line_bytes = image.width * bitcount / 8;
 			static_memory buffer;
 
 			buffer.query(M_STATIC_MEMORY_I_CHANEL, line_bytes);

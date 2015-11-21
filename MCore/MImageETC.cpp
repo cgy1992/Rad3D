@@ -25,8 +25,6 @@ namespace Rad {
 		image.width = etc1_pkm_get_width(header);
 		image.height = etc1_pkm_get_height(header);
 		image.depth = 1;
-		image.chanels = 3;
-		image.bitcount = 0;
 		image.cubmaps = 1;
 		image.mipmaps = 0;
 		image.format = ePixelFormat::ETC1_RGB;

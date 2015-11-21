@@ -1,17 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Core">
-      <UniqueIdentifier>{50bcfcd4-e63d-4072-956f-ba226106ed97}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Template">
-      <UniqueIdentifier>{1562cfbc-25e8-4d12-9fda-4884a2a208dd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine">
       <UniqueIdentifier>{6b2c083a-7c4b-484d-99a2-98a624812152}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Math">
-      <UniqueIdentifier>{87c072da-3aed-4b03-9b8a-33bd50442e74}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\2. RenderSystem">
       <UniqueIdentifier>{29f06627-3921-47eb-922b-a211766ea757}</UniqueIdentifier>
@@ -19,38 +10,11 @@
     <Filter Include="Engine\2. RenderSystem\RenderContext">
       <UniqueIdentifier>{56dc62c4-6a75-4acb-aabb-3312aae6c1d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\RadC">
-      <UniqueIdentifier>{7fa26e74-d266-43fd-9d50-486558638469}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\2. RenderSystem\ShaderFX">
       <UniqueIdentifier>{9ef70177-1608-4b16-86db-c52a24a246c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Platform">
-      <UniqueIdentifier>{4c3ec965-ad98-456b-854c-4930475a4f31}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\1. ResourceManager">
       <UniqueIdentifier>{6655798f-9783-48c0-a70b-be1ee2075a2e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Serializer">
-      <UniqueIdentifier>{cd9b42c0-a003-4497-acb4-17a79001a786}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Event">
-      <UniqueIdentifier>{a838f55f-727d-44e9-969d-0cc3b6b0333a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\RadDB">
-      <UniqueIdentifier>{2e781fbb-7092-41ce-9719-6582642bcb35}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Sokect">
-      <UniqueIdentifier>{84d249c7-5ba8-4711-b9da-9e70809d5531}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Sokect\TCP">
-      <UniqueIdentifier>{1505e1ab-c4d1-4653-b6b7-604ec4daad28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\RadDB\RSQL">
-      <UniqueIdentifier>{a6487196-2294-408a-9fe0-bb1424542ee4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\RadDB\RDBC">
-      <UniqueIdentifier>{1d88650b-ba52-42ef-aa13-5f3c84534731}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\2. RenderSystem\Image">
       <UniqueIdentifier>{ee570904-8249-4be4-abfa-29bc50789f6c}</UniqueIdentifier>
@@ -94,9 +58,6 @@
     <Filter Include="Engine\5. World\Grass">
       <UniqueIdentifier>{f168cb13-e059-4c90-bce4-bc991bccd894}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Object">
-      <UniqueIdentifier>{29c13837-453a-430f-ba53-dee7382aef8b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\2. RenderSystem\HWBuffer">
       <UniqueIdentifier>{8de2dccf-fd66-4908-a8fc-631be1b00372}</UniqueIdentifier>
     </Filter>
@@ -106,136 +67,175 @@
     <Filter Include="Engine\5. World\Entity\ParticleSystem">
       <UniqueIdentifier>{aa2d4346-2498-4678-9d5c-5a3615aa020d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{50bcfcd4-e63d-4072-956f-ba226106ed97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Template">
+      <UniqueIdentifier>{1562cfbc-25e8-4d12-9fda-4884a2a208dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Math">
+      <UniqueIdentifier>{87c072da-3aed-4b03-9b8a-33bd50442e74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\RadC">
+      <UniqueIdentifier>{7fa26e74-d266-43fd-9d50-486558638469}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Platform">
+      <UniqueIdentifier>{4c3ec965-ad98-456b-854c-4930475a4f31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Serializer">
+      <UniqueIdentifier>{cd9b42c0-a003-4497-acb4-17a79001a786}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Event">
+      <UniqueIdentifier>{a838f55f-727d-44e9-969d-0cc3b6b0333a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\RadDB">
+      <UniqueIdentifier>{2e781fbb-7092-41ce-9719-6582642bcb35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\RadDB\RSQL">
+      <UniqueIdentifier>{a6487196-2294-408a-9fe0-bb1424542ee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\RadDB\RDBC">
+      <UniqueIdentifier>{1d88650b-ba52-42ef-aa13-5f3c84534731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Sokect">
+      <UniqueIdentifier>{84d249c7-5ba8-4711-b9da-9e70809d5531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Sokect\TCP">
+      <UniqueIdentifier>{1505e1ab-c4d1-4653-b6b7-604ec4daad28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Object">
+      <UniqueIdentifier>{29c13837-453a-430f-ba53-dee7382aef8b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MArray.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MFunctional.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MHashMap.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MList.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MMap.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MMultiMap.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MQueue.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MSet.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MSingleton.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MSmartPtr.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MStack.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MCharSet.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MConfigFile.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MDataStream.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MDataStreamPool.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MDebug.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MDefine.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MDynLinkerLib.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MFile.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MLinker.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MMemory.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MMemoryPool.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MString.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MThread.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MTimer.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MUserData.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MUString.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MXml.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MAabb.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MColor.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MCurve.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MFloat2.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MFloat3.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MFloat4.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MKDTree.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MMat4.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MMath2.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MObb.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MPlane.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MQuat.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MRay.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MRect.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MSphere.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MArchive.h">
       <Filter>Engine\1. ResourceManager</Filter>
@@ -334,7 +334,7 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Platform\win32\MPlatform.h">
-      <Filter>Core\Platform</Filter>
+      <Filter>Base\Platform</Filter>
     </ClInclude>
     <ClInclude Include="MSimpleCollision.h">
       <Filter>Engine\5. World\Entity\Component</Filter>
@@ -361,19 +361,19 @@
       <Filter>Engine\5. World\Entity</Filter>
     </ClInclude>
     <ClInclude Include="MBitField.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MFixedString.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MNodeTracker.h">
       <Filter>Engine\5. World\Entity\Component</Filter>
     </ClInclude>
     <ClInclude Include="MRTTI.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MRef.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="NavThread.h">
       <Filter>Engine\5. World\NavPath</Filter>
@@ -403,7 +403,7 @@
       <Filter>Engine\2. RenderSystem\HWBuffer</Filter>
     </ClInclude>
     <ClInclude Include="MMat3.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MVertexDeclaration.h">
       <Filter>Engine\2. RenderSystem\HWBuffer</Filter>
@@ -418,28 +418,28 @@
       <Filter>Engine\4. InputSystem</Filter>
     </ClInclude>
     <ClInclude Include="RadC.h">
-      <Filter>Core\RadC</Filter>
+      <Filter>Base\RadC</Filter>
     </ClInclude>
     <ClInclude Include="RadCCompiler.h">
-      <Filter>Core\RadC</Filter>
+      <Filter>Base\RadC</Filter>
     </ClInclude>
     <ClInclude Include="RadCExpression.h">
-      <Filter>Core\RadC</Filter>
+      <Filter>Base\RadC</Filter>
     </ClInclude>
     <ClInclude Include="RadCFoundation.h">
-      <Filter>Core\RadC</Filter>
+      <Filter>Base\RadC</Filter>
     </ClInclude>
     <ClInclude Include="RadCStatement.h">
-      <Filter>Core\RadC</Filter>
+      <Filter>Base\RadC</Filter>
     </ClInclude>
     <ClInclude Include="RadCType.h">
-      <Filter>Core\RadC</Filter>
+      <Filter>Base\RadC</Filter>
     </ClInclude>
     <ClInclude Include="MRenderObject.h">
       <Filter>Engine\2. RenderSystem</Filter>
     </ClInclude>
     <ClInclude Include="MRml.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="PSShader.h">
       <Filter>Engine\5. World\Entity\ParticleSystem</Filter>
@@ -454,19 +454,19 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="MCore.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MComponent.h">
-      <Filter>Core\Object</Filter>
+      <Filter>Base\Object</Filter>
     </ClInclude>
     <ClInclude Include="MObject.h">
-      <Filter>Core\Object</Filter>
+      <Filter>Base\Object</Filter>
     </ClInclude>
     <ClInclude Include="MProperty.h">
-      <Filter>Core\Object</Filter>
+      <Filter>Base\Object</Filter>
     </ClInclude>
     <ClInclude Include="MRoot.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MWater.h">
       <Filter>Engine\5. World\Entity\Water</Filter>
@@ -490,40 +490,40 @@
       <Filter>Engine\5. World\Entity\Animation</Filter>
     </ClInclude>
     <ClInclude Include="MISerializer.h">
-      <Filter>Core\Serializer</Filter>
+      <Filter>Base\Serializer</Filter>
     </ClInclude>
     <ClInclude Include="MOSerializer.h">
-      <Filter>Core\Serializer</Filter>
+      <Filter>Base\Serializer</Filter>
     </ClInclude>
     <ClInclude Include="MSerializer.h">
-      <Filter>Core\Serializer</Filter>
+      <Filter>Base\Serializer</Filter>
     </ClInclude>
     <ClInclude Include="MEvent6.h">
-      <Filter>Core\Event</Filter>
+      <Filter>Base\Event</Filter>
     </ClInclude>
     <ClInclude Include="MEvent.h">
-      <Filter>Core\Event</Filter>
+      <Filter>Base\Event</Filter>
     </ClInclude>
     <ClInclude Include="MEvent0.h">
-      <Filter>Core\Event</Filter>
+      <Filter>Base\Event</Filter>
     </ClInclude>
     <ClInclude Include="MEvent1.h">
-      <Filter>Core\Event</Filter>
+      <Filter>Base\Event</Filter>
     </ClInclude>
     <ClInclude Include="MEvent2.h">
-      <Filter>Core\Event</Filter>
+      <Filter>Base\Event</Filter>
     </ClInclude>
     <ClInclude Include="MEvent3.h">
-      <Filter>Core\Event</Filter>
+      <Filter>Base\Event</Filter>
     </ClInclude>
     <ClInclude Include="MEvent4.h">
-      <Filter>Core\Event</Filter>
+      <Filter>Base\Event</Filter>
     </ClInclude>
     <ClInclude Include="MEvent5.h">
-      <Filter>Core\Event</Filter>
+      <Filter>Base\Event</Filter>
     </ClInclude>
     <ClInclude Include="MAllocator.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="PSSet.h">
       <Filter>Engine\5. World\Entity\ParticleSystem</Filter>
@@ -562,13 +562,13 @@
       <Filter>Engine\5. World\Entity\Component</Filter>
     </ClInclude>
     <ClInclude Include="MInt2.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MInt3.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MInt4.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MGrassSection.h">
       <Filter>Engine\5. World\Grass</Filter>
@@ -577,64 +577,64 @@
       <Filter>Engine\5. World\Terrain</Filter>
     </ClInclude>
     <ClInclude Include="MField.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MMath.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MToken.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="RadDB.h">
-      <Filter>Core\RadDB</Filter>
+      <Filter>Base\RadDB</Filter>
     </ClInclude>
     <ClInclude Include="RadDBManager.h">
-      <Filter>Core\RadDB</Filter>
+      <Filter>Base\RadDB</Filter>
     </ClInclude>
     <ClInclude Include="RadDBTable.h">
-      <Filter>Core\RadDB</Filter>
+      <Filter>Base\RadDB</Filter>
     </ClInclude>
     <ClInclude Include="TcpSocket.h">
-      <Filter>Core\Sokect\TCP</Filter>
+      <Filter>Base\Sokect\TCP</Filter>
     </ClInclude>
     <ClInclude Include="MSocketAPI.h">
-      <Filter>Core\Sokect</Filter>
+      <Filter>Base\Sokect</Filter>
     </ClInclude>
     <ClInclude Include="RadDBType.h">
-      <Filter>Core\RadDB</Filter>
+      <Filter>Base\RadDB</Filter>
     </ClInclude>
     <ClInclude Include="TcpClient.h">
-      <Filter>Core\Sokect\TCP</Filter>
+      <Filter>Base\Sokect\TCP</Filter>
     </ClInclude>
     <ClInclude Include="TcpServer.h">
-      <Filter>Core\Sokect\TCP</Filter>
+      <Filter>Base\Sokect\TCP</Filter>
     </ClInclude>
     <ClInclude Include="MSocket.h">
-      <Filter>Core\Sokect</Filter>
+      <Filter>Base\Sokect</Filter>
     </ClInclude>
     <ClInclude Include="MLog2.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MLog.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="RadDBClient.h">
-      <Filter>Core\RadDB\RDBC</Filter>
+      <Filter>Base\RadDB\RDBC</Filter>
     </ClInclude>
     <ClInclude Include="RadDBServer.h">
-      <Filter>Core\RadDB\RDBC</Filter>
+      <Filter>Base\RadDB\RDBC</Filter>
     </ClInclude>
     <ClInclude Include="RadDBC.h">
-      <Filter>Core\RadDB\RDBC</Filter>
+      <Filter>Base\RadDB\RDBC</Filter>
     </ClInclude>
     <ClInclude Include="RadDBSql.h">
-      <Filter>Core\RadDB\RSQL</Filter>
+      <Filter>Base\RadDB\RSQL</Filter>
     </ClInclude>
     <ClInclude Include="RadDBScript.h">
-      <Filter>Core\RadDB\RSQL</Filter>
+      <Filter>Base\RadDB\RSQL</Filter>
     </ClInclude>
     <ClInclude Include="MRingBuffer.h">
-      <Filter>Core\Template</Filter>
+      <Filter>Base\Template</Filter>
     </ClInclude>
     <ClInclude Include="MImageBMP.h">
       <Filter>Engine\2. RenderSystem\Image</Filter>
@@ -658,13 +658,13 @@
       <Filter>Engine\2. RenderSystem\Image</Filter>
     </ClInclude>
     <ClInclude Include="MVecX.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MMathSSE.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MHash.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MAudio.h">
       <Filter>Engine\3. Audio &amp; Video\Audio</Filter>
@@ -682,13 +682,13 @@
       <Filter>Engine\3. Audio &amp; Video\Video</Filter>
     </ClInclude>
     <ClInclude Include="MMathNEON.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MMathASM.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClInclude>
     <ClInclude Include="MCodeTimer.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MNode.h">
       <Filter>Engine\5. World</Filter>
@@ -721,79 +721,79 @@
       <Filter>Engine\5. World\NavPath</Filter>
     </ClCompile>
     <ClCompile Include="MCharSet.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MConfigFile.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MDataStream.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MDataStreamPool.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MDebug.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MDynLinkerLib.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MFile.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MMemory.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MMemoryPool.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MString.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MThread.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MTimer.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MUString.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MXml.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MAabb.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MColor.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MFloat2.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MFloat3.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MFloat4.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MMat4.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MObb.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MPlane.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MQuat.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MRay.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MSphere.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MArchive.cpp">
       <Filter>Engine\1. ResourceManager</Filter>
@@ -880,7 +880,7 @@
       <Filter>Engine\5. World</Filter>
     </ClCompile>
     <ClCompile Include="Platform\win32\MPlatform.cpp">
-      <Filter>Core\Platform</Filter>
+      <Filter>Base\Platform</Filter>
     </ClCompile>
     <ClCompile Include="MSimpleCollision.cpp">
       <Filter>Engine\5. World\Entity\Component</Filter>
@@ -907,7 +907,7 @@
       <Filter>Engine\5. World\Entity\Component</Filter>
     </ClCompile>
     <ClCompile Include="MRef.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MTexture.cpp">
       <Filter>Engine\2. RenderSystem\HWBuffer</Filter>
@@ -922,7 +922,7 @@
       <Filter>Engine\2. RenderSystem\HWBuffer</Filter>
     </ClCompile>
     <ClCompile Include="MMat3.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MVertexDeclaration.cpp">
       <Filter>Engine\2. RenderSystem\HWBuffer</Filter>
@@ -931,28 +931,28 @@
       <Filter>Engine\4. InputSystem</Filter>
     </ClCompile>
     <ClCompile Include="RadC.cpp">
-      <Filter>Core\RadC</Filter>
+      <Filter>Base\RadC</Filter>
     </ClCompile>
     <ClCompile Include="RadCCompiler.cpp">
-      <Filter>Core\RadC</Filter>
+      <Filter>Base\RadC</Filter>
     </ClCompile>
     <ClCompile Include="RadCExpression.cpp">
-      <Filter>Core\RadC</Filter>
+      <Filter>Base\RadC</Filter>
     </ClCompile>
     <ClCompile Include="RadCFoundation.cpp">
-      <Filter>Core\RadC</Filter>
+      <Filter>Base\RadC</Filter>
     </ClCompile>
     <ClCompile Include="RadCStatement.cpp">
-      <Filter>Core\RadC</Filter>
+      <Filter>Base\RadC</Filter>
     </ClCompile>
     <ClCompile Include="RadCType.cpp">
-      <Filter>Core\RadC</Filter>
+      <Filter>Base\RadC</Filter>
     </ClCompile>
     <ClCompile Include="MRenderObject.cpp">
       <Filter>Engine\2. RenderSystem</Filter>
     </ClCompile>
     <ClCompile Include="MRml.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="PSShader.cpp">
       <Filter>Engine\5. World\Entity\ParticleSystem</Filter>
@@ -967,16 +967,16 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="MCore.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MComponent.cpp">
-      <Filter>Core\Object</Filter>
+      <Filter>Base\Object</Filter>
     </ClCompile>
     <ClCompile Include="MObject.cpp">
-      <Filter>Core\Object</Filter>
+      <Filter>Base\Object</Filter>
     </ClCompile>
     <ClCompile Include="MRoot.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MWater.cpp">
       <Filter>Engine\5. World\Entity\Water</Filter>
@@ -1000,10 +1000,10 @@
       <Filter>Engine\5. World\Entity\Animation</Filter>
     </ClCompile>
     <ClCompile Include="MISerializer.cpp">
-      <Filter>Core\Serializer</Filter>
+      <Filter>Base\Serializer</Filter>
     </ClCompile>
     <ClCompile Include="MOSerializer.cpp">
-      <Filter>Core\Serializer</Filter>
+      <Filter>Base\Serializer</Filter>
     </ClCompile>
     <ClCompile Include="PSSet.cpp">
       <Filter>Engine\5. World\Entity\ParticleSystem</Filter>
@@ -1048,58 +1048,58 @@
       <Filter>Engine\5. World\Terrain</Filter>
     </ClCompile>
     <ClCompile Include="MMath.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MToken.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="RadDB.cpp">
-      <Filter>Core\RadDB</Filter>
+      <Filter>Base\RadDB</Filter>
     </ClCompile>
     <ClCompile Include="RadDBManager.cpp">
-      <Filter>Core\RadDB</Filter>
+      <Filter>Base\RadDB</Filter>
     </ClCompile>
     <ClCompile Include="RadDBTable.cpp">
-      <Filter>Core\RadDB</Filter>
+      <Filter>Base\RadDB</Filter>
     </ClCompile>
     <ClCompile Include="TcpSocket.cpp">
-      <Filter>Core\Sokect\TCP</Filter>
+      <Filter>Base\Sokect\TCP</Filter>
     </ClCompile>
     <ClCompile Include="TcpClient.cpp">
-      <Filter>Core\Sokect\TCP</Filter>
+      <Filter>Base\Sokect\TCP</Filter>
     </ClCompile>
     <ClCompile Include="TcpServer.cpp">
-      <Filter>Core\Sokect\TCP</Filter>
+      <Filter>Base\Sokect\TCP</Filter>
     </ClCompile>
     <ClCompile Include="MSocket.cpp">
-      <Filter>Core\Sokect</Filter>
+      <Filter>Base\Sokect</Filter>
     </ClCompile>
     <ClCompile Include="MMd5.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MLog2.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MLog.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="RadDBClient.cpp">
-      <Filter>Core\RadDB\RDBC</Filter>
+      <Filter>Base\RadDB\RDBC</Filter>
     </ClCompile>
     <ClCompile Include="RadDBServer.cpp">
-      <Filter>Core\RadDB\RDBC</Filter>
+      <Filter>Base\RadDB\RDBC</Filter>
     </ClCompile>
     <ClCompile Include="RadDBC.cpp">
-      <Filter>Core\RadDB\RDBC</Filter>
+      <Filter>Base\RadDB\RDBC</Filter>
     </ClCompile>
     <ClCompile Include="RadDBSql.cpp">
-      <Filter>Core\RadDB\RSQL</Filter>
+      <Filter>Base\RadDB\RSQL</Filter>
     </ClCompile>
     <ClCompile Include="RadDBType.cpp">
-      <Filter>Core\RadDB</Filter>
+      <Filter>Base\RadDB</Filter>
     </ClCompile>
     <ClCompile Include="RadDBScript.cpp">
-      <Filter>Core\RadDB\RSQL</Filter>
+      <Filter>Base\RadDB\RSQL</Filter>
     </ClCompile>
     <ClCompile Include="MImageBMP.cpp">
       <Filter>Engine\2. RenderSystem\Image</Filter>
@@ -1123,7 +1123,7 @@
       <Filter>Engine\2. RenderSystem\Image</Filter>
     </ClCompile>
     <ClCompile Include="MLZ77.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </ClCompile>
     <ClCompile Include="MAudio.cpp">
       <Filter>Engine\3. Audio &amp; Video\Audio</Filter>
@@ -1141,7 +1141,7 @@
       <Filter>Engine\3. Audio &amp; Video\Video</Filter>
     </ClCompile>
     <ClCompile Include="MCodeTimer.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="MNode.cpp">
       <Filter>Engine\5. World</Filter>
@@ -1156,12 +1156,12 @@
       <Filter>Engine\3. Audio &amp; Video</Filter>
     </ClCompile>
     <ClCompile Include="MEvent.cpp">
-      <Filter>Core\Event</Filter>
+      <Filter>Base\Event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="MMath.inl">
-      <Filter>Core\Math</Filter>
+      <Filter>Base\Math</Filter>
     </None>
   </ItemGroup>
 </Project>

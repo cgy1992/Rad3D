@@ -19,9 +19,9 @@ namespace Rad {
 	{
 	}
 
-	Float4::Float4(const Float3 & rk)
+	Float4::Float4(const Float3 & rk, float _w)
 	{
-		x = rk.x; y = rk.y; z = rk.z; w = 1;
+		x = rk.x; y = rk.y; z = rk.z; w = _w;
 	}
 
 	Float4::Float4(const Float4 & rk)
@@ -242,14 +242,33 @@ namespace Rad {
 #else
 		Float4 vTmp;
 
-		vTmp.x = x * m._11 + y * m._21 + z * m._31 + m._41;
-		vTmp.y = x * m._12 + y * m._22 + z * m._32 + m._42;
-		vTmp.z = x * m._13 + y * m._23 + z * m._33 + m._43;
-		vTmp.w = x * m._14 + y * m._24 + z * m._34 + m._44;
+		vTmp.x = x * m._11 + y * m._21 + z * m._31 + w * m._41;
+		vTmp.y = x * m._12 + y * m._22 + z * m._32 + w * m._42;
+		vTmp.z = x * m._13 + y * m._23 + z * m._33 + w * m._43;
+		vTmp.w = x * m._14 + y * m._24 + z * m._34 + w * m._44;
 
 		*this = vTmp;
 #endif
 
+	}
+
+	void Float4::TransformA(const Mat4 & m)
+	{
+#ifdef SIMD_Transform4
+
+		SIMD_Transform4(this, this, &m);
+		w = 1;
+
+#else
+		Float4 vTmp;
+
+		vTmp.x = x * m._11 + y * m._21 + z * m._31 + m._41;
+		vTmp.y = x * m._12 + y * m._22 + z * m._32 + m._42;
+		vTmp.z = x * m._13 + y * m._23 + z * m._33 + m._43;
+		vTmp.w = 1;
+
+		*this = vTmp;
+#endif
 	}
 
 	void Float4::TransformN(const Mat4 & m)

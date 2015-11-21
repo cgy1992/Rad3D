@@ -58,8 +58,6 @@ namespace Rad {
 		image.height = header.height;
 		image.depth = 1;
 		image.mipmaps = 0;
-		image.chanels = 3;
-		image.bitcount = 0;
 		image.cubmaps = 1;
 
 		if (image.width > MAX_HW_TEXTURE_SIZE || image.height > MAX_HW_TEXTURE_SIZE)
