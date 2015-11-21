@@ -806,6 +806,8 @@ namespace Rad {
 			glDrawArrays(GLprimType, 0, drawCount);
 		}
 
+		d_assert (glGetError() == 0);
+
 		_unbindVertexElement();
 
 		mRenderRegister->End();
