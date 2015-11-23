@@ -63,7 +63,7 @@ Pass
 			
 		void main()
 		{
-			gl_Position = mul4(i_Position, u_WVP);
+			gl_Position = transform4(i_Position, u_WVP);
 			o_uv = i_UV;
 			o_luv = i_LUV;
 

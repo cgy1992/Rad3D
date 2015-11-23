@@ -105,12 +105,12 @@ Pass
 		#ifdef D_SKINED
 			doHwSkin(position, normal);
 		#else
-			position = mul4(i_Position, u_World);
-			normal = mul3(i_Normal.xyz, u_World);
+			position = transform4(i_Position, u_World);
+			normal = transform3(i_Normal.xyz, u_World);
 		#endif
 
 			// 
-			gl_Position = mul4(position, u_ViewProj);
+			gl_Position = transform4(position, u_ViewProj);
 			o_uv = i_Texcoord.xy;
 
 			// lighting

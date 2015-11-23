@@ -28,7 +28,7 @@ Pass
 
 		void main()
 		{
-			gl_Position = mul4(i_Position, u_WVP);
+			gl_Position = transform4(i_Position, u_WVP);
 		}
 	}
 	

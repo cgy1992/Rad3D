@@ -101,8 +101,8 @@ Pass
 		#ifdef D_SKINED
 			doHwSkin(position, normal);
 		#else
-			position = mul4(i_Position, u_World);
-			normal = mul3(i_Normal.xyz, u_World);
+			position = transform4(i_Position, u_World);
+			normal = transform3(i_Normal.xyz, u_World);
 			normal = normalize(normal);
 		#endif
 

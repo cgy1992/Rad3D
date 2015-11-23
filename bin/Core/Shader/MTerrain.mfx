@@ -93,7 +93,7 @@ Pass
 			float3 normal = i_NormalHeight.xyz;
 
 			// transform
-			gl_Position = mul4(position, u_WVP);
+			gl_Position = transform4(position, u_WVP);
 
 			// uv
 			o_blendUV = i_UV;
