@@ -38,6 +38,9 @@ namespace Rad {
 
 		virtual ~GLRenderSystem();
 
+		const char *
+			GetTypeString();
+
 		void 
 			OnLostDevice();
 		void 

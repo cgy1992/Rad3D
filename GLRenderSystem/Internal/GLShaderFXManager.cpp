@@ -456,7 +456,7 @@ namespace Rad {
 			"#define tex2D texture2D\n");
 
 		AddGlobalMacro(
-			"float3 mul3(float3 n, mat4 m) \n" \
+			"float3 transform3(float3 n, mat4 m) \n" \
 			"{ \n" \
 			"	float3 rn; \n" \
 			"	rn.x = n.x * m[0].x + n.y * m[1].x + n.z * m[2].x; \n" \
@@ -466,15 +466,7 @@ namespace Rad {
 			"} \n");
 
 		AddGlobalMacro(
-			"float4 mul4(float4 v, mat4 m) \n" \
-			"{ \n" \
-			"	float4 rv; \n" \
-			"	rv.x = v.x * m[0].x + v.y * m[1].x + v.z * m[2].x + v.w * m[3].x; \n" \
-			"	rv.y = v.x * m[0].y + v.y * m[1].y + v.z * m[2].y + v.w * m[3].y; \n" \
-			"	rv.z = v.x * m[0].z + v.y * m[1].z + v.z * m[2].z + v.w * m[3].z; \n" \
-			"	rv.w = v.x * m[0].w + v.y * m[1].w + v.z * m[2].w + v.w * m[3].w; \n" \
-			"	return rv; \n" \
-			"} \n");
+			"#define transform4(v, m) (m * v) \n");
 	}
 
 	GLShaderFXManager::~GLShaderFXManager()

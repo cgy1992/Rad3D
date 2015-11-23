@@ -30,14 +30,20 @@ namespace Rad {
 		mHWBufferManager = new GLHWBufferManager;
 		mShaderFXManager = new GLShaderFXManager;
 
+#ifdef M_PLATFORM_WIN32
+		mCaps.identifier = "OpenGL";
+#else
+		mCaps.identifier = "OpenGL ES";
+#endif
+
 		const char * vendor = (const char *)glGetString(GL_VENDOR);
 		const char * render = (const char *)glGetString(GL_RENDERER);
 		const char * version = (const char *)glGetString(GL_VERSION);
 		const char * extensions = (const char *)glGetString(GL_EXTENSIONS);
 
-		mCaps.vender = vendor;
-		mCaps.renderer = render;
-		mCaps.vender = version;
+		mCaps.driver_vender = vendor;
+		mCaps.driver_renderer = render;
+		mCaps.driver_vender = version;
 
 		mCaps.pixelFormats[ePixelFormat::DXT1_RGB] = false;
 		mCaps.pixelFormats[ePixelFormat::DXT3_RGBA] = false;
