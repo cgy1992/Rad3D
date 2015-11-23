@@ -54,9 +54,11 @@ namespace Rad {
 
 		struct HWCaps
 		{
-			String vender;
-			String renderer;
-			String version;
+			FixedString32 identifier;
+
+			String driver_vender;
+			String driver_renderer;
+			String driver_version;
 
 			int maxTexSize;
 			int maxTexUnit;
@@ -78,7 +80,6 @@ namespace Rad {
 
 		const HWCaps &
 			GetCaps() { return mCaps; }
-
 		const Config & 
 			GetConfig() { return mConfig; }
 
