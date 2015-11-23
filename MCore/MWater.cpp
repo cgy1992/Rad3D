@@ -258,6 +258,7 @@ namespace Rad {
 	void Water::AddRenderQueue(RenderQueue * rq)
 	{
 		SetRenderCallBack(eRenderCallBack::SHADER, mWaterShader.c_ptr());
+
 		rq->AddRenderObject(this);
 	}
 
