@@ -31,11 +31,29 @@ namespace Rad {
 	{
 	protected:
 		_tListener * mHead;
-		_tListener * mTail;
 
 	public:
-		_tEvent() : mHead(NULL), mTail(NULL) {}
+		_tEvent() : mHead(NULL) {}
 		~_tEvent() { DetachAll(); }
+
+		_tListener * GetHead()
+		{
+			return mHead;
+		}
+
+		_tListener * GetTail()
+		{
+			_tListener * tail = mHead;
+			while (tail)
+			{
+				if (tail->_Next == NULL)
+					return tail;
+
+				tail = tail->_Next;
+			}
+
+			return NULL;
+		}
 
 		void Attach(_tListener * _listener)
 		{
@@ -44,17 +62,17 @@ namespace Rad {
 
 			_listener->_Event = this;
 
-			if (mTail)
+			// attach to tail
+			//
+			_tListener * tail = GetTail();
+			if (tail)
 			{
-				mTail->_Next = _listener;
-				_listener->_Prev = mTail;
-
-				mTail = _listener;
+				tail->_Next = _listener;
+				_listener->_Prev = tail;
 			}
 			else
 			{
 				mHead = _listener;
-				mTail = _listener;
 			}
 		}
 
@@ -65,9 +83,6 @@ namespace Rad {
 
 			if (_listener == mHead)
 				mHead = _listener->_Next;
-
-			if (_listener == mTail)
-				mTail = _listener->_Prev;
 
 			if (_listener->_Prev)
 				_listener->_Prev->_Next = _listener->_Next;
@@ -83,8 +98,6 @@ namespace Rad {
 		{
 			while (mHead)
 				delete mHead;
-
-			mTail = NULL;
 		}
 	};
 }
