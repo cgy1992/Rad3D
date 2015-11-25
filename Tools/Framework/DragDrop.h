@@ -5,7 +5,7 @@
 */
 #pragma once
 
-#include "MInclude.h"
+#include "stdafx.h"
 
 //
 class DataObject : public IDataObject

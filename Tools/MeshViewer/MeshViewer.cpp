@@ -2,11 +2,11 @@
 #include "App.h"
 #include "RenderViewer.h"
 #include "CameraController.h"
-#include "ToolUtil.h"
 #include "MMeshSerializer.h"
 #include "MAnimationSerializer.h"
 #include "SkeletonDisplayer.h"
 #include "ToolScaleMesh.h"
+#include "MUtil.h"
 
 Mesh * gMesh = NULL;
 ParticleSystem * gParticle = NULL;

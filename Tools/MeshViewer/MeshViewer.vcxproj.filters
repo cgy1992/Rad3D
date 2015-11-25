@@ -4,9 +4,6 @@
     <ClCompile Include="RenderViewer.cpp" />
     <ClCompile Include="MeshViewer.cpp" />
     <ClCompile Include="CameraController.cpp" />
-    <ClCompile Include="..\Util\ToolUtil.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="..\Framework\App.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
@@ -29,16 +26,10 @@
     <Filter Include="Framework">
       <UniqueIdentifier>{fdd3ac15-5790-4078-8513-281430ee1042}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Util">
-      <UniqueIdentifier>{2d7b45b6-8406-4fd7-9137-06213ae58c00}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RenderViewer.h" />
     <ClInclude Include="CameraController.h" />
-    <ClInclude Include="..\Util\ToolUtil.h">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include="..\Framework\App.h">
       <Filter>Framework</Filter>
     </ClInclude>

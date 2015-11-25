@@ -57,7 +57,7 @@ RenderViewer::RenderViewer(int x, int y, int resolution)
 		RenderTargetPtr pRenderTarget = HWBufferManager::Instance()->NewRenderTarget(resolution, resolution, ePixelFormat::R8G8B8A8);
 		DepthBufferPtr pDepthBuffer = HWBufferManager::Instance()->NewDepthBuffer(resolution, resolution, ePixelFormat::D24);
 
-		mRenderContext[i] = World::Instance()->NewRenderContext(i, 0, "RenderViewer");
+		mRenderContext[i] = World::Instance()->NewRenderContext(0, "RenderViewer");
 		mRenderContext[i]->SetColorClear(eClearMode::ALL, Float4(0, 0, 0, 0));
 		mRenderContext[i]->SetRenderTarget(0, pRenderTarget);
 		mRenderContext[i]->SetDepthBuffer(pDepthBuffer);

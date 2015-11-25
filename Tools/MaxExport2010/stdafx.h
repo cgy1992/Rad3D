@@ -7,7 +7,7 @@
 
 #include "afx.h"
 #include "afxwin.h"
-#include "MCore.h"
+#include "MBase.h"
 #include "MResourceManager.h"
 #include "MWorld.h"
 #include "NullRenderSystem.h"

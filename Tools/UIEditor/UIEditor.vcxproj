@@ -143,7 +143,6 @@
     <ClInclude Include="..\Framework\DebugInfo.h" />
     <ClInclude Include="..\Framework\DragDrop.h" />
     <ClInclude Include="..\Framework\stdafx.h" />
-    <ClInclude Include="..\Util\AllLookFeel.h" />
     <ClInclude Include="WidgetProperty.h" />
     <ClInclude Include="XMLConverter.h" />
     <ClInclude Include="LayoutEditor.h" />
@@ -176,7 +175,6 @@
     <ClCompile Include="..\Framework\DragDrop.cpp" />
     <ClCompile Include="..\Framework\stdafx.cpp" />
     <ClCompile Include="..\Framework\WinMain.cpp" />
-    <ClCompile Include="..\Util\AllLookFeel.cpp" />
     <ClCompile Include="UIEditor.cpp" />
     <ClCompile Include="WidgetProperty.cpp" />
     <ClCompile Include="XMLConverter.cpp" />

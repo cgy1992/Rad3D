@@ -4,20 +4,11 @@
     <Filter Include="Framework">
       <UniqueIdentifier>{34ccdf7e-33d7-4e32-bf69-b899646eb786}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Util">
-      <UniqueIdentifier>{d3d1fcc2-c83f-4a8c-ad21-ddf93953eb46}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Editor">
       <UniqueIdentifier>{386caf1d-4778-4bb6-bcb4-30c0a941d7f8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Util\AllLookFeel.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\ToolUtil.h">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include="FloderPanel.h">
       <Filter>Editor</Filter>
     </ClInclude>
@@ -51,12 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceViewer.cpp" />
-    <ClCompile Include="..\Util\AllLookFeel.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\ToolUtil.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="FloderPanel.cpp">
       <Filter>Editor</Filter>
     </ClCompile>

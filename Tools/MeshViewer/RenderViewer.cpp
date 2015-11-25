@@ -57,7 +57,7 @@ RenderViewer::RenderViewer()
 
 	Layout();
 
-	World::Instance()->E_RenderingEnd += new cListener0<RenderViewer>(this, &RenderViewer::OnUpdate);
+	World::Instance()->E_RenderEnd += new cListener0<RenderViewer>(this, &RenderViewer::OnUpdate);
 }
 
 RenderViewer::~RenderViewer()

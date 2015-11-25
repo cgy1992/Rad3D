@@ -5,7 +5,7 @@
 */
 #pragma once
 
-#include <MCore.h>
+#include <MBase.h>
 #include <MGUI.h>
 #include <MWorld.h>
 #include <ParticleFX.h>

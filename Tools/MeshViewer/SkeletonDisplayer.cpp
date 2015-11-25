@@ -67,7 +67,7 @@ void SkeletonDisplayer::OnRender()
 		{
 			RenderHelper::Instance()->DebugDrawSphere(sph, Float4(1, 1, 0), Mat4::Identity);
 			
-			Float3 projPos = sph.center * World::Instance()->MainCamera()->GetViewProjMatrix();
+			Float3 projPos = sph.center * World::Instance()->MainCamera()->GetViewProjTM();
 			projPos.x = projPos.x * 0.5f + 0.5f;
 			projPos.y = 0.5f - projPos.y * 0.5f;
 			projPos.x = vp.x + projPos.x * vp.w;
@@ -97,5 +97,5 @@ void SkeletonDisplayer::OnRender()
 		}
 	}
 
-	RenderHelper::Instance()->DebugDrawLines(&lines[0], lines.Size() / 2, Float4(0, 1, 0), Mat4::Identity, false);
+	RenderHelper::Instance()->DebugDraw(&lines[0], ePrimType::POINT_LIST, lines.Size() / 2, Float4(0, 1, 0), Mat4::Identity);
 }

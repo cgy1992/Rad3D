@@ -97,7 +97,6 @@
     <ClCompile Include="..\Framework\DragDrop.cpp" />
     <ClCompile Include="..\Framework\stdafx.cpp" />
     <ClCompile Include="..\Framework\WinMain.cpp" />
-    <ClCompile Include="..\Util\ToolUtil.cpp" />
     <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="MeshViewer.cpp" />
     <ClCompile Include="RenderViewer.cpp" />
@@ -109,7 +108,6 @@
     <ClInclude Include="..\Framework\DebugInfo.h" />
     <ClInclude Include="..\Framework\DragDrop.h" />
     <ClInclude Include="..\Framework\stdafx.h" />
-    <ClInclude Include="..\Util\ToolUtil.h" />
     <ClInclude Include="CameraController.h" />
     <ClInclude Include="RenderViewer.h" />
     <ClInclude Include="ToolScaleMesh.h" />

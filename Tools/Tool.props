@@ -7,11 +7,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>../../SDK.Win32/include;../Framework;../Util;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../SDK.Win32/include;../../SDK.Win32/include/util;../Framework;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>../../SDK.Win32/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>MCore.lib;MPhysics.lib;MGui.lib;MParticleFX.lib;GLRenderSystem.lib;ALAudioSystem.lib;DI8InputSystem.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MCore.lib;MPhysics.lib;MGui.lib;MParticleFX.lib;MUtil.lib;GLRenderSystem.lib;ALAudioSystem.lib;DI8InputSystem.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../bin/$(Configuration)/$(ProjectName).exe</OutputFile>
     </Link>
     <PreBuildEvent>

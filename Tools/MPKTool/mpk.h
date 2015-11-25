@@ -4,7 +4,7 @@
 *	CopyRight: SilverEyes Information CO. LTD.
 */
 #include <iostream>
-#include "MCore.h"
+#include "MBase.h"
 #include "MPKArchive.h"
 
 using namespace Rad;
