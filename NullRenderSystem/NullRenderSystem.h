@@ -54,6 +54,8 @@ namespace Rad {
 
 		virtual void 
 			ReadPixels(void * data, int x, int y, int w, int h);
+		virtual void
+			StretchRect(RenderTarget * rtDest, RectI * rcDest, RenderTarget * rtSrc, RectI * rcSrc, eTexFilter filter);
 
 		virtual void 
 			Render(RenderOp * rop);

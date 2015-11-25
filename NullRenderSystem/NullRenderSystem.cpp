@@ -56,6 +56,10 @@ namespace Rad {
 	{
 	}
 
+	void NullRenderSystem::StretchRect(RenderTarget * rtDest, RectI * rcDest, RenderTarget * rtSrc, RectI * rcSrc, eTexFilter filter)
+	{
+	}
+
 	void NullRenderSystem::Render(RenderOp * rop)
 	{
 	}
