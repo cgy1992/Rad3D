@@ -67,7 +67,7 @@
       <StackReserveSize>12328960</StackReserveSize>
       <ImportLibrary>../../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
       <AdditionalLibraryDirectories>$(DXSDK_DIR)/lib/x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MRenderFX.lib;d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent />
     <PostBuildEvent>
@@ -126,28 +126,6 @@
     <ClCompile Include="..\Framework\DragDrop.cpp" />
     <ClCompile Include="..\Framework\stdafx.cpp" />
     <ClCompile Include="..\Framework\WinMain.cpp" />
-    <ClCompile Include="..\Util\AllLookFeel.cpp" />
-    <ClCompile Include="..\Util\ColorPickerDialog.cpp" />
-    <ClCompile Include="..\Util\MessageBoxDialog.cpp" />
-    <ClCompile Include="..\Util\PropertyFieldBool.cpp" />
-    <ClCompile Include="..\Util\PropertyField.cpp" />
-    <ClCompile Include="..\Util\PropertyFieldButton.cpp" />
-    <ClCompile Include="..\Util\PropertyFieldClass.cpp" />
-    <ClCompile Include="..\Util\PropertyFieldColor.cpp" />
-    <ClCompile Include="..\Util\PropertyFieldComboBox.cpp" />
-    <ClCompile Include="..\Util\PropertyFieldEditBox.cpp" />
-    <ClCompile Include="..\Util\PropertyFieldEnum.cpp" />
-    <ClCompile Include="..\Util\PropertyFieldFilename.cpp" />
-    <ClCompile Include="..\Util\PropertyFieldFloat.cpp" />
-    <ClCompile Include="..\Util\PropertyFieldInt.cpp" />
-    <ClCompile Include="..\Util\PropertyFieldLongText.cpp" />
-    <ClCompile Include="..\Util\PropertyFieldQuaternion.cpp" />
-    <ClCompile Include="..\Util\PropertyFieldString.cpp" />
-    <ClCompile Include="..\Util\PropertyField_KeyFrame.cpp" />
-    <ClCompile Include="..\Util\PropertyGrid.cpp" />
-    <ClCompile Include="..\Util\PropertyGroup.cpp" />
-    <ClCompile Include="..\Util\ToolUtil.cpp" />
-    <ClCompile Include="..\Util\TrackerControl.cpp" />
     <ClCompile Include="ComponentCreator.cpp" />
     <ClCompile Include="ComponentModule.cpp" />
     <ClCompile Include="ComponentPanel.cpp" />
@@ -207,29 +185,6 @@
     <ClInclude Include="..\Framework\DebugInfo.h" />
     <ClInclude Include="..\Framework\DragDrop.h" />
     <ClInclude Include="..\Framework\stdafx.h" />
-    <ClInclude Include="..\Util\AllLookFeel.h" />
-    <ClInclude Include="..\Util\ColorPickerDialog.h" />
-    <ClInclude Include="..\Util\MessageBoxDialog.h" />
-    <ClInclude Include="..\Util\MInclude.h" />
-    <ClInclude Include="..\Util\PropertyFieldBool.h" />
-    <ClInclude Include="..\Util\PropertyField.h" />
-    <ClInclude Include="..\Util\PropertyFieldButton.h" />
-    <ClInclude Include="..\Util\PropertyFieldClass.h" />
-    <ClInclude Include="..\Util\PropertyFieldColor.h" />
-    <ClInclude Include="..\Util\PropertyFieldComboBox.h" />
-    <ClInclude Include="..\Util\PropertyFieldEditBox.h" />
-    <ClInclude Include="..\Util\PropertyFieldEnum.h" />
-    <ClInclude Include="..\Util\PropertyFieldFilename.h" />
-    <ClInclude Include="..\Util\PropertyFieldFloat.h" />
-    <ClInclude Include="..\Util\PropertyFieldInt.h" />
-    <ClInclude Include="..\Util\PropertyFieldLongText.h" />
-    <ClInclude Include="..\Util\PropertyFieldQuaternion.h" />
-    <ClInclude Include="..\Util\PropertyFieldString.h" />
-    <ClInclude Include="..\Util\PropertyField_KeyFrame.h" />
-    <ClInclude Include="..\Util\PropertyGrid.h" />
-    <ClInclude Include="..\Util\PropertyGroup.h" />
-    <ClInclude Include="..\Util\ToolUtil.h" />
-    <ClInclude Include="..\Util\TrackerControl.h" />
     <ClInclude Include="ComponentCreator.h" />
     <ClInclude Include="ComponentModule.h" />
     <ClInclude Include="ComponentPanel.h" />

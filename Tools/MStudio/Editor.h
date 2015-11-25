@@ -6,7 +6,6 @@
 #pragma once
 
 #include "MStudioEntry.h"
-#include "App.h"
 #include "UndoRedo.h"
 #include "MainFrame.h"
 #include "Gizmo.h"

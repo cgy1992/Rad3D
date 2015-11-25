@@ -830,7 +830,7 @@ void Gizmo::_mouseMoved_Move()
 		Float2 pt = IMouse::Instance()->GetPositionDiff();
 		Editor::Instance()->MapScreenUnit(pt.x, pt.y);
 
-		const Mat4 & matVP = cam->GetViewProjMatrix();
+		const Mat4 & matVP = cam->GetViewProjTM();
 
 		float dt = 0;
 
@@ -974,7 +974,7 @@ void Gizmo::_mouseMoved_Rotate()
 		Float2 pt = IMouse::Instance()->GetPositionDiff();
 		Editor::Instance()->MapScreenUnit(pt.x, pt.y);
 
-		const Mat4 & matVP = cam->GetViewProjMatrix();
+		const Mat4 & matVP = cam->GetViewProjTM();
 
 		float dt = 0;
 
@@ -1140,7 +1140,7 @@ void Gizmo::_mouseMoved_Scale()
 		Float2 pt = IMouse::Instance()->GetPositionDiff();
 		Editor::Instance()->MapScreenUnit(pt.x, pt.y);
 
-		const Mat4 & matVP = cam->GetViewProjMatrix();
+		const Mat4 & matVP = cam->GetViewProjTM();
 
 		float dt = 0;
 
@@ -1189,11 +1189,11 @@ float Gizmo::_getObjSize(Node * obj)
 	Camera * cam = World::Instance()->MainCamera();
 	Float3 pos = obj->GetPosition();
 
-	pos *= cam->GetViewProjMatrix();
+	pos *= cam->GetViewProjTM();
 
 	pos = Float3(0.3f, 0, pos.z);
 
-	Mat4 matProj = cam->GetProjMatrix();
+	Mat4 matProj = cam->GetProjTM();
 	matProj.Inverse();
 	pos *= matProj;
 

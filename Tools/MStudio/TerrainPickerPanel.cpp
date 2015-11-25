@@ -4,7 +4,7 @@
 #include "Editor.h"
 #include "MainFrame.h"
 #include "MTerrainMesh.h"
-#include "ToolUtil.h"
+#include "MUtil.h"
 
 TerrainPickerPanel::TerrainPickerPanel()
 {

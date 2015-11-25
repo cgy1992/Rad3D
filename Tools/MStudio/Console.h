@@ -5,7 +5,7 @@
 */
 #pragma once
 
-#include "stdafx.h"
+#include "MStudioEntry.h"
 
 class Console : public Singleton<Console>
 {

@@ -1,7 +1,7 @@
 #include "GrassModule.h"
 #include "MainFrame.h"
 #include "Editor.h"
-#include "ToolUtil.h"
+#include "MUtil.h"
 #include "MTerrainMesh.h"
 
 GrassModule::GrassModule()

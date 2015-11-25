@@ -80,6 +80,7 @@ public:
 	virtual void OnResize(int w, int h)
 	{
 		mMainFrame->Layout();
+		mEditor->E_Resize(w, h);
 	}
 
 	virtual void OnDragFile(const char * filename)

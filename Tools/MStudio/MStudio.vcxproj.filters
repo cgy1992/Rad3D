@@ -13,59 +13,11 @@
     <ClCompile Include="MainRenderView.cpp">
       <Filter>Module</Filter>
     </ClCompile>
-    <ClCompile Include="..\Util\ColorPickerDialog.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\MessageBoxDialog.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\PropertyFieldColor.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\PropertyFieldEditBox.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\PropertyFieldFilename.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\PropertyFieldFloat.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\PropertyFieldInt.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\PropertyGrid.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\PropertyField.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\PropertyGroup.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\AllLookFeel.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="EntityPanel.cpp">
       <Filter>Module\1. Entity</Filter>
     </ClCompile>
     <ClCompile Include="EntityPropertyPanel.cpp">
       <Filter>Module\1. Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\PropertyFieldBool.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\PropertyFieldEnum.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\PropertyFieldComboBox.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\PropertyFieldButton.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\ToolUtil.cpp">
-      <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="LightFX_Light.cpp">
       <Filter>Module\8. LightFX\Engine</Filter>
@@ -82,9 +34,6 @@
     <ClCompile Include="LightFX_Define.cpp">
       <Filter>Module\8. LightFX\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\Util\PropertyFieldString.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
     <ClCompile Include="LightFX_Terrain.cpp">
       <Filter>Module\8. LightFX\Engine</Filter>
     </ClCompile>
@@ -97,14 +46,8 @@
     <ClCompile Include="LightFX_UVUnwrap.cpp">
       <Filter>Module\8. LightFX\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="ProgressDialog.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="LightFX_Rasterizer.cpp">
       <Filter>Module\8. LightFX\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\PropertyFieldLongText.cpp">
-      <Filter>Util\PropertyGrid</Filter>
     </ClCompile>
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="..\Framework\App.cpp">
@@ -196,20 +139,11 @@
       <Filter>Module\A. Component</Filter>
     </ClCompile>
     <ClCompile Include="EditorFactory.cpp" />
-    <ClCompile Include="..\Util\PropertyFieldClass.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
     <ClCompile Include="Console.cpp">
       <Filter>Module</Filter>
     </ClCompile>
     <ClCompile Include="ComponentUserPanel.cpp">
       <Filter>Module\A. Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\PropertyField_KeyFrame.cpp">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Util\TrackerControl.cpp">
-      <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="MaterialModule.cpp">
       <Filter>Module\B. Material</Filter>
@@ -226,8 +160,8 @@
     <ClCompile Include="TerrainPickerPanel.cpp">
       <Filter>Module\2. Terrain</Filter>
     </ClCompile>
-    <ClCompile Include="..\Util\PropertyFieldQuaternion.cpp">
-      <Filter>Util\PropertyGrid</Filter>
+    <ClCompile Include="ProgressDialog.cpp">
+      <Filter>Module</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -243,59 +177,11 @@
     <ClInclude Include="MainRenderView.h">
       <Filter>Module</Filter>
     </ClInclude>
-    <ClInclude Include="..\Util\ColorPickerDialog.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\MessageBoxDialog.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyFieldColor.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyFieldEditBox.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyFieldFilename.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyFieldFloat.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyFieldInt.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyGrid.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyField.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyGroup.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\AllLookFeel.h">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include="EntityPanel.h">
       <Filter>Module\1. Entity</Filter>
     </ClInclude>
     <ClInclude Include="EntityPropertyPanel.h">
       <Filter>Module\1. Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyFieldBool.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyFieldEnum.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyFieldComboBox.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyFieldButton.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\ToolUtil.h">
-      <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="LightFX_Define.h">
       <Filter>Module\8. LightFX\Engine</Filter>
@@ -314,12 +200,6 @@
     </ClInclude>
     <ClInclude Include="MStudio.h" />
     <ClInclude Include="MStudioEntry.h" />
-    <ClInclude Include="..\Util\MInclude.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyFieldString.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
     <ClInclude Include="LightFX_Terrain.h">
       <Filter>Module\8. LightFX\Engine</Filter>
     </ClInclude>
@@ -332,14 +212,8 @@
     <ClInclude Include="LightFX_UVUnwrap.h">
       <Filter>Module\8. LightFX\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="ProgressDialog.h">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include="LightFX_Rasterizer.h">
       <Filter>Module\8. LightFX\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyFieldLongText.h">
-      <Filter>Util\PropertyGrid</Filter>
     </ClInclude>
     <ClInclude Include="Editor.h" />
     <ClInclude Include="..\Framework\App.h">
@@ -427,20 +301,11 @@
       <Filter>Module\A. Component</Filter>
     </ClInclude>
     <ClInclude Include="EditorFactory.h" />
-    <ClInclude Include="..\Util\PropertyFieldClass.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
     <ClInclude Include="Console.h">
       <Filter>Module</Filter>
     </ClInclude>
     <ClInclude Include="ComponentUserPanel.h">
       <Filter>Module\A. Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\PropertyField_KeyFrame.h">
-      <Filter>Util\PropertyGrid</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Util\TrackerControl.h">
-      <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="MaterialModule.h">
       <Filter>Module\B. Material</Filter>
@@ -457,17 +322,11 @@
     <ClInclude Include="TerrainPickerPanel.h">
       <Filter>Module\2. Terrain</Filter>
     </ClInclude>
-    <ClInclude Include="..\Util\PropertyFieldQuaternion.h">
-      <Filter>Util\PropertyGrid</Filter>
+    <ClInclude Include="ProgressDialog.h">
+      <Filter>Module</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Util">
-      <UniqueIdentifier>{18a9b152-293a-4bcd-9ca1-9918cde2152b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Util\PropertyGrid">
-      <UniqueIdentifier>{f42eb59c-6c27-4432-b865-6b2f97b376fd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework">
       <UniqueIdentifier>{e274b059-790f-4d24-8cc5-b639a972508f}</UniqueIdentifier>
     </Filter>
@@ -486,9 +345,6 @@
     <Filter Include="Module\5. Water">
       <UniqueIdentifier>{99344c80-82a4-45a0-a177-db2d0a2fcd99}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Module\6. Grass">
-      <UniqueIdentifier>{e8235da0-26d7-4052-9744-7601e755e4cf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Module\7. ParticleFX">
       <UniqueIdentifier>{bab4fbc6-faaf-47a1-9058-503a085e9428}</UniqueIdentifier>
     </Filter>
@@ -506,6 +362,9 @@
     </Filter>
     <Filter Include="Module\B. Material">
       <UniqueIdentifier>{8397bfcb-8bf8-43b3-86cf-69d1a5e7a97f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module\6. Grass">
+      <UniqueIdentifier>{e8235da0-26d7-4052-9744-7601e755e4cf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

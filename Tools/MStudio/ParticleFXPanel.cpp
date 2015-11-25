@@ -3,7 +3,7 @@
 #include "Editor.h"
 #include "AllLookFeel.h"
 #include "ParticleFXPropertyPanel.h"
-#include "ToolUtil.h"
+#include "MUtil.h"
 
 ImplementSingleton(ParticleFXPanel);
 

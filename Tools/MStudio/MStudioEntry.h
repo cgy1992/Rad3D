@@ -11,6 +11,15 @@
 #define MSTUDIO_ENTRY __declspec(dllimport)
 #endif
 
-#include "MInclude.h"
+#include <MBase.h>
+#include <MGUI.h>
+#include <MWorld.h>
+#include <ParticleFX.h>
+#include <PhyWorld.h>
+#include <GLRenderSystem.h>
+#include <ALAudioSystem.h>
+#include <DIInputSystem.h>
+
+using namespace Rad;
 
 #define INDENT_TIME 0.2f

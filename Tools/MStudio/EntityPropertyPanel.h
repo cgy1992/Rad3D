@@ -8,22 +8,27 @@
 #include "MStudioEntry.h"
 #include "PropertyGrid.h"
 
-class EntityPropertyPanel : public Singleton<EntityPropertyPanel>
+class MSTUDIO_ENTRY EntityPropertyPanel : public Singleton<EntityPropertyPanel>
 {
 public:
 	EntityPropertyPanel();
 	~EntityPropertyPanel();
 
-	void Layout();
+	void 
+		Layout();
 
-	void Show();
-	void Hide();
+	void 
+		Show();
+	void 
+		Hide();
 
-	MGUI::Layout * GetLayout() { return mLayout; }
+	MGUI::Layout * 
+		GetLayout() { return mLayout; }
 
 protected:
-	void OnShapeSelectedChanged();
-	
+	void 
+		OnNodeSelectedChanged();
+
 protected:
 	MGUI::Layout * mLayout;
 	MGUI::Widget * mTopWidget;

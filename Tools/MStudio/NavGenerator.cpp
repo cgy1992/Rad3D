@@ -196,7 +196,7 @@ void NavGenerator::OnDebugRender()
 
 		if (linePoints.Size() > 1)
 		{
-			RenderHelper::Instance()->DebugDrawLines(&linePoints[0], linePoints.Size() / 2, Float4(0, 1, 0), form, false);
+			RenderHelper::Instance()->DebugDraw(&linePoints[0], ePrimType::LINE_LIST, linePoints.Size() / 2, Float4(0, 1, 0), form);
 		}
 
 		// errors
@@ -214,7 +214,7 @@ void NavGenerator::OnDebugRender()
 
 		if (linePoints.Size() > 1)
 		{
-			RenderHelper::Instance()->DebugDrawLines(&linePoints[0], linePoints.Size() / 2, Float4(1, 0, 0), form, false);
+			RenderHelper::Instance()->DebugDraw(&linePoints[0], ePrimType::LINE_LIST, linePoints.Size() / 2, Float4(1, 0, 0), form);
 		}
 
 		// warnings
@@ -232,7 +232,7 @@ void NavGenerator::OnDebugRender()
 
 		if (linePoints.Size() > 1)
 		{
-			RenderHelper::Instance()->DebugDrawLines(&linePoints[0], linePoints.Size() / 2, Float4(1, 1, 0), form, false);
+			RenderHelper::Instance()->DebugDraw(&linePoints[0], ePrimType::LINE_LIST, linePoints.Size() / 2, Float4(1, 1, 0), form);
 		}
 	}
 	else
@@ -250,7 +250,7 @@ void NavGenerator::OnDebugRender()
 
 		if (triPoints.Size() > 0)
 		{
-			RenderHelper::Instance()->DebugDrawTriangles(&triPoints[0], triPoints.Size() / 3, Float4(0, 1, 0), form);
+			RenderHelper::Instance()->DebugDraw(&triPoints[0], ePrimType::TRIANGLE_LIST, triPoints.Size() / 3, Float4(0, 1, 0), form);
 		}
 
 
@@ -294,7 +294,7 @@ void NavGenerator::OnDebugRender()
 		if (linePoints.Size() > 1)
 		{
 			RenderSystem::Instance()->SetRenderState(eFillMode::SOLID, eCullMode::NONE);
-			RenderHelper::Instance()->DebugDrawLines(&linePoints[0], linePoints.Size() - 1, Float4(1, 1, 0), form, true);
+			RenderHelper::Instance()->DebugDraw(&linePoints[0], ePrimType::LINE_STRIP, linePoints.Size() - 1, Float4(1, 1, 0), form);
 		}
 	}
 }

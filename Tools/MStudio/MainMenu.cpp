@@ -2,6 +2,7 @@
 #include "MainFrame.h"
 #include "Editor.h"
 #include "AllLookFeel.h"
+#include "MUtil.h"
 
 MainMenu::MainMenu()
 {
@@ -52,31 +53,10 @@ void MainMenu::Layout()
 
 void MainMenu::OnOpen(const MGUI::MouseEvent *)
 {
-	TCHAR szPathName[MAX_PATH];  
-	OPENFILENAME ofn = { OPENFILENAME_SIZE_VERSION_400 };
-	ofn.hwndOwner =GetForegroundWindow();
-	ofn.lpstrFilter = TEXT("project(*.scene)\0*.scene\0");
-	lstrcpy(szPathName, "");  
-	ofn.lpstrFile = szPathName;  
-	ofn.nMaxFile = sizeof(szPathName);
-	ofn.lpstrTitle = TEXT("Ñ¡ÔñÎÄ¼þ");
-	ofn.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
-
-	TCHAR szCurDir[MAX_PATH];  
-	if (mSceneFile != "")
+	String filename = Util_GetOpenFile("project(*.scene)\0*.scene\0", FileHelper::GetFileDir(mSceneFile));
+	if (filename != "")
 	{
-		String dir = FileHelper::GetFileDir(mSceneFile);
-		strcpy(szCurDir, dir.c_str());
-	}
-	else
-	{
-		GetCurrentDirectory(sizeof(szCurDir),szCurDir);  
-	}
-	ofn.lpstrInitialDir=szCurDir;
-
-	if (GetOpenFileName(&ofn))
-	{
-		mSceneFile = szPathName;
+		mSceneFile = filename;
 		mProjectFile = FileHelper::GetFileDir(FileHelper::GetFileDir(mSceneFile));
 		mProjectFile = FileHelper::GetFileDir(mProjectFile) + "/m.project";
 

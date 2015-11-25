@@ -5,19 +5,23 @@
 */
 #pragma once
 
-#include "MInclude.h"
+#include "MStudioEntry.h"
 
-class ProgressDialog : public Singleton<ProgressDialog>
+class MSTUDIO_ENTRY ProgressDialog : public Singleton<ProgressDialog>
 {
 public:
 	ProgressDialog();
 	~ProgressDialog();
 
-	void Show(bool _show);
+	void 
+		Show(bool _show);
 
-	void SetText(const String & text);
-	void SetPercentage(int percentage);
-	int GetPercentage();
+	void 
+		SetText(const String & text);
+	void 
+		SetPercentage(int percentage);
+	int 
+		GetPercentage();
 
 protected:
 	MGUI::Layout * mLayout;

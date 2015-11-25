@@ -5,7 +5,7 @@
 */
 #pragma once
 
-#include "MCore.h"
+#include "MBase.h"
 #include "MMath2.h"
 #include "MRenderSystem.h"
 

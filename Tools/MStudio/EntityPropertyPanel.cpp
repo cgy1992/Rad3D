@@ -13,15 +13,18 @@ EntityPropertyPanel::EntityPropertyPanel()
 	mLayout->SetVisible(false);
 
 	mTopWidget = mLayout->GetChild("Caption");
+	mTopWidget->SetAlign(MGUI::eAlign::TOP | MGUI::eAlign::H_STRETCH);
+	mTopWidget->SetDockable(true);
 
 	MGUI::TextBox * pCaption = new MGUI::TextBox(NULL, mTopWidget);
 	pCaption->SetAlign(MGUI::eAlign::CENTER);
 	pCaption->SetCaption(L"Property");
 
 	mPropertyGrid = new PropertyGrid(mLayout);
-	mPropertyGrid->SetAlign(MGUI::eAlign::H_STRETCH);
+	mPropertyGrid->SetAlign(MGUI::eAlign::TOP | MGUI::eAlign::H_STRETCH);
+	mPropertyGrid->SetDockable(true);
 
-	Editor::Instance()->E_NodeSelect += new cListener0<EntityPropertyPanel>(this, &EntityPropertyPanel::OnShapeSelectedChanged);
+	Editor::Instance()->E_NodeSelect += new cListener0<EntityPropertyPanel>(this, &EntityPropertyPanel::OnNodeSelectedChanged);
 }
 
 EntityPropertyPanel::~EntityPropertyPanel()
@@ -37,11 +40,6 @@ void EntityPropertyPanel::Layout()
 	float w = mLayout->GetRect().w;
 
 	mLayout->SetRect(EntityPanel::Instance()->GetLayout()->GetAbsRect().w, D_MAINMENU_H, w, rect.h - D_MAINMENU_H - D_MAINSTATUSBAR_H);
-
-	MGUI::Rect clRect = mLayout->GetClient();
-	MGUI::Rect tlRect = mTopWidget->GetRect();
-
-	mPropertyGrid->SetRect(0, tlRect.h, clRect.w, clRect.h - tlRect.h);
 }
 
 void EntityPropertyPanel::Show()
@@ -54,7 +52,7 @@ void EntityPropertyPanel::Hide()
 	mLayout->SetVisible(false);
 }
 
-void EntityPropertyPanel::OnShapeSelectedChanged()
+void EntityPropertyPanel::OnNodeSelectedChanged()
 {
 	Node * node = Editor::Instance()->GetSelectNode();
 

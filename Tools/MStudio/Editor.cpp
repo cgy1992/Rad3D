@@ -2,7 +2,7 @@
 #include "DragDrop.h"
 #include "MainRenderView.h"
 #include "App.h"
-#include "ToolUtil.h"
+#include "MUtil.h"
 
 ImplementSingleton(Editor);
 
@@ -458,7 +458,7 @@ void Editor::OnPickNode()
 void Editor::OnPickNodeRect(const MGUI::Rect & rc)
 {
 	Float3 camPos = World::Instance()->MainCamera()->GetWorldPosition();
-	Mat4 vp = World::Instance()->MainCamera()->GetViewProjMatrix();
+	Mat4 vp = World::Instance()->MainCamera()->GetViewProjTM();
 	float distSq = MAX_FLOAT;
 	Array<Node *> nodes;
 	Array<T_KEY_VALUE<float, Node *> > selectedNodes;
