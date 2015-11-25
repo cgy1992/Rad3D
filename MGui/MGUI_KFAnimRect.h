@@ -33,16 +33,14 @@ namespace Rad { namespace MGUI {
 			return v;
 		}
 
-		ISerializer & operator >>(ISerializer & IS)
+		void In(ISerializer & IS)
 		{
 			IS >> data;	
-			return IS;
 		}
 
-		OSerializer & operator <<(OSerializer & OS)
+		void Out(OSerializer & OS) const
 		{
 			OS << data;	
-			return OS;
 		}
 	};
 
