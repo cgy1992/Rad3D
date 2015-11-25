@@ -174,11 +174,13 @@ namespace Rad {
 			mFrameBufferRead = 0;
 		}
 
+#ifdef M_PLATFORM_WIN32
 		if (mQueryId != 0)
 		{
 			glDeleteQueries(1, &mQueryId);
 			mQueryId = 0;
 		}
+#endif
 
 		mShaderFXManager->OnLostDevice();
 		d_assert(glGetError() == 0);
@@ -419,7 +421,9 @@ namespace Rad {
 			}
 #endif
 
+#ifdef glDrawBuffers
 			glDrawBuffers(targets.Size(), &targets[0]);
+#endif
 		}
 		else
 		{
