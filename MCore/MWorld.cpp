@@ -247,6 +247,8 @@ namespace Rad {
 		}
 
 		_updateSections(0);
+
+		E_Load();
 	}
 
 	void World::Save(const String & filename)

@@ -59,7 +59,7 @@ namespace Rad {
 				return uniform;
 		}
 
-		return false;
+		return NULL;
 	}
 
 	void ShaderPass::SetConst(int index, float x, float y, float z, float w)

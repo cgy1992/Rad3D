@@ -156,7 +156,7 @@ namespace Rad {
 		d_assert (x >= mViewport.x && y >= mViewport.y && w <= mViewport.w && h <= mViewport.h);
 		d_assert (pixels != NULL);
 
-		RenderSystem::Instance()->SetRenderTarget(NULL, mRenderTarget[0].c_ptr());
+		RenderSystem::Instance()->SetRenderTarget(0, mRenderTarget[0].c_ptr());
 		RenderSystem::Instance()->PrepareRendering();
 		RenderSystem::Instance()->ReadPixels(pixels, x, y, w, h);
 	}

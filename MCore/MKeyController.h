@@ -227,33 +227,55 @@ namespace Rad {
 
 		void Serialize(Serializer & sl)
 		{
+			const int K_VERISON1 = 0x01000000;
+
 			if (sl.IsOut())
 			{
 				OSerializer & OS = (OSerializer &)sl;
 
-				OS << mKeyFrames.Size();
-				for (int i = 0; i < mKeyFrames.Size(); ++i)
+				int size = mKeyFrames.Size();
+
+				OS << (size | K_VERISON1);
+				for (int i = 0; i < size; ++i)
 				{
-					const KF & kf = mKeyFrames[i];
+					KF & kf = mKeyFrames[i];
 
 					OS << kf.time;
-					OS << kf.value;
+					kf.value.Out(OS);
 				}
 			}
 			else
 			{
 				ISerializer & IS = (ISerializer &)sl;
 
-				int count = 0;
-				IS >> count;
-				for (int i = 0; i < count; ++i)
+				int size = 0, version = 0;
+
+				IS >> size;
+				version = size & 0xFF000000;
+				size = size & 0x00FFFFFF;
+
+				if (version == K_VERISON1)
 				{
 					KF kf;
+					for (int i = 0; i < size; ++i)
+					{
+						IS >> kf.time;
+						kf.value.In(IS);
 
-					IS >> kf.time;
-					IS >> kf.value;
+						mKeyFrames.PushBack(kf);
+					}
+				}
+				else
+				{
+					KF kf;
+					for (int i = 0; i < size; ++i)
+					{
+						IS >> kf.time;
+						IS.Skip(24); // skip 24 bytes for object
+						kf.value.In(IS);
 
-					mKeyFrames.PushBack(kf);
+						mKeyFrames.PushBack(kf);
+					}
 				}
 			}
 		}
@@ -385,16 +407,14 @@ namespace Rad {
 		return v;								\
 	}											\
 	\
-	ISerializer & operator >>(ISerializer & IS) \
+	void In(ISerializer & IS)					\
 	{											\
 		IS >> data;								\
-		return IS;								\
 	}											\
 	\
-	OSerializer & operator <<(OSerializer & OS) \
+	void Out(OSerializer & OS) const			\
 	{											\
 		OS << data;								\
-		return OS;								\
 	}
 
 	//
@@ -484,20 +504,18 @@ namespace Rad {
 			return tm;
 		}
 
-		ISerializer & operator >>(ISerializer & IS)
+		void In(ISerializer & IS)
 		{
 			IS >> position;
 			IS >> rotation;
 			IS >> scale;
-			return IS;
 		}
 
-		OSerializer & operator <<(OSerializer & OS)
+		void Out(OSerializer & OS) const
 		{
 			OS << position;
 			OS << rotation;
 			OS << scale;
-			return OS;
 		}
 	};
 

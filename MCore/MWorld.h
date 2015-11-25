@@ -8,7 +8,6 @@
 #pragma once
 
 #include "MRoot.h"
-#include "MUtil.h"
 #include "MCodeTimer.h"
 #include "MNode.h"
 #include "MCamera.h"

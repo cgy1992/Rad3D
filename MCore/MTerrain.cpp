@@ -2,7 +2,6 @@
 #include "MTerrainMesh.h"
 #include "MResourceManager.h"
 #include "MWorld.h"
-#include "MUtil.h"
 
 namespace Rad {
 

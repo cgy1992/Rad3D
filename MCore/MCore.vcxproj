@@ -71,7 +71,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>Core;Engine;Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>M_EXPORT;M_DEBUG_MEMORY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -105,7 +105,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4355;4996;4251;4661;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>Core;Engine;Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libIconv.lib;libogg.lib;libvorbis.lib;libtheora.lib;winmm.lib;user32.lib;kernel32.lib;gdi32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -134,7 +134,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4355;4996;4251;4661;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>Core;Engine;Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libIconv.lib;libogg.lib;libvorbis.lib;libtheora.lib;winmm.lib;user32.lib;kernel32.lib;gdi32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -290,7 +290,7 @@
     <ClInclude Include="MResourceManager.h" />
     <ClInclude Include="MRoot.h" />
     <ClInclude Include="MCharSet.h" />
-    <ClInclude Include="MCore.h" />
+    <ClInclude Include="MBase.h" />
     <ClInclude Include="MDataStream.h" />
     <ClInclude Include="MDebug.h" />
     <ClInclude Include="MDefine.h" />
@@ -325,7 +325,6 @@
     <ClInclude Include="MTerrainMesh.h" />
     <ClInclude Include="MTexture.h" />
     <ClInclude Include="MHWBufferManager.h" />
-    <ClInclude Include="MUtil.h" />
     <ClInclude Include="MVertexBuffer.h" />
     <ClInclude Include="MVertexDeclaration.h" />
     <ClInclude Include="MVisibleCuller.h" />
@@ -365,7 +364,7 @@
     <ClCompile Include="MDepthBuffer.cpp" />
     <ClCompile Include="MDynLinkerLib.cpp" />
     <ClCompile Include="MCharSet.cpp" />
-    <ClCompile Include="MCore.cpp" />
+    <ClCompile Include="MBase.cpp" />
     <ClCompile Include="MDataStream.cpp" />
     <ClCompile Include="MDebug.cpp" />
     <ClCompile Include="MEvent.cpp" />

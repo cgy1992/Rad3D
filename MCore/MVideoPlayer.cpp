@@ -312,4 +312,10 @@ namespace Rad {
 	{
 		return new VideoPlayer(vdo, format, flags);
 	}
+
+	void VDO_DestroyPlayer(VideoPlayer * player)
+	{
+		delete player;
+	}
+
 }

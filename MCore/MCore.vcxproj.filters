@@ -330,9 +330,6 @@
     <ClInclude Include="MWorld.h">
       <Filter>Engine\5. World</Filter>
     </ClInclude>
-    <ClInclude Include="MUtil.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Platform\win32\MPlatform.h">
       <Filter>Base\Platform</Filter>
     </ClInclude>
@@ -452,9 +449,6 @@
     </ClInclude>
     <ClInclude Include="MTypes.h">
       <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="MCore.h">
-      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="MComponent.h">
       <Filter>Base\Object</Filter>
@@ -701,6 +695,9 @@
     </ClInclude>
     <ClInclude Include="MVideoPlayer.h">
       <Filter>Engine\3. Audio &amp; Video</Filter>
+    </ClInclude>
+    <ClInclude Include="MBase.h">
+      <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -966,9 +963,6 @@
     <ClCompile Include="MTypes.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="MCore.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
     <ClCompile Include="MComponent.cpp">
       <Filter>Base\Object</Filter>
     </ClCompile>
@@ -1157,6 +1151,9 @@
     </ClCompile>
     <ClCompile Include="MEvent.cpp">
       <Filter>Base\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="MBase.cpp">
+      <Filter>Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

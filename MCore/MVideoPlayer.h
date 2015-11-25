@@ -90,4 +90,6 @@ namespace Rad {
 		VDO_CreatePlayer(DataStreamPtr stream, ePixelFormat format = ePixelFormat::R8G8B8, int flags = 0);
 	M_ENTRY VideoPlayer *
 		VDO_CreatePlayer(IVideoPtr vdo, ePixelFormat format = ePixelFormat::R8G8B8, int flags = 0);
+	M_ENTRY void
+		VDO_DestroyPlayer(VideoPlayer * player);
 }

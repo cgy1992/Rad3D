@@ -15,7 +15,6 @@ namespace Rad {
 		: orig(vOrigin)
 		, dir(vDirection)
 	{
-		dir.Normalize();
 	}
 
 	Ray::~Ray()
