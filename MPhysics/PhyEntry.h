@@ -5,7 +5,7 @@
 */
 #pragma once
 
-#include "MCore.h"
+#include "MBase.h"
 
 #ifdef M_PLATFORM_WIN32
 
