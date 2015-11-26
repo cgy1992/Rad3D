@@ -22,6 +22,7 @@ LOCAL_C_INCLUDES := \
 
 LOCAL_SRC_FILES := \
 ../../MCore/MAnimationController.cpp \
+../../MCore/MBase.cpp \
 ../../MCore/MComponent.cpp \
 ../../MCore/MConfigFile.cpp \
 ../../MCore/MCodeTimer.cpp \
@@ -29,7 +30,6 @@ LOCAL_SRC_FILES := \
 ../../MCore/MDepthBuffer.cpp \
 ../../MCore/MDynLinkerLib.cpp \
 ../../MCore/MCharSet.cpp \
-../../MCore/MCore.cpp \
 ../../MCore/MDataStream.cpp \
 ../../MCore/MDebug.cpp \
 ../../MCore/MEvent.cpp \
@@ -63,7 +63,6 @@ LOCAL_SRC_FILES := \
 ../../MCore/MMath.cpp \
 ../../MCore/MMemory.cpp \
 ../../MCore/MMemoryPool.cpp \
-../../MCore/MRenderProcess.cpp \
 ../../MCore/MRml.cpp \
 ../../MCore/MRef.cpp \
 ../../MCore/MString.cpp \
