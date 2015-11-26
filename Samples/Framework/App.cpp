@@ -4,17 +4,6 @@ ImplementSingleton(App);
 
 App::App()
 {
-	mRoot = NULL;
-	mResourceManager = NULL;
-	mRenderSystem = NULL;
-	mAudioSystem = NULL;
-	mUIEngine = NULL;
-	mParticleFX = NULL;
-	mWorld = NULL;
-	mPhyWorld = NULL;
-
-	mDebugInfo = NULL;
-
 	mPause = false;
 	mFPSLimit = 1.0f / 60.0f;
 	mInternalLastTime = 0;
@@ -41,9 +30,13 @@ void App::Init(HINSTANCE hInst, HWND hWnd, int w, int h)
 	config.height = h;
 	mRenderSystem = new GLRenderSystem(hWnd, config);
 
+#ifndef NO_INPUT
 	mInputSystem = new DIInputSystem(hInst, hWnd);
+#endif
 
+#ifndef NO_AUDIO
 	mAudioSystem = new ALAudioSystem;
+#endif
 
 	mUIEngine = new MGUI::Engine;
 
@@ -67,7 +60,9 @@ void App::Update()
 {
 	mRoot->Update();
 
+#ifndef NO_INPUT
 	mInputSystem->Update();
+#endif
 
 	if (!mPause)
 	{
@@ -94,7 +89,9 @@ void App::Update()
 
 		mRenderSystem->End();
 
+#ifndef NO_AUDIO
 		mAudioSystem->Update(World::Instance()->MainCamera()->GetPosition());
+#endif
 	}
 	
 	// FPS Limit
@@ -119,8 +116,12 @@ void App::Shutdown()
 	delete mPhyWorld;
 	delete mParticleFX;
 	delete mUIEngine;
+#ifndef NO_AUDIO
 	delete mAudioSystem;
+#endif
+#ifndef NO_INPUT
 	delete mInputSystem;
+#endif
 	delete mRenderSystem;
 	delete mResourceManager;
 	delete mRoot;

@@ -86,14 +86,18 @@ protected:
 	Root * mRoot;
 	ResourceManager * mResourceManager;
 	GLRenderSystem * mRenderSystem;
+#ifndef NO_AUDIO
 	ALAudioSystem * mAudioSystem;
+#endif
 	MGUI::Engine * mUIEngine;
 	ParticleFX * mParticleFX;
 	World * mWorld;
 	PhyWorld * mPhyWorld;
 	DebugInfo * mDebugInfo;
 
+#ifndef NO_INPUT
 	DIInputSystem * mInputSystem;
+#endif
 
 	bool mPause;
 	float mFPSLimit;

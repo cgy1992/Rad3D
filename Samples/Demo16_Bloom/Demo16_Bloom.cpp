@@ -67,7 +67,7 @@ public:
 
 		gBloom = new Bloom(World::Instance()->MainRenderContext());
 
-		World::Instance()->E_RenderingEnd += new cListener0<Demo16_Bloom>(this, &Demo16_Bloom::OnPostRender);
+		World::Instance()->E_RenderEnd += new cListener0<Demo16_Bloom>(this, &Demo16_Bloom::OnPostRender);
 	}
 
 	virtual void OnUpdate()

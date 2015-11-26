@@ -18,7 +18,7 @@ namespace Rad {
 		mColor = Float4(0.5f, 0.5f, 0.5f);
 
 		mShadowCamera = new Camera;
-		mShadowContext = World::Instance()->NewRenderContext(0, 0, "ShadowContext");
+		mShadowContext = World::Instance()->NewRenderContext(0, "ShadowContext");
 
 		mShadowContext->SetCamera(mShadowCamera);
 		mShadowContext->SetVisibleCuller(new ShadowVisibleCuller);
@@ -154,7 +154,7 @@ namespace Rad {
 
 		do 
 		{
-			Mat4 matShadow = mShadowCamera->GetViewProjMatrix();
+			Mat4 matShadow = mShadowCamera->GetViewProjTM();
 			TexturePtr depthMap = mShadowContext->GetRenderTarget(0)->GetTexture();
 			
 			Float4 fadeParam;
@@ -194,7 +194,7 @@ namespace Rad {
 				ShaderFX * fx = arr[i]->GetCurrentShaderFX();
 				if (fx != NULL && fx->GetPassCount() > 0)
 				{
-					Mat4 matShadow = mShadowCamera->GetViewProjMatrix();
+					Mat4 matShadow = mShadowCamera->GetViewProjTM();
 					if (!arr[i]->IsSkined())
 					{
 						Mat4 worldTm;
@@ -303,8 +303,8 @@ namespace Rad {
 			}
 		}
 
-		RenderSystem::Instance()->SetViewTM(pCamera->GetViewMatrix());
-		RenderSystem::Instance()->SetProjTM(pCamera->GetProjMatrix());
+		RenderSystem::Instance()->SetViewTM(pCamera->GetViewTM());
+		RenderSystem::Instance()->SetProjTM(pCamera->GetProjTM());
 
 		RenderSystem::Instance()->SetClipPlane(pCamera->GetNearClip(), pCamera->GetFarClip());
 		RenderSystem::Instance()->SetTime(Root::Instance()->GetTime());

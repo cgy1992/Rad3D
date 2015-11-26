@@ -63,9 +63,9 @@ public:
 		RenderTargetPtr pRenderTarget = HWBufferManager::Instance()->NewRenderTarget(RT_SIZE, RT_SIZE, ePixelFormat::R8G8B8);
 		DepthBufferPtr pDepthBuffer = HWBufferManager::Instance()->NewDepthBuffer(RT_SIZE, RT_SIZE, ePixelFormat::D24);
 
-		gRenderContext = World::Instance()->NewRenderContext(8, 0, "RenderTarget1");
+		gRenderContext = World::Instance()->NewRenderContext(0, "RenderTarget1");
 		gRenderContext->SetColorClear(eClearMode::ALL, Float4(0.3f, 0.3f, 0.3f));
-		gRenderContext->SetRenderTarget(pRenderTarget);
+		gRenderContext->SetRenderTarget(0, pRenderTarget);
 		gRenderContext->SetDepthBuffer(pDepthBuffer);
 		gRenderContext->SetVisibleCuller(new VisibleCullerStandard);
 		gRenderContext->SetShaderProvider(new ShaderProviderStandard);
@@ -92,7 +92,7 @@ public:
 	{
 		byte * pixels = new byte[256 * 256 * 4];
 
-		gRenderContext->ReadPixelData(pixels, 0, 0, 256, 256);
+		gRenderContext->ReadPixels(pixels, 0, 0, 256, 256);
 
 		OSerializerF OS("Demo14_RenderTarget.png");
 		if (OS.GetFile() != NULL)

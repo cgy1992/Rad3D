@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MCore.h"
+#include "MBase.h"
 #include "MResourceManager.h"
 
 extern "C" {
