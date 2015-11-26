@@ -271,7 +271,7 @@ namespace Rad {
 					for (int i = 0; i < size; ++i)
 					{
 						IS >> kf.time;
-						IS.Skip(24); // skip 24 bytes for object
+						IS.Skip(16); // skip size of object(old version)
 						kf.value.In(IS);
 
 						mKeyFrames.PushBack(kf);
