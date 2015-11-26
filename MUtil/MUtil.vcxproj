@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|Win32">
+      <Configuration>Profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{92AF06C7-99EB-4532-B78B-8DD1DB96A891}</ProjectGuid>
+    <RootNamespace>MUtil</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>..\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <IntDir>..\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>..\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../MCore;../MCore/Platform/Win32;../MGui;..\ThirdParty\xml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UTIL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).dll</OutputFile>
+      <AdditionalDependencies>MCore.lib;MGui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+      <AdditionalLibraryDirectories>../SDK.Win32/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>UTIL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../MCore;../MCore/Platform/Win32;../MGui;..\ThirdParty\xml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <OutputFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).dll</OutputFile>
+      <AdditionalDependencies>MCore.lib;MGui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+      <AdditionalLibraryDirectories>../SDK.Win32/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>UTIL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../MCore;../MCore/Platform/Win32;../MGui;..\ThirdParty\xml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <OutputFile>../SDK.Win32/dll/$(Configuration)/$(ProjectName).dll</OutputFile>
+      <AdditionalDependencies>MCore.lib;MGui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
+      <AdditionalLibraryDirectories>../SDK.Win32/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>PostBuild.bat</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AllLookFeel.cpp" />
+    <ClCompile Include="ColorPickerDialog.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MessageBoxDialog.cpp" />
+    <ClCompile Include="PropertyField.cpp" />
+    <ClCompile Include="PropertyFieldBool.cpp" />
+    <ClCompile Include="PropertyFieldButton.cpp" />
+    <ClCompile Include="PropertyFieldClass.cpp" />
+    <ClCompile Include="PropertyFieldColor.cpp" />
+    <ClCompile Include="PropertyFieldComboBox.cpp" />
+    <ClCompile Include="PropertyFieldEditBox.cpp" />
+    <ClCompile Include="PropertyFieldEnum.cpp" />
+    <ClCompile Include="PropertyFieldFilename.cpp" />
+    <ClCompile Include="PropertyFieldFloat.cpp" />
+    <ClCompile Include="PropertyFieldInt.cpp" />
+    <ClCompile Include="PropertyFieldLongText.cpp" />
+    <ClCompile Include="PropertyFieldQuaternion.cpp" />
+    <ClCompile Include="PropertyFieldString.cpp" />
+    <ClCompile Include="PropertyField_KeyFrame.cpp" />
+    <ClCompile Include="PropertyGrid.cpp" />
+    <ClCompile Include="PropertyGroup.cpp" />
+    <ClCompile Include="MUtil.cpp" />
+    <ClCompile Include="TrackerControl.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AllLookFeel.h" />
+    <ClInclude Include="ColorPickerDialog.h" />
+    <ClInclude Include="MessageBoxDialog.h" />
+    <ClInclude Include="MUtil.h" />
+    <ClInclude Include="PropertyField.h" />
+    <ClInclude Include="PropertyFieldBool.h" />
+    <ClInclude Include="PropertyFieldButton.h" />
+    <ClInclude Include="PropertyFieldClass.h" />
+    <ClInclude Include="PropertyFieldColor.h" />
+    <ClInclude Include="PropertyFieldComboBox.h" />
+    <ClInclude Include="PropertyFieldEditBox.h" />
+    <ClInclude Include="PropertyFieldEnum.h" />
+    <ClInclude Include="PropertyFieldFilename.h" />
+    <ClInclude Include="PropertyFieldFloat.h" />
+    <ClInclude Include="PropertyFieldInt.h" />
+    <ClInclude Include="PropertyFieldLongText.h" />
+    <ClInclude Include="PropertyFieldQuaternion.h" />
+    <ClInclude Include="PropertyFieldString.h" />
+    <ClInclude Include="PropertyField_KeyFrame.h" />
+    <ClInclude Include="PropertyGrid.h" />
+    <ClInclude Include="PropertyGroup.h" />
+    <ClInclude Include="TrackerControl.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

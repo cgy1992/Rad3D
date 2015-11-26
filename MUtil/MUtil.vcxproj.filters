@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="PropertyField.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyField_KeyFrame.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFieldBool.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFieldButton.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFieldClass.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFieldColor.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFieldComboBox.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFieldEditBox.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFieldEnum.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFieldFilename.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFieldFloat.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFieldInt.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFieldLongText.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFieldQuaternion.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFieldString.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyGrid.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyGroup.cpp">
+      <Filter>PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="MUtil.cpp" />
+    <ClCompile Include="ColorPickerDialog.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageBoxDialog.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="TrackerControl.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="AllLookFeel.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PropertyGroup.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyField.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyField_KeyFrame.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFieldBool.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFieldButton.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFieldClass.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFieldColor.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFieldComboBox.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFieldEditBox.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFieldEnum.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFieldFilename.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFieldFloat.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFieldInt.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFieldLongText.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFieldQuaternion.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFieldString.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyGrid.h">
+      <Filter>PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="MUtil.h" />
+    <ClInclude Include="ColorPickerDialog.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageBoxDialog.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackerControl.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="AllLookFeel.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="PropertyGrid">
+      <UniqueIdentifier>{bbda1052-1c8a-4173-bf41-cda122847940}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dialog">
+      <UniqueIdentifier>{9204f42a-0562-4563-ad1b-8e645807702b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
