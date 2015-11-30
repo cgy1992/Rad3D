@@ -47,7 +47,7 @@ namespace Rad {
 			if (stream != NULL)
 			{
 				int size = fi->size;
-				byte * data = new byte[size];
+				byte * data = new byte[size + 1];
 
 				stream->Seek(fi->offset);
 				stream->Read(data, size);
@@ -56,7 +56,7 @@ namespace Rad {
 
 				if (fi->flag & MPK_FLAG_COMPRESSED)
 				{
-					byte * uncomp = new byte[fi->unc_size]; 
+					byte * uncomp = new byte[fi->unc_size + 1]; 
 
 					int ret = MPK_Decompress(uncomp, fi->unc_size, data, fi->size);
 					if (ret == -1)
@@ -75,6 +75,8 @@ namespace Rad {
 					data = uncomp;
 					size = fi->unc_size;
 				}
+
+				data[size] = 0;
 
 				return new MemoryStream(data, size, true);
 			}
