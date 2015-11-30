@@ -137,4 +137,24 @@ namespace Rad {
 		}
 	}
 
+	//
+	ThreadStandard::ThreadStandard(Function fn, void * param, bool start)
+		: mFunction(fn)
+		, mParam(param)
+		, Thread(start)
+	{
+	}
+
+	ThreadStandard::~ThreadStandard()
+	{
+	}
+
+	void ThreadStandard::Run()
+	{
+		if (mStatus != STOP)
+		{
+			mFunction(mParam);
+		}
+	}
+
 }

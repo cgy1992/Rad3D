@@ -131,4 +131,21 @@ namespace Rad {
 		STATUS mStatus;
 	};
 
+	class M_ENTRY ThreadStandard : public Thread
+	{
+	public:
+		typedef void (*Function)(void * param);
+
+	public:
+		ThreadStandard(Function fn, void * param, bool start = true);
+		virtual ~ThreadStandard();
+
+		virtual void
+			Run();
+
+	protected:
+		Function mFunction;
+		void * mParam;
+	};
+
 }
