@@ -67,7 +67,7 @@
       <StackReserveSize>12328960</StackReserveSize>
       <ImportLibrary>../../SDK.Win32/lib/$(Configuration)/$(ProjectName).lib</ImportLibrary>
       <AdditionalLibraryDirectories>$(DXSDK_DIR)/lib/x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>MRenderFX.lib;d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent />
     <PostBuildEvent>
