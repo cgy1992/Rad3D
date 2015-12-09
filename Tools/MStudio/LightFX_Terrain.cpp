@@ -1,6 +1,5 @@
 #include "LightFX_Terrain.h"
 #include "LightFX_World.h"
-#include "MUtil.h"
 
 namespace Rad {
 
