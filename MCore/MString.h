@@ -145,8 +145,8 @@ namespace Rad {
 			FindR(const String & str, int offset) const;
 		int				
 			Compare(const String & str) const;
-		void            
-			SplitFileName(String & base, String & path) const;
+		int
+			Match(const String & rk) const;
 		void            
 			Replace(char oldc, char newc);
 		String          

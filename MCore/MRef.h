@@ -1,5 +1,5 @@
 /*
-*	Reference
+*	Reference Counter
 *
 *	Author: SiZhong.Wang, M-001
 *
@@ -11,14 +11,14 @@
 
 namespace Rad {
 
-	class M_ENTRY Ref
+	class M_ENTRY RefCounter
 	{
 	public:
-		Ref() : i_ref_count(0)
+		RefCounter() : i_ref_count(0)
 		{
 		}
 
-		~Ref()
+		~RefCounter()
 		{
 			d_assert(i_ref_count == 0);
 		}
@@ -37,14 +37,14 @@ namespace Rad {
 	};
 
 	//
-	class M_ENTRY RefMT
+	class M_ENTRY RefCounterMT
 	{
 	public:
-		RefMT() : i_ref_count(0)
+		RefCounterMT() : i_ref_count(0)
 		{
 		}
 
-		~RefMT()
+		~RefCounterMT()
 		{
 			d_assert(i_ref_count == 0);
 		}
@@ -62,10 +62,10 @@ namespace Rad {
 
 #define DECLARE_REF() \
 public: \
-	Ref i_reference;
+	RefCounter i_reference;
 
 #define DECLARE_REF_MT() \
 public: \
-	RefMT i_reference;
+	RefCounterMT i_reference;
 }
 

@@ -8,7 +8,7 @@ namespace Rad {
 #define _ref_lock() _ref_mutex.Lock()
 #define _ref_unlock() _ref_mutex.Unlock()
 
-	int RefMT::_refinc()
+	int RefCounterMT::_refinc()
 	{
 		_ref_lock();
 
@@ -19,7 +19,7 @@ namespace Rad {
 		return i_ref_count;
 	}
 
-	int RefMT::_refdec()
+	int RefCounterMT::_refdec()
 	{
 		d_assert(i_ref_count > 0);
 

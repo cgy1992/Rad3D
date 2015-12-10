@@ -247,6 +247,11 @@ namespace Rad {
 			return mStr;
 		}
 
+		char * c_str()
+		{
+			return mStr;
+		}
+
 		const uchar_t * c_wstr() const
 		{
 			static uchar_t buffer[MAX_SIZE];
@@ -256,57 +261,36 @@ namespace Rad {
 			return buffer;
 		}
 
-		char * c_str()
+		bool Match(const FixedString & rk) const
 		{
-			return mStr;
+			const char * left = c_str();
+			const char * right = rk.c_str();
+			int ret = 0;
+
+			while (*right)
+			{
+				ret = (*left - *right);
+				if (ret != 0)
+					break;
+
+				++left, ++right;
+			}
+
+			return ret;
 		}
 
-		int ToInt() const
-		{
-			return atoi(mStr);
-		}
-
-		float ToFloat() const
-		{
-			return (float)atof(mStr);
-		}
-
-		double ToDouble() const
-		{
-			return atof(mStr);
-		}
-
-		bool ToBool() const
-		{
-			return *this == "true" || *this == "True";
-		}
-
-		FixedString & ToLower()
-		{
-			str_lwr(mStr);
-
-			return *this;
-		}
-
-		FixedString & ToUpper()
-		{
-			str_lwr(mStr);
-
-			return *this;
-		}
-
-		int Find(int pos, char c, bool bForward = true) const
+		int Find(char c, int offset, bool forward = true) const
 		{
 			int len = Length();
 
-			if (pos > len)
+			if (offset > len)
 				return -1;
 
 			const char * str = c_str();
 
-			if (bForward)
+			if (forward)
 			{
-				for (int i = pos; i < len; ++i)
+				for (int i = offset; i < len; ++i)
 				{
 					if (str[i] == c)
 						return i;
@@ -326,30 +310,11 @@ namespace Rad {
 			}
 		}
 
-		bool BeginOF(const FixedString & rk) const
+		int Find(const FixedString & rk, int offset = 0) const
 		{
 			const char * dst = c_str();
 			const char * src = rk.c_str();
-
-			while (*dst && *src)
-			{
-				if (*dst != *src)
-					return false;
-
-				++dst, ++src;
-			}
-
-			if (*src == 0)
-				return true;
-
-			return false;
-		}
-
-		int Find(const FixedString & rk, int pos = 0) const
-		{
-			const char * dst = c_str();
-			const char * src = rk.c_str();
-			int index = pos;
+			int index = offset;
 			char eq = 0;
 
 			while (*dst)
@@ -367,46 +332,6 @@ namespace Rad {
 			}
 
 			return eq ? -1 : index;
-		}
-
-		void SplitFileName(FixedString & base, FixedString & path) const
-		{
-			FixedString name = *this;
-
-			name.Replace('\\', '/');
-
-			int len = name.Length();
-			int split = name.Find(len, '/', false);
-
-			if (split != -1)
-			{
-				base = name.SubStr(split + 1, len - split);
-				path = name.SubStr(0, split);
-			}
-			else
-			{
-				base = name;
-				path = ".";
-			}
-		}
-
-		void SplitFileNameR(FixedString & base, FixedString & path)
-		{
-			Replace('\\', '/');
-
-			int len = Length();
-			int split = Find(len, '/', false);
-
-			if (split != -1)
-			{
-				base = SubStr(split + 1, len - split);
-				path = SubStr(0, split);
-			}
-			else
-			{
-				base = *this;
-				path = ".";
-			}
 		}
 
 		void Replace(char oldc, char newc)
@@ -429,77 +354,6 @@ namespace Rad {
 			tmp[size] = 0;
 
 			return tmp;
-		}
-
-		FixedString SubStr(int offset, char cStart, char cEnd) const
-		{
-			int len = Length();
-			int is, ie;
-			if (offset >= len)
-				return "";
-
-			const char * str = c_str();
-			is = offset;
-			if (cStart != 0)
-			{
-				for (is = offset; is < len; is++)
-				{
-					if (str[is] == cStart)
-						break;
-				}
-
-				is++;
-				offset = is;
-			}
-
-			ie = len;
-			if (cEnd != 0)
-			{
-				for (ie = offset; ie < len; ie++)
-				{
-					if (str[ie] == cEnd)
-						break;
-				}
-
-				if (ie >= len)
-					return "";
-			}
-
-			if (is < ie)
-			{
-				return SubStr(is, ie - is);
-			}
-
-			return "";
-		}
-
-		int Split(char c, FixedString & front, FixedString & back) const
-		{
-			front = "";
-			back = "";
-
-			int len = Length();
-			int mid = -1;
-
-			for (int i = 0; i < len; ++i)
-			{
-				if (mStr[i] == c)
-				{
-					mid = i;
-					break;
-				}
-			}
-
-			if (mid != -1)
-			{
-				memcpy(front.c_str(), c_str(), mid);
-				front[mid] = 0;
-
-				memcpy(back.c_str(), c_str() + mid + 1, len - (mid + 1));
-				back[len - (mid + 1)] = 0;
-			}
-
-			return mid;
 		}
 
 		void FromUnicode(const uchar_t * str)

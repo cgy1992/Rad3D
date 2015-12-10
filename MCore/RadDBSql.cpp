@@ -1770,10 +1770,10 @@ namespace Rad {
 		str = str_substring(password.c_str(), 32, str);
 		str = str_substring(mode.c_str(), 32, str);
 
-		if (i_m < RDB_MODE_SUPPER || i_m <= mode.ToInt())
+		if (i_m < RDB_MODE_SUPPER || i_m <= atoi(mode.c_str()))
 			return -255;
 
-		return rdb_createUser(username.c_str(), password.c_str(), mode.ToInt());
+		return rdb_createUser(username.c_str(), password.c_str(), atoi(mode.c_str()));
 	}
 
 	int rsql_engine::r_deleteuser()
@@ -1813,10 +1813,10 @@ namespace Rad {
 			}
 		}
 
-		if (i_m < RDB_MODE_SUPPER || i_m <= mode.ToInt() || i_m < rdb_getUserMode(username.c_str()))
+		if (i_m < RDB_MODE_SUPPER || i_m <= atoi(mode.c_str()) || i_m < rdb_getUserMode(username.c_str()))
 			return -255;
 
-		return rdb_alterUser(username.c_str(), password.c_str(), mode.ToInt());
+		return rdb_alterUser(username.c_str(), password.c_str(), atoi(mode.c_str()));
 	}
 
 	int rsql_engine::r_createtable()
@@ -1832,10 +1832,10 @@ namespace Rad {
 		str = str_substring(classname.c_str(), 32, str);
 		str = str_substring(mode.c_str(), 32, str);
 
-		if (i_m < RDB_MODE_SUPPER || i_m < mode.ToInt())
+		if (i_m < RDB_MODE_SUPPER || i_m < atoi(mode.c_str()))
 			return -255;
 
-		return rdb_createTable(dbname.c_str(), tablename.c_str(), classname.c_str(), mode.ToInt());
+		return rdb_createTable(dbname.c_str(), tablename.c_str(), classname.c_str(), atoi(mode.c_str()));
 	}
 
 	int rsql_engine::r_deletetable()

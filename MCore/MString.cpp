@@ -276,31 +276,34 @@ namespace Rad {
 		const char * right = str.c_str();
 		int ret = 0;
 
-		while (!(ret = (*left - *right)) && (*left))
+		while (*left)
+		{
+			ret = *left - *right;
+			if (ret != 0)
+				break;
+
 			++left, ++right;
+		}
 
 		return ret;
 	}
 
-	void String::SplitFileName(String & base, String & path) const
+	int String::Match(const String & str) const
 	{
-		String name = *this;
+		const char * left = c_str();
+		const char * right = str.c_str();
+		int ret = 0;
 
-		name.Replace('\\', '/');
-
-		int len = name.Length();
-		int split = name.FindR('/', 0);
-
-		if (split != -1)
+		while (*right)
 		{
-			base = name.SubStr(split + 1, len - split);
-			path = name.SubStr(0, split);
+			ret = (*left - *right);
+			if (ret != 0)
+				break;
+
+			++left, ++right;
 		}
-		else
-		{
-			base = name;
-			path = ".";
-		}
+
+		return ret;
 	}
 
 	void String::Replace(char oldc, char newc)
