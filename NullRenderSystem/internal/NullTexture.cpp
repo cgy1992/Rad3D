@@ -187,7 +187,7 @@ namespace Rad {
 
 		Unlock();
 
-		return true;
+		return hr;
 	}
 
 	bool NullTexture::GetColorData(Float4 & color, int u, int v)
@@ -289,6 +289,32 @@ namespace Rad {
 				byte pixel64[64];
 
 				ETC_DecodeBlock(pixel64, data + offset * blockSize, mFormat);
+
+				int j = u - blockx * 4, i = u - blockx * 4;
+
+				index = (j * 16) + i * 4;
+
+				unsigned char r = data[index + 0];
+				unsigned char g = data[index + 1];
+				unsigned char b = data[index + 2];
+				unsigned char a = data[index + 3];
+
+				color.r = r / 255.0f;
+				color.g = g / 255.0f;
+				color.b = b / 255.0f;
+				color.a = a / 255.0f;
+			}
+			break;
+
+		case ePixelFormat::PVRTC_RGB:
+		case ePixelFormat::PVRTC_RGBA:
+			{
+				int blockSize = 16;
+				int blockx = (u + 3) / 4, blocky = (v + 3) / 4;
+				int offset = blocky * ((mWidth + 3) / 4) + blockx;
+				byte pixel64[64];
+
+				PVR_DecodeBlock(pixel64, data + offset * blockSize, mFormat);
 
 				int j = u - blockx * 4, i = u - blockx * 4;
 
