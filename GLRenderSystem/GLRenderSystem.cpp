@@ -50,8 +50,8 @@ namespace Rad {
 		mCaps.pixelFormats[ePixelFormat::DXT5_RGBA] = false;
 		mCaps.pixelFormats[ePixelFormat::ETC1_RGB] = false;
 		//mCaps.pixelFormats[ePixelFormat::ETC2_RGBA] = false;
-		mCaps.pixelFormats[ePixelFormat::PVRTC1_RGB] = false;
-		//mCaps.pixelFormats[ePixelFormat::PVRTC1_RGBA] = false;
+		mCaps.pixelFormats[ePixelFormat::PVRTC_RGB] = false;
+		mCaps.pixelFormats[ePixelFormat::PVRTC_RGBA] = false;
 
 		if (strstr(extensions, "GL_EXT_texture_compression_dxt1") != NULL ||
 			strstr(extensions, "GL_EXT_texture_compression_s3tc") != NULL)
@@ -72,9 +72,10 @@ namespace Rad {
 
 		if (strstr(extensions, "GL_IMG_texture_compression_pvrtc") != NULL)
 		{
-			d_printf("-: PixelFormat PVRTC1_RGB PVRTC1_RGBA support!");
+			d_printf("-: PixelFormat PVRTC_RGB, PVRTC_RGBA support!");
 
-			mCaps.pixelFormats[ePixelFormat::PVRTC1_RGB] = true;
+			mCaps.pixelFormats[ePixelFormat::PVRTC_RGB] = true;
+			mCaps.pixelFormats[ePixelFormat::PVRTC_RGBA] = true;
 		}
 
 #ifndef GL_COMPRESSED_RGB_S3TC_DXT1_EXT

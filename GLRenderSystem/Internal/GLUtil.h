@@ -169,13 +169,13 @@ namespace Rad {
 #endif
 
 #ifdef GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG
-			case ePixelFormat::PVRTC1_RGB:
+			case ePixelFormat::PVRTC_RGB:
 				return GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG;
 #endif
 
 #ifdef GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG
-			//case ePixelFormat::PVRTC1_RGB:
-				//return GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG;
+			case ePixelFormat::PVRTC_RGBA:
+				return GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG;
 #endif
 			}
 
