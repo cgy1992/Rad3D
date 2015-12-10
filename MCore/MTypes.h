@@ -298,9 +298,8 @@ namespace Rad {
 			//ETC2_RGB
 			//ETC2_RGBA
 
-			PVRTC1_RGB,
-			//PVRTC2_RGB,
-			//PVRTC2_RGBA,
+			PVRTC_RGB,
+			PVRTC_RGBA,
 
 			// DepthBuffer format
 			D16,
