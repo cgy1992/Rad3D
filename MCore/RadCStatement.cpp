@@ -238,4 +238,140 @@ namespace Rad {
 	//
 	ImplementRTTI(rstat_while, rstat_if);
 
+	//
+	/*
+	ImplementRTTI(rstat_for, rstat_exp);
+
+	rstat_for::rstat_for()
+	{
+		b_first = false;
+		i_first = NULL;
+		i_next = NULL;
+	}
+
+	rstat_for::~rstat_for()
+	{
+		safe_delete (i_first);
+		safe_delete (i_next);
+	}
+
+	void rstat_for::build()
+	{
+		radc_get_compiler();
+
+		compiler.token->Clear();
+		compiler.token->Parse((char *)str);
+
+		Token::iterator beg = compiler.token->Begin();
+		Token::iterator end = compiler.token->End();
+
+		int d = 0;
+		Token::iterator i = beg;
+		while (i < end)
+		{
+			if (i->type() == radc_enum::op_left_b)
+			{
+				d += 1;
+			}
+			else if (i->type() == radc_enum::op_right_b)
+			{
+				d -= 1;
+			}
+			else if (i->type() == radc_enum::op_comma)
+			{
+				if (d == 0)
+				{
+					i_first = new radc_exp;
+					i_first->parse(beg, i, this);
+					break;
+				}
+			}
+
+			i = i.next();
+		}
+
+		if (i_first == NULL)
+		{
+			compiler.set_error("Error: [%d], 表达式错误.", line);
+			return ;
+		}
+
+		beg = i.next(), i = beg;
+		while (i < end)
+		{
+			if (i->type() == radc_enum::op_left_b)
+			{
+				d += 1;
+			}
+			else if (i->type() == radc_enum::op_right_b)
+			{
+				d -= 1;
+			}
+			else if (i->type() == radc_enum::op_comma)
+			{
+				if (d == 0)
+				{
+					exp_tree = new radc_exp;
+					exp_tree->parse(beg, i, this);
+					break;
+				}
+			}
+		}
+
+		if (exp_tree == NULL)
+		{
+			compiler.set_error("Error: [%d], 表达式错误.", line);
+			return ;
+		}
+
+		beg = i.next();
+		if (beg >= end)
+		{
+			compiler.set_error("Error: [%d], 表达式错误.", line);
+			return ;
+		}
+
+		i_next = new radc_exp;
+		i_next->parse(beg, end, this);
+
+		i_first->build(this);
+		exp_tree->build(this);
+		i_next->build(this);
+	}
+
+	int rstat_for::execute()
+	{
+		radc_get_compiler();
+
+		if (!b_first)
+		{
+			Array<radc_var> _r;
+			i_next->execute(_r, this);
+		}
+		else
+		{
+			Array<radc_var> _r;
+			i_first->execute(_r, this);
+			b_first = false;
+		}
+
+		Array<radc_var> results;
+		exp_tree->execute(results, this);
+
+		if (results.Size() != 1)
+		{
+			compiler.set_error("Error: [%d] 条件表达式错误.", line);
+			return 0;
+		}
+
+		if (results[0].getType() != radc_enum::type_real)
+		{
+			compiler.set_error("Error: [%d] 条件表达式错误.", line);
+			return 0;
+		}
+
+		return results[0].getReal() != 0 ? 0 : jump;
+	}
+	*/
+
 }

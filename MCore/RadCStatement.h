@@ -131,4 +131,23 @@ namespace Rad {
 		virtual ~rstat_while() {}
 	};
 
+	/*
+	struct rstat_for : public rstat_exp
+	{
+		DECLARE_RTTI();
+
+		rstat_for();
+		virtual ~rstat_for();
+
+		virtual void
+			build();
+		virtual int 
+			execute();
+
+		bool b_first;
+		radc_exp * i_first;
+		radc_exp * i_next;
+	};
+	*/
+
 }
