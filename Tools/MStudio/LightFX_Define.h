@@ -70,15 +70,13 @@ namespace Rad {
 		}
 	};
 
-	class FX_Entity;
-
 	struct FX_Contract
 	{
 		float td;
 		float tu, tv;
 		Float3 tn;
 		int triIndex;
-		FX_Entity * entity;
+		void * entity;
 	};
 
 
