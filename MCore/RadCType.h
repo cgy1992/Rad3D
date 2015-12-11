@@ -216,7 +216,7 @@ namespace Rad {
 
 #define RADC_REG2(name, pfn) { -1, name, pfn, NULL }
 
-#ifndef RADC_NO_REG_INFO
+#ifndef RADC_NO_INFO
 #define RADC_REG(name, pfn, desc) { -1, name, pfn, desc }
 #else
 #define RADC_REG(name, pfn, desc) RADC_REG2(name, pfn)

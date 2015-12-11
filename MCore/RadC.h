@@ -27,11 +27,13 @@ namespace Rad {
 	M_ENTRY void
 		radc_regFunc(const char * name, radc_function pfn, const char * desc = NULL);
 	M_ENTRY void
-		radc_regLib(const char * libname, radc_reg * regs);
+		radc_regLib(const char * libname, radc_reg * regs, const char * parent);
 	M_ENTRY int
 		radc_getRegSize();
 	M_ENTRY const radc_reg &
 		radc_getReg(int i);
+	M_ENTRY int
+		radc_getLib(const FixedString32 & name);
 	M_ENTRY FixedString32
 		radc_getLibName(int i);
 
@@ -106,4 +108,5 @@ namespace Rad {
 	(args)->getType(5) == type5 && \
 	(args)->getType(6) == type6 && \
 	(args)->getType(7) == type7
+
 }

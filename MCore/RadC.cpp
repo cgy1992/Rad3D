@@ -12,7 +12,7 @@ namespace Rad {
 		compiler.init();
 
 		radc_regFunc("Print", radc_print, NULL);
-		radc_regLib("Math", radc_mathlib);
+		radc_regLib("Math", radc_mathlib, NULL);
 	}
 
 	void radc_shutdown()
@@ -58,18 +58,39 @@ namespace Rad {
 		}
 	}
 
-	void radc_regLib(const char * libname, radc_reg * regs)
+	void radc_regLib(const char * libname, radc_reg * regs, const char * parent)
 	{
 		d_assert (regs != NULL && libname != NULL);
 
+		int libId = compiler.libs.Size();
 		String prefix = libname, funcname;
+
 		prefix += ":";
+
+		if (parent != NULL)
+		{
+			int parentLib = radc_getLib(parent);
+			d_assert (parentLib != -1);
+
+			for (int i = 0; i < compiler.functions.Size(); ++i)
+			{
+				radc_reg reg = compiler.functions[i].value;
+				if (reg._lib == parentLib)
+				{
+					funcname = prefix + reg.name;
+
+					reg._lib = libId;
+
+					compiler.reg_function(funcname.c_str(), reg);
+				}
+			}
+		}
 
 		for (int i = 0; regs[i].name != NULL && regs[i].pfn != NULL; ++i)
 		{
 			funcname = prefix + regs[i].name;
 
-			regs[i]._lib = compiler.libs.Size();
+			regs[i]._lib = libId;
 
 			compiler.reg_function(funcname.c_str(), regs[i]);
 		}
@@ -88,6 +109,17 @@ namespace Rad {
 	const radc_reg & radc_getReg(int i)
 	{
 		return compiler.functions[i].value;
+	}
+
+	int radc_getLib(const FixedString32 & name)
+	{
+		for (int i = 0; i < compiler.libs.Size(); ++i)
+		{
+			if (compiler.libs[i] == name)
+				return i;
+		}
+
+		return -1;
 	}
 
 	FixedString32 radc_getLibName(int i)
