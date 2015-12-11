@@ -261,6 +261,20 @@ namespace Rad {
 			return buffer;
 		}
 
+		FixedString & ToLower()
+		{
+			str_lwr(mStr);
+
+			return *this;
+		}
+
+		FixedString & ToUpper()
+		{
+			str_upr(mStr);
+
+			return *this;
+		}
+
 		bool Match(const FixedString & rk) const
 		{
 			const char * left = c_str();
