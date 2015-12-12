@@ -106,7 +106,7 @@ int ShadowComponent::Update(float time)
 			pTerrain->GetHeightAt(y, x, z);
 			pTerrain->GetNormalAt(n, x, z);
 
-			vtx->position = Float3(x, y, z) + n * UNIT_METRES * 0.05f;
+			vtx->position = Float3(x, y, z) + n * METER_LEN * 0.05f;
 			vtx->uvn = Float3(i * inv_grid, j * inv_grid, n.y);
 			++vtx;
 		}

@@ -7,7 +7,7 @@ Actor::Actor(const char * filename)
 	mMesh = new Mesh;
 	mMesh->SetFilename(filename);
 
-	mMoveSpeed = 3.0f * UNIT_METRES;
+	mMoveSpeed = 3.0f * METER_LEN;
 	mRotateSpeed = 360.0f * 2.0f;
 
 	mMotionComponent = new MotionComponent;

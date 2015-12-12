@@ -122,7 +122,7 @@ public:
 	void OnDebugRender()
 	{
 		Mat4 form;
-		form.MakeTranslate(0, 0.15f * UNIT_METRES, 0);
+		form.MakeTranslate(0, 0.15f * METER_LEN, 0);
 
 		// Nav Triangle
 		RenderSystem::Instance()->SetRenderState(eFillMode::FRAME, eCullMode::NONE);
@@ -149,7 +149,7 @@ public:
 
 			Sphere sph;
 			sph.center = p;
-			sph.radius = 0.15f * UNIT_METRES;
+			sph.radius = 0.15f * METER_LEN;
 
 			Float4 color = Float4(1, 1, 0); 
 			RenderHelper::Instance()->DebugDrawSphere(sph, color, form);
@@ -163,7 +163,7 @@ public:
 
 			Sphere sph;
 			sph.center = p;
-			sph.radius = 0.15f * UNIT_METRES;
+			sph.radius = 0.15f * METER_LEN;
 
 			Float4 color = (path[i].flag & NAV_PATH_FLAG_SMOOTH) ? Float4(0, 1, 0) : Float4(1, 1, 0); 
 			RenderHelper::Instance()->DebugDrawSphere(sph, color, form);

@@ -12,9 +12,9 @@ namespace Rad {
 		, mShadowContext(NULL)
 	{
 		mMapSize = mapSize;
-		mDistance = 15 * UNIT_METRES;
+		mDistance = 15 * METER_LEN;
 		mFadeRatio = 0.8f;
-		mOffset = 30 * UNIT_METRES;
+		mOffset = 30 * METER_LEN;
 		mColor = Float4(0.5f, 0.5f, 0.5f);
 
 		mShadowCamera = new Camera;
