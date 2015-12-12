@@ -355,7 +355,7 @@ namespace Rad {
 
 	ParticleFX::ParticleFX()
 	{
-		radc_regLib("FX", FX_LIB);
+		radc_regLib("FX", FX_LIB, NULL);
 
 		Root::REG_OBJECT_T<PS_BillboardSet>();
 		Root::REG_OBJECT_T<PS_RibbonSet>();

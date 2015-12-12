@@ -52,8 +52,8 @@ namespace Rad {
 		mBlendMode = PS_BlendMode::ADD;
 		mType = PS_MeshType::FILE_NAME;
 		mCenter = Float3::Zero;
-		mRadius = UNIT_METRES * 0.1f;
-		mHeight = UNIT_METRES * 0.1f;
+		mRadius = METER_LEN * 0.1f;
+		mHeight = METER_LEN * 0.1f;
 		mRings = 16;
 		mSegments = 16;
 

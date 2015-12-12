@@ -17,7 +17,7 @@ namespace Rad {
 	PS_LightSet::PS_LightSet()
 		: mLightType(eLightType::POINT)
 		, mAttenStart(0)
-		, mAttenEnd(1 * UNIT_METRES)
+		, mAttenEnd(1 * METER_LEN)
 		, mAttenFallOff(1)
 		, mSpotInner(1)
 		, mSpotOuter(0.7071f)
