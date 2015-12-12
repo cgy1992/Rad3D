@@ -35,7 +35,7 @@ namespace Rad {
 			Color = Float3(0, 0, 0);
 
 			AttenStart = 0;
-			AttenEnd = 1 * UNIT_METRES;
+			AttenEnd = 1 * METER_LEN;
 			AttenFallOff = 1;
 
 			SpotInner = 1;

@@ -257,7 +257,7 @@ void TerrainPickerPanel::_updateGeomety(int xIndex, int zIndex)
 
 		for (int x = sx; x <= ex; ++x)
 		{
-			*v++ = pTerrain->_getPosition(x, y) + Float3(0, 0.01f * UNIT_METRES, 0);
+			*v++ = pTerrain->_getPosition(x, y) + Float3(0, 0.01f * METER_LEN, 0);
 		}
 	}
 	mRenderOp[0].vertexBuffers[0]->Unlock();
@@ -270,7 +270,7 @@ void TerrainPickerPanel::_updateGeomety(int xIndex, int zIndex)
 
 		for (int x = sx; x <= ex; ++x)
 		{
-			*v++ = pTerrain->_getPosition(x, y) + Float3(0, 0.01f * UNIT_METRES, 0);
+			*v++ = pTerrain->_getPosition(x, y) + Float3(0, 0.01f * METER_LEN, 0);
 		}
 	}
 	mRenderOp[1].vertexBuffers[0]->Unlock();
@@ -283,7 +283,7 @@ void TerrainPickerPanel::_updateGeomety(int xIndex, int zIndex)
 
 		for (int y = sy; y <= ey; ++y)
 		{
-			*v++ = pTerrain->_getPosition(x, y) + Float3(0, 0.01f * UNIT_METRES, 0);
+			*v++ = pTerrain->_getPosition(x, y) + Float3(0, 0.01f * METER_LEN, 0);
 		}
 	}
 	mRenderOp[2].vertexBuffers[0]->Unlock();
@@ -296,7 +296,7 @@ void TerrainPickerPanel::_updateGeomety(int xIndex, int zIndex)
 
 		for (int y = sy; y <= ey; ++y)
 		{
-			*v++ = pTerrain->_getPosition(x, y) + Float3(0, 0.01f * UNIT_METRES, 0);
+			*v++ = pTerrain->_getPosition(x, y) + Float3(0, 0.01f * METER_LEN, 0);
 		}
 	}
 	mRenderOp[3].vertexBuffers[0]->Unlock();

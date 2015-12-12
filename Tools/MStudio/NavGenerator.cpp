@@ -64,8 +64,8 @@ int NavGenerator::PickPoint(const Ray & ray)
 		const Float3 & p = mData->Points[i];
 
 		Sphere sph;
-		sph.center = p + Float3(0, 0.15f * UNIT_METRES, 0);
-		sph.radius = 0.15f * UNIT_METRES;
+		sph.center = p + Float3(0, 0.15f * METER_LEN, 0);
+		sph.radius = 0.15f * METER_LEN;
 
 		if (ray.Intersect(&dist, sph))
 		{
@@ -95,13 +95,13 @@ void NavGenerator::DeleteEdge(const Ray & ray)
 
 		Obb obb;
 		obb.center = (pa + pb) / 2;
-		obb.center.y += 0.15f * UNIT_METRES;
+		obb.center.y += 0.15f * METER_LEN;
 		
 		obb.axis[0] = dir;
 		obb.axis[1] = Float3(0, 1, 0);
 		obb.axis[2] = Float3::Cross(obb.axis[0], obb.axis[1]);
 		
-		obb.extent = Float3(length * 0.5f, 0.15f * UNIT_METRES, 0.15f * UNIT_METRES);
+		obb.extent = Float3(length * 0.5f, 0.15f * METER_LEN, 0.15f * METER_LEN);
 
 		float dist = 0;
 		if (ray.Intersect(&dist, obb))
@@ -122,13 +122,13 @@ void NavGenerator::LookAtError()
 		{
 			Float3 center = (mData->Points[e.pointId[0]] + mData->Points[e.pointId[1]]) / 2;
 
-			float mMinDist = 0 * UNIT_METRES;
-			float mMaxDist = 20 * UNIT_METRES;
+			float mMinDist = 0 * METER_LEN;
+			float mMaxDist = 20 * METER_LEN;
 
 			float mMinPitchAngle = 0;
 			float mMaxPitchAngle = 60;
 
-			float mDist = 12 * UNIT_METRES;
+			float mDist = 12 * METER_LEN;
 			float mYawDegree = 0;
 			float mPitchDegree = 45;
 
@@ -160,7 +160,7 @@ void NavGenerator::LookAtError()
 void NavGenerator::OnDebugRender()
 {
 	Mat4 form;
-	form.MakeTranslate(0, 0.15f * UNIT_METRES, 0);
+	form.MakeTranslate(0, 0.15f * METER_LEN, 0);
 
 	if (mEditMode)
 	{
@@ -172,7 +172,7 @@ void NavGenerator::OnDebugRender()
 
 			Sphere sph;
 			sph.center = p;
-			sph.radius = 0.15f * UNIT_METRES;
+			sph.radius = 0.15f * METER_LEN;
 
 			if (World::Instance()->MainCamera()->GetVisibility(sph) == Camera::VB_NONE)
 				continue ;
@@ -263,7 +263,7 @@ void NavGenerator::OnDebugRender()
 
 			Sphere sph;
 			sph.center = p;
-			sph.radius = 0.15f * UNIT_METRES;
+			sph.radius = 0.15f * METER_LEN;
 
 			RenderHelper::Instance()->DebugDrawSphere(sph, Float4(1, 1, 0), form);
 		}
@@ -276,7 +276,7 @@ void NavGenerator::OnDebugRender()
 
 			Sphere sph;
 			sph.center = p;
-			sph.radius = 0.15f * UNIT_METRES;
+			sph.radius = 0.15f * METER_LEN;
 
 			Float4 color = (path[i].flag & NAV_PATH_FLAG_SMOOTH) ? Float4(0, 1, 0) : Float4(1, 1, 0); 
 			RenderHelper::Instance()->DebugDrawSphere(sph, color, form);

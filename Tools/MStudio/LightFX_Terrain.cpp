@@ -264,9 +264,9 @@ namespace Rad {
 				len = MAX_FLOAT;
 			}
 
-			ray.orig = v.Position + ray.dir * UNIT_METRES * 0.01f;
+			ray.orig = v.Position + ray.dir * METER_LEN * 0.01f;
 
-			if (len > 0.01f * UNIT_METRES)
+			if (len > 0.01f * METER_LEN)
 			{
 				FX_Contract contract;
 				if (FX_World::Instance()->RayCheck(contract, ray, len, FX_Flag::MESH))

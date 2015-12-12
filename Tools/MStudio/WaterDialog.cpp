@@ -33,7 +33,7 @@ WaterDialog::~WaterDialog()
 
 void WaterDialog::DoModal(Water * pWater)
 {
-	float gridSize = UNIT_METRES;
+	float gridSize = METER_LEN;
 	int xGridCount = 32;
 	int zGridCount = 32;
 

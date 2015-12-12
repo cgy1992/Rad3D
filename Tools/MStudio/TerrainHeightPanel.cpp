@@ -24,8 +24,8 @@ TerrainHeightPanel::TerrainHeightPanel()
 
 	//
 	mOp = OP_UP;
-	mBrushSize = 5.0f * UNIT_METRES;
-	mBrushDensity = 0.1f * UNIT_METRES;
+	mBrushSize = 5.0f * METER_LEN;
+	mBrushDensity = 0.1f * METER_LEN;
 	mBrushPosition = Float3(0, 0, 0);
 	mShaderFX_Brush = ShaderFXManager::Instance()->Load("TerrainBrush", "Shader/TerrainBrush.mfx");
 	d_assert (mShaderFX_Brush != NULL && mShaderFX_Brush->GetPassCount());

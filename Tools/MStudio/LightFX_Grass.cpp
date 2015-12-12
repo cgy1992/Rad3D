@@ -36,10 +36,10 @@ namespace Rad {
 			lightBound.maximum = pLight->Position + lightExtend;
 
 			RectF rect;
-			rect.x1 = lightBound.minimum.x - UNIT_METRES;
-			rect.y1 = lightBound.minimum.z - UNIT_METRES;
-			rect.x2 = lightBound.maximum.x + UNIT_METRES;
-			rect.y2 = lightBound.maximum.z + UNIT_METRES;
+			rect.x1 = lightBound.minimum.x - METER_LEN;
+			rect.y1 = lightBound.minimum.z - METER_LEN;
+			rect.x2 = lightBound.maximum.x + METER_LEN;
+			rect.y2 = lightBound.maximum.z + METER_LEN;
 
 			return mRect.Intersect(rect);
 		}
@@ -81,7 +81,7 @@ namespace Rad {
 					float len = 0;
 					Ray ray;
 
-					ray.orig = v.Position + v.Normal * UNIT_METRES * 0.01f;
+					ray.orig = v.Position + v.Normal * METER_LEN * 0.01f;
 
 					if (pLight->Type != eLightType::DIRECTION)
 					{
@@ -94,7 +94,7 @@ namespace Rad {
 						len = MAX_FLOAT;
 					}
 
-					if (len > 0.01f * UNIT_METRES)
+					if (len > 0.01f * METER_LEN)
 					{
 						FX_Contract contract;
 						if (FX_World::Instance()->RayCheck(contract, ray, len, FX_Flag::MESH))

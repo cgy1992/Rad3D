@@ -31,7 +31,7 @@ TerrainLayerPanel::TerrainLayerPanel()
 	mGrid_Layer->SetAlign(MGUI::eAlign::H_CENTER | MGUI::eAlign::V_STRETCH);
 
 	//
-	mBrushSize = 2 * UNIT_METRES;
+	mBrushSize = 2 * METER_LEN;
 	mBrushDensity = 0.2f;
 	mBrushPosition = Float3(0, 0, 0);
 	mShaderFX_Brush = ShaderFXManager::Instance()->Load("TerrainBrush", "Shader/TerrainBrush.mfx");

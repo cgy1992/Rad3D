@@ -97,7 +97,7 @@ namespace Rad {
 			for (int i = 0; i < hd.Size(); ++i)
 			{
 				Ray ray;
-				ray.orig = v.Position + v.Normal * 0.01f * UNIT_METRES;
+				ray.orig = v.Position + v.Normal * 0.01f * METER_LEN;
 				ray.dir = Float3(hd[i].x, hd[i].y, hd[i].z);
 				ray.dir.TransformN(form);
 
@@ -122,7 +122,7 @@ namespace Rad {
 			for (int i = 0; i < ld.Size(); ++i)
 			{
 				Ray ray;
-				ray.orig = v.Position + v.Normal * 0.01f * UNIT_METRES;
+				ray.orig = v.Position + v.Normal * 0.01f * METER_LEN;
 				ray.dir = Float3(ld[i].x, ld[i].y, ld[i].z);
 				ray.dir.TransformN(form);
 

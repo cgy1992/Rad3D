@@ -21,11 +21,11 @@ RenderViewer::RenderViewer()
 	int index = 0;
 	float * data = (float *)pMeshBuffer->GetRenderOp()->vertexBuffers[0]->Lock(eLockFlag::WRITE);
 	{
-		float _s = -GRID_SIZE / 2 * UNIT_METRES;
-		float _e = GRID_SIZE / 2 * UNIT_METRES;
+		float _s = -GRID_SIZE / 2 * METER_LEN;
+		float _e = GRID_SIZE / 2 * METER_LEN;
 
 		float y = _s;
-		float dy = UNIT_METRES;
+		float dy = METER_LEN;
 		for (int i = 0; i < GRID_SIZE + 1; ++i)
 		{
 			data[index++] = _s; data[index++] = y;
@@ -35,7 +35,7 @@ RenderViewer::RenderViewer()
 		}
 
 		float x = _s;
-		float dx = UNIT_METRES;
+		float dx = METER_LEN;
 		for (int i = 0; i < GRID_SIZE + 1; ++i)
 		{
 			data[index++] = x; data[index++] = _s;

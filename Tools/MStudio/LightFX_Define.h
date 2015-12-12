@@ -157,13 +157,13 @@ namespace Rad {
 
 			AOEnable = false;
 			AOLevel = FX_AOLevel::HIGH;
-			AORadius = UNIT_METRES;
+			AORadius = METER_LEN;
 			AOColor = Float3(0.3f, 0.3f, 0.3f);
 			AOStrength = 5.0f;
 
 			AOGrassEnable = false;
-			AOGrassRadius = 0.8f * UNIT_METRES;
-			AOGrassFactory = 2.5f * UNIT_METRES;
+			AOGrassRadius = 0.8f * METER_LEN;
+			AOGrassFactory = 2.5f * METER_LEN;
 			AOGrassColor = Float3(0.3f, 0.3f, 0.3f);
 
 			AutoShutdown = false;

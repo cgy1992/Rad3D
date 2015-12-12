@@ -55,9 +55,9 @@ void Editor::Update()
 
 	Node * cam = World::Instance()->MainCamera();
 	float frameTime = Root::Instance()->GetFrameTime();
-	float camMoveStep = frameTime * UNIT_METRES * 10;
+	float camMoveStep = frameTime * METER_LEN * 10;
 	float camRotateStep = frameTime * 0.1f;
-	float camWheelStep = frameTime * UNIT_METRES;
+	float camWheelStep = frameTime * METER_LEN;
 
 	if (MGUI::InputManager::Instance()->GetKeyFocusedWidget() == NULL && !mInputMasker->IsVisible())
 	{
@@ -314,7 +314,7 @@ Float3 Editor::GetHitPosition(float x, float y)
 {
 	Ray ray = World::Instance()->MainCamera()->GetViewportRay(x, y);
 
-	return ray.orig + ray.dir * 20 * UNIT_METRES;
+	return ray.orig + ray.dir * 20 * METER_LEN;
 }
 
 void Editor::SetSelectNode(Node * obj)
@@ -446,7 +446,7 @@ void Editor::OnPickNode()
 
 	float dist = 0;
 	Ray ray = World::Instance()->MainCamera()->GetViewportRay(pt.x, pt.y);
-	const float ray_len = 100 * UNIT_METRES;
+	const float ray_len = 100 * METER_LEN;
 
 	Node * pSelectedShape = Editor::Instance()->RayCheck(dist, ray, ray_len, EDITOR_NODE_PICK);
 	if (pSelectedShape != NULL)

@@ -2,13 +2,13 @@
 
 CameraController::CameraController()
 {
-	mMinDist = 0 * UNIT_METRES;
-	mMaxDist = 20 * UNIT_METRES;
+	mMinDist = 0 * METER_LEN;
+	mMaxDist = 20 * METER_LEN;
 
 	mMinPitchAngle = 0;
 	mMaxPitchAngle = 60;
 
-	mDist = 12 * UNIT_METRES;
+	mDist = 12 * METER_LEN;
 	mYawDegree = 0;
 	mPitchDegree = 45;
 

@@ -7,9 +7,9 @@
 GrassModule::GrassModule()
 	: EditorModule("Grass")
 {
-	mBrushSize = 0.5f * UNIT_METRES;
-	mMinSize = 0.5f * UNIT_METRES;
-	mMaxSize = 0.8f * UNIT_METRES;
+	mBrushSize = 0.5f * METER_LEN;
+	mMinSize = 0.5f * METER_LEN;
+	mMaxSize = 0.8f * METER_LEN;
 	mImageBox_Selected = NULL;
 
 	mLayout = MGUI::Layout::Load("GrassPanel.layout", NULL);
@@ -102,12 +102,12 @@ void GrassModule::OnUpdate()
 
 	if (IKeyboard::Instance()->KeyUp(InputCode::KC_ADD))
 	{
-		mBrushSize += 0.1f * UNIT_METRES;
+		mBrushSize += 0.1f * METER_LEN;
 	}
 	else if (IKeyboard::Instance()->KeyUp(InputCode::KC_SUBTRACT))
 	{
-		mBrushSize -= 0.1f * UNIT_METRES;
-		mBrushSize = Max(0.1f * UNIT_METRES, mBrushSize);
+		mBrushSize -= 0.1f * METER_LEN;
+		mBrushSize = Max(0.1f * METER_LEN, mBrushSize);
 	}
 	else if (IKeyboard::Instance()->KeyPressed(InputCode::KC_LCONTROL))
 	{
@@ -115,7 +115,7 @@ void GrassModule::OnUpdate()
 		{
 			float dy = IMouse::Instance()->GetPositionDiff().y;
 
-			mBrushSize += -dy * 0.05f * UNIT_METRES;
+			mBrushSize += -dy * 0.05f * METER_LEN;
 		}
 	}
 	else if (IMouse::Instance()->KeyUp(InputCode::MKC_LEFT) && IKeyboard::Instance()->KeyPressed(InputCode::KC_LSHIFT))

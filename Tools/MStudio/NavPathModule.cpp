@@ -132,7 +132,7 @@ void NavPathModule::OnDBClick(const MGUI::MouseEvent *)
 
 			float dist = 0;
 			Ray ray = World::Instance()->MainCamera()->GetViewportRay(pt.x, pt.y);
-			if (Editor::Instance()->RayCheckEx(dist, ray, 100 * UNIT_METRES, EDITOR_NODE_PICK))
+			if (Editor::Instance()->RayCheckEx(dist, ray, 100 * METER_LEN, EDITOR_NODE_PICK))
 			{
 				Float3 point = ray.orig + ray.dir * dist;
 
@@ -153,7 +153,7 @@ void NavPathModule::OnDBClick(const MGUI::MouseEvent *)
 
 			float dist = 0;
 			Ray ray = World::Instance()->MainCamera()->GetViewportRay(pt.x, pt.y);
-			if (Editor::Instance()->RayCheckEx(dist, ray, 100 * UNIT_METRES, EDITOR_NODE_PICK))
+			if (Editor::Instance()->RayCheckEx(dist, ray, 100 * METER_LEN, EDITOR_NODE_PICK))
 			{
 				Float3 point = ray.orig + ray.dir * dist;
 
@@ -199,7 +199,7 @@ void NavPathModule::OnDBClick(const MGUI::MouseEvent *)
 
 		float dist = 0;
 		Ray ray = World::Instance()->MainCamera()->GetViewportRay(pt.x, pt.y);
-		if (Editor::Instance()->RayCheckEx(dist, ray, 100 * UNIT_METRES, EDITOR_NODE_PICK))
+		if (Editor::Instance()->RayCheckEx(dist, ray, 100 * METER_LEN, EDITOR_NODE_PICK))
 		{
 			Float3 point = ray.orig + ray.dir * dist;
 
