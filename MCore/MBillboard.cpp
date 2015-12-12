@@ -10,7 +10,7 @@ namespace Rad {
 
 	Billboard::Billboard()
 		: Node("Billboard")
-		, mSize(UNIT_METRES, UNIT_METRES)
+		, mSize(METER_LEN, METER_LEN)
 		, mTexcoord(0, 0, 1, 1)
 		, mColor(1, 1, 1, 1)
 		, mNeedUpdate(true)

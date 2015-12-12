@@ -13,7 +13,7 @@
 
 namespace Rad {
 
-	#define UNIT_METRES	100.0f
+	#define METER_LEN	100.0f
 
 #ifndef PI
 	#define PI			3.141592654f

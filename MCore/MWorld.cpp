@@ -43,8 +43,8 @@ namespace Rad {
 		MainLightSpecular = Float3(0.0f, 0.0f, 0.0f);
 		MainLightStrength = 1;
 
-		FogStart = 50 * UNIT_METRES;
-		FogEnd = 200 * UNIT_METRES;
+		FogStart = 50 * METER_LEN;
+		FogEnd = 200 * METER_LEN;
 		FogColor = Float3(1.0f, 1.0f, 1.0f);
 
 		GrassWaveDir = Float2(1, 0);

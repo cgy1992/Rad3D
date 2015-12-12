@@ -45,8 +45,8 @@ namespace Rad {
 		: Node("Sound")
 	{
 		mVolume = 1;
-		mAttenStart = 5 * UNIT_METRES;
-		mAttenEnd = 20 * UNIT_METRES;
+		mAttenStart = 5 * METER_LEN;
+		mAttenEnd = 20 * METER_LEN;
 
 		mChannel = -1;
 	}

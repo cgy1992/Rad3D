@@ -20,7 +20,7 @@ namespace Rad {
 		IComponent::Attach(owner);
 
 		mBillboard = new Billboard;
-		mBillboard->SetSize(Float2(UNIT_METRES * 0.5f, UNIT_METRES * 0.5f));
+		mBillboard->SetSize(Float2(METER_LEN * 0.5f, METER_LEN * 0.5f));
 		mBillboard->SetTexture(mFilename);
 		mBillboard->GetMaterial()->blendMode = eBlendMode::ALPHA_BLEND;
 

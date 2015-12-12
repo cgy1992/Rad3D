@@ -1,7 +1,7 @@
 #include "MGrassManager.h"
 #include "MWorld.h"
 
-#define D_WAVE_GRID_SIZE (0.5f * UNIT_METRES)
+#define D_WAVE_GRID_SIZE (0.5f * METER_LEN)
 
 namespace Rad {
 

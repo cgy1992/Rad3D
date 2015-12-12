@@ -8,7 +8,7 @@ namespace Rad {
 	const Aabb Aabb::Infinite  = Aabb(-FLT_MAX, -FLT_MAX, -FLT_MAX, FLT_MAX, FLT_MAX, FLT_MAX);
 	const Aabb Aabb::Zero      = Aabb(0, 0, 0, 0, 0, 0);
 	const Aabb Aabb::Identiy   = Aabb(-0.5f, -0.5f, -0.5f, 0.5f, 0.5f, 0.5f);
-	const Aabb Aabb::Default   = Aabb::Identiy * UNIT_METRES;
+	const Aabb Aabb::Default   = Aabb::Identiy * METER_LEN;
 
 	Aabb::Aabb()
 	{

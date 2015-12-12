@@ -9,7 +9,7 @@ namespace Rad {
 
 	LoadRuleStandard::LoadRuleStandard()
 	{
-		mRuleParam = 100 * UNIT_METRES;
+		mRuleParam = 100 * METER_LEN;
 	}
 
 	LoadRuleStandard::~LoadRuleStandard()

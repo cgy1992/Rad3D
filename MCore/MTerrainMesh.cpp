@@ -381,7 +381,7 @@ namespace Rad {
 			UVScale.w = Terrain::Instance()->GetLayer(mLayer[3])->UVScale;
 		}
 
-		UVScale *= 1.0f / UNIT_METRES;
+		UVScale *= 1.0f / METER_LEN;
 
 		mCurrentShaderFX->GetPass(0)->SetConst("u_UVScale", UVScale);
 		mCurrentShaderFX->GetPass(0)->SetConst("u_XZTransform", GetXZTransform());

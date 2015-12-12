@@ -16,7 +16,7 @@ namespace Rad {
 		: Node("Camera")
 		, mFovy(PI / 3)
 		, mNear(1.0f)
-		, mFar(1000.0f * UNIT_METRES)
+		, mFar(1000.0f * METER_LEN)
 		, mAspect(1.3333333f)
 		, mOrthoEnable(false)
 		, mOrthoWidth(300.0f)

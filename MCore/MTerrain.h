@@ -76,7 +76,7 @@ namespace Rad {
 			Info()
 			{
 				MorphEnable = false;
-				MorphStart = 100 * UNIT_METRES;
+				MorphStart = 100 * METER_LEN;
 
 				BlocksPerSection = Int2(4, 4);
 				DefaultHeight = 100;
@@ -84,7 +84,7 @@ namespace Rad {
 				WMapSize = 128;
 				LMapSize = 128;
 
-				GridSize = UNIT_METRES;
+				GridSize = METER_LEN;
 				InvGridSize = 1 / GridSize;
 				BlockSize = GridSize * kMeshGridCount;
 				InvBlockSize = 1 / BlockSize;
@@ -250,7 +250,7 @@ namespace Rad {
 			GetLightingColorAt(Float3 & c, float x, float z);
 
 		bool
-			RayCheck(Float3 * p, const Ray & ray, float step = UNIT_METRES * 0.1f);
+			RayCheck(Float3 * p, const Ray & ray, float step = METER_LEN * 0.1f);
 
 		float *
 			LockHeight(const RectI & rect);
