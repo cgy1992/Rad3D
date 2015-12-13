@@ -155,6 +155,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="MFogController.h" />
     <ClInclude Include="MAnimationController.h" />
     <ClInclude Include="MAudio.h" />
     <ClInclude Include="MAudioOGG.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="MEvent6.h" />
     <ClInclude Include="MField.h" />
     <ClInclude Include="MFunctional.h" />
+    <ClInclude Include="MGrassController.h" />
     <ClInclude Include="MGrassRenderer.h" />
     <ClInclude Include="MGrassSection.h" />
     <ClInclude Include="MHash.h" />
@@ -191,6 +193,7 @@
     <ClInclude Include="MISerializer.h" />
     <ClInclude Include="MLog.h" />
     <ClInclude Include="MLog2.h" />
+    <ClInclude Include="MMainLightController.h" />
     <ClInclude Include="MMathNEON.h" />
     <ClInclude Include="MMathASM.h" />
     <ClInclude Include="MMeshGroup.h" />
@@ -352,8 +355,10 @@
     <ClInclude Include="TcpClient.h" />
     <ClInclude Include="TcpServer.h" />
     <ClInclude Include="TcpSocket.h" />
+    <ClInclude Include="MWorldComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MFogController.cpp" />
     <ClCompile Include="MAnimationController.cpp" />
     <ClCompile Include="MAudio.cpp" />
     <ClCompile Include="MAudioOGG.cpp" />
@@ -369,6 +374,7 @@
     <ClCompile Include="MDebug.cpp" />
     <ClCompile Include="MEvent.cpp" />
     <ClCompile Include="MFile.cpp" />
+    <ClCompile Include="MGrassController.cpp" />
     <ClCompile Include="MGrassRenderer.cpp" />
     <ClCompile Include="MGrassSection.cpp" />
     <ClCompile Include="MImage.cpp" />
@@ -382,6 +388,7 @@
     <ClCompile Include="MISerializer.cpp" />
     <ClCompile Include="MLog.cpp" />
     <ClCompile Include="MLZ77.cpp" />
+    <ClCompile Include="MMainLightController.cpp" />
     <ClCompile Include="MMd5.cpp" />
     <ClCompile Include="MMeshGroup.cpp" />
     <ClCompile Include="MMeshOptimizer.cpp" />
@@ -506,6 +513,7 @@
     <ClCompile Include="TcpClient.cpp" />
     <ClCompile Include="TcpServer.cpp" />
     <ClCompile Include="TcpSocket.cpp" />
+    <ClCompile Include="MWorldComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MMath.inl" />

@@ -32,6 +32,9 @@ namespace Rad {
 
 		template <class T> ISerializer &
 			operator >>(T & data) { ReadT(data); return *this; }
+
+		bool
+			Check(int magic);
 	};
 
 	template<> 
@@ -41,6 +44,17 @@ namespace Rad {
 		int count = ReadString(buff, 1024);
 		data = buff;
 		return count;
+	}
+
+	inline bool ISerializer::Check(int maigc)
+	{
+		int val = 0;
+
+		Read(&val, 4);
+
+		d_assert (val == maigc);
+
+		return val == maigc;
 	}
 
 	//

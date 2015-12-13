@@ -6,7 +6,6 @@ namespace Rad {
 	ImplementRTTI(ComponentOwner, IObject);
 
 	ComponentOwner::ComponentOwner()
-		: mComponentLinker(NULL)
 	{
 	}
 	
@@ -15,68 +14,88 @@ namespace Rad {
 		RemoveAllComponent();
 	}
 
-	void ComponentOwner::AddComponent(IComponent * cp)
+	void ComponentOwner::AddComponent(IComponent * p)
 	{
-		d_assert (cp->GetOwner() == NULL);
+		d_assert (p->GetOwner() == NULL);
 
-		LINKER_APPEND(mComponentLinker, cp);
+		int i;
+		for (i = mComponents.Size(); i > 0 ; ++i)
+		{
+			if (mComponents[i - 1]->GetOrder() <= p->GetOrder())
+				break;
+		}
 
-		cp->Attach(this);
+		mComponents.Insert(i, p);
+
+		p->Attach(this);
 	}
 
-	void ComponentOwner::RemoveComponent(IComponent * cp)
+	void ComponentOwner::RemoveComponent(IComponent * p, bool _delete)
 	{
-		d_assert (cp->GetOwner() == this);
+		int i;
+		for (i = 0; i < mComponents.Size(); ++i)
+		{
+			if (mComponents[i] == p)
+				break;
+		}
 
-		cp->Detach();
+		d_assert (i < mComponents.Size());
 
-		LINKER_REMOVE(mComponentLinker, cp);
+		RemoveComponent(i, _delete);
+	}
 
-		delete cp;
+	void ComponentOwner::RemoveComponent(int i, bool _delete)
+	{
+		mComponents[i]->Detach();
+		
+		if (_delete)
+			delete mComponents[i];
+
+		mComponents.Erase(i);
 	}
 
 	void ComponentOwner::RemoveAllComponent()
 	{
-		while (mComponentLinker != NULL)
+		for (int i = 0; i < mComponents.Size(); ++i)
 		{
-			RemoveComponent(mComponentLinker);
-		}
-	}
-
-	IComponent * ComponentOwner::FirstComponent()
-	{
-		IComponent * cp = mComponentLinker;
-
-		while (cp != NULL)
-		{
-			if (LINKER_NEXT(cp) == NULL)
-				return cp;
-
-			cp = LINKER_NEXT(cp);
+			delete mComponents[i];
 		}
 
-		return NULL;
+		mComponents.Clear();
 	}
 
-	IComponent * ComponentOwner::NextComponent(IComponent * cp)
+	void ComponentOwner::ResortComponent(IComponent * p)
 	{
-		return LINKER_PREV(cp);
+		int i;
+		for (i = 0; i < mComponents.Size(); ++i)
+		{
+			if (mComponents[i] == p)
+				break;
+		}
+
+		d_assert (i < mComponents.Size());
+
+		mComponents.Erase(i);
+
+		for (i = mComponents.Size(); i > 0 ; ++i)
+		{
+			if (mComponents[i - 1]->GetOrder() < p->GetOrder())
+				break;
+		}
+
+		mComponents.Insert(i, p);
 	}
 
 	void ComponentOwner::UpdateComponent(float elapsedTime)
 	{
-		IComponent * cp = FirstComponent();
-		while (cp != NULL)
+		for (int i = 0; i < mComponents.Size(); ++i)
 		{
-			IComponent * next = NextComponent(cp);
-
-			if (cp->IsEnable())
+			IComponent * p = mComponents[i];
+			if (p->IsEnable())
 			{
-				if (cp->Update(elapsedTime) < 0)
-					RemoveComponent(cp);
+				if (p->Update(elapsedTime) < 0)
+					RemoveComponent(i--);
 			}
-
-			cp = next;
 		}
 	}
 
@@ -88,16 +107,14 @@ namespace Rad {
 		{
 			OSerializer & OS = (OSerializer &)sl;
 
-			IComponent * pComponent = FirstComponent();
-			while (pComponent != NULL)
+			for (int i = 0; i < mComponents.Size(); ++i)
 			{
+				IComponent * pComponent = mComponents[i];
 				if (pComponent->Serializable())
 				{
 					OS << pComponent->GetRTTI()->TypeId();
 					pComponent->Serialize(OS);
 				}
-
-				pComponent = NextComponent(pComponent);
 			}
 
 			OS << 0;
@@ -125,11 +142,25 @@ namespace Rad {
 	IComponent::IComponent()
 		: mOwner(NULL)
 		, mEnable(true)
+		, mOrder(0)
 	{
 	}
 
 	IComponent::~IComponent()
 	{
+	}
+
+	void IComponent::SetEnable(bool b)
+	{
+		mEnable = b;
+	}
+
+	void IComponent::SetOrder(int order)
+	{
+		mOrder = order;
+
+		if (mOwner != NULL)
+			mOwner->ResortComponent(this);
 	}
 
 	void IComponent::Attach(ComponentOwner * owner)

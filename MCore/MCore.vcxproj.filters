@@ -106,6 +106,9 @@
     <Filter Include="Base\Object">
       <UniqueIdentifier>{29c13837-453a-430f-ba53-dee7382aef8b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\5. World\Component">
+      <UniqueIdentifier>{cba13dd8-a456-4a0f-a83f-8104c1f6f39d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MArray.h">
@@ -699,6 +702,18 @@
     <ClInclude Include="MRef.h">
       <Filter>Base</Filter>
     </ClInclude>
+    <ClInclude Include="MWorldComponent.h">
+      <Filter>Engine\5. World\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MFogController.h">
+      <Filter>Engine\5. World\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MMainLightController.h">
+      <Filter>Engine\5. World\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MGrassController.h">
+      <Filter>Engine\5. World\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -1154,6 +1169,18 @@
     </ClCompile>
     <ClCompile Include="MRef.cpp">
       <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="MWorldComponent.cpp">
+      <Filter>Engine\5. World\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MFogController.cpp">
+      <Filter>Engine\5. World\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MMainLightController.cpp">
+      <Filter>Engine\5. World\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MGrassController.cpp">
+      <Filter>Engine\5. World\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

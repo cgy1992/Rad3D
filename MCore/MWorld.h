@@ -33,8 +33,13 @@
 #include "PSManager.h"
 #include "MMeshManager.h"
 #include "MPrefabManager.h"
+#include "MWorldComponent.h"
 #include "MWorldSection.h"
 #include "MConfigFile.h"
+
+#include "MFogController.h"
+#include "MGrassController.h"
+#include "MMainLightController.h"
 
 namespace Rad {
 
@@ -91,33 +96,6 @@ namespace Rad {
 			int SectionZoneDepth;
 		};
 
-		struct EvInfo : public IObject
-		{
-			DECLARE_PROPERTY(IObject);
-
-			Float3 MainLightRotation;
-			Float3 MainLightAmbient;
-			Float3 MainLightDiffuse;
-			Float3 MainLightSpecular;
-			float MainLightStrength;
-
-			float FogStart;
-			float FogEnd;
-			Float3 FogColor;
-
-			Float2 GrassWaveDir;
-			float GrassWaveSpeed;
-			float GrassWaveStrength;
-			float GrassVisibleRadius;
-
-			EvInfo();
-
-			void
-				Reset();
-			virtual void
-				OnPropertyChanged(const Property * p);
-		};
-
 	public:
 		World();
 		~World();
@@ -155,17 +133,28 @@ namespace Rad {
 			Unload();
 		void
 			Save(const String & filename);
-		void
-			_updateEvInfo();
 
 		const Info *
 			GetInfo() { return &mInfo; }
-		EvInfo *
-			GetEvInfo() { return &mEvInfo; }
 		ConfigFile *
 			GetSetting() { return &mSetting; }
 		const String &
 			GetFilename() { return mFilename; }
+
+		void
+			AddComponent(WorldComponent * cp);
+		void
+			RemoveComponent(WorldComponent * cp, bool _delete = true);
+		void
+			RemoveComponent(int i, bool _delete = true);
+		void
+			RemoveAllComponent();
+		void
+			ResortComponent(WorldComponent * cp);
+		WorldComponent *
+			GetComponent(int i) { return mComponents[i]; }
+		int
+			GetComponentCount() { return mComponents.Size(); }
 
 		WorldSection *
 			GetSection(const Float3 & position);
@@ -207,10 +196,6 @@ namespace Rad {
 			RayCheckEx(float * dist, const Ray & ray, float length, int flags);
 
 	protected:
-		void
-			_updateSections(float elapsedTime);
-
-	protected:
 		int mFrameId;
 
 		PS_Manager * mPSManager;
@@ -232,9 +217,10 @@ namespace Rad {
 		NavData * mNavData;
 
 		Info mInfo;
-		EvInfo mEvInfo;
 		String mFilename;
 		ConfigFile mSetting;
+
+		Array<WorldComponent *> mComponents;
 
 		WorldSection * mSections;
 		WorldSection * mCurrentSection;

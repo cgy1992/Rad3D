@@ -17,8 +17,8 @@ namespace Rad {
 
 		mBoneCount = 0;
 
-		mFogColor = Float4(1, 1, 1, 1);
-		mFogParam = Float4(5000, 10000, 0.001f, 1);
+		SetFogParam(5000, 20000);
+		SetFogColor(Float3(1, 1, 1));
 
 		mTime = Float4::Zero;
 

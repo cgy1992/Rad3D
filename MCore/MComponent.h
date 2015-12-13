@@ -24,15 +24,19 @@ namespace Rad {
 		virtual ~ComponentOwner();
 
 		void
-			AddComponent(IComponent * cp);
+			AddComponent(IComponent * p);
 		void
-			RemoveComponent(IComponent * cp);
+			RemoveComponent(IComponent * p, bool _delete = true);
+		void
+			RemoveComponent(int i, bool _delete = true);
 		void
 			RemoveAllComponent();
+		void
+			ResortComponent(IComponent * p);
 		IComponent *
-			FirstComponent();
-		IComponent *
-			NextComponent(IComponent * cp);
+			GetComponent(int i) { return mComponents[i]; }
+		int
+			GetComponentCount() { return mComponents.Size(); }
 
 		void
 			UpdateComponent(float elapsedTime);
@@ -41,14 +45,13 @@ namespace Rad {
 			Serialize(Serializer & sl);
 
 	protected:
-		IComponent * mComponentLinker;
+		Array<IComponent *, t_alloc_pool<IComponent *> > mComponents;
 	};
 
 	//
 	class M_ENTRY IComponent : public IObject
 	{
 		DECLARE_RTTI();
-		DECLARE_LINKER(IComponent);
 
 	public:
 		IComponent();
@@ -60,9 +63,14 @@ namespace Rad {
 			GetOwnerT() { d_assert(KIND_OF(T, obj)); return (T *)mOwner; }
 
 		virtual void 
-			SetEnable(bool b) { mEnable = b; }
+			SetEnable(bool b);
 		bool 
 			IsEnable() { return mEnable; }
+
+		void
+			SetOrder(int order);
+		int
+			GetOrder() { return mOrder; }
 
 		virtual void
 			Attach(ComponentOwner * owner);
@@ -75,5 +83,6 @@ namespace Rad {
 	protected:
 		ComponentOwner * mOwner;
 		bool mEnable;
+		int mOrder;
 	};
 }
