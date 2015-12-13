@@ -102,12 +102,11 @@ void ComponentPanel::OnNodeChanged()
 	Node * pSelectNode = Editor::Instance()->GetSelectNode();
 	if (pSelectNode != NULL)
 	{
-		IComponent * cp = pSelectNode->FirstComponent();
-		while (cp)
+		for (int i = 0; i < pSelectNode->GetComponentCount(); ++i)
 		{
-			mListBox->Append(String(cp->GetRTTI()->Name()).c_wstr(), cp);
+			IComponent * cp = pSelectNode->GetComponent(i);
 
-			cp = pSelectNode->NextComponent(cp);
+			mListBox->Append(String(cp->GetRTTI()->Name()).c_wstr(), cp);
 		}
 	}
 }
