@@ -58,6 +58,7 @@ namespace Rad {
 	{
 		for (int i = 0; i < mComponents.Size(); ++i)
 		{
+			mComponents[i]->Detach();
 			delete mComponents[i];
 		}
 

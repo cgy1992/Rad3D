@@ -6,11 +6,13 @@ namespace Rad {
 
 	NodeDisplayer::NodeDisplayer(const String & filename)
 		: mFilename(filename)
+		, mBillboard(NULL)
 	{
 	}
 
 	NodeDisplayer::~NodeDisplayer()
 	{
+		d_assert (mBillboard == NULL);
 	}
 
 	void NodeDisplayer::Attach(ComponentOwner * owner)
