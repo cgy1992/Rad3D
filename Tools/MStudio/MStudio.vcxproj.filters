@@ -84,9 +84,6 @@
     <ClCompile Include="TerrainModule.cpp">
       <Filter>Module\2. Terrain</Filter>
     </ClCompile>
-    <ClCompile Include="EnvironmentModule.cpp">
-      <Filter>Module\3. Environment</Filter>
-    </ClCompile>
     <ClCompile Include="WaterDialog.cpp">
       <Filter>Module\5. Water</Filter>
     </ClCompile>
@@ -162,6 +159,9 @@
     </ClCompile>
     <ClCompile Include="ProgressDialog.cpp">
       <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldModule.cpp">
+      <Filter>Module\3. World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -246,9 +246,6 @@
     <ClInclude Include="TerrainModule.h">
       <Filter>Module\2. Terrain</Filter>
     </ClInclude>
-    <ClInclude Include="EnvironmentModule.h">
-      <Filter>Module\3. Environment</Filter>
-    </ClInclude>
     <ClInclude Include="WaterDialog.h">
       <Filter>Module\5. Water</Filter>
     </ClInclude>
@@ -325,6 +322,9 @@
     <ClInclude Include="ProgressDialog.h">
       <Filter>Module</Filter>
     </ClInclude>
+    <ClInclude Include="WorldModule.h">
+      <Filter>Module\3. World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Framework">
@@ -338,9 +338,6 @@
     </Filter>
     <Filter Include="Module\2. Terrain">
       <UniqueIdentifier>{bf142545-f0b7-4470-9bf1-9150085cb6b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Module\3. Environment">
-      <UniqueIdentifier>{b13252c5-99f6-4786-8a30-513dd9cff8ce}</UniqueIdentifier>
     </Filter>
     <Filter Include="Module\5. Water">
       <UniqueIdentifier>{99344c80-82a4-45a0-a177-db2d0a2fcd99}</UniqueIdentifier>
@@ -365,6 +362,9 @@
     </Filter>
     <Filter Include="Module\6. Grass">
       <UniqueIdentifier>{e8235da0-26d7-4052-9744-7601e755e4cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module\3. World">
+      <UniqueIdentifier>{b13252c5-99f6-4786-8a30-513dd9cff8ce}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

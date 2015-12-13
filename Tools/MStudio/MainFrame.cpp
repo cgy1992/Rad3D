@@ -4,7 +4,7 @@
 #include "TerrainModule.h"
 #include "WaterModule.h"
 #include "GrassModule.h"
-#include "EnvironmentModule.h"
+#include "WorldModule.h"
 #include "ParticleFXModule.h"
 #include "LightFXModule.h"
 #include "NavPathModule.h"
@@ -31,7 +31,7 @@ MainFrame::MainFrame()
 
 	AddModule(new EntityModule);
 	AddModule(new TerrainModule);
-	AddModule(new EnvironmentModule);
+	AddModule(new WorldModule);
 	AddModule(new WaterModule);
 	AddModule(new GrassModule);
 	AddModule(new ParticleFXModule);

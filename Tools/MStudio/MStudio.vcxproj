@@ -153,7 +153,7 @@
     <ClCompile Include="LightFX_Terrain.cpp" />
     <ClCompile Include="LightFX_UVUnwrap.cpp" />
     <ClCompile Include="LightFX_World.cpp" />
-    <ClCompile Include="EnvironmentModule.cpp" />
+    <ClCompile Include="WorldModule.cpp" />
     <ClCompile Include="MainFrame.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="EntityPropertyPanel.cpp" />
@@ -197,7 +197,7 @@
     <ClInclude Include="EditorModule.h" />
     <ClInclude Include="EntityPanel.h" />
     <ClInclude Include="Gizmo.h" />
-    <ClInclude Include="EnvironmentModule.h" />
+    <ClInclude Include="WorldModule.h" />
     <ClInclude Include="GizmoBar.h" />
     <ClInclude Include="LightFXModule.h" />
     <ClInclude Include="LightFX_AOGenerator.h" />
