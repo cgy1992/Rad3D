@@ -1,0 +1,20 @@
+<Layout lookfeel="MainPanel" version="1">
+	<Name value="Root"/>
+	<Rect value="131 141 464 38"/>
+	<Child type="Widget" lookfeel="EditorBlack">
+		<Name value="Type"/>
+		<Rect value="0 0 287 26"/>
+		<Align value="128"/>
+	</Child>
+	<Child type="Button" lookfeel="MainButton">
+		<Name value="OK"/>
+		<Rect value="292 0 80 28"/>
+		<Caption value="OK"/>
+	</Child>
+	<Child type="Button" lookfeel="MainButton">
+		<Name value="Cancel"/>
+		<Rect value="372 0 80 28"/>
+		<Caption value="Cancel"/>
+	</Child>
+</Layout>
+
