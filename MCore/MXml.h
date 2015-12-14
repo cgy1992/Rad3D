@@ -12,7 +12,6 @@
 #include "rapidxml.hpp"
 #include "rapidxml_print.hpp"
 
-#include "MDefine.h"
 #include "MDataStream.h"
 
 namespace Rad {
@@ -85,13 +84,17 @@ namespace Rad {
 		~xml_doc();
 
 		bool 
-			open_file(const String & filename);
+			open(const String & filename);
 		bool 
 			open(DataStreamPtr stream);
 		bool 
-			parse(const void * data, int size);
+			parse(const byte * data, int size);
 		void
-			print(std::ostream & stream);
+			print(String & str);
+		bool 
+			save(const String & filename);
+		bool 
+			save(FILE * fp);
 
 		void
 			clear();

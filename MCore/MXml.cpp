@@ -1,5 +1,6 @@
 #include "MXml.h"
 #include "MFile.h"
+#include <sstream>
 
 namespace Rad {
 
@@ -192,24 +193,22 @@ namespace Rad {
 		clear();
 	}
 
-	bool xml_doc::open_file(const String & filename)
+	bool xml_doc::open(const String & filename)
 	{
-		DataStreamPtr stream = new FileStream(filename);
-
-		if (stream->IsOpen())
-			return open(stream);
-
-		return false;
+		return open(new FileStream(filename));
 	}
 
 	bool xml_doc::open(DataStreamPtr stream)
 	{
 		d_assert (stream != NULL);
 
-		return parse(stream->GetData(), stream->Size());
+		if (stream->IsOpen())
+			return parse((byte *)stream->GetData(), stream->Size());
+
+		return false;
 	}
 
-	bool xml_doc::parse(const void * data, int size)
+	bool xml_doc::parse(const byte * data, int size)
 	{
 		clear();
 
@@ -223,9 +222,37 @@ namespace Rad {
 		return true;
 	}
 
-	void xml_doc::print(std::ostream & stream)
+	void xml_doc::print(String & str)
 	{
-		stream << i_xml;
+		std::stringstream sstream;
+
+		sstream << i_xml;
+
+		str = sstream.str().c_str();
+	}
+
+	bool xml_doc::save(const String & filename)
+	{
+		FILE * fp = fopen(filename.c_str(), "wb");
+		if (!fp)
+			return false;
+
+		save(fp);
+
+		fclose(fp);
+
+		return true;
+	}
+
+	bool xml_doc::save(FILE * fp)
+	{
+		String str;
+
+		print(str);
+
+		fwrite(str.c_str(), 1, str.Length(), fp);
+
+		return true;
 	}
 
 	void xml_doc::clear()

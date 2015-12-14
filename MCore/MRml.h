@@ -7,8 +7,6 @@
 */
 #pragma once
 
-#include "MDefine.h"
-#include "MFixedString.h"
 #include "MLinker.h"
 #include "MDataStream.h"
 
@@ -69,26 +67,23 @@ namespace Rad {
 		~rml_doc();
 
 		bool 
-			open_file(const String & filename);
+			open(const String & filename);
 		bool 
 			open(DataStreamPtr stream);
-
+		bool 
+			parse(const byte * data, int size);
 		void 
 			clear();
 
 		void
 			print(String & str);
 		bool 
-			save_file(const String & filename);
+			save(const String & filename);
 		bool 
-			save_file_ex(FILE * fp);
+			save(FILE * fp);
 
 	protected:
-		bool 
-			_parse(char * str);
-
-	protected:
-		DataStreamPtr mStream;
+		char * i_data;
 	};
 
 }

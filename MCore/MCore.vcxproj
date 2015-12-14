@@ -71,7 +71,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\json;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>M_EXPORT;M_DEBUG_MEMORY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -105,7 +105,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4355;4996;4251;4661;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\json;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libIconv.lib;libogg.lib;libvorbis.lib;libtheora.lib;winmm.lib;user32.lib;kernel32.lib;gdi32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -134,7 +134,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4355;4996;4251;4661;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Platform\Win32;..\ThirdParty\c99;..\ThirdParty\xml;..\ThirdParty\json;..\ThirdParty\fastlz;..\ThirdParty\image\png;..\ThirdParty\image\etc;..\ThirdParty\image\jpeg;..\ThirdParty\iconv\include;..\ThirdParty\ogg\include;..\ThirdParty\ogg\etheora;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libIconv.lib;libogg.lib;libvorbis.lib;libtheora.lib;winmm.lib;user32.lib;kernel32.lib;gdi32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -191,6 +191,7 @@
     <ClInclude Include="MInt2.h" />
     <ClInclude Include="MInt3.h" />
     <ClInclude Include="MISerializer.h" />
+    <ClInclude Include="MJson.h" />
     <ClInclude Include="MLog.h" />
     <ClInclude Include="MLog2.h" />
     <ClInclude Include="MMainLightController.h" />
@@ -386,6 +387,7 @@
     <ClCompile Include="MImagePVR.cpp" />
     <ClCompile Include="MImageTGA.cpp" />
     <ClCompile Include="MISerializer.cpp" />
+    <ClCompile Include="MJson.cpp" />
     <ClCompile Include="MLog.cpp" />
     <ClCompile Include="MLZ77.cpp" />
     <ClCompile Include="MMainLightController.cpp" />

@@ -714,6 +714,9 @@
     <ClInclude Include="MGrassController.h">
       <Filter>Engine\5. World\Component</Filter>
     </ClInclude>
+    <ClInclude Include="MJson.h">
+      <Filter>Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -1181,6 +1184,9 @@
     </ClCompile>
     <ClCompile Include="MGrassController.cpp">
       <Filter>Engine\5. World\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MJson.cpp">
+      <Filter>Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

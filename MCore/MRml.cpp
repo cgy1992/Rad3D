@@ -309,6 +309,7 @@ namespace Rad {
 	//
 	rml_doc::rml_doc()
 		: rml_node(NULL, NULL, 0)
+		, i_data(NULL)
 	{
 	}
 
@@ -317,41 +318,40 @@ namespace Rad {
 		clear();
 	}
 
-	bool rml_doc::open_file(const String & filename)
+	bool rml_doc::open(const String & filename)
 	{
-		DataStreamPtr stream = new FileStream(filename);
-
-		return open(stream);
+		return open(new FileStream(filename));
 	}
 
 	bool rml_doc::open(DataStreamPtr stream)
 	{
 		d_assert (stream != NULL);
 		
-		clear();
-
 		if (stream->IsOpen())
-		{
-			mStream = stream;
-
-			return _parse((char *)mStream->GetData());
-		}
+			return parse((byte *)stream->GetData(), stream->Size());
 
 		return false;
+	}
+
+	bool rml_doc::parse(const byte * data, int size)
+	{
+		clear();
+
+		i_data = new char[size + 1];
+
+		memcpy(i_data, data, size);
+		i_data[size] = 0;
+
+		_parse_child(i_data);
+
+		return first_node() != NULL;
 	}
 
 	void rml_doc::clear()
 	{
 		rml_node::clear();
 
-		mStream = NULL;
-	}
-
-	bool rml_doc::_parse(char * str)
-	{
-		_parse_child(str);
-
-		return first_node() != NULL;
+		safe_delete_array(i_data);
 	}
 
 	void rml_doc::print(String & str)
@@ -365,20 +365,20 @@ namespace Rad {
 		}
 	}
 
-	bool rml_doc::save_file(const String & filename)
+	bool rml_doc::save(const String & filename)
 	{
 		FILE * fp = fopen(filename.c_str(), "wb");
 		if (!fp)
 			return false;
 
-		save_file_ex(fp);
+		save(fp);
 
 		fclose(fp);
 
 		return true;
 	}
 
-	bool rml_doc::save_file_ex(FILE * fp)
+	bool rml_doc::save(FILE * fp)
 	{
 		String str;
 

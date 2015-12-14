@@ -33,7 +33,7 @@ namespace Rad {
 
 	void ConfigFile::Save(const char * filename)
 	{
-		mDocument.save_file(filename);
+		mDocument.save(filename);
 	}
 
 	void ConfigFile::Clear()
