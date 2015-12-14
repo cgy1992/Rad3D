@@ -386,12 +386,6 @@ namespace Rad {
 
 	bool LookFeelManager::Save(const String & filename)
 	{
-		std::ofstream file;
-		file.open(filename.c_str());
-
-		if (!file.is_open())
-			return false;
-
 		xml_doc doc;
 		xml_node root = doc.append_node("LookFeel");
 		root.append_attribute("version", i2str(K_Version).c_str());
@@ -410,9 +404,7 @@ namespace Rad {
 			}
 		}
 
-		doc.print(file);
-
-		file.close();
+		doc.save(filename);
 
 		return true;
 	}

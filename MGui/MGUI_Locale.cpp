@@ -45,7 +45,7 @@ namespace Rad {
 			doc.append(mStringMap[i].key.c_str(), mStringMap[i].value.c_str());
 		}
 
-		doc.save_file(filename);
+		doc.save(filename);
 
 		mNeedSave = false;
 	}
