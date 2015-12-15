@@ -134,6 +134,7 @@ LOCAL_SRC_FILES := \
 ../../MCore/MResourceManager.cpp \
 ../../MCore/MRoot.cpp \
 ../../MCore/MXml.cpp \
+../../MCore/MJson.cpp \
 ../../MCore/MZone.cpp \
 ../../MCore/MShaderFX.cpp \
 ../../MCore/MShaderFXManager.cpp \
