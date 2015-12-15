@@ -20,17 +20,17 @@ dword getsize(const char * text)
 		{
 		case 'K':
 		case 'k':
-			return (dword)str.ToInt() * 1024;
+			return (dword)atoi(str.c_str()) * 1024;
 			break;
 
 		case 'M':
 		case 'm':
-			return (dword)str.ToInt() * 1024 * 1024;
+			return (dword)atoi(str.c_str()) * 1024 * 1024;
 			break;
 
 		case 'G':
 		case 'g':
-			return (dword)str.ToInt() * 1024 * 1024 * 1024;
+			return (dword)atoi(str.c_str()) * 1024 * 1024 * 1024;
 		}
 	}
 
@@ -42,7 +42,7 @@ int main()
 	Root * gRoot = new Root();
 
 	rml_doc * xdoc = new rml_doc;
-	if (xdoc->open_file("MPKTool.ini"))
+	if (xdoc->open("MPKTool.ini"))
 	{
 		rml_node * nd_outputPath = xdoc->first_node("OutputPath");
 

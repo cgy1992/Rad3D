@@ -191,7 +191,7 @@ void Editor::LoadProject(const char * filename)
 	ResourceManager::Instance()->AddArchive(new FilePathArchive(mEditorFloder));
 
 	xml_doc doc;
-	if (doc.open_file(filename))
+	if (doc.open(filename))
 	{
 		xml_node node = doc.first_node().first_node("MediaPath");
 

@@ -140,19 +140,11 @@ public:
 		if (gMesh == NULL || gMesh->GetSkeleton() == NULL)
 			return ;
 
-		std::ofstream file;
-		file.open("MeshViewer.dump");
-
-		if (!file.is_open())
-			return ;
-
 		xml_doc doc;
 
 		gMesh->GetSkeleton()->SaveXml(gMesh->GetSource(), doc.append_node("Skeleton"));
 
-		doc.print(file);
-		
-		file.close();
+		doc.save("MeshViewer.sekl");
 	}
 
 	void OnShowSkeleton(const MGUI::ClickEvent * e)

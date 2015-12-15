@@ -38,7 +38,7 @@ void ExportConfig::Load()
 	String filename = dir + "\\MaxExport.ini";
 
 	xml_doc xdoc;
-	if (xdoc.open_file(filename))
+	if (xdoc.open(filename))
 	{
 		xml_node root = xdoc.first_node();
 
@@ -146,7 +146,9 @@ void ExportConfig::SetExportFilename(const String & filename)
 
 	String temp = mExportFilename.c_str();
 	String base, path;
-	temp.SplitFileName(base, path);
+
+	base = FileHelper::GetBaseName(temp);
+	base = FileHelper::GetFileDir(path);
 
 	mExportBaseName = base.c_str();
 	mExportPath = path.c_str();

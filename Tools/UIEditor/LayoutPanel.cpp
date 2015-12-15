@@ -203,12 +203,6 @@ bool LayoutPanel::SaveLayout(const String & filename)
 	if (mTreeView->GetCount() == 0)
 		return false;
 
-	std::ofstream file;
-	file.open(filename.c_str());
-
-	if (!file.is_open())
-		return false;
-
 	xml_doc doc;
 	xml_node node = doc.append_node("Layout");
 
@@ -231,11 +225,7 @@ bool LayoutPanel::SaveLayout(const String & filename)
 		_SaveWidget(node, pRootItem->GetChildItem(i));
 	}
 
-	doc.print(file);
-
-	file.close();
-
-	return true;
+	return doc.save(filename.c_str());
 }
 
 void LayoutPanel::Clear()
