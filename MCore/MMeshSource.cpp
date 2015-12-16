@@ -210,6 +210,7 @@ namespace Rad {
 		joint bn;
 
 		bn.name = name;
+		bn.flag = 0;
 		bn.position = Float3::Zero;
 		bn.rotation = Quat::Identity;
 		bn.scale = Float3(1, 1, 1);
