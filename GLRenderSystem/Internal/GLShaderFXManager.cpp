@@ -422,6 +422,30 @@ namespace Rad {
 		fx->AddPass(pShaderPass);
 	}
 
+	void _loadImp(ShaderFX * fx, DataStreamPtr stream)
+	{
+		d_assert (stream != NULL);
+
+		d_log("-: Loading ShaderFX '%s', source '%s'...", fx->GetName().c_str(), fx->GetSource().c_str());
+
+		rml_doc rdoc;
+		rdoc.open(stream);
+
+		rml_node * pass = rdoc.first_node("Pass");
+		while (pass != NULL)
+		{
+			_loadPass(pass, fx);
+
+			pass = pass->next_sibling("Pass");
+		}
+
+		if (fx->GetPassCount() == 0)
+		{
+			d_log("?: ShaderFX '%s', Pass Count = 0.", fx->GetSource().c_str());
+		}
+
+		d_log("-: Loading ShaderFX OK...\n");
+	}
 
 	//
 	struct GLSL_VERSION
@@ -471,31 +495,66 @@ namespace Rad {
 
 	GLShaderFXManager::~GLShaderFXManager()
 	{
+		for (int i = 0; i < mFXMap.Size(); ++i)
+		{
+			delete mFXMap[i].value;
+		}
+
+		mFXMap.Clear();
 	}
 
-	void GLShaderFXManager::_loadImp(ShaderFX * fx, DataStreamPtr stream)
+	ShaderFX * GLShaderFXManager::_find(Hash2 hash, const String & name)
 	{
-		d_assert (stream != NULL);
+		int i = mFXMap.Find(hash);
 
-		d_log("-: Loading ShaderFX '%s', source '%s'...", fx->GetName().c_str(), fx->GetSource().c_str());
+		d_assert (i == -1 || name == mFXMap[i].value->GetName());
 
-		rml_doc rdoc;
-		rdoc.open(stream);
+		return i != -1 ? mFXMap[i].value : NULL;
+	}
 
-		rml_node * pass = rdoc.first_node("Pass");
-		while (pass != NULL)
+	ShaderFX * GLShaderFXManager::Load(const String & name, const String & source, const String & macros)
+	{
+		Hash2 hash(name.c_str());
+
+		ShaderFX * pShaderFX = _find(hash, name);
+		if (pShaderFX != NULL)
 		{
-			_loadPass(pass, fx);
-
-			pass = pass->next_sibling("Pass");
+			return pShaderFX;
 		}
 
-		if (fx->GetPassCount() == 0)
+		DataStreamPtr stream = ResourceManager::Instance()->OpenResource(source);
+		if (stream == NULL)
 		{
-			d_log("?: ShaderFX '%s', Pass Count = 0.", fx->GetSource().c_str());
+			d_log("?: ShaderFX '%s' Open Failed.", source.c_str());
+			return NULL;
 		}
 
-		d_log("-: Loading ShaderFX OK...\n");
+		pShaderFX = new ShaderFX(name, stream->GetSource(), macros);
+
+		_loadImp(pShaderFX, stream);
+
+		mFXMap.Insert(hash, pShaderFX);
+
+		return pShaderFX;
+	}
+
+	ShaderFX * GLShaderFXManager::Load(const String & name, DataStreamPtr stream, const String & macros)
+	{
+		Hash2 hash(name.c_str());
+
+		ShaderFX * pShaderFX = _find(hash, name);
+		if (pShaderFX != NULL)
+		{
+			return pShaderFX;
+		}
+
+		pShaderFX = new ShaderFX(name, stream->GetSource(), macros);
+
+		_loadImp(pShaderFX, stream);
+
+		mFXMap.Insert(hash, pShaderFX);
+
+		return pShaderFX;
 	}
 
 	void GLShaderFXManager::OnLostDevice()
@@ -524,6 +583,43 @@ namespace Rad {
 				pShaderPass->OnResetDevice();
 			}
 		}
+	}
+
+	void GLShaderFXManager::Remove(ShaderFX * fx)
+	{
+		Hash2 hash(fx->GetName().c_str());
+		int i = mFXMap.Find(hash);
+
+		d_assert (i != -1);
+
+		delete mFXMap[i].value;
+		mFXMap.Erase(i);
+	}
+
+	void GLShaderFXManager::Reload(ShaderFX * fx)
+	{
+		if (fx->GetSource() != "")
+		{
+			fx->Clear();
+
+			DataStreamPtr stream = ResourceManager::Instance()->OpenResource(fx->GetSource());
+			if (stream == NULL)
+			{
+				d_log("?: ShaderFX '%s' Open Failed.", fx->GetSource().c_str());
+			}
+
+			_loadImp(fx, stream);
+		}
+	}
+
+	void GLShaderFXManager::ReloadAll()
+	{
+		for (int i = 0; i < mFXMap.Size(); ++i)
+		{
+			Reload(mFXMap[i].value);
+		}
+
+		E_ReloadAll();
 	}
 
 }
