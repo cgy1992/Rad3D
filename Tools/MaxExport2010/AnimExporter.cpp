@@ -26,8 +26,8 @@ void AnimExporter::Export()
 		cm->SetCoordSystem(IGameConversionManager::IGAME_D3D);
 		mGameScene->InitialiseIGame(ExportConfig::Instance()->IsExportSelected());
 		mGameScene->SetStaticFrame(0);
-		int nodeCount = mGameScene->GetTopLevelNodeCount();
 
+		int nodeCount = mGameScene->GetTopLevelNodeCount();
 		if (nodeCount == 0)
 		{
 			MessageBox(GetActiveWindow(), "No nodes available!", "Error", MB_OK);

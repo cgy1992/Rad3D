@@ -29,11 +29,11 @@ void TextureExporter::Export()
 
 	for (int i = 0; i < mTextures.Size(); ++i)
 	{
-		String filename = mTextures[i];
+		String filename = mTextures[i].c_str();
 
 		String basename = FileHelper::GetBaseName(filename);
 
-		String newFilename = expPath + "\\" + basename;
+		String newFilename = expPath + "/" + basename;
 
 		CopyFile(filename.c_str(), newFilename.c_str(), FALSE);
 	}

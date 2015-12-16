@@ -148,7 +148,7 @@ void ExportConfig::SetExportFilename(const String & filename)
 	String base, path;
 
 	base = FileHelper::GetBaseName(temp);
-	base = FileHelper::GetFileDir(path);
+	path = FileHelper::GetFileDir(temp);
 
 	mExportBaseName = base.c_str();
 	mExportPath = path.c_str();

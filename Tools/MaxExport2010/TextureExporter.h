@@ -18,5 +18,5 @@ public:
 	void Export();
 
 protected:
-	Set<String> mTextures;
+	Set<FixedString256> mTextures;
 };
