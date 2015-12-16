@@ -22,19 +22,16 @@ namespace Rad {
 		ShaderFXManager();
 		virtual ~ShaderFXManager();
 
+		virtual ShaderFX * 
+			Load(const String & name, const String & source, const String & macros = "") = 0;
+		virtual ShaderFX * 
+			Load(const String & name, DataStreamPtr stream, const String & macros = "") = 0;
+		virtual void 
+			Remove(ShaderFX * fx) = 0;
 		virtual void
-			_loadImp(ShaderFX * fx, DataStreamPtr stream) = 0;
-
-		ShaderFX * 
-			Load(const String & name, const String & source, const String & macros = "");
-		ShaderFX * 
-			Load(const String & name, DataStreamPtr stream, const String & macros = "");
-		void 
-			Remove(ShaderFX * fx);
-		void
-			Reload(ShaderFX * fx);
-		void 
-			ReloadAll();
+			Reload(ShaderFX * fx) = 0;
+		virtual void 
+			ReloadAll() = 0;
 
 		void
 			LoadLibrary(const String & libname);
@@ -47,12 +44,7 @@ namespace Rad {
 			GetGlobalMacroString();
 
 	protected:
-		ShaderFX * 
-			_find(Hash2 hash, const String & name);
-
-	protected:
 		String mGlobalMacroString;
-		Map<Hash2, ShaderFX *> mFXMap;
 	};
 
 }

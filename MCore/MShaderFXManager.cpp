@@ -13,96 +13,7 @@ namespace Rad {
 
     ShaderFXManager::~ShaderFXManager()
     {
-		for (int i = 0; i < mFXMap.Size(); ++i)
-		{
-			delete mFXMap[i].value;
-		}
-
-		mFXMap.Clear();
     }
-
-	ShaderFX * ShaderFXManager::Load(const String & name, const String & source, const String & macros)
-	{
-		Hash2 hash(name.c_str());
-
-		ShaderFX * pShaderFX = _find(hash, name);
-		if (pShaderFX != NULL)
-		{
-			return pShaderFX;
-		}
-
-		DataStreamPtr stream = ResourceManager::Instance()->OpenResource(source);
-		if (stream == NULL)
-		{
-			d_log("?: ShaderFX '%s' Open Failed.", source.c_str());
-			return NULL;
-		}
-
-		pShaderFX = new ShaderFX(name, stream->GetSource(), macros);
-
-		_loadImp(pShaderFX, stream);
-
-		mFXMap.Insert(hash, pShaderFX);
-
-		return pShaderFX;
-	}
-
-	ShaderFX * ShaderFXManager::Load(const String & name, DataStreamPtr stream, const String & macros)
-	{
-		Hash2 hash(name.c_str());
-
-		ShaderFX * pShaderFX = _find(hash, name);
-		if (pShaderFX != NULL)
-		{
-			return pShaderFX;
-		}
-
-		pShaderFX = new ShaderFX(name, stream->GetSource(), macros);
-
-		_loadImp(pShaderFX, stream);
-
-		mFXMap.Insert(hash, pShaderFX);
-
-		return pShaderFX;
-
-	}
-
-	void ShaderFXManager::Remove(ShaderFX * fx)
-	{
-		Hash2 hash(fx->GetName().c_str());
-		int i = mFXMap.Find(hash);
-
-		d_assert (i != -1);
-
-		delete mFXMap[i].value;
-		mFXMap.Erase(i);
-	}
-
-	void ShaderFXManager::Reload(ShaderFX * fx)
-	{
-		if (fx->GetSource() != "")
-		{
-			fx->Clear();
-
-			DataStreamPtr stream = ResourceManager::Instance()->OpenResource(fx->GetSource());
-			if (stream == NULL)
-			{
-				d_log("?: ShaderFX '%s' Open Failed.", fx->GetSource().c_str());
-			}
-
-			_loadImp(fx, stream);
-		}
-	}
-
-	void ShaderFXManager::ReloadAll()
-	{
-		for (int i = 0; i < mFXMap.Size(); ++i)
-		{
-			Reload(mFXMap[i].value);
-		}
-
-		E_ReloadAll();
-	}
 
 	void ShaderFXManager::LoadLibrary(const String & libname)
 	{
@@ -157,15 +68,6 @@ namespace Rad {
 	const char * ShaderFXManager::GetGlobalMacroString()
 	{
 		return mGlobalMacroString.c_str();
-	}
-
-	ShaderFX * ShaderFXManager::_find(Hash2 hash, const String & name)
-	{
-		int i = mFXMap.Find(hash);
-
-		d_assert (i == -1 || name == mFXMap[i].value->GetName());
-
-		return i != -1 ? mFXMap[i].value : NULL;
 	}
 
 }
