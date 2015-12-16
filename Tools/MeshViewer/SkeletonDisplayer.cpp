@@ -97,5 +97,8 @@ void SkeletonDisplayer::OnRender()
 		}
 	}
 
-	RenderHelper::Instance()->DebugDraw(&lines[0], ePrimType::POINT_LIST, lines.Size() / 2, Float4(0, 1, 0), Mat4::Identity);
+	if (lines.Size() > 0)
+	{
+		RenderHelper::Instance()->DebugDraw(&lines[0], ePrimType::POINT_LIST, lines.Size() / 2, Float4(0, 1, 0), Mat4::Identity);
+	}
 }
