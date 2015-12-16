@@ -16,8 +16,19 @@ namespace Rad {
 		NullShaderFXManager();
 		virtual ~NullShaderFXManager();
 
+		virtual ShaderFX * 
+			Load(const String & name, const String & source, const String & macros = "");
+		virtual ShaderFX * 
+			Load(const String & name, DataStreamPtr stream, const String & macros = "");
+		virtual void 
+			Remove(ShaderFX * fx) {}
 		virtual void
-			_loadImp(ShaderFX * fx, DataStreamPtr stream);
+			Reload(ShaderFX * fx) {}
+		virtual void 
+			ReloadAll() {}
+
+	protected:
+		ShaderFX * mShaderFX;
 	};
 
 }

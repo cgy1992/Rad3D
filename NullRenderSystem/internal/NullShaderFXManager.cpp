@@ -5,15 +5,23 @@ namespace Rad {
 	//
 	NullShaderFXManager::NullShaderFXManager()
 	{
+		mShaderFX = new ShaderFX("", "", "");
+		mShaderFX->AddPass(new NullShaderPass);
 	}
 
 	NullShaderFXManager::~NullShaderFXManager()
 	{
+		delete mShaderFX;
 	}
 
-	void NullShaderFXManager::_loadImp(ShaderFX * fx, DataStreamPtr stream)
+	ShaderFX * NullShaderFXManager::Load(const String & name, const String & source, const String & macros)
 	{
-		fx->AddPass(new NullShaderPass);
+		return mShaderFX;
+	}
+
+	ShaderFX * NullShaderFXManager::Load(const String & name, DataStreamPtr stream, const String & macros)
+	{
+		return mShaderFX;
 	}
 
 }
