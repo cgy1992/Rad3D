@@ -158,7 +158,7 @@ bool MeshImporter::_impMesh(Interface * gi)
 		mtl->SetSubTexmap( ID_OP, bmtex);  
 		mtl->EnableMap( ID_OP, FALSE );  
 		mtl->SetActiveTexmap( bmtex );  
-		mtl->SetMtlFlag(MTL_TEX_DISPLAY_ENABLED);
+		mtl->SetMtlFlag(MTL_TDISPLAY_ENABLED);
 
 		pNode->SetMtl(mtl);
 	}

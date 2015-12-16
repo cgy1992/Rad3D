@@ -19,15 +19,15 @@
     <ClCompile Include="AnimExporter.cpp">
       <Filter>Export</Filter>
     </ClCompile>
-    <ClCompile Include="EX_Vertex.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="EX_Mesh.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="Importer.cpp" />
     <ClCompile Include="MeshImporter.cpp">
       <Filter>Importer</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -52,15 +52,15 @@
     <ClInclude Include="Utility.h">
       <Filter>Export</Filter>
     </ClInclude>
-    <ClInclude Include="EX_Vertex.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="EX_Mesh.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Importer.h" />
     <ClInclude Include="MeshImporter.h">
       <Filter>Importer</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

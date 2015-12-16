@@ -5,7 +5,7 @@
 */
 #pragma once
 
-#include "EX_Mesh.h"
+#include "Mesh.h"
 #include "TextureExporter.h"
 
 struct MMPair
