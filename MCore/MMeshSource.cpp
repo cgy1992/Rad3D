@@ -39,7 +39,7 @@ namespace Rad {
 		DeleteAllAnimation();
 	}
 
-	void MeshSource::_loadImp(DataStreamPtr stream)
+	void MeshSource::_load(DataStreamPtr stream)
 	{
 		if (mLoadState != LOADING)
 			return ;

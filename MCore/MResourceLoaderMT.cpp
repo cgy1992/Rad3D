@@ -57,7 +57,7 @@ namespace Rad {
 
 		if (mStream.pResource != NULL)
 		{
-			mStream.pResource->_loadImp(mStream.pDataStream);
+			mStream.pResource->_load(mStream.pDataStream);
 
 			if (mStream.pResource->_getDependences() == NULL)
 			{

@@ -25,7 +25,7 @@ namespace Rad {
 
 		DataStreamPtr stream = ResourceManager::Instance()->OpenResource(source);
 
-		pResource->_loadImp(stream);
+		pResource->_load(stream);
 
 		d_assert (pResource->_getDependences() == NULL);
 

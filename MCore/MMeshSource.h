@@ -47,7 +47,7 @@ namespace Rad {
 		virtual void				
 			OnUnload();
 		virtual void				
-			_loadImp(DataStreamPtr stream);
+			_load(DataStreamPtr stream);
 
 		MeshBuffer *                
 			NewMeshBuffer(int i = -1);

@@ -134,7 +134,7 @@ namespace Rad {
 	{
 	}
 
-	void ResourceDataStream::_loadImp(DataStreamPtr stream)
+	void ResourceDataStream::_load(DataStreamPtr stream)
 	{
 		mDataStream = stream;
 

@@ -25,7 +25,7 @@ namespace Rad {
 		virtual void 
 			OnUnload();
 		virtual void 
-			_loadImp(DataStreamPtr stream) { SetStream(stream); }
+			_load(DataStreamPtr stream) { SetStream(stream); }
 
 		void
 			SetStream(DataStreamPtr stream) { mStream = stream; }

@@ -69,7 +69,7 @@ namespace Rad
 		virtual void 
 			OnUnload();
 		virtual void 
-			_loadImp(DataStreamPtr stream) = 0;
+			_load(DataStreamPtr stream) = 0;
 
 		void 
 			_addDependence(Resource * pSubResource);
@@ -137,7 +137,7 @@ namespace Rad
 		virtual ~ResourceDataStream();
 
 		virtual void 
-			_loadImp(DataStreamPtr stream);
+			_load(DataStreamPtr stream);
 
 		DataStreamPtr
 			GetDataStream() { return mDataStream; }
