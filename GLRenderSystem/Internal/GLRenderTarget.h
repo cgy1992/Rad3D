@@ -29,7 +29,7 @@ namespace Rad {
 		virtual void 
 			Unlock();
 		virtual void 
-			_loadImp(DataStreamPtr stream);
+			_load(DataStreamPtr stream);
 
 		virtual bool
 			SetColorData(const Float4 & color, int u, int v);

@@ -30,7 +30,7 @@ namespace Rad {
 		d_assert (0 && "RenderTexture can't lockable");
 	}
 
-	void GLRenderTexture::_loadImp(DataStreamPtr stream)
+	void GLRenderTexture::_load(DataStreamPtr stream)
 	{
 		d_assert(0 && "RenderTexture can't call this function");
 	}

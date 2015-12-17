@@ -41,7 +41,7 @@ namespace Rad {
 		}
 	}
 
-	void GLTexture::_loadImp(DataStreamPtr stream)
+	void GLTexture::_load(DataStreamPtr stream)
 	{
 		if (mLoadState != Resource::LOADING || stream == NULL)
 			return ;
@@ -284,10 +284,10 @@ namespace Rad {
 				
 				index = (j * 16) + i * 4;
 
-				unsigned char r = data[index + 0];
-				unsigned char g = data[index + 1];
-				unsigned char b = data[index + 2];
-				unsigned char a = data[index + 3];
+				unsigned char r = pixel64[index + 0];
+				unsigned char g = pixel64[index + 1];
+				unsigned char b = pixel64[index + 2];
+				unsigned char a = pixel64[index + 3];
 
 				color.r = r / 255.0f;
 				color.g = g / 255.0f;
@@ -309,10 +309,10 @@ namespace Rad {
 
 				index = (j * 16) + i * 4;
 
-				unsigned char r = data[index + 0];
-				unsigned char g = data[index + 1];
-				unsigned char b = data[index + 2];
-				unsigned char a = data[index + 3];
+				unsigned char r = pixel64[index + 0];
+				unsigned char g = pixel64[index + 1];
+				unsigned char b = pixel64[index + 2];
+				unsigned char a = pixel64[index + 3];
 
 				color.r = r / 255.0f;
 				color.g = g / 255.0f;
@@ -335,10 +335,10 @@ namespace Rad {
 
 				index = (j * 16) + i * 4;
 
-				unsigned char r = data[index + 0];
-				unsigned char g = data[index + 1];
-				unsigned char b = data[index + 2];
-				unsigned char a = data[index + 3];
+				unsigned char r = pixel64[index + 0];
+				unsigned char g = pixel64[index + 1];
+				unsigned char b = pixel64[index + 2];
+				unsigned char a = pixel64[index + 3];
 
 				color.r = r / 255.0f;
 				color.g = g / 255.0f;
