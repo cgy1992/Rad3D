@@ -48,6 +48,8 @@ void MeshExporter::Export()
 		}
 
 		// extract mesh
+		mMeshData.Clear();
+
 		for (int i = 0; i < nodeCount; ++i)
 		{
 			IGameNode* node = mGameScene->GetTopLevelNode(i);
@@ -225,8 +227,6 @@ void MeshExporter::_dumpJoint(IGameNode * node)
 
 void MeshExporter::ExtractMesh(IGameNode * node)
 {
-	mMeshData.Clear();
-
 	IGameObject* obj = node->GetIGameObject();
 
 	// export option
@@ -239,6 +239,7 @@ void MeshExporter::ExtractMesh(IGameNode * node)
 
 	const char * nodeName = node->GetName();
 
+	IGameNode * parent = node->GetNodeParent();
 	IGameMesh::ObjectTypes type = obj->GetIGameType();
 
 	if (type == IGameMesh::IGAME_MESH)
@@ -287,36 +288,47 @@ void MeshExporter::ExtractMesh(IGameNode * node)
 			mMeshData.VertexElems |= MeshSerializer::VE_LIGHTMAPUV;
 		}
 
-		_dumpSkinInfo(obj);
+		IGameSkin * skin = obj->GetIGameSkin();
+		if (skin != NULL)
+			_dumpSkinInfo(skin);
+		else if (parent != NULL && parent->GetIGameObject()->GetIGameType() == IGameMesh::IGAME_BONE)
+			_genSkinInfo(parent);
 
 		_dumpMeshBuffer(mesh);
+
+		mMeshData.Clear();
+	}
+
+	for(int i=0;i<node->GetChildCount();i++)
+	{
+		IGameNode * child = node->GetNodeChild(i);
+		// we deal with targets in the light/camera section
+		if(child->IsTarget())
+			continue;
+
+		ExtractMesh(child);
 	}
 
 	node->ReleaseIGameObject();
 }
 
-void MeshExporter::_dumpSkinInfo(IGameObject * obj)
+void MeshExporter::_dumpSkinInfo(IGameSkin * skin)
 {
-	IGameSkin * Skin = obj->GetIGameSkin();
-	if (Skin == NULL)
-		return ;
+	d_assert (skin->GetNumOfSkinnedVerts() == mMeshData.P.Size());
 
-	d_assert (Skin->GetNumOfSkinnedVerts() == mMeshData.P.Size());
-
-	//Export skinned verts
-	for (int i = 0; i < Skin->GetNumOfSkinnedVerts(); i++)
+	for (int i = 0; i < skin->GetNumOfSkinnedVerts(); i++)
 	{
-		int type = Skin->GetVertexType(i);
+		int type = skin->GetVertexType(i);
 
 		Exporter::BlendIndex bi;
 		Exporter::BlendWeight bw;
 
 		if (type==IGameSkin::IGAME_RIGID_BLENDED)
 		{
-			for (int b = 0; b < Skin->GetNumberOfBones(i) && b < 4; b++)
+			for (int b = 0; b < skin->GetNumberOfBones(i) && b < 4; b++)
 			{
-				INode * bone = Skin->GetBone(i, b);
-				float weight = Skin->GetWeight(i, b);
+				INode * bone = skin->GetBone(i, b);
+				float weight = skin->GetWeight(i, b);
 
 				if (bone)
 				{
@@ -330,8 +342,7 @@ void MeshExporter::_dumpSkinInfo(IGameObject * obj)
 		}
 		else if (type == IGameSkin::IGAME_RIGID)
 		{
-			INode * bone = Skin->GetBone(i, 0);
-
+			INode * bone = skin->GetBone(i, 0);
 			if (bone)
 			{
 				const char * bname = bone->GetName();
@@ -343,6 +354,35 @@ void MeshExporter::_dumpSkinInfo(IGameObject * obj)
 		}
 
 		bw.normalize();
+
+		mMeshData.BI.PushBack(bi);
+		mMeshData.BW.PushBack(bw);
+	}
+
+	mMeshData.VertexElems |= MeshSerializer::VE_BONEINDEX;
+	mMeshData.VertexElems |= MeshSerializer::VE_BONEWEIGHT;
+}
+
+void MeshExporter::_genSkinInfo(IGameNode * bone)
+{
+	int boneId = _getJointId(bone->GetName());
+	if (boneId == -1)
+		return ;
+
+	for (int i = 0; i < mMeshData.P.Size(); i++)
+	{
+		Exporter::BlendIndex bi;
+		Exporter::BlendWeight bw;
+
+		bi.i[0] = boneId;
+		bi.i[1] = boneId;
+		bi.i[2] = boneId;
+		bi.i[3] = boneId;
+
+		bw.w[0] = 1;
+		bw.w[1] = 0;
+		bw.w[2] = 0;
+		bw.w[3] = 0;
 
 		mMeshData.BI.PushBack(bi);
 		mMeshData.BW.PushBack(bw);

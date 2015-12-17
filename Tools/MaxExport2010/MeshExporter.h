@@ -46,7 +46,9 @@ protected:
 	void 
 		ExtractMesh(IGameNode * node);
 	void 
-		_dumpSkinInfo(IGameObject * obj);
+		_dumpSkinInfo(IGameSkin * skin);
+	void 
+		_genSkinInfo(IGameNode * bone);
 	void 
 		_dumpMeshBuffer(IGameMesh * mesh);
 	void 
