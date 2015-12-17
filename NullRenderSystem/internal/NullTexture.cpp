@@ -32,7 +32,7 @@ namespace Rad {
 		Resource::OnUnload();
 	}
 
-	void NullTexture::_loadImp(DataStreamPtr stream)
+	void NullTexture::_load(DataStreamPtr stream)
 	{
 		if (mLoadState != Resource::LOADING)
 			return ;

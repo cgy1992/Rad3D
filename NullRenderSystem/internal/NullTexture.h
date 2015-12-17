@@ -24,7 +24,7 @@ namespace Rad {
 		virtual void 
 			OnUnload();
 		virtual void 
-			_loadImp(DataStreamPtr stream);
+			_load(DataStreamPtr stream);
 
 		virtual void * 
 			Lock(eLockFlag flag);
