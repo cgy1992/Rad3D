@@ -3,3 +3,4 @@
 2015-11-20 DDS Load with not dxt format. (mipmaps set error value)
 2015-11-23 TKeyController operator << and >>. (implement Serializer << & >>)
 2015-11-31 MPKArchive Open. (need end of 0, rml parse and xml parse need a string)
+2015-12-18 MaxPlugin (export skin mesh)
